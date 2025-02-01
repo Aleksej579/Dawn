@@ -1,0 +1,90 @@
+.custom-header-title {
+    .custom-header-title__wrapper {
+        max-width: var(--page-width);
+        padding-left: var(--page-gutter);
+        padding-right: var(--page-gutter);
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        justify-content: space-between;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            row-gap: 16px;
+        }
+
+        .container__left,
+        .container__right {
+            width: 50%;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+            }
+        }
+
+        .container__left {
+            h2 {
+                display: flex;
+                flex-direction: column;
+                letter-spacing: normal;
+
+                span {
+                    font-size: 56px;
+                    line-height: 67px;
+
+                    @media screen and (max-width: 768px) {
+                        font-size: 48px;
+                        line-height: 57px;
+                    }
+                }
+
+                span:nth-child(1) {
+                    font-family: "Gambarino";
+                    font-weight: 400;
+
+                    @media screen and (max-width: 768px) {
+                        letter-spacing: -0.015em;
+                    }
+
+                    @media screen and (max-width: 450px) {
+                        font-size: 45px;
+                        line-height: 55px;
+                    }
+                }
+
+                span:nth-child(2) {
+                    font-family: "Geist";
+                    font-weight: 600;
+                    text-transform: uppercase;
+
+                    @media screen and (max-width: 450px) {
+                        font-size: 36px;
+                        line-height: 44px;
+                    }
+                }
+            }
+        }
+
+        .container__right {
+            p {
+                font-size: 22px;
+                line-height: 35px;
+                font-weight: 400;
+                letter-spacing: -.02em;
+                margin: 0;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 20px;
+                    line-height: 30px;
+                    font-weight: 300;
+                }
+
+                @media screen and (max-width: 450px) {
+                    font-size: 16px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+}

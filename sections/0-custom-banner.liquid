@@ -1,0 +1,157 @@
+{{ '0-custom-banner.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  .custom-banner-v0 {
+    background: url({{ section.settings.image_bg | image_url: width: 1920 }});
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  @media screen and (max-width: 450px) {
+    .custom-banner-v0 {
+      background: url({{ section.settings.image_bg_mobile | image_url: width: 800 }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+{%- endstyle -%}
+<div class="custom-banner-v0__wrapper section-{{ section.id }}-padding">
+  <div class="left-side__wrapp">
+    {%- if section.settings.image_clothing != blank -%}
+      {{ section.settings.image_clothing | image_url: width: 900 | image_tag: class: 'desctop__image', loading: 'lazy' }}
+    {%- endif -%}
+    {%- if section.settings.image_clothing_mobile != blank -%}
+      {{ section.settings.image_clothing_mobile | image_url: width: 900 | image_tag: class: 'mobile__image', loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+  <div class="right-side__wrapp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="101" height="14" viewBox="0 0 101 14" fill="none">
+      <rect x="0.5" width="32.8573" height="14" fill="#545A3E"/>
+      <rect x="33.3594" width="34.2859" height="14" fill="#FFC300"/>
+      <rect x="67.6406" width="32.8573" height="14" fill="#024F83"/>
+    </svg>
+    <h2 class="cb_title">{{ section.settings.title }}</h2>
+    <div class="cb_subtitle">{{ section.settings.sub_title }}</div>
+    <a class="btn__details" href="{{ section.settings.btn_url }}" target="_blank">{{ section.settings.btn_name }}</a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>
+
+{% schema %}
+{
+  "name": "Custom banner",
+  "tag": "section",
+  "class": "custom-banner-v0",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Image for background"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg_mobile",
+      "label": "Image for background mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_clothing",
+      "label": "Image clothing"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_clothing_mobile",
+      "label": "Image clothing for mobile"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_title",
+      "label": "Sub title"
+    },
+    {
+      "type": "text",
+      "id": "btn_name",
+      "label": "Button name"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link to."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom banner"
+    }
+  ]
+}
+{% endschema %}

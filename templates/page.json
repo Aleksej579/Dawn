@@ -1,14 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "0_custom_breadcrumb_anVbCE": {
+      "type": "0-custom-breadcrumb",
+      "settings": {
+        "home_text_color": "#000000",
+        "active_text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_header_title_NJ43iJ": {
+      "type": "0-custom-header-title",
+      "settings": {
+        "title": "Title",
+        "sub_title": "Subtitle",
+        "text_color": "#2f2f2f",
+        "text_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "paragraph_color": "#5d5d5d",
+        "bg_color": "#f0f0f0",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "0_ambassadors_wWRCfP": {
+      "type": "0-ambassadors",
+      "blocks": {
+        "ambassador_Az777a": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
+          }
+        },
+        "ambassador_TG7NPa": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
+          }
+        },
+        "ambassador_dyXPiY": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
+          }
+        }
+      },
+      "block_order": [
+        "ambassador_Az777a",
+        "ambassador_TG7NPa",
+        "ambassador_dyXPiY"
+      ],
+      "settings": {
+        "title": "<p>Title</p>",
+        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "0_custom_banner_jr4QrC": {
+      "type": "0-custom-banner",
+      "settings": {
+        "image_bg": "shopify://shop_images/table-runner-white-front-65a7de8edad8a.jpg",
+        "image_bg_mobile": "shopify://shop_images/table-runner-white-front-65a7de8edad8a.jpg",
+        "image_clothing": "shopify://shop_images/ava.png",
+        "image_clothing_mobile": "shopify://shop_images/ava.png",
+        "title": "<p>Title</p>",
+        "sub_title": "<p>Subtitle</p>",
+        "btn_name": "Button",
+        "btn_url": "#",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "0_custom_breadcrumb_anVbCE",
+    "0_custom_header_title_NJ43iJ",
+    "0_ambassadors_wWRCfP",
+    "0_custom_banner_jr4QrC"
   ]
 }

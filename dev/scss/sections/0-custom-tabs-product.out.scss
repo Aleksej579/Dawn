@@ -1,0 +1,218 @@
+.tabs__wrapper {
+    max-width: var(--page-width);
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+    margin: 0 auto;
+}
+.tabs__wrapper .tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+@media (max-width: 1024px) {
+    .tabs__wrapper .tabs {
+        padding-bottom: 8px;
+    }
+}
+@media (max-width: 768px) {
+    .tabs__wrapper .tabs {
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 425px) {
+    .tabs__wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.tabs__wrapper .tabs li {
+    list-style-type: none;
+    cursor: pointer;
+    color: #545A3E;
+    width: 100%;
+    text-align: center;
+    background-color: #EDE6DB;
+    h5 {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        text-transform: uppercase;
+        font-size: 24px;
+        line-height: 26px;
+        letter-spacing: .01em;
+        font-weight: 400;
+    }
+}
+.tabs__wrapper .tabs li.active {
+    background-color: #545A3E;
+
+    h5 {
+        color: #FFFFFF !important;
+    }
+}
+.tabs__wrapper .tabs li:last-child {
+    border-right: none;
+}
+@media (max-width: 768px) {
+    .tabs__wrapper .tabs li {
+        border-right: none;
+        border-bottom: 1px solid #d8d8d8;
+    }
+}
+.tabs__wrapper .tabs li span {
+    transition: all 0.1s ease-in-out;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 15px 10px;
+    width: 100%;
+    display: block;
+}
+@media (max-width: 1024px) {
+    .tabs__wrapper .tabs li span {
+        font-size: 1.2rem;
+    }
+}
+.tabs__wrapper .tabs-content {
+    position: relative;
+    z-index: 2;
+}
+@media (max-width: 1024px) {
+    .tabs__wrapper .tabs-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.tabs__wrapper .tabs-content::-webkit-scrollbar {
+    width: 6px
+}
+.tabs__wrapper .tabs-content::-webkit-scrollbar-thumb {
+    background: #747272;
+    border-radius: 100px
+}
+.tabs__wrapper .tabs-content::-webkit-scrollbar-track {
+    background: transparent
+}
+.tabs__wrapper .tabs-panel {
+    height: 0;
+    opacity: 0;
+    transition: all 0.8s;
+    overflow: hidden;
+}
+.tabs__wrapper .tabs-panel .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    row-gap: 15px;
+}
+.tabs__wrapper .tabs-panel .wrap.wrap-review {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+.tabs-panel .wrap-review .slider-container {
+    width: 90%;
+}
+.tabs__wrapper .tabs-panel .wrap a {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    width: 100%;
+    margin-top: 3%;
+}
+.tabs__wrapper .tabs-panel .wrap p {
+    font-size: 18px;
+    line-height: 23px;
+}
+@media (max-width: 576px) {
+    .tabs__wrapper .tabs-panel .wrap {
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.tabs__wrapper .tabs-panel.active {
+    height: max-content;
+    opacity: 1;
+}
+.faq-hide {
+    display: none !important;
+}
+.faq-show {
+    display: block !important;
+}
+.tabs__wrapper .accordion-container {
+    width: 100%;
+}
+.content--not-found {
+    text-align: center;
+    width: 100%;
+}
+@media (max-width: 425px) {
+    .ac-trigger {
+        padding-left: 0 !important;
+    }
+    .tabs__wrapper .tabs-panel .wrap p {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+// new
+.image__container {
+    width: 100%;
+    position: relative;
+    .image__wrapp {
+        margin: 0 auto;
+        aspect-ratio: 2 / 1;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    details.popover {
+        position: absolute;
+        &[open]>summary {
+            transition: all 0.3s;
+            transform: rotate(45deg);
+            background: #fff;
+            color: #070707;
+        }
+        summary {
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 3px 5px #0000004d;
+            border-radius: 50%;
+            padding: 8px;
+            background: #070707;
+            color: #fff;
+        }
+        .popover__card {
+            padding: 30px;
+            transform: translate(-45%, 10px);
+            width: 300px;
+            border-radius: 3px;
+            background: #ffffffB3;
+            box-shadow: 0 5px 10px #00000026;
+            background: rgba(225, 225, 225, .9);
+            z-index: 1;
+            position: relative;
+            img {
+                width: 30px;
+                height: auto;
+                opacity: 0.6;
+            }
+            p {
+                font-size: 15px;
+                line-height: 18px;
+                margin-top: 0;
+                color: #676869;
+                &:not(:last-child) {
+                    margin-bottom: 4px;
+                }
+            }
+        }
+    }
+}

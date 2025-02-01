@@ -1,0 +1,323 @@
+{{ '0-custom-tabs-product.out.css' | asset_url | stylesheet_tag }}
+{{ '0-library-accordion.css' | asset_url | stylesheet_tag }}
+<script src="{{ '0-library-accordion.js' | asset_url }}" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      }
+    }
+{%- endstyle -%}
+
+<section class="tabs__wrapper section-{{ section.id }}-padding">
+  <ul class="tabs">
+    <li class="active">
+      <h5 class="reviews-btn" style="color: {{ section.settings.title_color }}">
+        {{- section.settings.name_1 -}}
+      </h5>
+    </li>
+    {%- if product.metafields.custom.tab_2_content != blank -%}
+      <li>
+        <h5 style="color: {{ section.settings.title_color }}">
+          {{- section.settings.name_2 -}}
+        </h5>
+      </li>
+    {%- endif -%}
+    {%- if product.metafields.custom.tab_3_content != blank -%}
+      <li>
+        <h5 style="color: {{ section.settings.title_color }}">
+          {{ section.settings.name_3 }}
+        </h5>
+      </li>
+    {%- endif -%}
+    {%- if product.metafields.custom.tab_4_content != blank -%}
+      <li>
+        <h5 style="color: {{ section.settings.title_color }}">
+          {{ section.settings.name_4 }}
+        </h5>
+      </li>
+    {%- endif -%}
+  </ul>
+
+  <div class="tabs-content">
+    {% assign count = 0 %}
+    <div class="tabs-panel active" data-index="{% increment count %}">
+      <div class="wrap">
+        {% if section.settings.show_rating == false %}
+          {% if product.metafields.custom.tab_1_content_pointer != blank %}
+            <div class="image__container">
+              <div class="image__wrapp">
+                {{ product.metafields.custom.tab_1_content_pointer | metafield_tag }}
+              </div>
+
+              {% if product.metafields.custom.tab_popover_1_text != blank %}
+                <details
+                  class="popover"
+                  style="left: {{-product.metafields.custom.tab_popover_1_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_1_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                >
+                  <summary>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </summary>
+                  <div class="popover__card">
+                    {{ product.metafields.custom.tab_popover_1_icon | metafield_tag }}
+                    {{ product.metafields.custom.tab_popover_1_text | metafield_tag }}
+                  </div>
+                </details>
+              {%- endif -%}
+              {% if product.metafields.custom.tab_popover_2_text != blank %}
+                <details
+                  class="popover"
+                  style="left: {{-product.metafields.custom.tab_popover_2_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_2_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                >
+                  <summary>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </summary>
+                  <div class="popover__card">
+                    {{ product.metafields.custom.tab_popover_2_icon | metafield_tag }}
+                    {{ product.metafields.custom.tab_popover_2_text | metafield_tag }}
+                  </div>
+                </details>
+              {%- endif -%}
+              {% if product.metafields.custom.tab_popover_3_text != blank %}
+                <details
+                  class="popover"
+                  style="left: {{-product.metafields.custom.tab_popover_3_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_3_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                >
+                  <summary>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </summary>
+                  <div class="popover__card">
+                    {{ product.metafields.custom.tab_popover_3_icon | metafield_tag }}
+                    {{ product.metafields.custom.tab_popover_3_text | metafield_tag }}
+                  </div>
+                </details>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {% else %}
+          <div class="wrap wrap-review">
+            {% if product.metafields.custom.tab_1_content_rating != blank %}
+              <div class="swiper swiper-review">
+                <div class="swiper-wrapper reviews__wrapper"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+            {% else %}
+              <p class="reviews--not-found">{{ section.settings.data_not_found_first_tab }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if product.metafields.custom.tab_2_content != blank -%}
+      <div class="tabs-panel" data-index="{% increment count %}">
+        <div class="wrap">
+          {%- if product.metafields.custom.tab_2_content != blank -%}
+            {{ product.metafields.custom.tab_2_content | metafield_tag }}
+          {% else %}
+            <p class="content--not-found">{{ section.settings.data_not_found }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.tab_3_content != blank -%}
+      <div class="tabs-panel" data-index="{% increment count %}">
+        <div class="wrap">
+          {%- if product.metafields.custom.tab_3_content != blank -%}
+            {{ product.metafields.custom.tab_3_content | metafield_tag }}
+          {% else %}
+            <p class="reviews--not-found">{{ section.settings.data_not_found }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.tab_4_content != blank -%}
+      <div class="tabs-panel" data-index="{% increment count %}">
+        <div class="wrap">
+          {%- if product.metafields.custom.tab_4_content != blank -%}
+            {{ product.metafields.custom.tab_4_content }}
+          {% else %}
+            <p class="reviews--not-found">{{ section.settings.data_not_found }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% if product.metafields.custom.tab_1_content_rating != blank %}
+  {%- assign reviews_ = product.metafields.custom.tab_1_content_rating -%}
+{% else %}
+  {%- assign reviews_ = 'false' -%}
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const swiperReview = new Swiper('.swiper-review', {
+        slidesPerView: 4,
+        spaceBetween: 10,
+        breakpoints: {
+            320: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            480: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            640: {
+                slidesPerView: 4,
+                spaceBetween: 40
+            }
+        }
+    })
+
+    const tabLinks = document.querySelectorAll('.tabs h5');
+    const tabPanels = document.querySelectorAll('.tabs-panel');
+    for (let [i, el] of tabLinks.entries()) {
+      el.addEventListener('click', (e) => {
+        document.querySelector('.tabs li.active').classList.remove('active');
+        document.querySelector('.tabs-panel.active').classList.remove('active');
+        const parentListItem = el.parentElement;
+        parentListItem.classList.add('active');
+        const index = [...parentListItem.parentElement.children].indexOf(parentListItem);
+        const panel = [...tabPanels].filter((el) => el.getAttribute('data-index') == index);
+        panel[0].classList.add('active');
+      });
+    }
+    
+
+    const reviewsWrapper = document.querySelector('.reviews__wrapper');
+    var rev = {{ reviews_ }};
+    if (rev) {
+      var reviewsWrapperJson = rev;
+      star = `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+            </svg>`;
+      reviewsWrapperJson.reviews.forEach((item) => {
+        const reviewItemWrapper = document.createElement('div');
+        reviewItemWrapper.classList.add('swiper-slide');
+        reviewItemWrapper.classList.add('swiper-slide--inner');
+        reviewItemWrapper.innerHTML =  `
+          <p class="slider-content--title">${item.user_name}</p>
+          <p class="slider-content--title-desc"><small>${item.verified}</small></p>
+          <p class="slider-content--stars stars-filled--${item.stars_quantity}">${star.repeat(item.stars_quantity)}</p>
+          <p class="review-content">${item.comment_text}</p>
+        `;
+        reviewsWrapper.appendChild(reviewItemWrapper);
+      });
+    }
+
+    new Accordion('.accordion-container');
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom tabs-product",
+  "class": "product-tabs-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tabs name"
+    },
+    {
+      "type": "text",
+      "id": "name_1",
+      "label": "Name tab 1",
+      "info": "Name for tab Reviews or pointer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show rating",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "name_2",
+      "label": "Name tab 2",
+      "info": "Name for tab content"
+    },
+    {
+      "type": "text",
+      "id": "name_3",
+      "label": "Name tab 3",
+      "info": "Name for tab content"
+    },
+    {
+      "type": "text",
+      "id": "name_4",
+      "label": "Name 4",
+      "info": "Name for tab Accordion"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color for tabs title",
+      "default": "#272727"
+    },
+    {
+      "type": "header",
+      "content": "Text for empty content"
+    },
+    {
+      "type": "text",
+      "id": "data_not_found_first_tab",
+      "label": "First tab is not found"
+    },
+    {
+      "type": "text",
+      "id": "data_not_found",
+      "label": "Tab is not found"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom tabs-product"
+    }
+  ]
+}
+{% endschema %}
