@@ -4,10 +4,10 @@
   "author": "SPLIT Development",
   "scripts": {
     "start": "run-p -sr shopify:dev gulp:watch",
-    "shopify:dev": "shopify theme dev -s project-name --theme-editor-sync",
-    "shopify:pull": "shopify theme pull -s project-name",
-    "deploy": "run-s gulp:production && shopify theme push -s project-name",
-    "deploy:new": "run-s gulp:production && shopify theme push --unpublished -s project-name",
+    "shopify:dev": "shopify theme dev -s all-dev-theme --theme-editor-sync",
+    "shopify:pull": "shopify theme pull -s all-dev-theme",
+    "deploy": "run-s gulp:production && shopify theme push -s all-dev-theme",
+    "deploy:new": "run-s gulp:production && shopify theme push --unpublished -s all-dev-theme",
     "gulp:watch": "gulp",
     "gulp:production": "gulp production"
   },
