@@ -1,0 +1,29 @@
+{
+  "name": "shopify-cli-3.0",
+  "version": "3.0.0",
+  "author": "SPLIT Development",
+  "scripts": {
+    "start": "run-p -sr shopify:dev gulp:watch",
+    "shopify:dev": "shopify theme dev -s project-name --theme-editor-sync",
+    "shopify:pull": "shopify theme pull -s project-name",
+    "deploy": "run-s gulp:production && shopify theme push -s project-name",
+    "deploy:new": "run-s gulp:production && shopify theme push --unpublished -s project-name",
+    "gulp:watch": "gulp",
+    "gulp:production": "gulp production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "gulp": "^5.0.0",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-newer": "^1.4.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.79.4"
+  },
+  "license": "ISC"
+}

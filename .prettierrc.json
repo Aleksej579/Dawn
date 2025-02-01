@@ -1,0 +1,12 @@
+{
+  "printWidth": 10000,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.liquid",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}
