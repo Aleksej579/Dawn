@@ -19,146 +19,113 @@
 
 <section class="tabs__wrapper section-{{ section.id }}-padding">
   <ul class="tabs">
-    <li class="active">
-      <h5 class="reviews-btn" style="color: {{ section.settings.title_color }}">
-        {{- section.settings.name_1 -}}
-      </h5>
-    </li>
-    {%- if product.metafields.custom.tab_2_content != blank -%}
-      <li>
-        <h5 style="color: {{ section.settings.title_color }}">
-          {{- section.settings.name_2 -}}
-        </h5>
-      </li>
-    {%- endif -%}
-    {%- if product.metafields.custom.tab_3_content != blank -%}
-      <li>
-        <h5 style="color: {{ section.settings.title_color }}">
-          {{ section.settings.name_3 }}
-        </h5>
-      </li>
-    {%- endif -%}
-    {%- if product.metafields.custom.tab_4_content != blank -%}
-      <li>
-        <h5 style="color: {{ section.settings.title_color }}">
-          {{ section.settings.name_4 }}
-        </h5>
-      </li>
-    {%- endif -%}
+    {% for i in (1..4) %}
+      {% assign name = 'name_' | append: i %}
+      {% if i == 1 %}
+        <li class="active" style="background-color: {{ section.settings.bg_tab }}">
+          <h3 class="reviews-btn" style="color: {{ section.settings.title_color }}">
+            {{- section.settings[name] -}}
+          </h3>
+        </li>
+      {% else %}
+        {% assign tab_count = 'tab_' | append: i | append: '_content' %}
+        {%- if product.metafields.custom[tab_count] != blank -%}
+          <li style="background-color: {{ section.settings.bg_tab }}">
+            <h3 style="color: {{ section.settings.title_color }}">
+              {{- section.settings[name] -}}
+            </h3>
+          </li>
+        {%- endif -%}
+      {% endif %}
+    {% endfor %}
   </ul>
 
   <div class="tabs-content">
     {% assign count = 0 %}
-    <div class="tabs-panel active" data-index="{% increment count %}">
-      <div class="wrap">
-        {% if section.settings.show_rating == false %}
-          {% if product.metafields.custom.tab_1_content_pointer != blank %}
-            <div class="image__container">
-              <div class="image__wrapp">
-                {{ product.metafields.custom.tab_1_content_pointer | metafield_tag }}
-              </div>
-
-              {% if product.metafields.custom.tab_popover_1_text != blank %}
-                <details
-                  class="popover"
-                  style="left: {{-product.metafields.custom.tab_popover_1_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_1_dimension.value.last | remove: 'abc' | times: 1-}}%;"
-                >
-                  <summary>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
-                      <path d="M12 5v14M5 12h14"></path>
-                    </svg>
-                  </summary>
-                  <div class="popover__card">
-                    {{ product.metafields.custom.tab_popover_1_icon | metafield_tag }}
-                    {{ product.metafields.custom.tab_popover_1_text | metafield_tag }}
+    {% for i in (1..4) %}
+      {% assign tab_count = 'tab_' | append: i | append: '_content' %}
+      {% if i == 1 %}
+        <div class="tabs-panel active" data-index="{% increment count %}">
+          <div class="wrap">
+            {% if section.settings.show_rating == false %}
+              {% if product.metafields.custom.tab_1_content_pointer != blank %}
+                <div class="image__container">
+                  <div class="image__wrapp">
+                    {{ product.metafields.custom.tab_1_content_pointer | metafield_tag }}
                   </div>
-                </details>
+                  {% if product.metafields.custom.tab_popover_1_text != blank %}
+                    <details
+                      class="popover"
+                      style="left: {{-product.metafields.custom.tab_popover_1_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_1_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                    >
+                      <summary>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                          <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                      </summary>
+                      <div class="popover__card">
+                        {{ product.metafields.custom.tab_popover_1_icon | metafield_tag }}
+                        {{ product.metafields.custom.tab_popover_1_text | metafield_tag }}
+                      </div>
+                    </details>
+                  {%- endif -%}
+                  {% if product.metafields.custom.tab_popover_2_text != blank %}
+                    <details
+                      class="popover"
+                      style="left: {{-product.metafields.custom.tab_popover_2_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_2_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                    >
+                      <summary>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                          <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                      </summary>
+                      <div class="popover__card">
+                        {{ product.metafields.custom.tab_popover_2_icon | metafield_tag }}
+                        {{ product.metafields.custom.tab_popover_2_text | metafield_tag }}
+                      </div>
+                    </details>
+                  {%- endif -%}
+                  {% if product.metafields.custom.tab_popover_3_text != blank %}
+                    <details
+                      class="popover"
+                      style="left: {{-product.metafields.custom.tab_popover_3_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_3_dimension.value.last | remove: 'abc' | times: 1-}}%;"
+                    >
+                      <summary>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
+                          <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                      </summary>
+                      <div class="popover__card">
+                        {{ product.metafields.custom.tab_popover_3_icon | metafield_tag }}
+                        {{ product.metafields.custom.tab_popover_3_text | metafield_tag }}
+                      </div>
+                    </details>
+                  {%- endif -%}
+                </div>
               {%- endif -%}
-              {% if product.metafields.custom.tab_popover_2_text != blank %}
-                <details
-                  class="popover"
-                  style="left: {{-product.metafields.custom.tab_popover_2_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_2_dimension.value.last | remove: 'abc' | times: 1-}}%;"
-                >
-                  <summary>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
-                      <path d="M12 5v14M5 12h14"></path>
-                    </svg>
-                  </summary>
-                  <div class="popover__card">
-                    {{ product.metafields.custom.tab_popover_2_icon | metafield_tag }}
-                    {{ product.metafields.custom.tab_popover_2_text | metafield_tag }}
-                  </div>
-                </details>
-              {%- endif -%}
-              {% if product.metafields.custom.tab_popover_3_text != blank %}
-                <details
-                  class="popover"
-                  style="left: {{-product.metafields.custom.tab_popover_3_dimension.value[0] | remove: 'abc' | times: 1-}}%; top: {{-product.metafields.custom.tab_popover_3_dimension.value.last | remove: 'abc' | times: 1-}}%;"
-                >
-                  <summary>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="icon feather feather-plus" aria-hidden="true" focusable="false" role="presentation">
-                      <path d="M12 5v14M5 12h14"></path>
-                    </svg>
-                  </summary>
-                  <div class="popover__card">
-                    {{ product.metafields.custom.tab_popover_3_icon | metafield_tag }}
-                    {{ product.metafields.custom.tab_popover_3_text | metafield_tag }}
-                  </div>
-                </details>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-        {% else %}
-          <div class="wrap wrap-review">
-            {% if product.metafields.custom.tab_1_content_rating != blank %}
-              <div class="swiper swiper-review">
-                <div class="swiper-wrapper reviews__wrapper"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
             {% else %}
-              <p class="reviews--not-found">{{ section.settings.data_not_found_first_tab }}</p>
+              <div class="wrap wrap-review">
+                <div class="swiper swiper-review">
+                  <div class="swiper-wrapper reviews__wrapper"></div>
+                </div>
+              </div>
             {%- endif -%}
           </div>
+        </div>
+      {% else %}
+        {%- if product.metafields.custom[tab_count] != blank -%}
+          <div class="tabs-panel" data-index="{% increment count %}">
+            <div class="wrap">
+              {%- if i != 4 -%}
+                {{ product.metafields.custom[tab_count] | metafield_tag }}
+              {% else %}
+                {{ product.metafields.custom[tab_count] }}
+              {%- endif -%}
+            </div>
+          </div>
         {%- endif -%}
-      </div>
-    </div>
-
-    {%- if product.metafields.custom.tab_2_content != blank -%}
-      <div class="tabs-panel" data-index="{% increment count %}">
-        <div class="wrap">
-          {%- if product.metafields.custom.tab_2_content != blank -%}
-            {{ product.metafields.custom.tab_2_content | metafield_tag }}
-          {% else %}
-            <p class="content--not-found">{{ section.settings.data_not_found }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-
-    {%- if product.metafields.custom.tab_3_content != blank -%}
-      <div class="tabs-panel" data-index="{% increment count %}">
-        <div class="wrap">
-          {%- if product.metafields.custom.tab_3_content != blank -%}
-            {{ product.metafields.custom.tab_3_content | metafield_tag }}
-          {% else %}
-            <p class="reviews--not-found">{{ section.settings.data_not_found }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-
-    {%- if product.metafields.custom.tab_4_content != blank -%}
-      <div class="tabs-panel" data-index="{% increment count %}">
-        <div class="wrap">
-          {%- if product.metafields.custom.tab_4_content != blank -%}
-            {{ product.metafields.custom.tab_4_content }}
-          {% else %}
-            <p class="reviews--not-found">{{ section.settings.data_not_found }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
 
@@ -189,7 +156,7 @@
         }
     })
 
-    const tabLinks = document.querySelectorAll('.tabs h5');
+    const tabLinks = document.querySelectorAll('.tabs h3');
     const tabPanels = document.querySelectorAll('.tabs-panel');
     for (let [i, el] of tabLinks.entries()) {
       el.addEventListener('click', (e) => {
@@ -203,7 +170,6 @@
       });
     }
     
-
     const reviewsWrapper = document.querySelector('.reviews__wrapper');
     var rev = {{ reviews_ }};
     if (rev) {
@@ -221,7 +187,7 @@
           <p class="slider-content--stars stars-filled--${item.stars_quantity}">${star.repeat(item.stars_quantity)}</p>
           <p class="review-content">${item.comment_text}</p>
         `;
-        reviewsWrapper.appendChild(reviewItemWrapper);
+        reviewsWrapper?.appendChild(reviewItemWrapper);
       });
     }
 
@@ -276,18 +242,10 @@
       "default": "#272727"
     },
     {
-      "type": "header",
-      "content": "Text for empty content"
-    },
-    {
-      "type": "text",
-      "id": "data_not_found_first_tab",
-      "label": "First tab is not found"
-    },
-    {
-      "type": "text",
-      "id": "data_not_found",
-      "label": "Tab is not found"
+      "type": "color",
+      "id": "bg_tab",
+      "label": "Background tab",
+      "default": "#FFFAF3"
     },
     {
       "type": "header",

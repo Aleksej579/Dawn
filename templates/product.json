@@ -143,11 +143,12 @@
       "type": "0-custom-tabs-product",
       "settings": {
         "name_1": "Tab 1",
-        "show_rating": true,
+        "show_rating": false,
         "name_2": "Tab 2",
         "name_3": "Tab 3",
         "name_4": "Tab 4",
         "title_color": "#272727",
+        "bg_tab": "#FFFAF3",
         "data_not_found_first_tab": "Not found",
         "data_not_found": "Not found",
         "padding_top": 30,

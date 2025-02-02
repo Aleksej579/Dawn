@@ -9,61 +9,76 @@
  */
 {
   "sections": {
-    "multicolumn": {
-      "type": "multicolumn",
+    "0_ambassadors_VazbBc": {
+      "type": "0-ambassadors",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "ambassador_HUaEQE": {
+          "type": "ambassador",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/persone-4.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
           }
         },
-        "column2": {
-          "type": "column",
+        "ambassador_nhThka": {
+          "type": "ambassador",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/persone-6.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
           }
         },
-        "column3": {
-          "type": "column",
+        "ambassador_N7JdGJ": {
+          "type": "ambassador",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/persone-9.jpg",
+            "name": "John Doe",
+            "experience": "Developer"
           }
         }
       },
       "block_order": [
-        "column1",
-        "column2",
-        "column3"
+        "ambassador_HUaEQE",
+        "ambassador_nhThka",
+        "ambassador_N7JdGJ"
       ],
       "settings": {
+        "title": "<p>Title</p>",
+        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "0_custom_banner_KbNebx": {
+      "type": "0-custom-banner",
+      "settings": {
         "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "sub_title": "",
+        "btn_name": "",
+        "btn_url": "",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_custom_header_title_WGKTRp": {
+      "type": "0-custom-header-title",
+      "settings": {
+        "title": "Title",
+        "sub_title": "Sub title",
+        "text_color": "#272727",
+        "text_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "paragraph_color": "#a2a2a2",
+        "bg_color": "#fffaf3",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     }
   },
   "order": [
-    "multicolumn"
+    "0_ambassadors_VazbBc",
+    "0_custom_banner_KbNebx",
+    "0_custom_header_title_WGKTRp"
   ]
 }
