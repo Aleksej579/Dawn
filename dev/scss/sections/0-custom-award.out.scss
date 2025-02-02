@@ -1,0 +1,77 @@
+.page__arete-two-award {
+    // padding: 100px 115px;
+
+    @media screen and (max-width: 430px) {
+        padding: 50px 30px;
+    }
+
+    .arete-two-award__wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            line-height: 50px;
+            font-weight: 400;
+            margin-top: 0;
+
+            strong {
+                font-weight: 700;
+            }
+
+            @media screen and (max-width: 430px) {
+                font-size: 30px;
+                line-height: 40px;
+            }
+        }
+
+        .arete-two-award__container {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+
+            // max-width: 1200px;
+            // margin: 0 auto;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 40px;
+            }
+
+            figure {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                gap: 15px;
+                // min-width: 20% !important;
+
+                img {
+                    width: auto;
+                }
+
+                figcaption {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 10px;
+                    line-height: 14px;
+
+                    @media screen and (max-width: 430px) {
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+
+    .swiper-pagination-bullet {
+        border: 2px solid #3D3D3D;
+        opacity: 1;
+        background: none;
+        height: 12px;
+        width: 12px;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #3D3D3D;
+    }
+}

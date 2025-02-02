@@ -1,0 +1,129 @@
+{{ '0-custom-run-string-v1.out.css' | asset_url | stylesheet_tag }}
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script defer src="{{ 'marquee.min.js' | asset_url }}"></script>
+
+{%- style -%}
+  .run-string__wrapper {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media (max-width: 768px) {
+    .run-string__wrapper {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% comment %} <div class="run-string__container swiper-wrapper"> {% endcomment %}
+<div class="run-string__container marquee" style="overflow:hidden">
+  {% for i in (1..10) -%}
+    {% comment %} <a href="{{ section.settings.link }}" class="swiper-slide"> {% endcomment %}
+    <a href="{{ section.settings.link }}" class="">
+      <span>{{- section.settings.heading }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <g clip-path="url(#clip0_1012_2521)">
+        <path d="M16 28.0005C22.6274 28.0005 28 22.6279 28 16.0005C28 9.37307 22.6274 4.00049 16 4.00049C9.37258 4.00049 4 9.37307 4 16.0005C4 22.6279 9.37258 28.0005 16 28.0005Z" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5303 12.5308C20.8232 12.2379 20.8232 11.7631 20.5303 11.4702C20.2374 11.1773 19.7626 11.1773 19.4697 11.4702L20.5303 12.5308ZM11.4697 19.4702L10.9393 20.0005L12 21.0611L12.5303 20.5308L11.4697 19.4702ZM19.4697 11.4702L11.4697 19.4702L12.5303 20.5308L20.5303 12.5308L19.4697 11.4702Z" fill="#272727"/>
+        <path d="M14 12.0005H20V18.0005" stroke="#272727" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_1012_2521">
+        <rect width="32" height="32" fill="white" transform="translate(0 0.000488281)"/>
+        </clipPath>
+        </defs>
+      </svg>
+    </a>
+  {%- endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    {% comment %} var swiper = new Swiper('.run-string__wrapper', {
+      autoplay: {
+        enabled: true,
+        delay: 0,
+        pauseOnMouseEnter: false,
+        disableOnInteraction: false,
+      },
+      slidesPerView: 5,
+      loop: true,
+      spaceBetween: 46,
+      speed: 7000,
+    }); {% endcomment %}
+    // run string
+   $(function() {
+    $('.marquee').marquee({
+      duration: 15000,
+      startVisible: true,
+      duplicated: true
+    });
+  });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom run string v-1",
+  "tag": "section",
+  "class": "run-string__wrapper swiper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "See All Collections",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Url link"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 124
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin top mobile 768",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin bottom mobile 768",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom run string v-1"
+    }
+  ]
+}
+{% endschema %}

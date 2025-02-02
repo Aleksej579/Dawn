@@ -1,0 +1,121 @@
+{{ '0-custom-award.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="swiper arete-two-award__wrapper section-{{ section.id }}-padding">
+  <h2>{{ section.settings.title }}</h2>
+  <div class="swiper-wrapper arete-two-award__container">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'award' %}
+          <figure class="swiper-slide">
+            {{ block.settings.image.src | image_url: width: 364 | image_tag: class: '__image', loading: 'lazy' }}
+            <figcaption>
+              <span>{{ block.settings.text_1 }}</span>
+              <span>{{ block.settings.text_2 }}</span>
+            </figcaption>
+          </figure>
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiperAward = new Swiper('.arete-two-award__wrapper', {
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      grabCursor: true,
+      breakpoints: {
+        430: {
+          slidesPerView: 2,
+          spaceBetween: 0,
+          grabCursor: true,
+        },
+        769: {
+          slidesPerView: 4,
+          spaceBetween: 0,
+          grabCursor: false,
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom awards",
+  "tag": "section",
+  "class": "page__arete-two-award",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 30
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Text title for award"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Award",
+      "type": "award",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image of award"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Text for award title"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text for award subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom awards"
+    }
+  ]
+}
+{% endschema %}

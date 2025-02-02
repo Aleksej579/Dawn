@@ -1,0 +1,167 @@
+{{ '0-custom-designers.out.css' | asset_url | stylesheet_tag }}
+{{ 'anime.min.js' | asset_url | script_tag }}
+
+{%- style -%}
+  .disigners__wrapper {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="designer__container">
+  <h2 class="designer__heading">{{ section.settings.heading }}</h2>
+  <div class="designer__card-wrapper">
+    {% for block in section.blocks %}
+      <div class="designer__card-inner">
+        <img
+          class="image"
+          src="{{ block.settings.designer_logo | image_url }}"
+          loading="lazy"
+          height=""
+          width=""
+        >
+        <a href="{{ block.settings.designer_link }}" class="designer__card-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <g clip-path="url(#clip0_1117_3878)">
+            <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.7071 12.7071C21.0976 12.3166 21.0976 11.6834 20.7071 11.2929C20.3166 10.9024 19.6834 10.9024 19.2929 11.2929L20.7071 12.7071ZM11.2929 19.2929L10.5858 20L12 21.4142L12.7071 20.7071L11.2929 19.2929ZM19.2929 11.2929L11.2929 19.2929L12.7071 20.7071L20.7071 12.7071L19.2929 11.2929Z" fill="white"/>
+            <path d="M14 12H20V18" stroke="white" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_1117_3878">
+            <rect width="32" height="32" fill="white"/>
+            </clipPath>
+            </defs>
+          </svg>
+        </a>
+      </div>
+    {% endfor %}
+    <div class="designer__card-inner-top"></div>
+    <div class="designer__card-inner-bottom"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let arrCardTop = document.querySelector('.designer__card-inner-top');
+    let arrCardBottom = document.querySelector('.designer__card-inner-bottom');
+    let arrAllCard = document.querySelectorAll('.designer__card-inner');
+    arrAllCard.forEach((item, index) => {
+      if (index < 6) {
+        arrCardTop.append(item);
+      } else {
+        arrCardBottom.append(item);
+      }
+    });
+
+    let elem = document.querySelector('.designer__card-wrapper');
+    document.addEventListener('scroll', onScroll);
+
+    function onScroll() {
+      const posTop = elem.getBoundingClientRect().top;
+
+      let currentCoord = document.documentElement.scrollTop || document.body.scrollTop;
+      {% comment %} console.log(`${posTop + elem.clientHeight} : ${(window.innerHeight + 500)}`); {% endcomment %}
+
+      if(posTop + elem.clientHeight <= (window.innerHeight + 500)) {
+        let elTop = document.querySelector('.designer__card-inner-top');
+        let elBottom = document.querySelector('.designer__card-inner-bottom');
+        elTop.style.transform = 'translateX(-200%)';
+        elTop.style.visibility = 'visible';
+        elBottom.style.transform = 'translateX(200%)';
+        elBottom.style.visibility = 'visible';
+        anime({
+          targets: elTop,
+          translateX: '0%',
+          easing: 'easeInOutExpo',
+          delay: 500,
+        });
+        anime({
+          targets: elBottom,
+          translateX: '0%',
+          easing: 'easeInOutExpo',
+          delay: 500,
+        });
+        document.removeEventListener('scroll', onScroll);
+
+
+      }
+    }
+
+    {% comment %} let elTop = document.querySelector('.designer__card-inner-top');
+    let elBottom = document.querySelector('.designer__card-inner-bottom');
+    elTop.style.transform = 'translateX(-200%)';
+    elBottom.style.transform = 'translateX(200%)';
+    anime({
+      targets: elTop,
+      translateX: '0%',
+      easing: 'easeInOutExpo',
+      delay: 1000,
+    });
+    anime({
+      targets: elBottom,
+      translateX: '0%',
+      easing: 'easeInOutExpo',
+      delay: 1000,
+    }); {% endcomment %}
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom designers",
+  "tag": "section",
+  "class": "disigners__wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Designers",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 124
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Designers",
+      "name": "Designers",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "designer_logo",
+          "label": "Logo"
+        },
+        {
+          "type": "url",
+          "id": "designer_link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom designers"
+    }
+  ]
+}
+{% endschema %}
