@@ -1,0 +1,231 @@
+{{ '0-custom-subscribe.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  {%- if section.settings.full_width == true -%}
+    .aptus__subscribe {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      background: #f15c25;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<div class="aptus-subscribe__wrapper section-{{ section.id }}-padding page-width">
+  <span class="icon-close-wrapper">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
+      <g>
+      	<g>
+      		<polygon points="512,59.076 452.922,0 256,196.922 59.076,0 0,59.076 196.922,256 0,452.922 59.076,512 256,315.076 452.922,512     512,452.922 315.076,256   "></polygon>
+      	</g>
+      </g>
+    </svg>
+  </span>
+  <h2 class="main-title">{{ section.settings.title }}</h2>
+  {% form 'customer', id: 'subscribe-id' %}
+    <input type="email" name="contact[email]" placeholder="aptus@gmail.com">
+    <input type="submit" value="Subscribe" class="btn-subscribe">
+    {{ form.errors | default_errors }}
+  {% endform %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.aptus-subscribe__wrapper form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (document.querySelector('.aptus-subscribe__wrapper input[type=email]').value != '') {
+        const subscribePopupWrap = document.createElement('div');
+        subscribePopupWrap.classList.add('subscribe-popup__wrap');
+        subscribePopupWrap.innerHTML = `
+            <p>
+              <svg width="64px" height="64px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#f15c25" d="M9 0a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm4.49 6.924l-5.02 5.51a.983.983 0 0 1-1.442 0l-2.48-2.482a.983.983 0 0 1 .008-1.417 1.027 1.027 0 0 1 1.4.02L7.712 10.3l4.3-4.73a1.018 1.018 0 0 1 1.4-.075 1.006 1.006 0 0 1 .078 1.43z"></path> </g></svg>
+              <span>You successfully completed the form</span>
+            </p>
+        `;
+        document.body.appendChild(subscribePopupWrap);
+        setInterval(function () {
+          subscribePopupWrap.remove();
+        }, 5000);
+      }
+    });
+  });
+</script>
+
+<style>
+  .subscribe-popup__wrap {
+    border: 1px solid #f15c25;
+    background: #f5f5f5;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 10000;
+    border-radius: 15px;
+  }
+  .subscribe-popup__wrap p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+  }
+  .subscribe-popup__wrap svg {
+    height: 50px;
+    width: 50px;
+  }
+  .subscribe-popup__wrap p span {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #424242;
+    font-family: 'Inter';
+  }
+</style>
+
+{%- if section.settings.popup == true -%}
+  <style>
+    .aptus__subscribe {
+      padding-left: 30px;
+      padding-right: 30px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .aptus__subscribe {
+        width: 100%;
+      }
+    }
+    .aptus__subscribe .aptus-subscribe__wrapper {
+      margin-top: 0;
+    }
+    .aptus-subscribe__wrapper .icon-close-wrapper {
+      display: block;
+    }
+    @media (max-width: 450px) {
+      .aptus__subscribe svg {
+        right: -15px;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('subscribe') == null) {
+        setTimeout(function () {
+          document.querySelector('.aptus__subscribe').style.display = 'block';
+          document.querySelector('.bg-overlay').style.display = 'block';
+        }, 2000);
+      }
+
+      document.querySelector('.aptus__subscribe .icon-close-wrapper').addEventListener('click', () => {
+        document.querySelector('.aptus__subscribe').style.display = 'none';
+        document.querySelector('.bg-overlay').style.display = 'none';
+        sessionStorage.setItem('subscribe', 'hide');
+      });
+      document.querySelector('.bg-overlay').addEventListener('click', () => {
+        document.querySelector('.aptus__subscribe').style.display = 'none';
+        document.querySelector('.bg-overlay').style.display = 'none';
+        sessionStorage.setItem('subscribe', 'hide');
+      });
+    });
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Subscribe",
+  "tag": "section",
+  "class": "aptus__subscribe",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "popup",
+      "label": "Popup on Shop only",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Title & subtitle section"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title section"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscribe"
+    }
+  ]
+}
+{% endschema %}

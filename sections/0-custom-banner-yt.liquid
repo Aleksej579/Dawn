@@ -1,0 +1,164 @@
+{{ '0-custom-banner-yt.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  {%- if section.settings.full_width_banner == true -%}
+    .aptus__banner-yt {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      background: black;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+<div class="aptus-banner-yt__wrapper section-{{ section.id }}-padding page-width">
+  <div class="left-side__wrapp">
+    {%- if section.settings.image_1 != blank -%}
+      {{ section.settings.image_1 | image_url: width: 600 | image_tag: class: '__image', loading: 'lazy' }}
+    {%- endif -%}
+    <div hidden class="video__wrapp--yt">
+      {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: muted: true, controls: true, image_size: '400x' }}
+      {% endif %}
+    </div>
+    <div class="btn__wrapp">
+      <a class="btn__video" href="#">{{ section.settings.btn_video_name }}</a>
+      <a class="btn__video-fragment" href="{{ section.settings.btn_video_fragment_link }}" target="_blank">{{ section.settings.btn_video_fragment_name }}</a>
+    </div>
+  </div>
+  <div class="right-side__wrapp">
+    {%- if section.settings.image_2 != blank -%}
+      {{ section.settings.image_2 | image_url: width: 600 | image_tag: class: '__image', loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let popup_wrapper = document.querySelector('.popup-custom');
+    let btnVideo = document.querySelector('.btn__wrapp .btn__video');
+    let btnVideoFragment = document.querySelector('.btn__wrapp .btn__video-fragment');
+
+    btnVideo.addEventListener('click', (e) => {
+      e.preventDefault();
+      //let sourceVideoP = popup_wrapper.querySelector('.wrapper__content video source');
+      //sourceVideoP.src = `https:${btnVideo.dataset.video}`;
+      let newVideo = btnVideo.closest('.left-side__wrapp').querySelector('.video__wrapp--yt').innerHTML;
+      popup_wrapper.querySelector('.wrapper__content').innerHTML = newVideo;
+      popup_wrapper.querySelector('.wrapper__content video')?.load();
+      popup_wrapper.querySelector('.wrapper__content video')?.play();
+      popup_wrapper.classList.remove('popup-custom-hide');
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Banner you-tube",
+  "tag": "section",
+  "class": "aptus__banner-yt",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width_banner",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn_video_name",
+      "label": "Buton video name"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "A Shopify-hosted video"
+    },
+    {
+      "type": "text",
+      "id": "btn_video_fragment_name",
+      "label": "Buton video fragment name"
+    },
+    {
+      "type": "url",
+      "id": "btn_video_fragment_link",
+      "label": "Button video fragment link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner you-tube"
+    }
+  ]
+}
+{% endschema %}

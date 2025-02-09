@@ -26,6 +26,14 @@
         "padding_bottom": 0
       }
     },
+    "0_custom_marquee_3BHdT4": {
+      "type": "0-custom-marquee",
+      "settings": {
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "0_custom_header_title_NJ43iJ": {
       "type": "0-custom-header-title",
       "settings": {
@@ -95,13 +103,142 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "0_custom_thank_you_DjFeB3": {
+      "type": "0-custom-thank-you",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "title": "<h1>Thank <strong>You</strong></h1>",
+        "sub_title": "Order #488 has been accepted",
+        "content": "Please wait for a message from the delivery service. You can track the parcel by number:",
+        "number": "2986328348",
+        "btn_name": "Homepage",
+        "btn_link": "/",
+        "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "padding_top": 72,
+        "padding_bottom": 128
+      }
+    },
+    "0_custom_best_sellers_qe6JcQ": {
+      "type": "0-custom-best-sellers",
+      "settings": {
+        "commercial_series": false,
+        "title": "Title",
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_banner_yt_PRL63e": {
+      "type": "0-custom-banner-yt",
+      "settings": {
+        "full_width_banner": true,
+        "image_1": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "image_2": "shopify://shop_images/ava.png",
+        "btn_video_name": "Button",
+        "btn_video_fragment_name": "Button",
+        "btn_video_fragment_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 40,
+        "margin_bottom": 40
+      }
+    },
+    "0_custom_subscribe_wP3e6e": {
+      "type": "0-custom-subscribe",
+      "settings": {
+        "popup": false,
+        "full_width": false,
+        "title": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 40,
+        "margin_bottom": 40
+      }
+    },
+    "0_custom_why_use_pPyRL4": {
+      "type": "0-custom-why-use",
+      "blocks": {
+        "why_use_ngyWHP": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Titl",
+            "sub_title_item": "Subtitle"
+          }
+        },
+        "why_use_XU3Dax": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Title",
+            "sub_title_item": "Subtitle"
+          }
+        },
+        "why_use_Gkk6ab": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Title",
+            "sub_title_item": "Subtitle"
+          }
+        },
+        "why_use_z6XhWT": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Title",
+            "sub_title_item": "Subtitle"
+          }
+        },
+        "why_use_aCx7fG": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Titlt",
+            "sub_title_item": "Subtitle"
+          }
+        },
+        "why_use_aJ7mMM": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "title_item": "Titlt",
+            "sub_title_item": "Subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "why_use_ngyWHP",
+        "why_use_XU3Dax",
+        "why_use_Gkk6ab",
+        "why_use_z6XhWT",
+        "why_use_aCx7fG",
+        "why_use_aJ7mMM"
+      ],
+      "settings": {
+        "title": "Title",
+        "sub_title": "Subtitle",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "main",
     "0_custom_breadcrumb_anVbCE",
+    "0_custom_marquee_3BHdT4",
     "0_custom_header_title_NJ43iJ",
     "0_ambassadors_wWRCfP",
-    "0_custom_banner_jr4QrC"
+    "0_custom_banner_jr4QrC",
+    "0_custom_thank_you_DjFeB3",
+    "0_custom_best_sellers_qe6JcQ",
+    "0_custom_banner_yt_PRL63e",
+    "0_custom_subscribe_wP3e6e",
+    "0_custom_why_use_pPyRL4"
   ]
 }

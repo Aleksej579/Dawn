@@ -1,0 +1,73 @@
+{{ '0-custom-marquee.out.css' | asset_url | stylesheet_tag }}
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+  defer
+  src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js"
+  type="text/javascript"
+></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="aptus-marquee__wrapper section-{{ section.id }}-padding">
+  <p class="marquee" data-duration="20000" data-duplicated="true" style="overflow:hidden">
+    <span>{{ section.settings.text }}</span>
+    <span style="padding-left: 25px;">{{ section.settings.text }}</span>
+  </p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $(function () {
+      $('.marquee').marquee({ duration: 10000 });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "class": "aptus__marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text for marquee"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee"
+    }
+  ]
+}
+{% endschema %}

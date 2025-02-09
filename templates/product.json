@@ -149,8 +149,6 @@
         "name_4": "Tab 4",
         "title_color": "#272727",
         "bg_tab": "#FFFAF3",
-        "data_not_found_first_tab": "Not found",
-        "data_not_found": "Not found",
         "padding_top": 30,
         "padding_bottom": 30
       }
