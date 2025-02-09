@@ -315,6 +315,102 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "0_custom_blog_popup_8xUmrU": {
+      "type": "0-custom-blog-popup",
+      "blocks": {
+        "blogitem_zjjJP3": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-3.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        },
+        "blogitem_7KtiEN": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-2.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        },
+        "blogitem_EVjcy9": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-1.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        },
+        "blogitem_JGRqwj": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-3.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        },
+        "blogitem_UFeXVN": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-2.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        },
+        "blogitem_QbrzX8": {
+          "type": "blogitem",
+          "settings": {
+            "image": "shopify://shop_images/post-1.jpg",
+            "title": "Lorem ipsum dolor sit amet",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "button_link": "#",
+            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "blogitem_zjjJP3",
+        "blogitem_7KtiEN",
+        "blogitem_EVjcy9",
+        "blogitem_JGRqwj",
+        "blogitem_UFeXVN",
+        "blogitem_QbrzX8"
+      ],
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "0_custom_popup_blog_Rqy6qA": {
+      "type": "0-custom-popup-blog",
+      "settings": {}
+    },
+    "0_custom_locator_PaCQGR": {
+      "type": "0-custom-locator",
+      "settings": {
+        "title": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -332,6 +428,9 @@
     "0_custom_subscribe_wP3e6e",
     "0_custom_why_use_pPyRL4",
     "0_custom_base_3_NtGWb8",
-    "0_custom_blog_v1_aQJWFe"
+    "0_custom_blog_v1_aQJWFe",
+    "0_custom_blog_popup_8xUmrU",
+    "0_custom_popup_blog_Rqy6qA",
+    "0_custom_locator_PaCQGR"
   ]
 }
