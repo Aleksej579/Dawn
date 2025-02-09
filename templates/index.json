@@ -9,59 +9,6 @@
  */
 {
   "sections": {
-    "0_ambassadors_VazbBc": {
-      "type": "0-ambassadors",
-      "blocks": {
-        "ambassador_HUaEQE": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/persone-4.jpg",
-            "name": "John Doe",
-            "experience": "Developer"
-          }
-        },
-        "ambassador_nhThka": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/persone-6.jpg",
-            "name": "John Doe",
-            "experience": "Developer"
-          }
-        },
-        "ambassador_N7JdGJ": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/persone-9.jpg",
-            "name": "John Doe",
-            "experience": "Developer"
-          }
-        }
-      },
-      "block_order": [
-        "ambassador_HUaEQE",
-        "ambassador_nhThka",
-        "ambassador_N7JdGJ"
-      ],
-      "settings": {
-        "title": "<p>Title</p>",
-        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-        "padding_top": 30,
-        "padding_bottom": 30
-      }
-    },
-    "0_custom_banner_KbNebx": {
-      "type": "0-custom-banner",
-      "settings": {
-        "title": "",
-        "sub_title": "",
-        "btn_name": "",
-        "btn_url": "",
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
-    },
     "0_custom_header_title_WGKTRp": {
       "type": "0-custom-header-title",
       "settings": {
@@ -77,8 +24,6 @@
     }
   },
   "order": [
-    "0_ambassadors_VazbBc",
-    "0_custom_banner_KbNebx",
     "0_custom_header_title_WGKTRp"
   ]
 }

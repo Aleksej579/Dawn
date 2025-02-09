@@ -99,6 +99,160 @@
         "padding_bottom": 0
       }
     },
+    "0_custom_banner_v1_kMFmEe": {
+      "type": "0-custom-banner-v1",
+      "blocks": {
+        "heading_K8FEjJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Lorem ipsum dolor sit amet</p>",
+            "heading_size": "h1"
+          }
+        },
+        "text_JHwd9R": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_tJX6Et": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        },
+        "image_kHDFEn": {
+          "type": "Image",
+          "settings": {
+            "second_image": "shopify://shop_images/post-1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "heading_K8FEjJ",
+        "text_JHwd9R",
+        "button_tJX6Et",
+        "image_kHDFEn"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/post-3.jpg",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_designers_iKLLJx": {
+      "type": "0-custom-designers",
+      "blocks": {
+        "designers_riNcp4": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_YeBNtC": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_g3QiMg": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_wMPKYb": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_NPK9FW": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_8eLwHp": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_dWHRPr": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_rdxBgR": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_aFpxzk": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_n7myAt": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_YnMMXh": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "designers_riNcp4",
+        "designers_YeBNtC",
+        "designers_g3QiMg",
+        "designers_wMPKYb",
+        "designers_NPK9FW",
+        "designers_8eLwHp",
+        "designers_dWHRPr",
+        "designers_rdxBgR",
+        "designers_aFpxzk",
+        "designers_n7myAt",
+        "designers_YnMMXh"
+      ],
+      "settings": {
+        "heading": "Designers",
+        "padding_top": 36,
+        "padding_bottom": 124
+      }
+    },
     "0_custom_header_title_NJ43iJ": {
       "type": "0-custom-header-title",
       "settings": {
@@ -419,6 +573,8 @@
     "0_custom_marquee_3BHdT4",
     "0_custom_banner_v2_gzBzy3",
     "0_custom_benefits_87EBPc",
+    "0_custom_banner_v1_kMFmEe",
+    "0_custom_designers_iKLLJx",
     "0_custom_header_title_NJ43iJ",
     "0_ambassadors_wWRCfP",
     "0_custom_banner_jr4QrC",
