@@ -34,6 +34,71 @@
         "padding_bottom": 0
       }
     },
+    "0_custom_banner_v2_gzBzy3": {
+      "type": "0-custom-banner-v2",
+      "settings": {
+        "bg_banner": "#f15c25",
+        "banner_image": "shopify://shop_images/post-1.jpg",
+        "title": "Lorem ipsum dolor sit amet,",
+        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "btn": "Button",
+        "btn_link": "#",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_benefits_87EBPc": {
+      "type": "0-custom-benefits",
+      "blocks": {
+        "benefits_R3h3KN": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "benefits_jBT7tw": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "benefits_Nr4qcH": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "benefits_FTp4Rc": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "benefits_gBFf3A": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefits_R3h3KN",
+        "benefits_jBT7tw",
+        "benefits_Nr4qcH",
+        "benefits_FTp4Rc",
+        "benefits_gBFf3A"
+      ],
+      "settings": {
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "0_custom_header_title_NJ43iJ": {
       "type": "0-custom-header-title",
       "settings": {
@@ -221,8 +286,32 @@
         "why_use_aJ7mMM"
       ],
       "settings": {
-        "title": "Title",
-        "sub_title": "Subtitle",
+        "title": "Lorem ipsum dolor sit amet,",
+        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_base_3_NtGWb8": {
+      "type": "0-custom-base-3",
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet",
+        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "card_title": "Lorem ipsum dolor sit amet",
+        "card_sub_title": "Lorem ipsum dolor sit amet",
+        "card_galon_number": 4,
+        "card_list": "<ul><li>Lorem ipsum dolor sit amet</li><li>Lorem ipsum dolor sit amet</li><li>Lorem ipsum dolor sit amet</li><li>Lorem ipsum dolor sit amet</li></ul>",
+        "card_btn_text": "Button",
+        "card_btn_link": "#",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "0_custom_blog_v1_aQJWFe": {
+      "type": "0-custom-blog-v1",
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -232,6 +321,8 @@
     "main",
     "0_custom_breadcrumb_anVbCE",
     "0_custom_marquee_3BHdT4",
+    "0_custom_banner_v2_gzBzy3",
+    "0_custom_benefits_87EBPc",
     "0_custom_header_title_NJ43iJ",
     "0_ambassadors_wWRCfP",
     "0_custom_banner_jr4QrC",
@@ -239,6 +330,8 @@
     "0_custom_best_sellers_qe6JcQ",
     "0_custom_banner_yt_PRL63e",
     "0_custom_subscribe_wP3e6e",
-    "0_custom_why_use_pPyRL4"
+    "0_custom_why_use_pPyRL4",
+    "0_custom_base_3_NtGWb8",
+    "0_custom_blog_v1_aQJWFe"
   ]
 }
