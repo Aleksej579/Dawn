@@ -1,0 +1,237 @@
+{{ '0-custom-reviews.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .section-{{ section.id }}-padding {
+      padding-bottom: 0px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-reviews__wrapper section-{{ section.id }}-padding page-width">
+  <div class="left__side">
+    <h3 class="title">{{ section.settings.title }}</h3>
+    <p class="sub-title">{{ section.settings.sub_title }}</p>
+    <p class="paragraph">{{ section.settings.paragraph }}</p>
+    <div class="card__stars" data-stars="{{ section.settings.count_stars }}"></div>
+  </div>
+  <div class="right__side">
+    <svg class="icon-quote__start" xmlns="http://www.w3.org/2000/svg" width="48" height="43" viewBox="0 0 48 43" fill="none">
+      <path d="M36.994 42.771C29.194 42.771 25.684 38.351 26.334 30.161L28.024 10.531C28.544 4.03101 31.534 0.781006 37.124 0.781006C42.584 0.781006 45.574 3.901 46.094 10.141L47.654 30.161C48.434 38.351 44.794 42.771 36.994 42.771ZM10.734 42.771C3.06398 42.771 -0.576023 38.351 0.0739771 30.161L1.76398 10.531C2.28398 4.03101 5.27398 0.781006 10.864 0.781006C16.324 0.781006 19.314 3.901 19.834 10.141L21.524 30.161C22.174 38.351 18.534 42.771 10.734 42.771Z" fill="black"/>
+    </svg>
+    <div class="icon__wrapper">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.icon != blank -%}
+          <div class="slide__icon {% if forloop.first %}active{% endif %}">
+            {{ block.settings.icon | image_url: width: 200 | image_tag: class: '__image', loading: 'lazy' }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="swiper reviews__slider">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <article class="swiper-slide">
+            <p class="slide__feedback">{{ block.settings.feedback }}</p>
+            <p class="slide__name">{{ block.settings.name }}</p>
+          </article>
+        {%- endfor -%}
+      </div>
+      <div class="swiper-button__wrapper">
+        <div class="swiper-button-prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="19" viewBox="0 0 24 19" fill="none">
+            <path d="M11.1 16.182L5.7 10.782L24 10.782L24 7.78198L5.7 7.78198L11.1 2.53198L8.85 0.431984L1.07324e-07 9.28198L8.85 18.282L11.1 16.182Z" fill="#333337"/>
+          </svg>
+        </div>
+        <div class="swiper-button-next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="19" viewBox="0 0 24 19" fill="none">
+            <path d="M12.9 2.38198L18.3 7.78198L-3.27835e-07 7.78198L-4.5897e-07 10.782L18.3 10.782L12.9 16.032L15.15 18.132L24 9.28198L15.15 0.281982L12.9 2.38198Z" fill="#333337"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <svg class="icon-quote__end" xmlns="http://www.w3.org/2000/svg" width="48" height="43" viewBox="0 0 48 43" fill="none">
+      <path d="M36.994 42.771C29.194 42.771 25.684 38.351 26.334 30.161L28.024 10.531C28.544 4.03101 31.534 0.781006 37.124 0.781006C42.584 0.781006 45.574 3.901 46.094 10.141L47.654 30.161C48.434 38.351 44.794 42.771 36.994 42.771ZM10.734 42.771C3.06398 42.771 -0.576023 38.351 0.0739771 30.161L1.76398 10.531C2.28398 4.03101 5.27398 0.781006 10.864 0.781006C16.324 0.781006 19.314 3.901 19.834 10.141L21.524 30.161C22.174 38.351 18.534 42.771 10.734 42.771Z" fill="black"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiperReviews = new Swiper('.reviews__slider', {
+      slidesPerView: 1,
+      grabCursor: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        realIndexChange: function () {
+          console.log('Реальный индекс слайда изменился:', this.realIndex);
+          document.querySelectorAll('.icon__wrapper .slide__icon').forEach((item) => {
+            item.classList.remove('active');
+          });
+          document.querySelectorAll('.icon__wrapper .slide__icon')[this.realIndex].classList.add('active');
+        },
+      },
+    });
+
+    // RENDER STARS
+    const starEmpty = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="32" viewBox="0 0 34 32" fill="none">
+            <path d="M6.70752 31.7819L9.41585 20.0736L0.33252 12.1986L12.3325 11.1569L16.9992 0.115234L21.6659 11.1569L33.6659 12.1986L24.5825 20.0736L27.2909 31.7819L16.9992 25.5736L6.70752 31.7819Z" fill="#868686"/>
+        </svg>
+    `;
+    const starFilled = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="32" viewBox="0 0 34 32" fill="none">
+            <path d="M6.70703 31.7819L9.41537 20.0736L0.332031 12.1986L12.332 11.1569L16.9987 0.115234L21.6654 11.1569L33.6654 12.1986L24.582 20.0736L27.2904 31.7819L16.9987 25.5736L6.70703 31.7819Z" fill="#FFE600"/>
+        </svg>
+    `;
+    let countStars = document.querySelector('.card__stars').dataset.stars;
+    document.querySelector('.card__stars').innerHTML = `
+        <p>
+          ${[0, 1, 2, 3, 4]
+            .map((item) => {
+              if (item < countStars) {
+                return `${starFilled}`;
+              } else {
+                return `${starEmpty}`;
+              }
+            })
+            .join('')}
+          </p>
+          <span>{{ section.settings.stars_text }}</span>
+    `;
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "pdp__reviews",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub-title"
+    },
+    {
+      "type": "text",
+      "id": "paragraph",
+      "label": "Paragraph"
+    },
+    {
+      "type": "number",
+      "id": "count_stars",
+      "label": "Stars",
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "stars_text",
+      "label": "Text for stars"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "reviews",
+      "name": "Reviews slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "feedback",
+          "label": "Feedback"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom reviews"
+    }
+  ]
+}
+{% endschema %}

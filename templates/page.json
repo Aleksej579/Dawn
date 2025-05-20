@@ -565,6 +565,61 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "0_custom_reviews_w49BQ8": {
+      "type": "0-custom-reviews",
+      "blocks": {
+        "reviews_FHnX8j": {
+          "type": "reviews",
+          "settings": {
+            "icon": "shopify://shop_images/persone-4.jpg",
+            "feedback": "“Can’t stop at just one— they’re that good!”",
+            "name": "Eli Parker"
+          }
+        },
+        "reviews_PwDU6R": {
+          "type": "reviews",
+          "settings": {
+            "icon": "shopify://shop_images/persone-6.jpg",
+            "feedback": "“Can’t stop at just one— they’re that good!”",
+            "name": "Eli Parker"
+          }
+        },
+        "reviews_a4icik": {
+          "type": "reviews",
+          "settings": {
+            "icon": "shopify://shop_images/persone-9.jpg",
+            "feedback": "“Can’t stop at just one— they’re that good!”",
+            "name": "Eli Parker"
+          }
+        },
+        "reviews_f8D8iD": {
+          "type": "reviews",
+          "settings": {
+            "icon": "shopify://shop_images/persone-5.jpg",
+            "feedback": "“Can’t stop at just one— they’re that good!”",
+            "name": "Eli Parker"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_FHnX8j",
+        "reviews_PwDU6R",
+        "reviews_a4icik",
+        "reviews_f8D8iD"
+      ],
+      "name": "Custom reviews",
+      "settings": {
+        "title": "Life is better witha little butter",
+        "sub_title": "(and a lot of cookies)!",
+        "paragraph": "It’s not just us — see what others are saying!",
+        "count_stars": 4,
+        "stars_text": "234 Reviews",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -587,6 +642,7 @@
     "0_custom_blog_v1_aQJWFe",
     "0_custom_blog_popup_8xUmrU",
     "0_custom_popup_blog_Rqy6qA",
-    "0_custom_locator_PaCQGR"
+    "0_custom_locator_PaCQGR",
+    "0_custom_reviews_w49BQ8"
   ]
 }
