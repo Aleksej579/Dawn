@@ -620,6 +620,22 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "0_custom_products_xKLrjc": {
+      "type": "0-custom-products",
+      "name": "Custom Products",
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet",
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 40,
+        "margin_bottom": 40
+      }
     }
   },
   "order": [
@@ -643,6 +659,7 @@
     "0_custom_blog_popup_8xUmrU",
     "0_custom_popup_blog_Rqy6qA",
     "0_custom_locator_PaCQGR",
-    "0_custom_reviews_w49BQ8"
+    "0_custom_reviews_w49BQ8",
+    "0_custom_products_xKLrjc"
   ]
 }

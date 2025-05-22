@@ -1,0 +1,201 @@
+{{ '0-custom-products.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .section-{{ section.id }}-padding {
+      padding-bottom: 0px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-products__wrapper section-{{ section.id }}-padding page-width">
+  <h2 class="products__title">{{ section.settings.title }}</h2>
+  <div class="products__wrapper">
+    {% for product in section.settings.product_list %}
+      <div class="product__item">
+        <a href="{{ product.url }}" class="product__link">
+          <div class="product__image">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 300 | image_tag: alt: product.title, class: 'product__image', loading: 'lazy' }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        </a>
+        <div class="product__content">
+          <a href="{{ product.url }}" class="product__link">
+            <h3 class="product__title">{{ product.title }}</h3>
+          </a>
+          <div class="product__description">{{ product.description }}</div>
+          <div class="product__price-wrapper">
+            <button
+              class="add-to-cart button button--primary"
+              data-variant-id="{{ product.variants.first.id }}"
+            >
+              {{ 'products.product.add_to_cart' | t }}
+            </button>
+            <span class="product__price">
+              {{- cart.currency.iso_code -}}
+              {{ product.price | money_without_currency -}}
+            </span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const variantId = button.dataset.variantId;
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1,
+                },
+              ],
+            }),
+          });
+          const result = await response.json();
+          const drawer = document.querySelector('cart-drawer');
+          if (drawer) {
+            fetch('/?section_id=cart-drawer')
+              .then((response) => response.text())
+              .then((text) => {
+                const html = new DOMParser().parseFromString(text, 'text/html');
+                const newDrawer = html.querySelector('cart-drawer');
+                if (newDrawer) {
+                  drawer.innerHTML = newDrawer.innerHTML;
+                  drawer.classList.remove('is-empty');
+                  drawer.classList.add('animate');
+                  drawer.classList.add('active');
+                  document.body.classList.add('overflow-hidden');
+                }
+              })
+              .then(() => {
+                fetch('/cart.js')
+                  .then((response) => response.json())
+                  .then((cart) => {
+                    const cartCount = document.querySelector('.cart-count-bubble span');
+                    if (cartCount) {
+                      cartCount.textContent = cart.item_count;
+                      const bubble = document.querySelector('.cart-count-bubble');
+                      if (bubble) {
+                        bubble.style.display = cart.item_count > 0 ? 'flex' : 'none';
+                      }
+                    }
+                  });
+              });
+          }
+        } catch (error) {
+          console.error('Ошибка:', error);
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Products",
+  "tag": "section",
+  "class": "custom-products",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 3
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Products"
+    }
+  ]
+}
+{% endschema %}
