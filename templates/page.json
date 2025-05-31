@@ -636,6 +636,56 @@
         "margin_top": 40,
         "margin_bottom": 40
       }
+    },
+    "adaptive_banner_UEbeRi": {
+      "type": "adaptive-banner",
+      "blocks": {
+        "description_pgcmhA": {
+          "type": "description",
+          "settings": {
+            "description": "<p>Description</p>"
+          }
+        },
+        "button_9b8Jx6": {
+          "type": "button",
+          "settings": {
+            "button_name": "Button name",
+            "button_link": "",
+            "button_style": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "description_pgcmhA",
+        "button_9b8Jx6"
+      ],
+      "name": "Adaptive banner",
+      "settings": {
+        "section_link": "",
+        "markup": "image_as_background",
+        "image_height_auto": false,
+        "image_height_desktop": 33,
+        "image_max_height_desktop": 480,
+        "image_height_mobile": 82,
+        "image_max_height_mobile": 310,
+        "fit_to_container": "none",
+        "color_scheme": "",
+        "bg": "",
+        "bg_blur": 0,
+        "vertical_alignment": "center",
+        "horizontal_alignment": "center",
+        "alignment": "center",
+        "max_width": 780,
+        "content_box_bg": false,
+        "content_padding_top": 20,
+        "content_padding_bottom": 20,
+        "content_padding_top_mobile": 20,
+        "content_padding_bottom_mobile": 20,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24
+      }
     }
   },
   "order": [
@@ -660,6 +710,7 @@
     "0_custom_popup_blog_Rqy6qA",
     "0_custom_locator_PaCQGR",
     "0_custom_reviews_w49BQ8",
-    "0_custom_products_xKLrjc"
+    "0_custom_products_xKLrjc",
+    "adaptive_banner_UEbeRi"
   ]
 }
