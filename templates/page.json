@@ -662,6 +662,7 @@
       "name": "Adaptive banner",
       "settings": {
         "section_link": "",
+        "image": "shopify://shop_images/theme_cover_image.jpg",
         "markup": "image_as_background",
         "image_height_auto": false,
         "image_height_desktop": 33,
