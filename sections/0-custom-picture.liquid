@@ -1,0 +1,42 @@
+<picture>
+  <!-- Показывать mobile_image на экранах ≤ 576px -->
+  <source media="(max-width: 576px)" srcset="{{ section.settings.mobile_image | img_url: '600x' }}">
+  <!-- Показывать desktop_image на экранах > 576px -->
+  <img
+    src="{{ section.settings.desktop_image | img_url: '1200x' }}"
+    alt="{{ section.settings.alt_text | escape }}"
+    loading="lazy"
+    width="100%"
+    height="auto"
+  >
+</picture>
+
+{% schema %}
+{
+  "name": "Responsive Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image (≥ 577px)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image (≤ 576px)"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt Text (SEO)",
+      "default": "Product image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Responsive Image",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

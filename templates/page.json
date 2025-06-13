@@ -608,7 +608,6 @@
         "reviews_a4icik",
         "reviews_f8D8iD"
       ],
-      "name": "Custom reviews",
       "settings": {
         "title": "Life is better witha little butter",
         "sub_title": "(and a lot of cookies)!",
@@ -623,7 +622,6 @@
     },
     "0_custom_products_xKLrjc": {
       "type": "0-custom-products",
-      "name": "Custom Products",
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
         "product_list": [
@@ -659,7 +657,6 @@
         "description_pgcmhA",
         "button_9b8Jx6"
       ],
-      "name": "Adaptive banner",
       "settings": {
         "section_link": "",
         "image": "shopify://shop_images/theme_cover_image.jpg",
@@ -688,6 +685,15 @@
         "padding_top_mobile": 24,
         "padding_bottom_mobile": 24
       }
+    },
+    "0_custom_picture_iC4dTW": {
+      "type": "0-custom-picture",
+      "name": "Responsive Image",
+      "settings": {
+        "desktop_image": "shopify://shop_images/post-2.jpg",
+        "mobile_image": "shopify://shop_images/post-3.jpg",
+        "alt_text": "Product image"
+      }
     }
   },
   "order": [
@@ -713,6 +719,7 @@
     "0_custom_locator_PaCQGR",
     "0_custom_reviews_w49BQ8",
     "0_custom_products_xKLrjc",
-    "adaptive_banner_UEbeRi"
+    "adaptive_banner_UEbeRi",
+    "0_custom_picture_iC4dTW"
   ]
 }
