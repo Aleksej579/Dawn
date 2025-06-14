@@ -26,12 +26,46 @@
         "padding_bottom": 0
       }
     },
-    "0_custom_marquee_3BHdT4": {
+    "0_custom_marquee_RYJkYz": {
       "type": "0-custom-marquee",
+      "blocks": {
+        "item_TBV7JM": {
+          "type": "item",
+          "settings": {
+            "text": "✨ New arrivals",
+            "link": ""
+          }
+        },
+        "item_HMiiNw": {
+          "type": "item",
+          "settings": {
+            "text": "🛍️ Free shipping",
+            "link": ""
+          }
+        },
+        "item_Gi9xiN": {
+          "type": "item",
+          "settings": {
+            "text": "🔥 Limited time offer",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_TBV7JM",
+        "item_HMiiNw",
+        "item_Gi9xiN"
+      ],
+      "name": "Custom Marquee",
       "settings": {
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "speed": 50,
+        "pause_on_hover": true,
+        "bg_color": "#2f2f2f",
+        "text_color": "#ffffff",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     },
     "0_custom_banner_v2_gzBzy3": {
@@ -608,7 +642,6 @@
         "reviews_a4icik",
         "reviews_f8D8iD"
       ],
-      "name": "Custom reviews",
       "settings": {
         "title": "Life is better witha little butter",
         "sub_title": "(and a lot of cookies)!",
@@ -623,7 +656,6 @@
     },
     "0_custom_products_xKLrjc": {
       "type": "0-custom-products",
-      "name": "Custom Products",
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
         "product_list": [
@@ -659,7 +691,6 @@
         "description_pgcmhA",
         "button_9b8Jx6"
       ],
-      "name": "Adaptive banner",
       "settings": {
         "section_link": "",
         "image": "shopify://shop_images/theme_cover_image.jpg",
@@ -688,12 +719,21 @@
         "padding_top_mobile": 24,
         "padding_bottom_mobile": 24
       }
+    },
+    "0_custom_picture_iC4dTW": {
+      "type": "0-custom-picture",
+      "name": "Responsive Image",
+      "settings": {
+        "desktop_image": "shopify://shop_images/post-2.jpg",
+        "mobile_image": "shopify://shop_images/post-3.jpg",
+        "alt_text": "Product image"
+      }
     }
   },
   "order": [
     "main",
     "0_custom_breadcrumb_anVbCE",
-    "0_custom_marquee_3BHdT4",
+    "0_custom_marquee_RYJkYz",
     "0_custom_banner_v2_gzBzy3",
     "0_custom_benefits_87EBPc",
     "0_custom_banner_v1_kMFmEe",
@@ -713,6 +753,7 @@
     "0_custom_locator_PaCQGR",
     "0_custom_reviews_w49BQ8",
     "0_custom_products_xKLrjc",
-    "adaptive_banner_UEbeRi"
+    "adaptive_banner_UEbeRi",
+    "0_custom_picture_iC4dTW"
   ]
 }

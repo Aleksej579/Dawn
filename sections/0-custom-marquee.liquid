@@ -1,43 +1,150 @@
 {{ '0-custom-marquee.out.css' | asset_url | stylesheet_tag }}
-<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script
-  defer
-  src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js"
-  type="text/javascript"
-></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  .marquee-header {
+    background: {{ section.settings.bg_color }};
+  }
+  .marquee:before {
+    background-image: linear-gradient(to right, {{ section.settings.bg_color }}, transparent);
+  }
+  .marquee:after {
+    background-image: linear-gradient(to left, {{ section.settings.bg_color }}, transparent);
   }
 {%- endstyle -%}
 
-<div class="aptus-marquee__wrapper section-{{ section.id }}-padding">
-  <p class="marquee" data-duration="20000" data-duplicated="true" style="overflow:hidden">
-    <span>{{ section.settings.text }}</span>
-    <span style="padding-left: 25px;">{{ section.settings.text }}</span>
-  </p>
+<div
+  class="
+    marquee-wrapper
+    js-section-{{ section.index }}
+    page-width
+    section-{{ section.id }}-padding
+  "
+  style="color: {{ section.settings.text_color }};"
+>
+  <div class="marquee" data-marquee>
+    <div class="marquee-content">
+      {% for block in section.blocks %}
+        <div class="marquee-item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 40 }}" alt="{{ block.settings.image.alt }}" width="40" height="40" loading="lazy">
+          {% endif %}
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    $(function () {
-      $('.marquee').marquee({ duration: 10000 });
+  document.addEventListener('DOMContentLoaded', function() {
+    const marquee = document.querySelector('[data-marquee]');
+    if (!marquee) return;
+    const content = marquee.querySelector('.marquee-content');
+    const wrapper = marquee.closest('.js-section-{{ section.index }}.marquee-wrapper');
+    const speed = {{ section.settings.speed | default: 50 }};
+    const pauseOnHover = {{ section.settings.pause_on_hover | default: false }};
+    // Clone items until content fills wrapper width
+    function cloneItems() {
+      const wrapperWidth = wrapper.offsetWidth;
+      let contentWidth = content.scrollWidth;
+      while (contentWidth < wrapperWidth * 1.5) {
+        content.innerHTML += content.innerHTML;
+        contentWidth = content.scrollWidth;
+      }
+    }
+    cloneItems();
+    let animationFrame;
+    let startTime;
+    let progress = 0;
+    const contentWidth = content.scrollWidth / 2;
+    function animate(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      progress = (elapsed * speed / 1000) % contentWidth;
+      content.style.transform = `translateX(-${progress}px)`;
+      animationFrame = requestAnimationFrame(animate);
+    }
+    // Reset on resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        content.style.transform = 'translateX(0)';
+        content.innerHTML = content.innerHTML.replace(/<div class="marquee-item" aria-hidden="true">.*?<\/div>/g, '');
+        cloneItems();
+        startTime = null;
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
+      }, 100);
+    });
+    animationFrame = requestAnimationFrame(animate);
+    if (pauseOnHover) {
+      wrapper.addEventListener('mouseenter', () => {
+        cancelAnimationFrame(animationFrame);
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        startTime = performance.now() - (progress / speed * 1000);
+        animationFrame = requestAnimationFrame(animate);
+      });
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else {
+        startTime = performance.now() - (progress / speed * 1000);
+        animationFrame = requestAnimationFrame(animate);
+      }
     });
   });
 </script>
 
 {% schema %}
 {
-  "name": "Marquee",
+  "name": "Custom Marquee",
   "tag": "section",
-  "class": "aptus__marquee",
+  "class": "marquee-header",
   "settings": [
     {
-      "type": "text",
-      "id": "text",
-      "label": "Text for marquee"
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Speed",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#2F2F2F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
     },
     {
       "type": "header",
@@ -47,7 +154,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 50,
+      "max": 200,
       "step": 2,
       "unit": "px",
       "label": "Top",
@@ -57,16 +164,87 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 50,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
       "step": 2,
       "unit": "px",
       "label": "Bottom",
       "default": 0
     }
   ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Special offer"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Marquee"
+      "name": "Custom Marquee",
+      "category": "Promotional",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "✨ New arrivals",
+            "image": "shopify://shop_images/new-arrival.png"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "🛍️ Free shipping"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "🔥 Limited time offer",
+            "image": "shopify://shop_images/hot-deal.png"
+          }
+        }
+      ]
     }
   ]
 }

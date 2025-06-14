@@ -1,47 +1,52 @@
-.aptus__marquee {
-    .aptus-marquee__wrapper {
-        background: #f15c25;
-        p {
-            margin: 0;
-            color: #e8e8e8;
-            font-size: 15px;
-            line-height: 21px;
-            position: relative;
-            &:before {
-                content: "";
+.marquee-header {
+    .marquee-wrapper {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        .marquee {
+            display: inline-flex;
+            min-width: 100%;
+            &:before,
+            &:after {
+                content: '';
                 display: block !important;
                 height: 38px;
                 width: 150px;
                 min-width: 50px;
-                background-image: linear-gradient(to right, #f15c25, #f15c2500);
                 position: absolute;
-                left: 0;
-                transform: translateY(-50%);
-                top: 50%;
                 z-index: 1;
+                top: 50%;
+                transform: translateY(-50%);
                 @media screen and (max-width: 600px) {
                     width: 50px;
                 }
+            }
+            &:before {
+                left: 0;
             }
             &:after {
-                content: "";
-                display: block !important;
-                height: 38px;
-                width: 150px;
-                min-width: 50px;
-                background-image: linear-gradient(to left, #f15c25, #f15c2500);
-                position: absolute;
                 right: 0;
-                transform: translateY(-50%);
-                top: 50%;
-                z-index: 1;
-                @media screen and (max-width: 600px) {
-                    width: 50px;
-                }
             }
-            span {
-                font-size: 15px;
-                line-height: 21px;
+            .marquee-content {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding-right: 20px;
+                .marquee-item {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    flex-shrink: 0;
+                    font-size: 10px;
+                    font-weight: 400;
+                    line-height: 10px;
+                    img {
+                        display: inline-block;
+                        vertical-align: middle;
+                        height: 15px;
+                        width: auto;
+                    }
+                }
             }
         }
     }
