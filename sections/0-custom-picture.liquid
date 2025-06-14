@@ -1,9 +1,7 @@
 <picture>
-  <!-- Показывать mobile_image на экранах ≤ 576px -->
-  <source media="(max-width: 576px)" srcset="{{ section.settings.mobile_image | img_url: '600x' }}">
-  <!-- Показывать desktop_image на экранах > 576px -->
+  <source media="(max-width: 576px)" srcset="{{ section.settings.mobile_image | image_url: width: 600 }}">
   <img
-    src="{{ section.settings.desktop_image | img_url: '1200x' }}"
+    src="{{ section.settings.desktop_image | image_url: width: 1200 }}"
     alt="{{ section.settings.alt_text | escape }}"
     loading="lazy"
     width="100%"
