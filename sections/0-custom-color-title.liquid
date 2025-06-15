@@ -1,0 +1,235 @@
+{{ '0-custom-color-title.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    .section-{{ section.id }}-padding {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+  :root {
+    --color-bg: {{ section.settings.color_scheme.settings.background}};
+    --color-text: {{ section.settings.color_scheme.settings.text}};
+    --duration: 0.3s;
+  }
+{%- endstyle -%}
+
+{% if section.settings.image_BG != blank %}
+  {{ section.settings.image_BG | image_url: width: 2560 | image_tag: class: 'ct__bg-image' }}
+{% endif %}
+
+<div class="custom-color-title__wrapper section-{{ section.id }}-padding page-width">
+  <h2
+    class="ct__title {{ section.settings.title_size }}"
+    style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
+  >
+    {{ section.settings.main_title }}
+  </h2>
+  <div class="color-title__wrapper">
+    <div class="container__bloks">
+      {%- for block in section.blocks -%}
+        {% case block.type %}
+          {%- when 'sub_title' -%}
+            <p
+              class="ct__subtitle"
+              style="text-align:{{ block.settings.sub_title_align }};"
+            >
+              {{ block.settings.sub_title }}
+            </p>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>
+
+{% schema %}
+{
+  "name": "Color title",
+  "tag": "section",
+  "class": "color-title",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Styling color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_BG",
+      "label": "Image for BG"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main title content"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title size",
+      "options": [
+        {
+          "value": "text-h2",
+          "label": "H2"
+        },
+        {
+          "value": "text-h3",
+          "label": "H3"
+        },
+        {
+          "value": "text-h4",
+          "label": "H4"
+        }
+      ],
+      "default": "text-h2"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "var(--ps-times-regular)",
+          "label": "Ps-times"
+        },
+        {
+          "value": "var(--instrument-sans-regular)",
+          "label": "Instrument"
+        }
+      ],
+      "default": "var(--ps-times-regular)"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sub_title",
+      "name": "Sub-title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub title"
+        },
+        {
+          "type": "select",
+          "id": "sub_title_align",
+          "label": "Title align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Color title"
+    }
+  ]
+}
+{% endschema %}

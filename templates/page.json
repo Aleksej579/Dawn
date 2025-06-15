@@ -720,13 +720,46 @@
         "padding_bottom_mobile": 24
       }
     },
-    "0_custom_picture_iC4dTW": {
-      "type": "0-custom-picture",
-      "name": "Responsive Image",
+    "0_custom_e_book_JR8JgK": {
+      "type": "0-custom-e-book",
+      "name": "E-book",
       "settings": {
-        "desktop_image": "shopify://shop_images/post-2.jpg",
-        "mobile_image": "shopify://shop_images/post-3.jpg",
-        "alt_text": "Product image"
+        "color_scheme": "",
+        "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "image": "shopify://shop_images/ava.png",
+        "btn_name": "Download",
+        "btn_url": "#",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_custom_advantages_KVe6G9": {
+      "type": "0-custom-advantages",
+      "name": "Advantages",
+      "settings": {
+        "color_scheme": "",
+        "a_title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "title_font_family": "var(--ps-times-regular)",
+        "a_logo": "shopify://shop_images/ava.png",
+        "a_image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "desk_card_icon_1": "shopify://shop_images/icon.svg",
+        "desk_card_text_1": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "desk_card_icon_2": "shopify://shop_images/icon_cc90a866-de29-42ca-9f20-15c036527fb7.svg",
+        "desk_card_text_2": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "desk_card_icon_3": "shopify://shop_images/icon_427b8dad-c427-442f-b66b-0178b5425f61.svg",
+        "desk_card_text_3": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "desk_card_text_4": "",
+        "desk_card_text_5": "",
+        "desk_card_text_6": "",
+        "desk_card_text_7": "",
+        "desk_card_text_8": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     }
   },
@@ -754,6 +787,7 @@
     "0_custom_reviews_w49BQ8",
     "0_custom_products_xKLrjc",
     "adaptive_banner_UEbeRi",
-    "0_custom_picture_iC4dTW"
+    "0_custom_e_book_JR8JgK",
+    "0_custom_advantages_KVe6G9"
   ]
 }
