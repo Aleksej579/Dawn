@@ -1,0 +1,310 @@
+{{ 'o-custom-name.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .section-{{ section.id }}-padding {
+      /* padding-bottom: 0px; */
+    }
+  }
+  .bg-gradient-{{ section.index }} {
+    background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_start }}, {{ section.settings.color_end }});
+  }
+  /* :root {
+    --color-bg: {{ section.settings.color_scheme.settings.background}};
+    --color-text: {{ section.settings.color_scheme.settings.text}};
+    --duration: 0.3s;
+  } */
+{%- endstyle -%}
+
+{% if section.settings.bg_image_full != blank %}
+  {{ section.settings.bg_image_full | image_url: width: 2560 | image_tag: class: 'ct__bg-image' }}
+  <style>
+    .section-name {
+      position: relative;
+      img.ct__bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+      .name__wrapper {
+        background: none;
+      }
+    }
+  </style>
+{% endif %}
+
+<div
+  class="
+    name__wrapper
+    section-{{ section.id }}-padding
+    bg-gradient-{{ section.index }}
+    color-{{ section.settings.color_scheme }}
+    page-width
+  "
+>
+  <div
+    class="wrapper__bg"
+    style="background-image: url('{{ section.settings.bg_image | image_url: width: 2560 }}'); background-size: cover;"
+  >
+    <h3
+      class="main__title"
+      style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
+    >
+      {{ section.settings.main_title }}
+    </h3>
+    <div class="name__wrapper">
+      <div class="name__grid">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when 'name_block' -%}
+              <article>
+                {%- if block.settings.a_icon != blank -%}
+                  <div class="icon__wrapp">
+                    {{ block.settings.icon | image_url: width: 50 | image_tag: class: '__image', loading: 'lazy' }}
+                  </div>
+                {%- endif -%}
+                <div class="a__text">{{ block.settings.content }}</div>
+              </article>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- if section.settings.a_btn_name != blank -%}
+      <a class="a__link" href="{{ section.settings.a_btn_url }}">
+        {{ section.settings.a_btn_name -}}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>
+
+{% schema %}
+{
+  "name": "Name",
+  "tag": "section",
+  "class": "section-name",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "BG gradient"
+    },
+    {
+      "type": "color",
+      "id": "color_start",
+      "label": "Start Color",
+      "default": "#ADD8DF"
+    },
+    {
+      "type": "color",
+      "id": "color_end",
+      "label": "End Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Gradient Direction",
+      "options": [
+        { "value": "to right", "label": "Left to Right" },
+        { "value": "to left", "label": "Right to Left" },
+        { "value": "to bottom", "label": "Top to Bottom" },
+        { "value": "to top", "label": "Bottom to Top" },
+        { "value": "45deg", "label": "Diagonal" }
+      ],
+      "default": "to right"
+    },
+    {
+      "type": "header",
+      "content": "BG image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Image for BG"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_full",
+      "label": "Image for BG"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title size",
+      "options": [
+        {
+          "value": "text-h2",
+          "label": "H2"
+        },
+        {
+          "value": "text-h3",
+          "label": "H3"
+        },
+        {
+          "value": "text-h4",
+          "label": "H4"
+        }
+      ],
+      "default": "text-h2"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "var(--ps-times-regular)",
+          "label": "Ps-times"
+        },
+        {
+          "value": "var(--instrument-sans-regular)",
+          "label": "Instrument"
+        }
+      ],
+      "default": "var(--ps-times-regular)"
+    },
+    {
+      "type": "header",
+      "content": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "a_btn_name",
+      "label": "Button name"
+    },
+    {
+      "type": "url",
+      "id": "a_btn_url",
+      "label": "Button url"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "name_block",
+      "name": "Name item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Name"
+    }
+  ]
+}
+{% endschema %}

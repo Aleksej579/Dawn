@@ -1,0 +1,496 @@
+{{ '0-custom-advantages.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    .section-{{ section.id }}-padding {
+      padding-bottom: 74px;
+    }
+  }
+  :root {
+    --color-bg: {{ section.settings.color_scheme.settings.background}};
+    --color-text: {{ section.settings.color_scheme.settings.text}};
+    --duration: 0.3s;
+  }
+{%- endstyle -%}
+
+<span class="bg-overlay"></span>
+
+<div class="custom-advantages__wrapper section-{{ section.id }}-padding page-width">
+  <h3 class="a__title" style="font-family:{{ section.settings.title_font_family }}">
+    {%- if section.settings.a_logo != blank -%}
+      {{ section.settings.a_logo | image_url: width: 300 | image_tag: class: 'a__title__image', loading: 'lazy' }}
+    {%- endif -%}
+    {{ section.settings.a_title }}
+  </h3>
+  <div class="a__wrapper">
+    <div class="a__grid is-hidden-on-mobile">
+      {% for i in (1..8) %}
+        {% assign desk_card_i = 'desk_card_icon_' | append: i %}
+        {% assign desk_card_t = 'desk_card_text_' | append: i %}
+        {% if section.settings[desk_card_i] != blank or section.settings[desk_card_t] != blank %}
+          <article>
+            {%- if section.settings[desk_card_i] != blank -%}
+              <div class="a__icon">{{ section.settings[desk_card_i] | image_url: width: 200 | image_tag: class: '__image', loading: 'lazy' }}</div>
+            {%- endif -%}
+            <div class="a__text">{{ section.settings[desk_card_t] }}</div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if section.settings.a_image != blank %}
+      <div class="a__image">
+        {{ section.settings.a_image | image_url: width: 900 | image_tag: class: '__image', loading: 'lazy' }}
+      </div>
+    {% endif %}
+  </div>
+
+  {%- for block in section.blocks -%}
+    {% case block.type %}
+      {%- when 'popup_cards' -%}
+        <details class="a__btn-open-popup">
+          <summary>
+            {{ block.settings.a_btn_mobile_name }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="20" fill="#F4F4F4"/>
+              <path d="M20 12.1875V27.1875" stroke="black" stroke-width="2"/>
+              <path d="M27.5 19.6875L12.5 19.6875" stroke="black" stroke-width="2"/>
+            </svg>
+          </summary>
+          <div class="details__content">
+            <div class="a__mobile-head">
+              <span class="a__btn-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="20" fill="black"/>
+                  <path d="M25.3032 14.384L14.6966 24.9906" stroke="#F4F4F4" stroke-width="2"/>
+                  <path d="M25.3032 24.9907L14.6966 14.3841" stroke="#F4F4F4" stroke-width="2"/>
+                </svg>
+              </span>
+              <p>{{ block.settings.a_subtitle_mobile }}</p>
+              <p>{{ block.settings.a_title_mobile }}</p>
+            </div>
+            {% for i in (1..8) %}
+              {% assign desk_card_i = 'desk_card_icon_' | append: i %}
+              {% assign desk_card_t = 'desk_card_text_' | append: i %}
+              <article>
+                {%- if block.settings[desk_card_i] != blank -%}
+                  <div class="a__icon">{{ block.settings[desk_card_i] | image_url: width: 200 | image_tag: class: '__image', loading: 'lazy' }}</div>
+                {%- endif -%}
+                {%- if block.settings[desk_card_t] != blank -%}
+                  <div class="a__text">{{ block.settings[desk_card_t] }}</div>
+                {%- endif -%}
+              </article>
+            {% endfor %}
+          </div>
+        </details>
+      {%- when 'popup_link' -%}
+        <details class="a__popup-link">
+          <summary>{{ block.settings.block_btn_name -}}</summary>
+          <div class="details__content">
+            <span class="a__btn-close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="20" fill="black"/>
+                <path d="M25.3032 14.384L14.6966 24.9906" stroke="#F4F4F4" stroke-width="2"/>
+                <path d="M25.3032 24.9907L14.6966 14.3841" stroke="#F4F4F4" stroke-width="2"/>
+              </svg>
+            </span>
+            <div class="popup__content">
+              <h3 class="popup__title">{{ product.title }}</h3>
+              <div class="popup__text">
+                {{ block.settings.block_content }}
+              </div>
+            </div>
+          </div>
+        </details>
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    {% comment %} let aBtnOpenPopup = document.querySelector('.a__btn-open-popup');
+    let aGrid = document.querySelector('.a__grid');
+    aBtnOpenPopup.addEventListener('click', () => {
+      aGrid.classList.remove('is-hidden-on-mobile');
+      aGrid.querySelector('.a__mobile-head').style.display = 'block';
+      document.querySelector('body').style.overflow = 'hidden';
+    });
+    aGrid.querySelector('.a__btn-close').addEventListener('click', () => {
+      aGrid.classList.add('is-hidden-on-mobile');
+      document.querySelector('body').style.overflow = 'auto';
+    });
+
+    //open popup
+    let aLink = document.querySelector('.a__link');
+    let popupBanner = document.querySelector('.popup.popup-hide');
+    let wrapperContent = document.querySelector('.popup-wrapper .wrapper__content .popup__content');
+
+    aLink.addEventListener('click', (e) => {
+      if (true) {
+        e.preventDefault();
+        popupBanner.classList.remove('popup-hide');
+        popupBanner.classList.add('text-mode');
+        wrapperContent.innerHTML = `
+          <h3 class="popup__title">{{ product.title }}</h3>
+          <div class="popup__text">
+            {{ section.settings.popup_content }}
+          </div>
+        `;
+      }
+    }); {% endcomment %}
+
+    {% comment %} new {% endcomment %}
+    let detailsAll = document.querySelectorAll('details.a__btn-open-popup');
+    detailsAll.forEach((item) => {
+      item.querySelector('.a__btn-close').addEventListener('click', () => {
+        item.querySelector('summary').click();
+      });
+    });
+    let detailsPopupAll = document.querySelectorAll('details.a__popup-link');
+    detailsPopupAll.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        if (e.target.tagName == 'SUMMARY') {
+          document.querySelector('.advantages-v2 .bg-overlay').classList.add('is-show');
+        } else {
+          document.querySelector('.advantages-v2 .bg-overlay').classList.remove('is-show');
+        }
+      });
+      item.querySelector('.a__btn-close').addEventListener('click', () => {
+        item.querySelector('summary').click();
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Advantages",
+  "tag": "section",
+  "class": "advantages",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "a_title",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "var(--ps-times-regular)",
+          "label": "Ps-times"
+        },
+        {
+          "value": "var(--instrument-sans-regular)",
+          "label": "Instrument"
+        }
+      ],
+      "default": "var(--ps-times-regular)"
+    },
+    {
+      "type": "image_picker",
+      "id": "a_logo",
+      "label": "Logo"
+    },
+    {
+      "type": "header",
+      "content": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "a_image",
+      "label": "Main image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Cart items"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_1",
+      "label": "Desk card icon 1"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_1",
+      "label": "Desk card text 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_2",
+      "label": "Desk card icon 2"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_2",
+      "label": "Desk card text 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_3",
+      "label": "Desk card icon 3"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_3",
+      "label": "Desk card text 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_4",
+      "label": "Desk card icon 4"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_4",
+      "label": "Desk card text 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_5",
+      "label": "Desk card icon 5"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_5",
+      "label": "Desk card text 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_6",
+      "label": "Desk card icon 6"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_6",
+      "label": "Desk card text 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_7",
+      "label": "Desk card icon 7"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_7",
+      "label": "Desk card text 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_card_icon_8",
+      "label": "Desk card icon 8"
+    },
+    {
+      "type": "text",
+      "id": "desk_card_text_8",
+      "label": "Desk card text 8"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "popup_cards",
+      "name": "Popup cards item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "a_btn_mobile_name",
+          "label": "Button mobile name",
+          "default": "What does OC take?"
+        },
+        {
+          "type": "header",
+          "content": "Title for content"
+        },
+        {
+          "type": "text",
+          "id": "a_title_mobile",
+          "label": "Title mobile",
+          "default": "OC  take any types of soft plastic*"
+        },
+        {
+          "type": "text",
+          "id": "a_subtitle_mobile",
+          "label": "Sub title mobile",
+          "default": "What OC take?"
+        },
+        {
+          "type": "header",
+          "content": "Carts items"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_1",
+          "label": "Desk card icon 1"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_1",
+          "label": "Desk card text 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_2",
+          "label": "Desk card icon 2"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_2",
+          "label": "Desk card text 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_3",
+          "label": "Desk card icon 3"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_3",
+          "label": "Desk card text 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_4",
+          "label": "Desk card icon 4"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_4",
+          "label": "Desk card text 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_5",
+          "label": "Desk card icon 5"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_5",
+          "label": "Desk card text 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_6",
+          "label": "Desk card icon 6"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_6",
+          "label": "Desk card text 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_7",
+          "label": "Desk card icon 7"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_7",
+          "label": "Desk card text 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "desk_card_icon_8",
+          "label": "Desk card icon 8"
+        },
+        {
+          "type": "text",
+          "id": "desk_card_text_8",
+          "label": "Desk card text 8"
+        }
+      ]
+    },
+    {
+      "type": "popup_link",
+      "name": "Popup link item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_btn_name",
+          "label": "Name button"
+        },
+        {
+          "type": "richtext",
+          "id": "block_content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advantages"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,104 @@
+.e-book {
+    background: var(--book-color-bg);
+
+    .custom-e-book__wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 80px;
+
+        @media (max-width: 1024px) {
+            gap: 6px;
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column-reverse;
+        }
+
+        .left__wrapper {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            @media (max-width: 576px) {
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 63px;
+            }
+
+            .book__title {
+                font-size: 36px;
+                line-height: 120%;
+                letter-spacing: -.01em;
+                font-weight: 500;
+                margin: 0 0 16px 0;
+                color: #262615;
+
+                @media (max-width: 576px) {
+                    font-size: 28px;
+                }
+            }
+
+            .book__content {
+                font-size: 18px;
+                line-height: 120%;
+                letter-spacing: normal;
+                font-weight: 400;
+                margin: 0 0 40px 0;
+                color: #262615;
+                max-width: 488px;
+
+                @media (max-width: 576px) {
+                    font-size: 14px;
+                }
+            }
+
+            .book__link {
+                font-size: 20px;
+                line-height: 100%;
+                letter-spacing: -.01em;
+                font-weight: 500;
+                margin: 0;
+                color: #F4F4F4;
+                padding: 12.5px 35px 15.5px 35px;
+                background: #000000;
+                height: 48px;
+                border-radius: 24px;
+                text-decoration: none;
+                display: block;
+                width: fit-content;
+                transition: all 0.3s;
+
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .right__wrapper {
+            width: 50%;
+            overflow: hidden;
+
+            @media (max-width: 1024px) {
+                width: 70%;
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            .book__image {
+                display: flex;
+                height: 100%;
+
+                // aspect-ratio: 680 / 429;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    // object-position: bottom;
+                }
+            }
+        }
+    }
+}
