@@ -21,26 +21,16 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "caption": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
-        },
         "price": {
           "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
           "settings": {}
         },
         "variant_picker": {
@@ -54,16 +44,34 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "related_product_h7LJ3T": {
+          "type": "related_product",
+          "settings": {
+            "related_product_color": "#0584a4",
+            "btn_original_text": "Original",
+            "btn_related_text": "Original & Alkaline"
+          }
+        },
+        "about_sale_block_KwFPT7": {
+          "type": "about_sale_block",
+          "settings": {
+            "color_bg": "#1111110d",
+            "color_text": "#000000",
+            "sale_block_content": "<p>Get up to <strong>25%</strong> discount during our start of the summer sale.</p>",
+            "text_alignment": "left",
+            "text_size": "small",
+            "border_radius": 5,
+            "padding": 12,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
           }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
@@ -100,28 +108,21 @@
             "content": "",
             "page": ""
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
         }
       },
       "block_order": [
-        "vendor",
         "title",
-        "caption",
         "price",
+        "description",
         "variant_picker",
         "quantity_selector",
+        "related_product_h7LJ3T",
+        "about_sale_block_KwFPT7",
         "buy_buttons",
-        "description",
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
-        "collapsible-row-3",
-        "share"
+        "collapsible-row-3"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -148,7 +149,7 @@
         "name_3": "Tab 3",
         "name_4": "Tab 4",
         "title_color": "#272727",
-        "bg_tab": "#FFFAF3",
+        "bg_tab": "#fffaf3",
         "padding_top": 30,
         "padding_bottom": 30
       }
