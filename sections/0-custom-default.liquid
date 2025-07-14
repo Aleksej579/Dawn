@@ -1,41 +1,44 @@
-{{ 'o-custom-name.out.css' | asset_url | stylesheet_tag }}
+{{ 'o-custom-default.out.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
+  .section-name {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
-      margin-top: {{ section.settings.margin_top }}px;
-      margin-bottom: {{ section.settings.margin_bottom }}px;
   }
-  @media screen and (max-width: 1024px) {
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_container }}px;
+      padding-bottom: {{ section.settings.padding_bottom_container }}px;
+  }
+  /* @media screen and (max-width: 1024px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
       padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
       margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
       margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
     }
-  }
+  } */
   @media screen and (max-width: 450px) {
     .section-{{ section.id }}-padding {
       /* padding-bottom: 0px; */
     }
   }
-  .bg-gradient-{{ section.index }} {
-    background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_start }}, {{ section.settings.color_end }});
-  }
-  /* :root {
-    --color-bg: {{ section.settings.color_scheme.settings.background}};
-    --color-text: {{ section.settings.color_scheme.settings.text}};
-    --duration: 0.3s;
-  } */
+  {%- if section.settings.bg_gradient_full == true -%}
+    .section-name {
+      background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_start }}, {{ section.settings.color_end }});
+    }
+  {% else %}
+    .section-name .name__wrapper {
+      background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_start }}, {{ section.settings.color_end }});
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
-{% if section.settings.bg_image_full != blank %}
-  {{ section.settings.bg_image_full | image_url: width: 2560 | image_tag: class: 'ct__bg-image' }}
+{% if section.settings.bg_image_full_container == true and section.settings.bg_image != blank %}
+  {{ section.settings.bg_image | image_url: width: 2560 | image_tag: class: 'bg-image' }}
   <style>
     .section-name {
       position: relative;
-      img.ct__bg-image {
+      .bg-image {
         position: absolute;
         top: 0;
         left: 0;
@@ -55,14 +58,15 @@
   class="
     name__wrapper
     section-{{ section.id }}-padding
-    bg-gradient-{{ section.index }}
     color-{{ section.settings.color_scheme }}
     page-width
   "
 >
   <div
     class="wrapper__bg"
-    style="background-image: url('{{ section.settings.bg_image | image_url: width: 2560 }}'); background-size: cover;"
+    {%- if section.settings.bg_image_full_container == false -%}
+      style="background-image: url('{{ section.settings.bg_image | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
+    {%- endif -%}
   >
     <h3
       class="main__title"
@@ -138,7 +142,13 @@
         { "value": "to top", "label": "Bottom to Top" },
         { "value": "45deg", "label": "Diagonal" }
       ],
-      "default": "to right"
+      "default": "to bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_gradient_full",
+      "label": "BG gradient full",
+      "default": true
     },
     {
       "type": "header",
@@ -147,12 +157,15 @@
     {
       "type": "image_picker",
       "id": "bg_image",
-      "label": "Image for BG"
+      "label": "BG image full screen",
+      "info": "Full width image of the section."
     },
     {
-      "type": "image_picker",
-      "id": "bg_image_full",
-      "label": "Image for BG"
+      "type": "checkbox",
+      "id": "bg_image_full_container",
+      "label": "BG image full or container",
+      "default": true,
+      "info": "True - full screen, False - container width."
     },
     {
       "type": "header",
@@ -235,7 +248,7 @@
     },
     {
       "type": "header",
-      "content": "Padding"
+      "content": "Padding section"
     },
     {
       "type": "range",
@@ -259,11 +272,11 @@
     },
     {
       "type": "header",
-      "content": "Margin"
+      "content": "Padding container"
     },
     {
       "type": "range",
-      "id": "margin_top",
+      "id": "padding_top_container",
       "min": 0,
       "max": 200,
       "step": 2,
@@ -273,7 +286,7 @@
     },
     {
       "type": "range",
-      "id": "margin_bottom",
+      "id": "padding_bottom_container",
       "min": 0,
       "max": 200,
       "step": 2,

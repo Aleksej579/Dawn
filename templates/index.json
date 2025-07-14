@@ -9,25 +9,12 @@
  */
 {
   "sections": {
-    "0_custom_header_title_WGKTRp": {
-      "type": "0-custom-header-title",
-      "disabled": true,
-      "settings": {
-        "title": "Title",
-        "sub_title": "Sub title",
-        "text_color": "#272727",
-        "text_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "paragraph_color": "#a2a2a2",
-        "bg_color": "#fffaf3",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
     "0_custom_default_UTjrqf": {
       "type": "0-custom-default",
       "blocks": {
         "name_block_At7bNz": {
           "type": "name_block",
+          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/icon.svg",
             "content": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
@@ -35,6 +22,7 @@
         },
         "name_block_rYE8fQ": {
           "type": "name_block",
+          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/icon.svg",
             "content": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
@@ -51,18 +39,32 @@
         "color_start": "#add8df",
         "color_end": "#ffffff",
         "direction": "to bottom",
-        "bg_image": "shopify://shop_images/table-runner-white-front-65a7de8edad8a.jpg",
-        "bg_image_full": "shopify://shop_images/theme_cover_image.jpg",
+        "bg_gradient_full": false,
+        "bg_image": "shopify://shop_images/theme_cover_image.jpg",
+        "bg_image_full_container": false,
         "main_title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "title_size": "text-h4",
         "title_align": "center",
         "title_font_family": "var(--ps-times-regular)",
         "a_btn_name": "Click",
         "a_btn_url": "#",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "margin_top": 0,
-        "margin_bottom": 0
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_container": 96,
+        "padding_bottom_container": 120
+      }
+    },
+    "0_custom_header_title_WGKTRp": {
+      "type": "0-custom-header-title",
+      "settings": {
+        "title": "Title",
+        "sub_title": "Sub title",
+        "text_color": "#272727",
+        "text_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "paragraph_color": "#a2a2a2",
+        "bg_color": "#fffaf3",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "0_custom_color_title_nRzpqW": {
@@ -95,8 +97,8 @@
     }
   },
   "order": [
-    "0_custom_header_title_WGKTRp",
     "0_custom_default_UTjrqf",
+    "0_custom_header_title_WGKTRp",
     "0_custom_color_title_nRzpqW"
   ]
 }
