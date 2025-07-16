@@ -1,0 +1,263 @@
+{{ '0-custom-blocks-grid.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .section-{{ section.id }}-padding {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="blocks-grid__wrapper section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} page-width">
+  <h2
+    class="title {{ section.settings.title_size }}"
+    style="font-family:{{ section.settings.title_family }}; text-align:{{ section.settings.title_align }};"
+  >
+    {{ section.settings.title }}
+  </h2>
+  <div class="{% if section.settings.if_slider == true %}swiper swiper-{{ section.index }}{% endif %} container">
+    <div class="{% if section.settings.if_slider == true %}swiper-wrapper{% endif %} items">
+      {%- for block in section.blocks -%}
+        {% case block.type %}
+          {%- when 'name_block' -%}
+            <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %} item">
+              {%- if block.settings.image != blank -%}
+                <div class="image__wrapp">
+                  {{ block.settings.image | image_url: width: 600 | image_tag: class: '__image', loading: 'lazy' }}
+                </div>
+              {%- endif -%}
+              <div class="content">{{ block.settings.content }}</div>
+              {%- if block.settings.btn_name != blank -%}
+                <a class="link" href="{{ block.settings.btn_url }}">
+                  {{ block.settings.btn_name -}}
+                </a>
+              {%- endif -%}
+            </article>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    <div class="swiper-button-next swiper-button-next-{{ section.index }}"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section.index }}"></div>
+    <div class="swiper-pagination swiper-pagination-{{ section.index }}"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  {%- if section.settings.if_slider == true -%}
+    document.querySelector('.swiper-{{ section.index }} .swiper-wrapper').style.display = "flex";
+      const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.index }}', {
+        slidesPerView: 1.3,
+        spaceBetween: 17,
+        breakpoints: {
+          431: {
+            slidesPerView: 2,
+          },
+          769: {
+            slidesPerView: 4,
+          },
+        },
+          navigation: {
+            nextEl: '.swiper-button-next-{{ section.index }}',
+            prevEl: '.swiper-button-prev-{{ section.index }}'
+          },
+          pagination: {
+            el: ".swiper-pagination-{{ section.index }}",
+            clickable: true
+          }
+      });
+  {%- endif -%}
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom blocks grid",
+  "tag": "section",
+  "class": "blocks-grid",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title size",
+      "options": [
+        {
+          "value": "text-h2",
+          "label": "H2"
+        },
+        {
+          "value": "text-h3",
+          "label": "H3"
+        },
+        {
+          "value": "text-h4",
+          "label": "H4"
+        }
+      ],
+      "default": "text-h2"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "var(--ps-times-regular)",
+          "label": "Ps-times"
+        },
+        {
+          "value": "var(--instrument-sans-regular)",
+          "label": "Instrument"
+        }
+      ],
+      "default": "var(--ps-times-regular)"
+    },
+    {
+      "type": "header",
+      "content": "If slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "if_slider",
+      "label": "Is Slider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "name_block",
+      "name": "Name item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "btn_name",
+          "label": "Button name"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom blocks grid"
+    }
+  ]
+}
+{% endschema %}

@@ -33,6 +33,7 @@
         "name_block_At7bNz",
         "name_block_rYE8fQ"
       ],
+      "disabled": true,
       "name": "Name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -94,11 +95,92 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "0_custom_default_v2_3WQaVN": {
+      "type": "0-custom-blocks-grid",
+      "blocks": {
+        "name_block_EHRFd8": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        },
+        "name_block_RHcFr3": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        },
+        "name_block_dNRqrp": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        },
+        "name_block_BRWqfr": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        },
+        "name_block_JcV4R8": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        },
+        "name_block_CThnXB": {
+          "type": "name_block",
+          "settings": {
+            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "content": "<p>Loreum ipsum</p>",
+            "btn_name": "Link",
+            "btn_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "name_block_EHRFd8",
+        "name_block_RHcFr3",
+        "name_block_dNRqrp",
+        "name_block_BRWqfr",
+        "name_block_JcV4R8",
+        "name_block_CThnXB"
+      ],
+      "name": "Name",
+      "settings": {
+        "color_scheme": "",
+        "title": "Title",
+        "title_size": "text-h2",
+        "title_align": "center",
+        "title_font_family": "var(--ps-times-regular)",
+        "if_slider": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
     "0_custom_default_UTjrqf",
     "0_custom_header_title_WGKTRp",
-    "0_custom_color_title_nRzpqW"
+    "0_custom_color_title_nRzpqW",
+    "0_custom_default_v2_3WQaVN"
   ]
 }
