@@ -11,6 +11,48 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "0_custom_marquee_WyWPDb": {
+      "type": "0-custom-marquee",
+      "blocks": {
+        "item_KcpH7B": {
+          "type": "item",
+          "settings": {
+            "text": "✨ New arrivals",
+            "link": ""
+          }
+        },
+        "item_43LF9g": {
+          "type": "item",
+          "settings": {
+            "text": "🛍️ Free shipping",
+            "link": ""
+          }
+        },
+        "item_myxpTi": {
+          "type": "item",
+          "settings": {
+            "text": "🔥 Limited time offer",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_KcpH7B",
+        "item_43LF9g",
+        "item_myxpTi"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "speed": 50,
+        "pause_on_hover": false,
+        "bg_color": "#2F2F2F",
+        "text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -25,6 +67,7 @@
       "block_order": [
         "announcement-bar-0"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "show_line_separator": true,
@@ -56,6 +99,7 @@
     }
   },
   "order": [
+    "0_custom_marquee_WyWPDb",
     "announcement-bar",
     "header"
   ]

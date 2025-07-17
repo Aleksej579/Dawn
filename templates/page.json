@@ -26,48 +26,6 @@
         "padding_bottom": 0
       }
     },
-    "0_custom_marquee_RYJkYz": {
-      "type": "0-custom-marquee",
-      "blocks": {
-        "item_TBV7JM": {
-          "type": "item",
-          "settings": {
-            "text": "✨ New arrivals",
-            "link": ""
-          }
-        },
-        "item_HMiiNw": {
-          "type": "item",
-          "settings": {
-            "text": "🛍️ Free shipping",
-            "link": ""
-          }
-        },
-        "item_Gi9xiN": {
-          "type": "item",
-          "settings": {
-            "text": "🔥 Limited time offer",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "item_TBV7JM",
-        "item_HMiiNw",
-        "item_Gi9xiN"
-      ],
-      "name": "Custom Marquee",
-      "settings": {
-        "speed": 50,
-        "pause_on_hover": true,
-        "bg_color": "#2f2f2f",
-        "text_color": "#ffffff",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
-    },
     "0_custom_banner_v2_gzBzy3": {
       "type": "0-custom-banner-v2",
       "settings": {
@@ -766,7 +724,6 @@
   "order": [
     "main",
     "0_custom_breadcrumb_anVbCE",
-    "0_custom_marquee_RYJkYz",
     "0_custom_banner_v2_gzBzy3",
     "0_custom_benefits_87EBPc",
     "0_custom_banner_v1_kMFmEe",
