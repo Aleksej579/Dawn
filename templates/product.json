@@ -33,6 +33,12 @@
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
+        "wishlist_myappgurus_pdp_wishlist_ng6nfz": {
+          "type": "shopify://apps/wishlist-myappgurus/blocks/pdp-wishlist/c6177d6e-9cc4-45ab-abe5-45a6a5289882",
+          "settings": {
+            "show_wishlist_btn": true
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -118,6 +124,7 @@
         "title",
         "price",
         "judge_me_reviews_preview_badge_cgVHEF",
+        "wishlist_myappgurus_pdp_wishlist_ng6nfz",
         "description",
         "variant_picker",
         "quantity_selector",
