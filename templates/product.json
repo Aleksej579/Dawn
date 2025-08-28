@@ -171,12 +171,31 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "175637146195213884": {
+      "type": "apps",
+      "blocks": {
+        "trustshop_reviews_widget_box_dJtdGp": {
+          "type": "shopify://apps/trustshop-reviews/blocks/widget-box/18b0c4cc-5411-4b6e-922d-34fdc2f30ab9",
+          "settings": {
+            "selected_product": "",
+            "wrapper_class": ""
+          }
+        }
+      },
+      "block_order": [
+        "trustshop_reviews_widget_box_dJtdGp"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "0_custom_breadcrumb_HNYAxf",
     "main",
     "0_custom_tabs_product_jdACVn",
-    "related-products"
+    "related-products",
+    "175637146195213884"
   ]
 }
