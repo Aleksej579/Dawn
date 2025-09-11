@@ -157,11 +157,10 @@
                     {%- endif -%}
                   </div>
                   <hr>
-                  {{ product.metafields.custom.pdp_list_product | json }}
                   {%- if product.metafields.custom.pdp_list_product != blank -%}
                     <ul>
-                      {% for product_item in product.metafields.custom.pdp_list_product.value %}
-                        <li>{{ product_item.title }}</li>
+                      {% for product_ref in product.metafields.custom.pdp_list_product %}
+                        <li>{{ product_ref.value.title }}</li>
                       {% endfor %}
                     </ul>
                   {%- else -%}
