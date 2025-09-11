@@ -162,10 +162,16 @@
 {%- if product_gids.size > 0 -%}
   <ul>
   {%- for product_gid in product_gids -%}
-    {%- assign product_handle = product_gid | split: '/' | last -%}
-    {%- assign current_product = all_products[product_handle] -%}
+    {%- assign current_product = all_products[product_gid] -%}
     {%- if current_product != blank -%}
       <li>{{ current_product.title }}</li>
+    {%- else -%}
+      {%- comment %} Альтернативный способ через handle {% endcomment -%}
+      {%- assign product_handle = product_gid | split: '/' | last -%}
+      {%- assign current_product = all_products[product_handle] -%}
+      {%- if current_product != blank -%}
+        <li>{{ current_product.title }}</li>
+      {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
   </ul>
