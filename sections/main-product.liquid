@@ -159,7 +159,7 @@
                   <hr>
 <ul>
 {% for product_ref in product.metafields.custom.pdp_list_product %}
-  <li>{{ product_ref.title }}</li>
+  <li>{{ product_ref.value.title }}</li>
 {% endfor %}
 </ul>
                 {%- endif -%}
