@@ -157,18 +157,13 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- for ref in product.metafields.custom.pdp_list_product -%}
-  REF OBJECT: {{ ref }}<br>
-  REF TYPE: {{ ref.type }}<br>
-  
-  {%- if ref.value -%}
-    PRODUCT VALUE: {{ ref.value }}<br>
-    TITLE: {{ ref.value.title }}<br>
-    HANDLE: {{ ref.value.handle }}<br>
-  {%- else -%}
-    NO VALUE IN REF<br>
-  {%- endif -%}
-  <hr>
+{%- assign products_list = product.metafields.custom.pdp_list_product.value -%}
+PRODUCTS LIST: {{ products_list }}<br>
+SIZE: {{ products_list.size }}<br>
+
+{%- for product_item in products_list -%}
+  PRODUCT: {{ product_item }}<br>
+  TITLE: {{ product_item.title }}<br>
 {%- endfor -%}
                 {%- endif -%}
               {%- when 'text' -%}
