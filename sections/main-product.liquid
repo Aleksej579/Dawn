@@ -157,22 +157,19 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- assign product_gids = product.metafields.custom.pdp_list_product -%}
+{%- assign product_list = product.metafields.custom.pdp_list_product -%}
+DEBUG: {{ product_list }}<br>
+TYPE: {{ product_list.type }}<br>
+SIZE: {{ product_list.size }}<br>
+FIRST ITEM: {{ product_list.first }}<br>
 
-{%- if product_gids.size > 0 -%}
+{%- if product_list and product_list.size > 0 -%}
   <ul>
-  {%- for product_gid in product_gids -%}
-    {%- assign current_product = all_products[product_gid] -%}
-    {%- if current_product != blank -%}
-      <li>{{ current_product.title }}</li>
-    {%- else -%}
-      {%- comment %} Альтернативный способ через handle {% endcomment -%}
-      {%- assign product_handle = product_gid | split: '/' | last -%}
-      {%- assign current_product = all_products[product_handle] -%}
-      {%- if current_product != blank -%}
-        <li>{{ current_product.title }}</li>
-      {%- endif -%}
-    {%- endif -%}
+  {%- for item in product_list -%}
+    ITEM: {{ item }}<br>
+    ITEM TYPE: {{ item.type }}<br>
+    ITEM VALUE: {{ item.value }}<br>
+    <hr>
   {%- endfor -%}
   </ul>
 {%- else -%}
