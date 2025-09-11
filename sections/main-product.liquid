@@ -157,11 +157,13 @@
                     {%- endif -%}
                   </div>
                   <hr>
-                  {{product.metafields.custom.pdp_list_product }}
-{%- if product.metafields.custom.pdp_list_product.size > 0 -%}
+{%- assign product_gids = product.metafields.custom.pdp_list_product -%}
+
+{%- if product_gids.size > 0 -%}
   <ul>
-  {%- for product_ref in product.metafields.custom.pdp_list_product -%}
-    {%- assign current_product = all_products[product_ref] -%}
+  {%- for product_gid in product_gids -%}
+    {%- assign product_handle = product_gid | split: '/' | last -%}
+    {%- assign current_product = all_products[product_handle] -%}
     {%- if current_product != blank -%}
       <li>{{ current_product.title }}</li>
     {%- endif -%}
