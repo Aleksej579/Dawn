@@ -157,25 +157,19 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- assign meta_field = product.metafields.custom.pdp_list_product -%}
-META FIELD EXISTS: {% if meta_field != blank %}true{% else %}false{% endif %}<br>
-META FIELD TYPE: {{ meta_field.type }}<br>
-
-{%- for item in meta_field -%}
-  ITEM: {{ item }}<br>
-  ITEM TYPE: {{ item.type }}<br>
-  ITEM VALUE: {{ item.value }}<br>
-  {%- if item.value -%}
-    PRODUCT TITLE: {{ item.value.title }}<br>
+{%- for ref in product.metafields.custom.pdp_list_product -%}
+  REF OBJECT: {{ ref }}<br>
+  REF TYPE: {{ ref.type }}<br>
+  
+  {%- if ref.value -%}
+    PRODUCT VALUE: {{ ref.value }}<br>
+    TITLE: {{ ref.value.title }}<br>
+    HANDLE: {{ ref.value.handle }}<br>
+  {%- else -%}
+    NO VALUE IN REF<br>
   {%- endif -%}
   <hr>
 {%- endfor -%}
-
-{%- if meta_field != blank -%}
-  HAS ITEMS: true
-{%- else -%}
-  Bundle
-{%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
                 <p
