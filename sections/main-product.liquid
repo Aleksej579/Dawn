@@ -155,13 +155,13 @@
                         {{- block.settings.btn_related_text -}}
                       </a>
                     {%- endif -%}
-                    <hr>
-                    {%- if product.metafields.custom.pdp_list_product != blank -%}
-                      <a>{{ block.settings.btn_related_text }}</a>
-                    {%- else -%}
-                      <a href="#">{{ block.settings.btn_original_text }}</a>
-                    {%- endif -%}
                   </div>
+                  <hr>
+                  {%- if product.metafields.custom.pdp_list_product != blank -%}
+                    <a>{{ block.settings.btn_related_text }}</a>
+                  {%- else -%}
+                    <a href="#">{{ block.settings.btn_original_text }}</a>
+                  {%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
                 <p
