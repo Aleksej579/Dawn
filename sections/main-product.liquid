@@ -156,24 +156,20 @@
                       </a>
                     {%- endif -%}
                   </div>
+                {%- endif -%}
                   <hr>
+                {%- assign count = 0 -%}
 {%- for ref in product.metafields.custom.pdp_list_product -%}
+  {%- assign count = count | plus: 1 -%}
   LOOP INDEX: {{ forloop.index }}<br>
   REF: {{ ref }}<br>
-  REF TYPE: {{ ref.type }}<br>
-  
   {%- if ref.value -%}
-    REF VALUE: {{ ref.value }}<br>
-    REF VALUE HANDLE: {{ ref.value.handle }}<br>
-    REF VALUE TITLE: {{ ref.value.title }}<br>
-  {%- else -%}
-    NO VALUE<br>
+    TITLE: {{ ref.value.title }}<br>
   {%- endif -%}
   <hr>
 {%- endfor -%}
 
-TOTAL COUNT: {{ product.metafields.custom.pdp_list_product.size }}
-                {%- endif -%}
+REAL COUNT: {{ count }}
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
