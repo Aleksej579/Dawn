@@ -157,12 +157,15 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- assign product_list = product.metafields.custom.pdp_list_product.value -%}
+{%- assign product_references = product.metafields.custom.pdp_list_product -%}
 
-{%- if product_list != blank -%}
+{%- if product_references != blank -%}
   <ul>
-  {%- for product_item in product_list -%}
-    <li>{{ product_item.title }}</li>
+  {%- for ref in product_references -%}
+    {%- assign product_item = ref.value -%}
+    {%- if product_item != blank -%}
+      <li>{{ product_item.title }}</li>
+    {%- endif -%}
   {%- endfor -%}
   </ul>
 {%- else -%}
