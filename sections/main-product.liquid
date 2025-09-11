@@ -157,11 +157,15 @@
                     {%- endif -%}
                   </div>
                   <hr>
-                  {%- for product_item in product.metafields.custom.pdp_list_product.value -%}
-                    {{ product_item.title }}{% unless forloop.last %}, {% endunless %}
+                  {%- if product.metafields.custom.pdp_list_product != blank -%}
+                    <ul>
+                      {% for product_item in product.metafields.custom.pdp_list_product.value %}
+                        <li>{{ product_item.title }}</li>
+                      {% endfor %}
+                    </ul>
                   {%- else -%}
                     Bundle
-                  {%- endfor -%}
+                  {%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
                 <p
