@@ -156,16 +156,10 @@
                       </a>
                     {%- endif -%}
                     <hr>
-                    {%- if product.metafields.custom.related_product_marker != true -%}
-                      <a href="{{ product.metafields.custom.product_reference.value.url }}">
-                        {{- block.settings.btn_original_text -}}
-                      </a>
+                    {%- if product.metafields.custom.pdp_list_product != blank -%}
                       <a>{{ block.settings.btn_related_text }}</a>
                     {%- else -%}
                       <a href="#">{{ block.settings.btn_original_text }}</a>
-                      <a href="{{ product.metafields.custom.product_reference.value.url }}">
-                        {{- block.settings.btn_related_text -}}
-                      </a>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
