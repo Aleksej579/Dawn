@@ -157,14 +157,18 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- for product_ref in product.metafields.custom.pdp_list_product -%}
-  {{ product_ref }}<br>
-  {%- if product_ref.value -%}
-    Product: {{ product_ref.value.title }}<br>
-  {%- else -%}
-    Direct: {{ product_ref.title }}<br>
-  {%- endif -%}
-{%- endfor -%}
+{%- if product.metafields.custom.pdp_list_product.size > 0 -%}
+  <ul>
+  {%- for product_ref in product.metafields.custom.pdp_list_product -%}
+    {%- assign current_product = all_products[product_ref] -%}
+    {%- if current_product != blank -%}
+      <li>{{ current_product.title }}</li>
+    {%- endif -%}
+  {%- endfor -%}
+  </ul>
+{%- else -%}
+  Bundle
+{%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
                 <p
