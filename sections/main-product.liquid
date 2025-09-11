@@ -158,18 +158,15 @@
                   </div>
                 {%- endif -%}
                   <hr>
-                {%- assign count = 0 -%}
-{%- for ref in product.metafields.custom.pdp_list_product -%}
-  {%- assign count = count | plus: 1 -%}
-  LOOP INDEX: {{ forloop.index }}<br>
-  REF: {{ ref }}<br>
-  {%- if ref.value -%}
-    TITLE: {{ ref.value.title }}<br>
-  {%- endif -%}
-  <hr>
-{%- endfor -%}
-
-REAL COUNT: {{ count }}
+{% if product.metafields.custom.pdp_list_product != blank %}
+  <ul>
+    {% for item in product.metafields.custom.pdp_list_product.value %}
+      <li>{{ item.title }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Bundle</p>
+{% endif %}
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
