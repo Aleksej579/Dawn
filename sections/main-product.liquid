@@ -157,10 +157,16 @@
                     {%- endif -%}
                   </div>
                   <hr>
-{%- if product.metafields.custom.pdp_list_product.value != blank -%}
+{%- assign meta_json = product.metafields.custom.pdp_list_product | json -%}
+META JSON: {{ meta_json }}<br>
+
+{%- if meta_json != 'null' and meta_json != blank -%}
   <ul>
-  {%- for product_item in product.metafields.custom.pdp_list_product.value -%}
-    <li>{{ product_item.title }} - {{ product_item.price | money }}</li>
+  {%- for ref in product.metafields.custom.pdp_list_product -%}
+    {%- assign product_item = all_products[ref.value.handle] -%}
+    {%- if product_item != blank -%}
+      <li>{{ product_item.title }} - {{ product_item.price | money }}</li>
+    {%- endif -%}
   {%- endfor -%}
   </ul>
 {%- else -%}
