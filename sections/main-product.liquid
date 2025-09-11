@@ -157,11 +157,26 @@
                     {%- endif -%}
                   </div>
                   <hr>
-<ul>
-{% for product_ref in product.metafields.custom.pdp_list_product %}
-  <li>{{ product_ref.value.title }}</li>
-{% endfor %}
-</ul>
+{%- assign product_list = product.metafields.custom.pdp_list_product -%}
+META FIELD: {{ product_list | json }}<br>
+IS BLANK: {% if product_list == blank %}true{% else %}false{% endif %}<br>
+COUNT: {{ product_list.size }}<br>
+
+{%- if product_list != blank -%}
+  <ul>
+    {% for product_ref in product_list %}
+      PRODUCT REF: {{ product_ref }}<br>
+      {% if product_ref.value %}
+        VALUE: {{ product_ref.value }}<br>
+        <li>{{ product_ref.value.title }}</li>
+      {% else %}
+        <li>{{ product_ref.title }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{%- else -%}
+  Bundle
+{%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
                 <p
