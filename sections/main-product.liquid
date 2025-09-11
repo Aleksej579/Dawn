@@ -158,9 +158,17 @@
                   </div>
                   <hr>
                   {%- if product.metafields.custom.pdp_list_product != blank -%}
-                    <a>{{ block.settings.btn_related_text }}</a>
+                    {% assign product_list = product.metafields.custom.pdp_list_product | split: ',' %}
+                    <ul>
+                      {% for product_handle in product_list %}
+                        {% assign item = all_products[product_handle] %}
+                        {% if item != blank %}
+                          <li>{{ item.title }}</li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
                   {%- else -%}
-                    <a href="#">{{ block.settings.btn_original_text }}</a>
+                    Bundle
                   {%- endif -%}
                 {%- endif -%}
               {%- when 'text' -%}
