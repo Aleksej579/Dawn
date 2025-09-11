@@ -160,8 +160,8 @@
                   <hr>
 {% if product.metafields.custom.pdp_list_product != blank %}
   <ul>
-    {% for item in product.metafields.custom.pdp_list_product.value %}
-      <li>{{ item.title }}</li>
+    {% for product_ref in product.metafields.custom.pdp_list_product.value %}
+      <li>{{ product_ref.title }}</li>
     {% endfor %}
   </ul>
 {% else %}
