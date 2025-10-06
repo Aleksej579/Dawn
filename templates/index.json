@@ -175,12 +175,71 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "175636953763a77b02": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_krLjzD": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Instafeed",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_krLjzD"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1756900146c3577da6": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_3BHHVn": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "639031",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_3BHHVn"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "0_custom_default_UTjrqf",
     "0_custom_header_title_WGKTRp",
     "0_custom_color_title_nRzpqW",
-    "0_custom_default_v2_3WQaVN"
+    "0_custom_default_v2_3WQaVN",
+    "175636953763a77b02",
+    "1756900146c3577da6"
   ]
 }

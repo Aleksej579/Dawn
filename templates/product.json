@@ -29,6 +29,16 @@
           "type": "price",
           "settings": {}
         },
+        "judge_me_reviews_preview_badge_cgVHEF": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "wishlist_myappgurus_pdp_wishlist_ng6nfz": {
+          "type": "shopify://apps/wishlist-myappgurus/blocks/pdp-wishlist/c6177d6e-9cc4-45ab-abe5-45a6a5289882",
+          "settings": {
+            "show_wishlist_btn": true
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -113,6 +123,8 @@
       "block_order": [
         "title",
         "price",
+        "judge_me_reviews_preview_badge_cgVHEF",
+        "wishlist_myappgurus_pdp_wishlist_ng6nfz",
         "description",
         "variant_picker",
         "quantity_selector",
@@ -171,12 +183,31 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "175637146195213884": {
+      "type": "apps",
+      "blocks": {
+        "trustshop_reviews_widget_box_dJtdGp": {
+          "type": "shopify://apps/trustshop-reviews/blocks/widget-box/18b0c4cc-5411-4b6e-922d-34fdc2f30ab9",
+          "settings": {
+            "selected_product": "",
+            "wrapper_class": ""
+          }
+        }
+      },
+      "block_order": [
+        "trustshop_reviews_widget_box_dJtdGp"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "0_custom_breadcrumb_HNYAxf",
     "main",
     "0_custom_tabs_product_jdACVn",
-    "related-products"
+    "related-products",
+    "175637146195213884"
   ]
 }

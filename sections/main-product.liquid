@@ -157,6 +157,16 @@
                     {%- endif -%}
                   </div>
                 {%- endif -%}
+                  <hr>
+{% if product.metafields.custom.pdp_list_product != blank %}
+  <ul>
+    {% for product_ref in product.metafields.custom.pdp_list_product.value %}
+      <li>{{ product_ref.title }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Bundle</p>
+{% endif %}
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
