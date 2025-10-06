@@ -1,0 +1,44 @@
+{% comment %}
+  sections/my-simple-component-section.liquid
+  Uses Web Component <my-counter>
+{% endcomment %}
+
+<div class="page-width">
+  <h2>Simple Web Component</h2>
+
+  {# 1. Component Usage #}
+  <my-counter data-start-value="{{ section.settings.initial_count }}">
+    <button data-action="decrease">-</button>
+    <span data-target="display">0</span>
+    <button data-action="increase">+</button>
+  </my-counter>
+</div>
+
+{# 2. JavaScript Module Import #}
+<script type="module">
+  // Import JS file. Use a unique prefix to avoid conflicts.
+  import '{{ 'my-simple-component.js' | asset_url }}';
+</script>
+
+{% schema %}
+{
+  "name": "Simple Counter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "initial_count",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial count value",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple Component"
+    }
+  ]
+}
+{% endschema %}
