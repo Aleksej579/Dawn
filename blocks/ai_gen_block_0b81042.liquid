@@ -1,0 +1,356 @@
+{% doc %}
+  @prompt
+    Create an announcement bar consisting of rich text, then a counter to a specific date (days: hours: minutes: seconds), then rich text.
+    Add a choice of background and text color.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-announcement-bar-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    padding: {{ block.settings.padding }}px 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .ai-announcement-bar-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ block.settings.spacing }}px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-announcement-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.4;
+  }
+
+  .ai-countdown-timer-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.timer_spacing }}px;
+    font-weight: 600;
+    font-size: {{ block.settings.timer_size }}px;
+  }
+
+  .ai-countdown-unit-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40px;
+  }
+
+  .ai-countdown-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.timer_size }}px;
+    font-weight: 700;
+    line-height: 1;
+    color: {{ block.settings.timer_color }};
+  }
+
+  .ai-countdown-label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.timer_size | times: 0.6 | round }}px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-countdown-separator-{{ ai_gen_id }} {
+    font-size: {{ block.settings.timer_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.timer_color }};
+  }
+
+  .ai-countdown-expired-{{ ai_gen_id }} {
+    font-size: {{ block.settings.timer_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.timer_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-announcement-bar-content-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: {{ block.settings.spacing | times: 0.8 | round }}px;
+    }
+
+    .ai-countdown-timer-{{ ai_gen_id }} {
+      gap: {{ block.settings.timer_spacing | times: 0.8 | round }}px;
+    }
+
+    .ai-countdown-number-{{ ai_gen_id }} {
+      font-size: {{ block.settings.timer_size | times: 0.9 | round }}px;
+    }
+
+    .ai-countdown-separator-{{ ai_gen_id }} {
+      font-size: {{ block.settings.timer_size | times: 0.9 | round }}px;
+    }
+
+    .ai-announcement-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 | round }}px;
+    }
+  }
+{% endstyle %}
+
+<countdown-announcement-{{ ai_gen_id }}
+  class="ai-announcement-bar-{{ ai_gen_id }}"
+  data-target-date="{{ block.settings.target_date }}"
+  data-target-time="{{ block.settings.target_time }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-announcement-bar-content-{{ ai_gen_id }}">
+    {% if block.settings.text_before != blank %}
+      <div class="ai-announcement-text-{{ ai_gen_id }}">
+        {{ block.settings.text_before }}
+      </div>
+    {% endif %}
+
+    <div class="ai-countdown-timer-{{ ai_gen_id }}" id="ai-countdown-{{ ai_gen_id }}">
+      <div class="ai-countdown-unit-{{ ai_gen_id }}">
+        <span class="ai-countdown-number-{{ ai_gen_id }}" data-days>00</span>
+        <span class="ai-countdown-label-{{ ai_gen_id }}">Days</span>
+      </div>
+      <span class="ai-countdown-separator-{{ ai_gen_id }}">:</span>
+      <div class="ai-countdown-unit-{{ ai_gen_id }}">
+        <span class="ai-countdown-number-{{ ai_gen_id }}" data-hours>00</span>
+        <span class="ai-countdown-label-{{ ai_gen_id }}">Hours</span>
+      </div>
+      <span class="ai-countdown-separator-{{ ai_gen_id }}">:</span>
+      <div class="ai-countdown-unit-{{ ai_gen_id }}">
+        <span class="ai-countdown-number-{{ ai_gen_id }}" data-minutes>00</span>
+        <span class="ai-countdown-label-{{ ai_gen_id }}">Minutes</span>
+      </div>
+      <span class="ai-countdown-separator-{{ ai_gen_id }}">:</span>
+      <div class="ai-countdown-unit-{{ ai_gen_id }}">
+        <span class="ai-countdown-number-{{ ai_gen_id }}" data-seconds>00</span>
+        <span class="ai-countdown-label-{{ ai_gen_id }}">Seconds</span>
+      </div>
+    </div>
+
+    {% if block.settings.text_after != blank %}
+      <div class="ai-announcement-text-{{ ai_gen_id }}">
+        {{ block.settings.text_after }}
+      </div>
+    {% endif %}
+  </div>
+</countdown-announcement-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CountdownAnnouncement{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.targetDate = null;
+        this.interval = null;
+      }
+
+      connectedCallback() {
+        this.setupCountdown();
+        this.startCountdown();
+      }
+
+      disconnectedCallback() {
+        if (this.interval) {
+          clearInterval(this.interval);
+        }
+      }
+
+      setupCountdown() {
+        const targetDateStr = this.dataset.targetDate;
+        const targetTimeStr = this.dataset.targetTime || '00:00';
+        
+        if (!targetDateStr) {
+          this.showExpiredMessage();
+          return;
+        }
+
+        const dateTimeStr = `${targetDateStr}T${targetTimeStr}:00`;
+        this.targetDate = new Date(dateTimeStr);
+
+        if (isNaN(this.targetDate.getTime())) {
+          this.showExpiredMessage();
+          return;
+        }
+      }
+
+      startCountdown() {
+        if (!this.targetDate) return;
+
+        this.updateCountdown();
+        this.interval = setInterval(() => {
+          this.updateCountdown();
+        }, 1000);
+      }
+
+      updateCountdown() {
+        const now = new Date().getTime();
+        const distance = this.targetDate.getTime() - now;
+
+        if (distance < 0) {
+          this.showExpiredMessage();
+          if (this.interval) {
+            clearInterval(this.interval);
+          }
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const daysElement = this.querySelector('[data-days]');
+        const hoursElement = this.querySelector('[data-hours]');
+        const minutesElement = this.querySelector('[data-minutes]');
+        const secondsElement = this.querySelector('[data-seconds]');
+
+        if (daysElement) daysElement.textContent = String(days).padStart(2, '0');
+        if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+        if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+        if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
+      }
+
+      showExpiredMessage() {
+        const countdownElement = this.querySelector('#ai-countdown-{{ ai_gen_id }}');
+        if (countdownElement) {
+          countdownElement.innerHTML = '<div class="ai-countdown-expired-{{ ai_gen_id }}">Event has ended</div>';
+        }
+      }
+    }
+
+    customElements.define('countdown-announcement-{{ ai_gen_id }}', CountdownAnnouncement{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Countdown announcement",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "text_before",
+      "label": "Text before countdown",
+      "default": "<p>Limited time offer!</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_after",
+      "label": "Text after countdown",
+      "default": "<p>Don't miss out!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Countdown settings"
+    },
+    {
+      "type": "text",
+      "id": "target_date",
+      "label": "Target date",
+      "info": "Format: YYYY-MM-DD (e.g., 2024-12-31)",
+      "default": "2024-12-31"
+    },
+    {
+      "type": "text",
+      "id": "target_time",
+      "label": "Target time",
+      "info": "Format: HH:MM (24-hour format, e.g., 23:59)",
+      "default": "23:59"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timer_color",
+      "label": "Timer numbers color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "timer_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Timer size",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Content spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "timer_spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Timer spacing",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown announcement"
+    }
+  ]
+}
+{% endschema %}

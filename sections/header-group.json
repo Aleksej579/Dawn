@@ -11,6 +11,33 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "1760104897f5a5c563": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0b81042_GzXN9h": {
+          "type": "ai_gen_block_0b81042",
+          "settings": {
+            "text_before": "<p>Limited time offer!</p>",
+            "text_after": "<p>Don't miss out!</p>",
+            "target_date": "2024-12-31",
+            "target_time": "23:59",
+            "background_color": "#121212",
+            "text_color": "#ffffff",
+            "timer_color": "#ffffff",
+            "text_size": 16,
+            "timer_size": 20,
+            "padding": 16,
+            "spacing": 20,
+            "timer_spacing": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0b81042_GzXN9h"
+      ],
+      "settings": {}
+    },
     "0_custom_marquee_WyWPDb": {
       "type": "0-custom-marquee",
       "blocks": {
@@ -45,7 +72,7 @@
       "settings": {
         "speed": 50,
         "pause_on_hover": false,
-        "bg_color": "#2F2F2F",
+        "bg_color": "#2f2f2f",
         "text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -99,6 +126,7 @@
     }
   },
   "order": [
+    "1760104897f5a5c563",
     "0_custom_marquee_WyWPDb",
     "announcement-bar",
     "header"
