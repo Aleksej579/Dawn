@@ -22,7 +22,7 @@
             "target_date": "2024-12-31",
             "target_time": "23:59",
             "background_color": "#121212",
-            "text_color": "#ffffff",
+            "text_color": "#334fb4",
             "timer_color": "#ffffff",
             "text_size": 16,
             "timer_size": 20,
