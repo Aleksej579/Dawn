@@ -19,11 +19,11 @@
           "settings": {
             "text_before": "<p>Limited time offer!</p>",
             "text_after": "<p>Don't miss out!</p>",
-            "target_date": "2024-12-31",
+            "target_date": "2025-12-31",
             "target_time": "23:59",
             "background_color": "#121212",
             "text_color": "#334fb4",
-            "timer_color": "#ffffff",
+            "timer_color": "#a2a2a2",
             "text_size": 16,
             "timer_size": 20,
             "padding": 16,
