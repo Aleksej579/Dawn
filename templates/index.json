@@ -9,48 +9,51 @@
  */
 {
   "sections": {
-    "175983186940129b3a": {
-      "type": "_blocks",
+    "0_custom_default_UTjrqf": {
+      "type": "0-custom-default",
       "blocks": {
-        "ai_gen_block_508e65e_CmpPRq": {
-          "type": "ai_gen_block_508e65e",
+        "name_block_At7bNz": {
+          "type": "name_block",
+          "disabled": true,
           "settings": {
-            "left_image": "shopify://shop_images/Webp.net-resizeimage-1.jpg",
-            "left_title": "",
-            "left_description": "",
-            "right_title": "",
-            "right_description": "",
-            "vertical_alignment": "center",
-            "column_gap": 40,
-            "mobile_gap": 24,
-            "container_width": 1200,
-            "horizontal_padding": 20,
-            "mobile_horizontal_padding": 16,
-            "section_padding_top": 60,
-            "section_padding_bottom": 60,
-            "background_color": "#ffffff",
-            "text_background_color": "rgba(0,0,0,0)",
-            "title_color": "#121212",
-            "description_color": "#121212",
-            "text_alignment": "left",
-            "title_font_size": 32,
-            "mobile_title_font_size": 24,
-            "title_font_weight": "600",
-            "description_font_size": 16,
-            "mobile_description_font_size": 14,
-            "title_margin_bottom": 16,
-            "text_padding": 0,
-            "text_border_radius": 0,
-            "image_border_radius": 0,
-            "image_aspect_ratio": "4/3"
-          },
-          "blocks": {}
+            "icon": "shopify://shop_images/icon.svg",
+            "content": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          }
+        },
+        "name_block_rYE8fQ": {
+          "type": "name_block",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/icon.svg",
+            "content": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_508e65e_CmpPRq"
+        "name_block_At7bNz",
+        "name_block_rYE8fQ"
       ],
-      "settings": {}
+      "disabled": true,
+      "name": "Name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "color_start": "#add8df",
+        "color_end": "#ffffff",
+        "direction": "to bottom",
+        "bg_gradient_full": false,
+        "bg_image": "shopify://shop_images/theme_cover_image.jpg",
+        "bg_image_full_container": false,
+        "main_title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "title_size": "text-h4",
+        "title_align": "center",
+        "title_font_family": "var(--ps-times-regular)",
+        "a_btn_name": "Click",
+        "a_btn_url": "#",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_container": 96,
+        "padding_bottom_container": 120
+      }
     },
     "0_custom_header_title_WGKTRp": {
       "type": "0-custom-header-title",
@@ -99,7 +102,7 @@
         "name_block_EHRFd8": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -108,7 +111,7 @@
         "name_block_RHcFr3": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -117,7 +120,7 @@
         "name_block_dNRqrp": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -126,7 +129,7 @@
         "name_block_BRWqfr": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -135,7 +138,7 @@
         "name_block_JcV4R8": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -144,7 +147,7 @@
         "name_block_CThnXB": {
           "type": "name_block",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "content": "<p>Loreum ipsum</p>",
             "btn_name": "Link",
             "btn_url": ""
@@ -229,56 +232,14 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "my_simple_component_section_cxRb8V": {
-      "type": "my-simple-component-section",
-      "name": "Simple Component",
-      "settings": {
-        "initial_count": 50
-      }
-    },
-    "0_custom_ai_PiDWcJ": {
-      "type": "0-custom-ai",
-      "name": "Two column section",
-      "settings": {
-        "left_title": "",
-        "left_description": "",
-        "right_title": "",
-        "right_description": "",
-        "vertical_alignment": "center",
-        "column_gap": 40,
-        "mobile_gap": 24,
-        "container_width": 1200,
-        "horizontal_padding": 20,
-        "mobile_horizontal_padding": 16,
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "background_color": "#ffffff",
-        "text_background_color": "transparent",
-        "title_color": "#121212",
-        "description_color": "#121212",
-        "text_alignment": "left",
-        "title_font_size": 32,
-        "mobile_title_font_size": 24,
-        "title_font_weight": "600",
-        "description_font_size": 16,
-        "mobile_description_font_size": 14,
-        "title_margin_bottom": 16,
-        "text_padding": 0,
-        "text_border_radius": 0,
-        "image_border_radius": 0,
-        "image_aspect_ratio": "4/3"
-      }
     }
   },
   "order": [
-    "175983186940129b3a",
+    "0_custom_default_UTjrqf",
     "0_custom_header_title_WGKTRp",
     "0_custom_color_title_nRzpqW",
     "0_custom_default_v2_3WQaVN",
     "175636953763a77b02",
-    "1756900146c3577da6",
-    "my_simple_component_section_cxRb8V",
-    "0_custom_ai_PiDWcJ"
+    "1756900146c3577da6"
   ]
 }
