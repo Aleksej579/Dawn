@@ -1,0 +1,151 @@
+{{ '0-custom-cards-name.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
+      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .section-{{ section.id }}-padding {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+  .cards-name {
+    background: {{ section.settings.section_bg }};
+  }
+{%- endstyle -%}
+
+<div class="cards-name__wrapper section-{{ section.id }}-padding page-width">
+  <h2 class="title">{{ section.settings.title }}</h2>
+  <div class="cn__container">
+    <div class="cn__items">
+      {%- for block in section.blocks -%}
+        <article>
+          {%- if block.settings.card_icon != blank -%}
+            <div class="cn__image-wrapp">
+              {{ block.settings.card_icon | image_url: width: 600 | image_tag: class: 'cn__image', loading: 'lazy' }}
+            </div>
+          {%- endif -%}
+          <p class="cn__card-title">{{ block.settings.card_title }}</p>
+          {%- if block.settings.card_description != blank -%}
+            <div class="cn__card-description">
+              {{ block.settings.card_description -}}
+            </div>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>
+
+{% schema %}
+{
+  "name": "Cards name",
+  "class": "cards-name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section BG",
+      "default": "#F9F6F2"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_icon",
+          "label": "Icon card"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title"
+        },
+        {
+          "type": "richtext",
+          "id": "card_description",
+          "label": "Card description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cards name"
+    }
+  ]
+}
+{% endschema %}

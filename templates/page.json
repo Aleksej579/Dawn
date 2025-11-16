@@ -45,35 +45,30 @@
         "benefits_R3h3KN": {
           "type": "benefits",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
             "content": "<p>Lorem ipsum dolor sit amet</p>"
           }
         },
         "benefits_jBT7tw": {
           "type": "benefits",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
             "content": "<p>Lorem ipsum dolor sit amet</p>"
           }
         },
         "benefits_Nr4qcH": {
           "type": "benefits",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
             "content": "<p>Lorem ipsum dolor sit amet</p>"
           }
         },
         "benefits_FTp4Rc": {
           "type": "benefits",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
             "content": "<p>Lorem ipsum dolor sit amet</p>"
           }
         },
         "benefits_gBFf3A": {
           "type": "benefits",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
             "content": "<p>Lorem ipsum dolor sit amet</p>"
           }
         }
@@ -151,77 +146,77 @@
         "designers_riNcp4": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_YeBNtC": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_g3QiMg": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_wMPKYb": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_NPK9FW": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_8eLwHp": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_dWHRPr": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_rdxBgR": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_aFpxzk": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_n7myAt": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         },
         "designers_YnMMXh": {
           "type": "Designers",
           "settings": {
-            "designer_logo": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
             "designer_link": ""
           }
         }
@@ -264,7 +259,7 @@
         "ambassador_Az777a": {
           "type": "ambassador",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "name": "John Doe",
             "experience": "Developer"
           }
@@ -272,7 +267,7 @@
         "ambassador_TG7NPa": {
           "type": "ambassador",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "name": "John Doe",
             "experience": "Developer"
           }
@@ -280,7 +275,7 @@
         "ambassador_dyXPiY": {
           "type": "ambassador",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "name": "John Doe",
             "experience": "Developer"
           }
@@ -301,10 +296,10 @@
     "0_custom_banner_jr4QrC": {
       "type": "0-custom-banner",
       "settings": {
-        "image_bg": "shopify://shop_images/table-runner-white-front-65a7de8edad8a.jpg",
-        "image_bg_mobile": "shopify://shop_images/table-runner-white-front-65a7de8edad8a.jpg",
-        "image_clothing": "shopify://shop_images/ava.png",
-        "image_clothing_mobile": "shopify://shop_images/ava.png",
+        "image_bg": "shopify://shop_images/placeholder-banner.png",
+        "image_bg_mobile": "shopify://shop_images/placeholder-banner.png",
+        "image_clothing": "shopify://shop_images/image-placeholder.jpg",
+        "image_clothing_mobile": "shopify://shop_images/image-placeholder.jpg",
         "title": "<p>Title</p>",
         "sub_title": "<p>Subtitle</p>",
         "btn_name": "Button",
@@ -325,7 +320,7 @@
         "number": "2986328348",
         "btn_name": "Homepage",
         "btn_link": "/",
-        "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "image": "shopify://shop_images/image-placeholder.jpg",
         "padding_top": 72,
         "padding_bottom": 128
       }
@@ -348,8 +343,8 @@
       "type": "0-custom-banner-yt",
       "settings": {
         "full_width_banner": true,
-        "image_1": "shopify://shop_images/portfolio-layout-thumb1.jpg",
-        "image_2": "shopify://shop_images/ava.png",
+        "image_1": "shopify://shop_images/placeholder-banner.png",
+        "image_2": "shopify://shop_images/image-placeholder.jpg",
         "btn_video_name": "Button",
         "btn_video_fragment_name": "Button",
         "btn_video_fragment_link": "",
@@ -377,7 +372,7 @@
         "why_use_ngyWHP": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Titl",
             "sub_title_item": "Subtitle"
           }
@@ -385,7 +380,7 @@
         "why_use_XU3Dax": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Title",
             "sub_title_item": "Subtitle"
           }
@@ -393,7 +388,7 @@
         "why_use_Gkk6ab": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Title",
             "sub_title_item": "Subtitle"
           }
@@ -401,7 +396,7 @@
         "why_use_z6XhWT": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Title",
             "sub_title_item": "Subtitle"
           }
@@ -409,7 +404,7 @@
         "why_use_aCx7fG": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Titlt",
             "sub_title_item": "Subtitle"
           }
@@ -417,7 +412,7 @@
         "why_use_aJ7mMM": {
           "type": "why_use",
           "settings": {
-            "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+            "image": "shopify://shop_images/image-placeholder.jpg",
             "title_item": "Titlt",
             "sub_title_item": "Subtitle"
           }
@@ -432,7 +427,7 @@
         "why_use_aJ7mMM"
       ],
       "settings": {
-        "title": "Lorem ipsum dolor sit amet,",
+        "title": "Lorem ipsum dolor sit amet.",
         "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "padding_top": 0,
         "padding_bottom": 0
@@ -443,7 +438,7 @@
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
         "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
+        "image": "shopify://shop_images/image-placeholder.jpg",
         "card_title": "Lorem ipsum dolor sit amet",
         "card_sub_title": "Lorem ipsum dolor sit amet",
         "card_galon_number": 4,
@@ -696,13 +691,60 @@
     },
     "0_custom_advantages_KVe6G9": {
       "type": "0-custom-advantages",
+      "blocks": {
+        "popup_link_meFtTq": {
+          "type": "popup_link",
+          "settings": {
+            "block_btn_name": "Title",
+            "block_content": "<p>Description</p>"
+          }
+        },
+        "popup_cards_9mkpea": {
+          "type": "popup_cards",
+          "settings": {
+            "a_btn_mobile_name": "What does OC take?",
+            "a_title_mobile": "OC  take any types of soft plastic*",
+            "a_subtitle_mobile": "What OC take?",
+            "desk_card_icon_1": "shopify://shop_images/image-placeholder.jpg",
+            "desk_card_text_1": "",
+            "desk_card_icon_2": "shopify://shop_images/icon.svg",
+            "desk_card_text_2": "",
+            "desk_card_text_3": "",
+            "desk_card_text_4": "",
+            "desk_card_text_5": "",
+            "desk_card_text_6": "",
+            "desk_card_text_7": "",
+            "desk_card_text_8": ""
+          }
+        },
+        "popup_cards_MbzxVH": {
+          "type": "popup_cards",
+          "settings": {
+            "a_btn_mobile_name": "What does OC take?",
+            "a_title_mobile": "OC  take any types of soft plastic*",
+            "a_subtitle_mobile": "What OC take?",
+            "desk_card_text_1": "",
+            "desk_card_text_2": "",
+            "desk_card_text_3": "",
+            "desk_card_text_4": "",
+            "desk_card_text_5": "",
+            "desk_card_text_6": "",
+            "desk_card_text_7": "",
+            "desk_card_text_8": ""
+          }
+        }
+      },
+      "block_order": [
+        "popup_link_meFtTq",
+        "popup_cards_9mkpea",
+        "popup_cards_MbzxVH"
+      ],
       "name": "Advantages",
       "settings": {
         "color_scheme": "",
         "a_title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "title_font_family": "var(--ps-times-regular)",
         "a_logo": "shopify://shop_images/ava.png",
-        "a_image": "shopify://shop_images/portfolio-layout-thumb1.jpg",
         "desk_card_icon_1": "shopify://shop_images/icon.svg",
         "desk_card_text_1": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "desk_card_icon_2": "shopify://shop_images/icon_cc90a866-de29-42ca-9f20-15c036527fb7.svg",
@@ -710,9 +752,13 @@
         "desk_card_icon_3": "shopify://shop_images/icon_427b8dad-c427-442f-b66b-0178b5425f61.svg",
         "desk_card_text_3": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "desk_card_text_4": "",
+        "desk_card_icon_5": "shopify://shop_images/icon.svg",
         "desk_card_text_5": "",
+        "desk_card_icon_6": "shopify://shop_images/icon.svg",
         "desk_card_text_6": "",
+        "desk_card_icon_7": "shopify://shop_images/icon.svg",
         "desk_card_text_7": "",
+        "desk_card_icon_8": "shopify://shop_images/icon.svg",
         "desk_card_text_8": "",
         "padding_top": 0,
         "padding_bottom": 0,
