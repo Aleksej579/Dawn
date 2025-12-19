@@ -9,6 +9,72 @@
  */
 {
   "sections": {
+    "0_name_9tAUga": {
+      "type": "0-name",
+      "blocks": {
+        "block_1_fr79Nh": {
+          "type": "block_1",
+          "settings": {
+            "title": "Item",
+            "block_image": "shopify://shop_images/icon.svg",
+            "block_text": "Description",
+            "block_number": 5
+          }
+        },
+        "block_1_ih9DxA": {
+          "type": "block_1",
+          "settings": {
+            "title": "Item",
+            "block_image": "shopify://shop_images/icon.svg",
+            "block_text": "Description",
+            "block_number": 5
+          }
+        },
+        "block_1_96Umzi": {
+          "type": "block_1",
+          "settings": {
+            "title": "Item",
+            "block_image": "shopify://shop_images/icon.svg",
+            "block_text": "Description",
+            "block_number": 5
+          }
+        },
+        "block_1_cTBt49": {
+          "type": "block_1",
+          "settings": {
+            "title": "Item",
+            "block_image": "shopify://shop_images/icon.svg",
+            "block_text": "Description",
+            "block_number": 5
+          }
+        }
+      },
+      "block_order": [
+        "block_1_fr79Nh",
+        "block_1_ih9DxA",
+        "block_1_96Umzi",
+        "block_1_cTBt49"
+      ],
+      "name": "Name (+ block)",
+      "settings": {
+        "section_bg": "#ffffff",
+        "color_bg": "#f9f6f2",
+        "title": "Title",
+        "show_advanced_settings": false,
+        "title_size": "h2",
+        "title_align": "center",
+        "title_font_family": "var(--font-heading-family)",
+        "image_desk": "shopify://shop_images/image-placeholder.jpg",
+        "image_mobi": "shopify://shop_images/image-placeholder.jpg",
+        "btn_name": "Button",
+        "btn_url": "#",
+        "if_slider": true,
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
     "0_custom_header_title_WGKTRp": {
       "type": "0-custom-header-title",
       "settings": {
@@ -287,6 +353,7 @@
     }
   },
   "order": [
+    "0_name_9tAUga",
     "0_custom_header_title_WGKTRp",
     "0_custom_cards_name_6aye47",
     "0_custom_default_UTjrqf",

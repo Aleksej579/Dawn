@@ -1,3 +1,5 @@
+@use '../settings/config' as *;
+
 $font-family-base: var(--font-body-family);
 $font-family-headings: var(--font-heading-family);
 
@@ -10,27 +12,33 @@ $lg: 990px;
 $xl: 1200px;
 $xxl: 1400px;
 
-
-
 .name {
     &__wrapper {
         .n__container {
-            h2.n__title {
-                font-size: 44px;
+            .n__title {
+                font-size: 60px;
                 line-height: 110%;
                 font-weight: 400;
                 letter-spacing: -.03em;
-                // color: $text-primary;
-                // font-family: $font-family-headings;
-                text-align: center;
                 margin: 0 auto;
                 max-width: 670px;
 
-                // @include media-breakpoint-down(sm) {
-                //     font-size: 28px;
-                //     line-height: 100%;
-                //     letter-spacing: -.04em;
-                // }
+                &.h2 {
+                    font-size: 48px;
+                }
+
+                &.h3 {
+                    font-size: 32px;
+                }
+
+                &.h4 {
+                    font-size: 24px;
+                }
+
+                @include media-breakpoint-down(sm) {
+                    font-size: 28px;
+                    line-height: 100%;
+                }
             }
 
             .n__wrapper {
@@ -38,69 +46,58 @@ $xxl: 1400px;
                 align-items: center;
                 justify-content: center;
 
-                // @include media-breakpoint-down(md) {
-                //     flex-direction: column;
-                // }
+                @include media-breakpoint-down(md) {
+                    flex-direction: column;
+                }
 
                 .n__left-wrapp,
                 .n__right-wrapp {
                     width: 50%;
 
-                    // @include media-breakpoint-down(md) {
-                    //     width: 100%;
-                    // }
+                    @include media-breakpoint-down(md) {
+                        width: 100%;
+                    }
                 }
 
                 .n__left-wrapp {
-                    max-width: 553px;
+                    aspect-ratio: 1 / 1;
+                    overflow: hidden;
 
-                    picture.s__image-wrapp {
-                        display: block;
+                    img,
+                    video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
 
+                .n__right-wrapp {}
+
+
+            }
+
+            .n__grid-slider {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+
+                article {
+                    &.swiper-slide {
+                        width: auto;
+                    }
+
+                    figure {
                         img {
                             width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                            object-position: center;
+                            height: auto;
+                            object-fit: cover;
+                            aspect-ratio: 1;
+                            overflow: hidden;
                         }
+
+                        figcaption {}
                     }
                 }
-
-                .n__right-wrapp {
-                    max-width: 463px;
-
-                    ul.n__list-items {
-                        list-style-type: none;
-                        padding-left: 0;
-
-                        li {
-                            font-size: 14px;
-                            line-height: 100%;
-                            font-weight: 400;
-                            letter-spacing: normal;
-                            color: $black;
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            background: $white;
-
-                            span:first-child {}
-
-                            span:last-child {}
-
-                            &.n__compare-price {
-                                margin-top: 10px;
-                            }
-
-                            &.n__price {
-                                margin-top: 10px;
-
-                                img {}
-                            }
-                        }
-                    }
-                }
-
             }
         }
     }

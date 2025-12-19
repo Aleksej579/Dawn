@@ -13,65 +13,105 @@
   }
   .name {
     background: {{ section.settings.section_bg }};
-  }
-  .name .n__container {
-    background: {{ section.settings.color_bg }};
+
+    & .n__container {
+      background: {{ section.settings.color_bg }};
+    }
   }
 {%- endstyle -%}
 
-<div class="name__wrapper section-{{ section.id }} page-width">
+<div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
   <div
     class="n__container"
     style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
   >
-    <h2 class="n__title">{{ section.settings.title }}</h2>
+    <h2
+      class="n__title {{ section.settings.title_size }}"
+      style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
+    >
+      {{ section.settings.title }}
+    </h2>
+
+    {% comment %} Half Image Video  {% endcomment %}
     <div class="n__wrapper">
       <div class="n__left-wrapp">
-        {%- if section.settings.image_desk != blank and section.settings.image_mobi != blank -%}
+        {% assign image_poster = section.settings.image_desk.src | image_url: width: 700 %}
+        {% if section.settings.image_desk != blank and section.settings.video == blank %}
           <picture class="n__image-wrapp">
             <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
             <img
               class="n__image"
               src="{{ section.settings.image_desk | image_url: width: 700 }}"
-              alt=""
+              alt="{{ section.settings.image_desk.alt | escape }}"
               loading="lazy"
               width="100%"
               height="auto"
             >
           </picture>
-        {%- endif -%}
+        {% else %}
+          {{ section.settings.video | video_tag: image_size: '700x', class: 'p__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+        {% endif %}
       </div>
-      <div class="n__right-wrapp">
-        <ul class="n__list-items">
-          {%- for block in section.blocks -%}
-            {% case block.type %}
-              {%- when 'list_items' -%}
-                <li class="n__list">
-                  <span>{{ block.settings.text_name }}</span>
-                  <span>{{ block.settings.text_param }}</span>
-                </li>
-              {%- when 'block_compare_price' -%}
-                <li class="n__compare-price">
-                  <span>{{ block.settings.text_name }}</span>
-                  <span>{{ block.settings.text_param }}</span>
-                </li>
-              {%- when 'block__price' -%}
-                <li class="n__price">
-                  {%- if block.settings.image_name != blank -%}
-                    {{ block.settings.image_name | image_url: width: 120 | image_tag: class: '__image', loading: 'lazy' }}
-                  {%- endif -%}
-                  <span>{{ block.settings.text_param }}</span>
-                </li>
-            {%- endcase -%}
-          {%- endfor -%}
-        </ul>
+      <div class="n__right-wrapp">Text</div>
+    </div>
+
+    {% comment %} Button-Link {% endcomment %}
+    {%- if section.settings.btn_name != blank -%}
+      <a class="n__link" href="{{ section.settings.btn_url }}">
+        {{ section.settings.btn_name -}}
+      </a>
+    {%- endif -%}
+
+    {% comment %} Grid or Slider {% endcomment %}
+    <div class="n__grid-slider--wrapp {% if section.settings.if_slider == true %}swiper swiper-{{ section.id }}{% endif %}">
+      <div class="n__grid-slider {% if section.settings.if_slider == true %}swiper-wrapper{% endif %}">
+        {%- for block in section.blocks -%}
+          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
+            <figure>
+              {%- if block.settings.block_image != blank -%}
+                {{ block.settings.block_image | image_url: width: 100 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'Logo' }}
+              {%- endif -%}
+              <figcaption>{{ block.settings.block_text }}</figcaption>
+            </figure>
+          </article>
+        {%- endfor -%}
       </div>
+      <div class="swiper-button-next swiper-button-next-{{ section.index }}">Next</div>
+      <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">Prev</div>
+      <div class="swiper-pagination swiper-pagination-{{ section.index }}"></div>
     </div>
   </div>
 </div>
 
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></link> {% endcomment %}
+{% comment %} <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
 <script>
-  document.addEventListener('DOMContentLoaded', () => {});
+  document.addEventListener('DOMContentLoaded', () => {
+    {%- if section.settings.if_slider == true -%}
+      document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
+      const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
+        slidesPerView: 1.3,
+        spaceBetween: 12,
+        grabCursor: true,
+        breakpoints: {
+          450: {
+            slidesPerView: 3,
+          }
+        },
+        navigation: {
+          nextEl: '.swiper-button-next-{{ section.id }}',
+          prevEl: '.swiper-button-prev-{{ section.id }}'
+        },
+        pagination: {
+          el: ".swiper-pagination-{{ section.id }}",
+          clickable: true,
+          type: 'bullets',
+        }
+      });
+    {%- endif -%}
+  });
 </script>
 
 {% schema %}
@@ -95,7 +135,11 @@
       "type": "color",
       "id": "color_bg",
       "label": "Container BG-color",
-      "default": "#2C4329"
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Main Title"
     },
     {
       "type": "text",
@@ -103,8 +147,78 @@
       "label": "Title"
     },
     {
+      "type": "checkbox",
+      "id": "show_advanced_settings",
+      "label": "Show advanced settings Title",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ],
+      "default": "h2",
+      "visible_if": "{{ section.settings.show_advanced_settings == true }}"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "visible_if": "{{ section.settings.show_advanced_settings == true }}"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "var(--font-heading-family)",
+          "label": "Font-1"
+        },
+        {
+          "value": "var(--font-body-family)",
+          "label": "Font-2"
+        }
+      ],
+      "default": "var(--font-heading-family)",
+      "visible_if": "{{ section.settings.show_advanced_settings == true }}"
+    },
+    {
       "type": "header",
       "content": "Main Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Main Video"
     },
     {
       "type": "image_picker",
@@ -115,6 +229,30 @@
       "type": "image_picker",
       "id": "image_mobi",
       "label": "Main Image for Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_name",
+      "label": "Button name"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button url"
+    },
+    {
+      "type": "header",
+      "content": "If slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "if_slider",
+      "label": "Is Slider",
+      "default": false
     },
     {
       "type": "header",
@@ -168,57 +306,38 @@
   "max_blocks": 10,
   "blocks": [
     {
-      "type": "list_items",
-      "name": "Item",
+      "type": "block_1",
+      "name": "Block",
       "settings": [
         {
           "type": "text",
-          "id": "text_name",
-          "label": "Item Name"
+          "id": "title",
+          "label": "Title",
+          "default": "Item"
         },
-        {
-          "type": "text",
-          "id": "text_param",
-          "label": "Item Param"
-        }
-      ]
-    },
-    {
-      "type": "block_compare_price",
-      "name": "Block Compare Price",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text_name",
-          "label": "Item Name"
-        },
-        {
-          "type": "text",
-          "id": "text_param",
-          "label": "Item Param"
-        }
-      ]
-    },
-    {
-      "type": "block__price",
-      "name": "Block Price",
-      "settings": [
         {
           "type": "image_picker",
-          "id": "image_name",
-          "label": "Item image"
+          "id": "block_image",
+          "label": "Image"
         },
         {
           "type": "text",
-          "id": "text_param",
-          "label": "Item Param"
+          "id": "block_text",
+          "label": "Description"
+        },
+        {
+          "type": "number",
+          "id": "block_number",
+          "label": "Count",
+          "default": 5
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Savings"
+      "name": "Name (+ block)",
+      "category": "Custom"
     }
   ]
 }
