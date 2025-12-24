@@ -14,8 +14,8 @@ $xxl: 1400px;
 
 .name {
     &__wrapper {
-        .n__container {
-            .n__title {
+        .__container {
+            .__title {
                 font-size: 60px;
                 line-height: 110%;
                 font-weight: 400;
@@ -41,7 +41,7 @@ $xxl: 1400px;
                 }
             }
 
-            .n__wrapper {
+            .__wrapper {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -50,8 +50,8 @@ $xxl: 1400px;
                     flex-direction: column;
                 }
 
-                .n__left-wrapp,
-                .n__right-wrapp {
+                .__left-wrapp,
+                .__right-wrapp {
                     width: 50%;
 
                     @include media-breakpoint-down(md) {
@@ -59,7 +59,7 @@ $xxl: 1400px;
                     }
                 }
 
-                .n__left-wrapp {
+                .__left-wrapp {
                     aspect-ratio: 1 / 1;
                     overflow: hidden;
 
@@ -71,12 +71,12 @@ $xxl: 1400px;
                     }
                 }
 
-                .n__right-wrapp {}
+                .__right-wrapp {}
 
 
             }
 
-            .n__grid-slider {
+            .__grid-slider {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 12px;

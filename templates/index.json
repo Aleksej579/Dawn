@@ -59,6 +59,7 @@
       "settings": {
         "section_bg": "#ffffff",
         "color_bg": "#f9f6f2",
+        "color_scheme": "",
         "title": "Title",
         "show_advanced_settings": false,
         "title_size": "h2",
@@ -68,7 +69,12 @@
         "image_mobi": "shopify://shop_images/image-placeholder.jpg",
         "btn_name": "Button",
         "btn_url": "#",
-        "if_slider": true,
+        "if_slider": false,
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
         "padding_top": 32,
         "padding_bottom": 32,
         "padding_top_mobile": 0,
@@ -77,6 +83,7 @@
     },
     "0_custom_header_title_WGKTRp": {
       "type": "0-custom-header-title",
+      "disabled": true,
       "settings": {
         "title": "Title",
         "sub_title": "Sub title",
@@ -130,6 +137,7 @@
         "card_jkVeg4",
         "card_3yqxz3"
       ],
+      "disabled": true,
       "name": "Cards name",
       "settings": {
         "section_bg": "#f9f6f2",
@@ -200,6 +208,7 @@
       "block_order": [
         "sub_title_FPY3hb"
       ],
+      "disabled": true,
       "name": "Color title",
       "settings": {
         "color_scheme": "",
@@ -280,6 +289,7 @@
         "name_block_JcV4R8",
         "name_block_CThnXB"
       ],
+      "disabled": true,
       "name": "Name",
       "settings": {
         "color_scheme": "",
@@ -319,6 +329,7 @@
       "block_order": [
         "instafeed_app_block_krLjzD"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -347,6 +358,7 @@
       "block_order": [
         "forms_inline_3BHHVn"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }

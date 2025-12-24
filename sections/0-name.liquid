@@ -1,4 +1,6 @@
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></link> {% endcomment %}
+{% comment %} <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
 
 {%- style -%}
   .section-{{ section.id }} {
@@ -14,69 +16,120 @@
   .name {
     background: {{ section.settings.section_bg }};
 
-    & .n__container {
+    & .__container {
       background: {{ section.settings.color_bg }};
     }
   }
+  /* :root {
+    --color-background: {{ section.settings.color_scheme.settings.background}};
+    --color-primary_text: {{ section.settings.color_scheme.settings.primary_text}};
+  } */
 {%- endstyle -%}
+
+{% content_for 'blocks' %}
 
 <div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
   <div
-    class="n__container"
+    class="__container"
     style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
   >
     <h2
-      class="n__title {{ section.settings.title_size }}"
+      class="__title {{ section.settings.title_size }}"
       style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
     >
       {{ section.settings.title }}
     </h2>
 
     {% comment %} Half Image Video  {% endcomment %}
-    <div class="n__wrapper">
-      <div class="n__left-wrapp">
+    <div class="__wrapper">
+      <div class="__left-wrapp">
         {% assign image_poster = section.settings.image_desk.src | image_url: width: 700 %}
         {% if section.settings.image_desk != blank and section.settings.video == blank %}
-          <picture class="n__image-wrapp">
+          <picture class="__image-wrapp">
             <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
             <img
-              class="n__image"
+              class="__image"
               src="{{ section.settings.image_desk | image_url: width: 700 }}"
               alt="{{ section.settings.image_desk.alt | escape }}"
+              width="{{ article.image.width }}"
+              height="{{ article.image.height }}"
               loading="lazy"
-              width="100%"
-              height="auto"
             >
           </picture>
         {% else %}
-          {{ section.settings.video | video_tag: image_size: '700x', class: 'p__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+          {{ section.settings.video | video_tag: image_size: '700x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
         {% endif %}
       </div>
-      <div class="n__right-wrapp">Text</div>
+      <div class="__right-wrapp">Text</div>
     </div>
 
-    {% comment %} Button-Link {% endcomment %}
     {%- if section.settings.btn_name != blank -%}
-      <a class="n__link" href="{{ section.settings.btn_url }}">
+      <a class="__link" href="{{ section.settings.btn_url }}">
         {{ section.settings.btn_name -}}
       </a>
     {%- endif -%}
 
-    {% comment %} Grid or Slider {% endcomment %}
-    <div class="n__grid-slider--wrapp {% if section.settings.if_slider == true %}swiper swiper-{{ section.id }}{% endif %}">
-      <div class="n__grid-slider {% if section.settings.if_slider == true %}swiper-wrapper{% endif %}">
+    <div class="__grid-slider--wrapp {% if section.settings.if_slider == true %}swiper swiper-{{ section.id }}{% endif %}">
+      <div class="__grid-slider {% if section.settings.if_slider == true %}swiper-wrapper{% endif %}">
+        {% comment %}
+          {% case block.type %}
+          {% when 'block_1' %}
+            {{ forloop.index }}
+        {% endcomment %}
+
         {%- for block in section.blocks -%}
           <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
             <figure>
               {%- if block.settings.block_image != blank -%}
                 {{ block.settings.block_image | image_url: width: 100 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
               {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'Logo' }}
+                {{ 'image' | placeholder_svg_tag }}
+                {% comment %} {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }} {% endcomment %}
+                {% comment %} {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }} {% endcomment %}
               {%- endif -%}
               <figcaption>{{ block.settings.block_text }}</figcaption>
             </figure>
           </article>
         {%- endfor -%}
+
+        {% for article in blogs.news.articles %}
+          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
+            <figure>
+              {%- if article.image != blank -%}
+                {{ article.image | image_url: width: 400 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag }}
+              {%- endif -%}
+              <figcaption>{{ article.title | link_to: article.url }}</figcaption>
+            </figure>
+            <div>
+              {{- article.excerpt }}
+              {{ 'Read More' | link_to: article.url }}
+            </div>
+          </article>
+        {% endfor %}
+
+        {% for product in section.settings.product_list %}
+          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
+            <a href="{{ product.url }}">
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 300 | image_tag: alt: product.title, class: 'product__image', loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              <h3 class="product__title">{{ product.title }}</h3>
+            </a>
+            <div class="product__content">
+              {{ product.description }}
+              <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+              <span class="product__price">
+                {{- cart.currency.iso_code -}}
+                {{ product.price | money_without_currency -}}
+              </span>
+            </div>
+          </article>
+        {% endfor %}
+        {% comment %} {% endcase %} {% endcomment %}
       </div>
       <div class="swiper-button-next swiper-button-next-{{ section.index }}">Next</div>
       <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">Prev</div>
@@ -85,8 +138,6 @@
   </div>
 </div>
 
-{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></link> {% endcomment %}
-{% comment %} <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     {%- if section.settings.if_slider == true -%}
@@ -111,6 +162,62 @@
         }
       });
     {%- endif -%}
+
+    //product add to cart
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const variantId = button.dataset.variantId;
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1,
+                },
+              ],
+            }),
+          });
+          const result = await response.json();
+          const drawer = document.querySelector('cart-drawer');
+          if (drawer) {
+            fetch('/?section_id=cart-drawer')
+              .then((response) => response.text())
+              .then((text) => {
+                const html = new DOMParser().parseFromString(text, 'text/html');
+                const newDrawer = html.querySelector('cart-drawer');
+                if (newDrawer) {
+                  drawer.innerHTML = newDrawer.innerHTML;
+                  drawer.classList.remove('is-empty');
+                  drawer.classList.add('animate');
+                  drawer.classList.add('active');
+                  document.body.classList.add('overflow-hidden');
+                }
+              })
+              .then(() => {
+                fetch('/cart.js')
+                  .then((response) => response.json())
+                  .then((cart) => {
+                    const cartCount = document.querySelector('.cart-count-bubble span');
+                    if (cartCount) {
+                      cartCount.textContent = cart.item_count;
+                      const bubble = document.querySelector('.cart-count-bubble');
+                      if (bubble) {
+                        bubble.style.display = cart.item_count > 0 ? 'flex' : 'none';
+                      }
+                    }
+                  });
+              });
+          }
+        } catch (error) {
+          console.error('Ошибка:', error);
+        }
+      });
+    });
   });
 </script>
 
@@ -136,6 +243,12 @@
       "id": "color_bg",
       "label": "Container BG-color",
       "default": "#ffffff"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
     },
     {
       "type": "header",
@@ -246,13 +359,20 @@
     },
     {
       "type": "header",
-      "content": "If slider"
+      "content": "If slider",
+      "info": "Switching between grid and slider display"
     },
     {
       "type": "checkbox",
       "id": "if_slider",
       "label": "Is Slider",
       "default": false
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 3
     },
     {
       "type": "header",
@@ -330,6 +450,22 @@
           "id": "block_number",
           "label": "Count",
           "default": 5
+        },
+        {
+          "type": "blocks",
+          "id": "nested_blocks",
+          "label": "Nested Blocks"
+        }
+      ]
+    },
+    {
+      "type": "child_block",
+      "name": "Child Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
         }
       ]
     }
