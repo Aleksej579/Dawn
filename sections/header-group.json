@@ -11,34 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "1760104897f5a5c563": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_0b81042_GzXN9h": {
-          "type": "ai_gen_block_0b81042",
-          "settings": {
-            "text_before": "<p>Limited time offer!</p>",
-            "text_after": "<p>Don't miss out!</p>",
-            "target_date": "2025-12-31",
-            "target_time": "23:59",
-            "background_color": "#121212",
-            "text_color": "#334fb4",
-            "timer_color": "#a2a2a2",
-            "text_size": 16,
-            "timer_size": 20,
-            "padding": 16,
-            "spacing": 20,
-            "timer_spacing": 8
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_0b81042_GzXN9h"
-      ],
-      "disabled": true,
-      "settings": {}
-    },
     "0_custom_marquee_WyWPDb": {
       "type": "0-custom-marquee",
       "blocks": {
@@ -127,7 +99,6 @@
     }
   },
   "order": [
-    "1760104897f5a5c563",
     "0_custom_marquee_WyWPDb",
     "announcement-bar",
     "header"
