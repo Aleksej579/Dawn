@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "custom_liquid_xmGkeF": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{{ 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js' | script_tag }}\n\n<div id=\"particles-banner\" style=\"height: 500px; width: 100%; background: #000; position: relative; overflow: hidden;\"></div>\n\n<script>\n(function() {\n  // Ждём, пока DOM загрузится\n  if (document.readyState !== 'loading') {\n    initParticles();\n  } else {\n    document.addEventListener('DOMContentLoaded', initParticles);\n  }\n\n  function initParticles() {\n    // Проверка: загрузился ли Three.js?\n    if (typeof THREE === 'undefined') {\n      console.warn('Three.js не загружен. Убедитесь, что CDN доступен.');\n      return;\n    }\n\n    const container = document.getElementById('particles-banner');\n    if (!container) return;\n\n    const scene = new THREE.Scene();\n    scene.background = new THREE.Color(0x0a0a14);\n\n    const camera = new THREE.OrthographicCamera(\n      container.clientWidth / -2,\n      container.clientWidth / 2,\n      container.clientHeight / 2,\n      container.clientHeight / -2,\n      1,\n      1000\n    );\n    camera.position.z = 10;\n\n    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });\n    renderer.setSize(container.clientWidth, container.clientHeight);\n    renderer.setPixelRatio(window.devicePixelRatio);\n    container.appendChild(renderer.domElement);\n\n    const particleCount = 300;\n    const geometry = new THREE.BufferGeometry();\n    const positions = [];\n    const velocities = [];\n\n    for (let i = 0; i < particleCount; i++) {\n      positions.push(\n        (Math.random() - 0.5) * container.clientWidth,\n        (Math.random() - 0.5) * container.clientHeight,\n        0\n      );\n      velocities.push(\n        (Math.random() - 0.5) * 2,\n        (Math.random() - 0.5) * 2,\n        0\n      );\n    }\n\n    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));\n    geometry.setAttribute('velocity', new THREE.Float32BufferAttribute(velocities, 3));\n\n    const material = new THREE.PointsMaterial({\n      color: 0x00ffff,\n      size: 4,\n      transparent: true,\n      opacity: 0.8\n    });\n\n    const points = new THREE.Points(geometry, material);\n    scene.add(points);\n\n    let mouseX = 0, mouseY = 0;\n    let cursorX = 0, cursorY = 0;\n\n    container.addEventListener('mousemove', (e) => {\n      const rect = container.getBoundingClientRect();\n      mouseX = e.clientX - rect.left - rect.width / 2;\n      mouseY = -(e.clientY - rect.top - rect.height / 2);\n    });\n\n    function animate() {\n      requestAnimationFrame(animate);\n\n      const posArray = geometry.attributes.position.array;\n      const velArray = geometry.attributes.velocity.array;\n\n      cursorX += (mouseX - cursorX) * 0.05;\n      cursorY += (mouseY - cursorY) * 0.05;\n\n      for (let i = 0; i < particleCount; i++) {\n        const i3 = i * 3;\n        const dx = posArray[i3] - cursorX;\n        const dy = posArray[i3 + 1] - cursorY;\n        const dist = Math.sqrt(dx * dx + dy * dy);\n\n        if (dist < 100) {\n          const force = (100 - dist) / 100;\n          velArray[i3]     += (dx / dist) * force * 3;\n          velArray[i3 + 1] += (dy / dist) * force * 3;\n        }\n\n        posArray[i3]     += velArray[i3];\n        posArray[i3 + 1] += velArray[i3 + 1];\n\n        velArray[i3]     *= 0.95;\n        velArray[i3 + 1] *= 0.95;\n\n        // Ограничение по границам\n        if (posArray[i3] < -container.clientWidth / 2) posArray[i3] = -container.clientWidth / 2;\n        if (posArray[i3] >  container.clientWidth / 2) posArray[i3] =  container.clientWidth / 2;\n        if (posArray[i3 + 1] < -container.clientHeight / 2) posArray[i3 + 1] = -container.clientHeight / 2;\n        if (posArray[i3 + 1] >  container.clientHeight / 2) posArray[i3 + 1] =  container.clientHeight / 2;\n      }\n\n      geometry.attributes.position.needsUpdate = true;\n      renderer.render(scene, camera);\n    }\n\n    function onResize() {\n      const w = container.clientWidth;\n      const h = container.clientHeight;\n      camera.left = -w / 2;\n      camera.right = w / 2;\n      camera.top = h / 2;\n      camera.bottom = -h / 2;\n      camera.updateProjectionMatrix();\n      renderer.setSize(w, h);\n    }\n\n    window.addEventListener('resize', onResize);\n    animate();\n  }\n})();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "0_name_9tAUga": {
       "type": "0-name",
       "blocks": {
@@ -60,6 +70,7 @@
         "color_scheme": "",
         "section_bg": "#ffffff",
         "color_bg": "#f9f6f2",
+        "color_scheme": "",
         "title": "Title",
         "show_advanced_settings": false,
         "title_size": "h2",
@@ -500,6 +511,7 @@
     }
   },
   "order": [
+    "custom_liquid_xmGkeF",
     "0_name_9tAUga",
     "0_custom_header_title_WGKTRp",
     "0_custom_cards_name_6aye47",
