@@ -1,0 +1,254 @@
+{% comment %} for theme.liquid before </body> {% endcomment %}
+{% comment %}
+  {% if template.name == 'product' %}
+    <script>
+      (function () {
+        const storageKey = 'recentlyViewed';
+        const productHandle = '{{ product.handle }}';
+        let recent = localStorage.getItem(storageKey);
+        recent = recent ? JSON.parse(recent) : [];
+        recent = recent.filter((handle) => handle !== productHandle);
+        recent.unshift(productHandle);
+        recent = recent.slice(0, 20);
+        localStorage.setItem(storageKey, JSON.stringify(recent));
+      })();
+    </script>
+  {% endif %}
+{% endcomment %}
+
+<div class="recently-viewed section-{{ section.id }}">
+  <div class="page-width">
+    <h2 class="rv__title">{{ section.settings.heading }}</h2>
+    <div class="swiper swiper-{{ section.id }}">
+      <ul
+        id="recently-viewed-products"
+        class="swiper-wrapper"
+      >
+        <li>No products viewed</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+    (function() {
+    const storageKey = 'recentlyViewed';
+    const maxProducts = {{ section.settings.products_to_show }};
+    const debugEl = document.getElementById('debug-content');
+
+    function debug(msg) {
+        if (debugEl) {
+        debugEl.innerHTML += '<br>' + JSON.stringify(msg);
+        }
+    }
+
+    function getRecentlyViewed() {
+        const stored = localStorage.getItem(storageKey);
+        debug('Stored data: ' + stored);
+        return stored ? JSON.parse(stored) : [];
+    }
+
+    function loadRecentlyViewed() {
+        const productHandles = getRecentlyViewed();
+        debug('Product handles to load: ' + JSON.stringify(productHandles));
+
+        const filteredHandles = productHandles;
+
+        if (filteredHandles.length === 0) {
+        debug('No products to display');
+        return;
+        }
+
+        const container = document.getElementById('recently-viewed-products');
+        const handlesToFetch = filteredHandles.slice(0, maxProducts);
+
+        debug('Fetching handles: ' + JSON.stringify(handlesToFetch));
+
+        Promise.all(
+        handlesToFetch.map(handle => {
+            const url = `/products/${handle}.js`;
+            debug('Fetching: ' + url);
+            return fetch(url)
+            .then(res => {
+                debug('Response status for ' + handle + ': ' + res.status);
+                return res.json();
+            })
+            .catch(err => {
+                debug('Error fetching ' + handle + ': ' + err.message);
+                return null;
+            });
+        })
+        ).then(products => {
+        debug('Products loaded: ' + products.length);
+        const validProducts = products.filter(p => p !== null);
+        debug('Valid products: ' + validProducts.length);
+
+        if (validProducts.length === 0) {
+            debug('No valid products to display');
+            return;
+        }
+
+        container.innerHTML = validProducts.map(product => {
+            const price = (product.price / 100).toFixed(0);
+            const comparePrice = product.compare_at_price ? (product.compare_at_price / 100).toFixed(0) : null;
+            const hasDiscount = comparePrice && comparePrice > price;
+
+            return `
+            <li class="swiper-slide grid__item">
+                <div class="card-v2 card-wrapper-v2 product-card-wrapper">
+                    <div class="card card--media" style="--ratio-percent: 100%;">
+                        <div class="card__inner color-scheme-2 gradient ratio" style="--ratio-percent: 100%;">
+                            <div class="card__overlay-link">
+                                <a href="${product.url}">SHOP NOW</a>
+                            </div>
+                            <div class="card__media">
+                                <div class="media media--transparent">
+                                    ${product.featured_image ?
+                                        `<img src="${product.featured_image}" alt="${product.title}" loading="lazy" width="900" height="955" class="motion-reduce">`
+                                        : '<div style="background: #eee; padding: 50px;">No image</div>'
+                                    }
+                                </div>
+                            </div>
+                            <div class="card__content">
+                                <div class="card__information">
+                                    <h3 class="card-v2__heading cs-h5"></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__content-v2">
+                            <div class="card__information-v2">
+                                <div class="product-card__type-star"></div>
+                                <a href="${product.url}" class="cs-body">
+                                    <h3 class="card__heading h5">
+                                        ${product.title}
+                                    </h3>
+                                </a>
+                                <span class="caption-large light"></span>
+                            </div>
+
+                            ${hasDiscount ? '<div class="card__badge"><span class="badge badge--bottom-left color-scheme-a11f18c2-91b2-4484-b423-a8198b194cf7">Sale</span></div>' : ''}
+
+                            <div class="card__description-variants">
+                                <span class="variant-option is-active" data-variant-id="${product.variants[0].id}" data-variant-price="${product.price}" data-variant-available="${product.available}" style="cursor: pointer; text-decoration: none; opacity: 1;">Add to cart</span>
+                            </div>
+
+                            <div class="product-price-v2">
+                                <span class="sale-price">$${price}</span>
+                                ${hasDiscount ? `<span class="original-price">$${comparePrice}</span>` : ''}
+                            </div>
+
+                            <add-to-cart-button class="card__product-add-btnton" data-variant-id="${product.variants[0].id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <path d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="#131313"></path>
+                                    <path d="M13 23.5C13.4142 23.5 13.75 23.1642 13.75 22.75C13.75 22.3358 13.4142 22 13 22C12.5858 22 12.25 22.3358 12.25 22.75C12.25 23.1642 12.5858 23.5 13 23.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M21.25 23.5C21.6642 23.5 22 23.1642 22 22.75C22 22.3358 21.6642 22 21.25 22C20.8358 22 20.5 22.3358 20.5 22.75C20.5 23.1642 20.8358 23.5 21.25 23.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M8.53711 8.53711H10.0371L12.0321 17.8521C12.1053 18.1933 12.2951 18.4982 12.5689 18.7145C12.8427 18.9308 13.1833 19.0449 13.5321 19.0371H20.8671C21.2085 19.0366 21.5395 18.9196 21.8054 18.7055C22.0713 18.4914 22.2562 18.193 22.3296 17.8596L23.5671 12.2871H10.8396" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </add-to-cart-button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        `;
+        }).join('');
+
+        debug('Products rendered successfully');
+        });
+    }
+
+    debug('Script started');
+    loadRecentlyViewed();
+
+
+    })();
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = 'flex';
+    const recentlyViewed = new Swiper('.swiper-{{ section.id }}', {
+      slidesPerView: 1.3,
+      spaceBetween: 12,
+      grabCursor: true,
+      breakpoints: {
+        750: {
+          slidesPerView: 5,
+        },
+      },
+    });
+  });
+</script>
+
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .recently-viewed .rv__title {
+    margin-bottom: 24px;
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: 700;
+    color: #131313;
+  }
+
+  #recently-viewed-products {
+      padding: 0;
+      list-style-type: none
+  }
+  @media (max-width: 1440px) {
+    .recently-viewed .page-width {
+        padding-right: 0;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Collection recently",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently Viewed",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 6,
+      "label": "Number of products"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection recently",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

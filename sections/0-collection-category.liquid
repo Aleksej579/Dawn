@@ -1,0 +1,183 @@
+{{ '0-collection-category.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-category__wrapper section-{{ section.id }} page-width ">
+  <div class="cc__container color-{{ section.settings.color_scheme }}">
+    <div class="cc__grid">
+      <article>
+        <a href="{{ routes.collections_url }}">
+          <figure>
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="19" viewBox="0 0 27 19" fill="none">
+              <path d="M7.5 2.34375C7.5 1.04883 6.45117 0 5.15625 0H2.34375C1.04883 0 0 1.04883 0 2.34375V5.15625C0 6.45117 1.04883 7.5 2.34375 7.5H5.15625C6.45117 7.5 7.5 6.45117 7.5 5.15625V2.34375ZM7.5 13.5938C7.5 12.2988 6.45117 11.25 5.15625 11.25H2.34375C1.04883 11.25 0 12.2988 0 13.5938V16.4062C0 17.7012 1.04883 18.75 2.34375 18.75H5.15625C6.45117 18.75 7.5 17.7012 7.5 16.4062V13.5938ZM9.375 2.34375V5.15625C9.375 6.45117 10.4238 7.5 11.7188 7.5H14.5312C15.8262 7.5 16.875 6.45117 16.875 5.15625V2.34375C16.875 1.04883 15.8262 0 14.5312 0H11.7188C10.4238 0 9.375 1.04883 9.375 2.34375ZM16.875 13.5938C16.875 12.2988 15.8262 11.25 14.5312 11.25H11.7188C10.4238 11.25 9.375 12.2988 9.375 13.5938V16.4062C9.375 17.7012 10.4238 18.75 11.7188 18.75H14.5312C15.8262 18.75 16.875 17.7012 16.875 16.4062V13.5938ZM18.75 2.34375V5.15625C18.75 6.45117 19.7988 7.5 21.0938 7.5H23.9062C25.2012 7.5 26.25 6.45117 26.25 5.15625V2.34375C26.25 1.04883 25.2012 0 23.9062 0H21.0938C19.7988 0 18.75 1.04883 18.75 2.34375ZM26.25 13.5938C26.25 12.2988 25.2012 11.25 23.9062 11.25H21.0938C19.7988 11.25 18.75 12.2988 18.75 13.5938V16.4062C18.75 17.7012 19.7988 18.75 21.0938 18.75H23.9062C25.2012 18.75 26.25 17.7012 26.25 16.4062V13.5938Z" fill="#1E1E1E"/>
+            </svg>
+            <figcaption>
+              <h3 class="cc__item-title">
+                {{ section.settings.btn_name }}
+              </h3>
+            </figcaption>
+          </figure>
+        </a>
+      </article>
+      {%- for block in section.blocks -%}
+        <article>
+          <a href="{{ block.settings.shop_concern_url }}">
+            <figure>
+              {%- if block.settings.shop_concern_image != blank -%}
+                {{
+                  block.settings.shop_concern_image
+                  | image_url: width: 500
+                  | image_tag: class: 'cc__image', alt: block.settings.shop_concern_image.alt, loading: 'lazy'
+                }}
+              {%- endif -%}
+              <figcaption>
+                <h3 class="cc__item-title">
+                  {{ block.settings.shop_concern_title }}
+                </h3>
+              </figcaption>
+            </figure>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname;
+    const articles = document.querySelectorAll('.section-{{ section.id }} .cc__grid article');
+
+    if (path === '/collections' || path === '/collections/') {
+      articles[0]?.classList.add('is-active');
+      return;
+    }
+
+    const match = path.match(/\/collections\/(.+)/);
+    if (!match) return;
+
+    const collection = match[1].split('/')[0];
+
+    articles.forEach((article) => {
+      const link = article.querySelector('a');
+      if (link?.href.includes(`/collections/${collection}`)) {
+        article.classList.add('is-active');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection category",
+  "class": "collection-category",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "header",
+      "content": "First button"
+    },
+    {
+      "type": "text",
+      "id": "btn_name",
+      "label": "Button name",
+      "default": "All Categories"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "shop_concern_item",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "shop_concern_image",
+          "label": "Shop Concern Image"
+        },
+        {
+          "type": "text",
+          "id": "shop_concern_title",
+          "label": "Shop Concern Title"
+        },
+        {
+          "type": "url",
+          "id": "shop_concern_url",
+          "label": "Shop Concern URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection category",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -2,6 +2,11 @@
 {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> {% endcomment %}
 {% comment %} <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
 
+{% comment %}
+  <link rel="stylesheet" href="{{'swiper-bundle.min.css' |  asset_url}}">
+  <script async src="{{'swiper-bundle.min.js' |  asset_url}}"></script>
+{% endcomment %}
+
 {%- style -%}
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -15,6 +20,7 @@
   }
   .name {
     background: {{ section.settings.section_bg }};
+    /*background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);*/
 
     & .__container {
       background: {{ section.settings.color_bg }};
@@ -222,6 +228,12 @@
   "tag": "section",
   "settings": [
     {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "default": "scheme_1",
+        "label": "Color Scheme"
+    },
+    {
       "type": "color",
       "id": "section_bg",
       "label": "Section BG-color",
@@ -239,10 +251,36 @@
       "default": "#ffffff"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "default": "scheme_1",
-      "label": "Color Scheme"
+        "type": "header",
+        "content": "Gradient BG"
+    },
+    {
+        "type": "select",
+        "id": "direction",
+        "label": "Direction",
+        "options": [
+        { "value": "0deg", "label": "↑ Up" },
+        { "value": "45deg", "label": "↗ Up-Right" },
+        { "value": "90deg", "label": "→ Right" },
+        { "value": "135deg", "label": "↘ Down-Right" },
+        { "value": "180deg", "label": "↓ Down" },
+        { "value": "225deg", "label": "↙ Down-Left" },
+        { "value": "270deg", "label": "← Left" },
+        { "value": "315deg", "label": "↖ Up-Left" }
+        ],
+        "default": "135deg"
+    },
+    {
+        "type": "color",
+        "id": "color_1",
+        "label": "Color 1",
+        "default": "#131313"
+    },
+    {
+        "type": "color",
+        "id": "color_2",
+        "label": "Color 2",
+        "default": "#3C3C38"
     },
     {
       "type": "header",
@@ -450,7 +488,7 @@
   ],
   "presets": [
     {
-      "name": "Name (+ block)",
+      "name": "Name",
       "category": "Custom"
     }
   ]

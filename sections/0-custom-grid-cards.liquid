@@ -1,24 +1,14 @@
-{{ '0-custom-cards-name.out.css' | asset_url | stylesheet_tag }}
+{{ '0-custom-grid-cards.out.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
-      margin-top: {{ section.settings.margin_top }}px;
-      margin-bottom: {{ section.settings.margin_bottom }}px;
-  }
-  @media screen and (max-width: 1024px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
-      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
-      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    .section-{{ section.id }}-padding {
-      padding-top: 40px;
-      padding-bottom: 40px;
     }
   }
   .cards-name {
@@ -26,9 +16,12 @@
   }
 {%- endstyle -%}
 
-<div class="cards-name__wrapper section-{{ section.id }}-padding page-width">
+<div class="cards-name__wrapper section-{{ section.id }} page-width">
   <h2 class="title">{{ section.settings.title }}</h2>
-  <div class="cn__container">
+  <div
+    class="cn__container"
+    style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
+  >
     <div class="cn__items">
       {%- for block in section.blocks -%}
         <article>
@@ -66,6 +59,11 @@
       "default": "#F9F6F2"
     },
     {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Image for BG"
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Title"
@@ -81,7 +79,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 0
     },
     {
@@ -91,34 +89,35 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     },
     {
       "type": "header",
-      "content": "Margin"
+      "content": "Mobile section padding"
     },
     {
       "type": "range",
-      "id": "margin_top",
+      "id": "padding_top_mobile",
       "min": 0,
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 0
     },
     {
       "type": "range",
-      "id": "margin_bottom",
+      "id": "padding_bottom_mobile",
       "min": 0,
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     }
   ],
+  "max_blocks": 5,
   "blocks": [
     {
       "type": "card",

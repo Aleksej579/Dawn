@@ -18,16 +18,11 @@
       padding-bottom: 74px;
     }
   }
-  :root {
-    --color-bg: {{ section.settings.color_scheme.settings.background}};
-    --color-text: {{ section.settings.color_scheme.settings.text}};
-    --duration: 0.3s;
-  }
 {%- endstyle -%}
 
 <span class="bg-overlay"></span>
 
-<div class="custom-advantages__wrapper section-{{ section.id }}-padding page-width">
+<div class="custom-advantages__wrapper section-{{ section.id }} page-width">
   <h3 class="a__title" style="font-family:{{ section.settings.title_font_family }}">
     {%- if section.settings.a_logo != blank -%}
       {{ section.settings.a_logo | image_url: width: 300 | image_tag: class: 'a__title__image', loading: 'lazy' }}
@@ -319,7 +314,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 0
     },
     {
@@ -329,31 +324,31 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     },
     {
       "type": "header",
-      "content": "Margin"
+      "content": "Mobile section padding"
     },
     {
       "type": "range",
-      "id": "margin_top",
+      "id": "padding_top_mobile",
       "min": 0,
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 0
     },
     {
       "type": "range",
-      "id": "margin_bottom",
+      "id": "padding_bottom_mobile",
       "min": 0,
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     }
   ],
@@ -489,7 +484,8 @@
   ],
   "presets": [
     {
-      "name": "Advantages"
+      "name": "Advantages",
+      "category": "Custom"
     }
   ]
 }

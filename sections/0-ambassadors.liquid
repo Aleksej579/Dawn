@@ -1,19 +1,19 @@
 {{ '0-ambassadors.out.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   }
-    @media screen and (max-width: 768px) {
-        .section-{{ section.id }}-padding {
-            padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
-            padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
-        }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
 {%- endstyle -%}
 
-<div class="ambassadors__wrapper section-{{ section.id }}-padding">
+<div class="ambassadors__wrapper section-{{ section.id }}">
   <div class="ambassadors__title-wrapper">
     <h2 class="ambassadors__title">{{ section.settings.title }}</h2>
     <div class="ambassadors__subtitle">{{ section.settings.subtitle }}</div>
@@ -62,27 +62,51 @@
     },
     {
       "type": "header",
-      "content": "Header"
+      "content": "Padding"
     },
     {
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Top",
-      "default": 30
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 160,
+      "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "Bottom",
-      "default": 30
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
     }
   ],
   "max_blocks": 3,
@@ -111,7 +135,8 @@
   ],
   "presets": [
     {
-      "name": "Custom ambassadors"
+      "name": "Custom ambassadors",
+      "category": "Custom"
     }
   ]
 }

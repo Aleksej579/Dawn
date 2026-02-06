@@ -1,0 +1,252 @@
+{{ '0-collection-banner-grid.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .collection-banner-grid {
+    background: {{ section.settings.section_bg }};
+
+    & .__container {
+      background: {{ section.settings.color_bg }};
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-banner-grid__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
+  <div
+    class="cbg__container"
+    style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
+  >
+    <div class="cbg__wrapper">
+      {%- for block in section.blocks -%}
+        <article class="item-{{ forloop.index }}">
+          <figure>
+            {%- if block.settings.block_image != blank -%}
+              {{
+                block.settings.block_image
+                | image_url: width: 1000
+                | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy'
+              }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {%- endif -%}
+            <figcaption>
+              {%- if block.settings.badge != blank -%}
+                <span class="cbg__badge">{{ block.settings.badge }}</span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <div class="cbg__title">{{ block.settings.title }}</div>
+              {%- endif -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="cbg__subtitle">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              {%- if block.settings.block_date != blank -%}
+                <p class="cbg__timer" data-date="{{ block.settings.block_date }}T23:59:59"></p>
+              {%- endif -%}
+            </figcaption>
+          </figure>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const timers = document.querySelectorAll('.cbg__timer');
+
+    timers.forEach((timer) => {
+      const targetDate = new Date(timer.dataset.date).getTime();
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          timer.innerHTML =
+            '00<span class="timer-label">h</span> : 00<span class="timer-label">m</span> : 00<span class="timer-label">s</span>';
+          return;
+        }
+
+        const totalSeconds = Math.floor(distance / 1000);
+        const totalMinutes = Math.floor(totalSeconds / 60);
+        const totalHours = Math.floor(totalMinutes / 60);
+        const totalDays = Math.floor(totalHours / 24);
+        const totalMonths = Math.floor(totalDays / 30);
+
+        const seconds = totalSeconds % 60;
+        const minutes = totalMinutes % 60;
+        const hours = totalHours % 24;
+        const days = totalDays % 30;
+        const months = totalMonths;
+
+        let result = '';
+
+        if (totalMonths > 0) {
+          result = `${months}<span class="timer-label">mo</span> : ${days
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">d</span> : ${hours
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">h</span> : ${minutes
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">m</span> : ${seconds
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">s</span>`;
+        } else if (totalDays > 0) {
+          result = `${days}<span class="timer-label">d</span> : ${hours
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">h</span> : ${minutes
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">m</span> : ${seconds
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">s</span>`;
+        } else {
+          result = `${totalHours}<span class="timer-label">h</span> : ${minutes
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">m</span> : ${seconds
+            .toString()
+            .padStart(2, '0')}<span class="timer-label">s</span>`;
+        }
+
+        timer.innerHTML = result;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection banner grid",
+  "class": "collection-banner-grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section BG-color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Section BG-image"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Container BG-color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "block_1",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "block_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "header",
+          "content": "Data counter"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "block_date",
+          "label": "Date",
+          "info": "Enter the date in the format YYYY-MM-DD, for example 2027-06-06"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection banner grid",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

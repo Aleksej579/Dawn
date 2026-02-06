@@ -1,0 +1,17 @@
+{% comment %}
+  Renders a gap style CSS custom property
+  
+  Accepts:
+  - value: {Number} The gap value
+  - name: {String} The CSS custom property name (default: 'gap')
+  
+  Usage:
+  {% render 'gap-style', value: 24, name: 'marquee-gap' %}
+{% endcomment %}
+
+{% liquid
+  assign gap_name = name | default: 'gap'
+  assign gap_value = value | default: 0
+%}
+
+--{{ gap_name }}: {{ gap_value }}px;

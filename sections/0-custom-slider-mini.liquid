@@ -1,0 +1,186 @@
+{{ '0-custom-slider-mini.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .slider-mini {
+    background: {{ section.settings.section_bg }};
+  }
+{%- endstyle -%}
+
+<div class="slider-mini__wrapper section-{{ section.id }} page-width">
+  <div class="swiper swiper-{{ section.index }} sm__container">
+    <div class="swiper-wrapper sm__items">
+      {%- for block in section.blocks -%}
+        <article class="swiper-slide">
+          {%- if block.settings.image != blank -%}
+            <div class="sm__image__wrapp">
+              {{ block.settings.image | image_url: width: 600 | image_tag: class: 'sm__image', loading: 'lazy' }}
+            </div>
+          {%- endif -%}
+          <div class="sm__content-wrapper">
+            <div class="sm__content">{{ block.settings.content }}</div>
+            {%- if block.settings.btn_name != blank -%}
+              <a class="sm__link" href="{{ block.settings.btn_url }}">
+                {{ block.settings.btn_name -}}
+              </a>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="swiper-button-next swiper-button-next-{{ section.index }}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <mask id="path-1-inside-1_3216_617" fill="white">
+      <path d="M0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20Z"/>
+      </mask>
+      <path d="M20 40V39C9.50659 39 1 30.4934 1 20H0H-1C-1 31.598 8.40202 41 20 41V40ZM40 20H39C39 30.4934 30.4934 39 20 39V40V41C31.598 41 41 31.598 41 20H40ZM20 0V1C30.4934 1 39 9.50659 39 20H40H41C41 8.40202 31.598 -1 20 -1V0ZM20 0V-1C8.40202 -1 -1 8.40202 -1 20H0H1C1 9.50659 9.50659 1 20 1V0Z" fill="#3D3D38" mask="url(#path-1-inside-1_3216_617)"/>
+      <path d="M17 26L23 20L17 14" stroke="#131313" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <mask id="path-1-inside-1_3216_614" fill="white">
+      <path d="M40 20C40 8.95431 31.0457 0 20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20Z"/>
+      </mask>
+      <path d="M20 40V39C30.4934 39 39 30.4934 39 20H40H41C41 31.598 31.598 41 20 41V40ZM0 20H1C1 30.4934 9.50659 39 20 39V40V41C8.40202 41 -1 31.598 -1 20H0ZM20 0V1C9.50659 1 1 9.50659 1 20H0H-1C-1 8.40202 8.40202 -1 20 -1V0ZM20 0V-1C31.598 -1 41 8.40202 41 20H40H39C39 9.50659 30.4934 1 20 1V0Z" fill="#3D3D38" mask="url(#path-1-inside-1_3216_614)"/>
+      <path d="M23 26L17 20L23 14" stroke="#131313" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="swiper-pagination swiper-pagination-{{ section.index }}"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.swiper-{{ section.index }} .swiper-wrapper').style.display = "flex";
+    const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.index }}', {
+      slidesPerView: 1.3,
+      spaceBetween: 8,
+      grabCursor: true,
+      breakpoints: {
+        540: {
+          slidesPerView: 1,
+          spaceBetween: 0,
+        }
+      },
+      navigation: {
+        nextEl: '.swiper-button-next-{{ section.index }}',
+        prevEl: '.swiper-button-prev-{{ section.index }}'
+      },
+      pagination: {
+        el: ".swiper-pagination-{{ section.index }}",
+        clickable: true
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Slider mini",
+  "class": "slider-mini",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section BG",
+      "default": "#F9F6F2"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "btn_name",
+          "label": "Button name"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider mini"
+    }
+  ]
+}
+{% endschema %}

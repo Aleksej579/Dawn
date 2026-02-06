@@ -1,0 +1,74 @@
+@use '../settings/config' as *;
+
+.collection-category {
+    &__wrapper {
+        .cc__container {
+            border-radius: 20px;
+
+            .cc__grid {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
+
+                article {
+                    flex: 1 1 auto;
+                    min-width: 120px;
+                    border-radius: 8px;
+                    height: 80px;
+                    width: fit-content;
+                    padding: 0 12px;
+                    background: #f3f3f399;
+                    border: 1px solid transparent;
+                    cursor: pointer;
+
+                    &.is-active {
+                        border: 1px solid #13131380;
+                        background: #f3f3f3;
+                    }
+
+                    &:hover {
+                        border: 1px solid #13131380;
+                        background: #f3f3f3;
+
+                        .cc__item-title {
+                            font-weight: 600;
+                        }
+                    }
+
+                    a {
+                        text-decoration: none;
+
+                        figure {
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            height: 100%;
+                            justify-content: center;
+                            gap: 8px;
+
+                            img {
+                                width: 32px;
+                                height: 32px;
+                            }
+
+                            figcaption {
+                                .cc__item-title {
+                                    margin: 0;
+                                    font-size: 16px;
+                                    line-height: 140%;
+                                    letter-spacing: normal;
+                                    font-weight: 400;
+                                    color: #131313;
+                                    display: block;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

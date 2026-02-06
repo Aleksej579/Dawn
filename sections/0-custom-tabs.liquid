@@ -1,0 +1,146 @@
+{{ '0-custom-tabs.out.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .plan-subscription {
+    background: {{ section.settings.section_bg }};
+  }
+{%- endstyle -%}
+
+<div class="plan-subscription__wrapper section-{{ section.id }} page-width">
+  <h2 class="title">{{ section.settings.title }}</h2>
+  <div
+    class="ps__container"
+    style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
+  >
+    <h3 class="ps__title-inner">{{ section.settings.title_inner }}</h3>
+    <ul class="ps__tabs">
+      <li class="active">
+        <span>Part 1</span>
+      </li>
+      <li>
+        <span>Part 2</span>
+      </li>
+    </ul>
+    <div class="ps__tabs-content">
+      <div class="ps__tabs-panel active" data-index="0">content here 1</div>
+      <div class="ps__tabs-panel" data-index="1">content here 2</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabLinks = document.querySelectorAll('.ps__tabs span');
+    const tabPanels = document.querySelectorAll('.ps__tabs-panel');
+
+    for (let el of tabLinks) {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        document.querySelector('.ps__tabs li.active').classList.remove('active');
+        document.querySelector('.ps__tabs-panel.active').classList.remove('active');
+
+        const parentListItem = el.parentElement;
+        parentListItem.classList.add('active');
+        const index = [...parentListItem.parentElement.children].indexOf(parentListItem);
+
+        const panel = [...tabPanels].filter((el) => el.getAttribute('data-index') == index);
+        panel[0].classList.add('active');
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Tabs",
+  "class": "plan-subscription",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section BG",
+      "default": "#F9F6F2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Image for BG"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_inner",
+      "label": "Title inner"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabs"
+    }
+  ]
+}
+{% endschema %}

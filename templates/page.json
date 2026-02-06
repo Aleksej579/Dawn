@@ -765,6 +765,39 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "0_custom_accessories_VV4Brz": {
+      "type": "0-custom-accessories",
+      "blocks": {
+        "accessories_aMxceb": {
+          "type": "accessories",
+          "settings": {
+            "benefits": "Title",
+            "image_product": "shopify://shop_images/image-placeholder.jpg",
+            "show_default_image": true,
+            "product": "halsa-baby-all-in-one-accessories"
+          }
+        },
+        "accessories_MmUdzQ": {
+          "type": "accessories",
+          "settings": {
+            "benefits": "Title",
+            "image_product": "shopify://shop_images/image-placeholder.jpg",
+            "show_default_image": true,
+            "product": "product"
+          }
+        }
+      },
+      "block_order": [
+        "accessories_aMxceb",
+        "accessories_MmUdzQ"
+      ],
+      "name": "Custom accesories",
+      "settings": {
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "title": "Title"
+      }
     }
   },
   "order": [
@@ -791,6 +824,7 @@
     "0_custom_products_xKLrjc",
     "adaptive_banner_UEbeRi",
     "0_custom_e_book_JR8JgK",
-    "0_custom_advantages_KVe6G9"
+    "0_custom_advantages_KVe6G9",
+    "0_custom_accessories_VV4Brz"
   ]
 }
