@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "0_collection_banner_grid_kfCbgH": {
+      "type": "0-collection-banner-grid",
+      "blocks": {
+        "block_1_xecQe3": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "",
+            "title": "",
+            "subtitle": "",
+            "block_date": ""
+          }
+        },
+        "block_1_ybCqwy": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "",
+            "title": "",
+            "subtitle": "",
+            "block_date": ""
+          }
+        },
+        "block_1_dWFjNQ": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "",
+            "title": "",
+            "subtitle": "",
+            "block_date": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_1_xecQe3",
+        "block_1_ybCqwy",
+        "block_1_dWFjNQ"
+      ],
+      "name": "Collection banner grid",
+      "settings": {
+        "color_scheme": "",
+        "section_bg": "#ffffff",
+        "color_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "0_collection_banner_grid_kfCbgH"
+  ]
+}
