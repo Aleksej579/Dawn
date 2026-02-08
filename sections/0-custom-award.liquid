@@ -1,4 +1,5 @@
 {{ '0-custom-award.out.css' | asset_url | stylesheet_tag }}
+<!--<script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>-->
 
 {%- style -%}
   .section-{{ section.id }} {
@@ -32,7 +33,6 @@
   <div class="swiper-pagination"></div>
 </div>
 
-<script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -61,7 +61,7 @@
 
 {% schema %}
 {
-  "name": "Custom awards",
+  "name": "Awards",
   "tag": "section",
   "class": "page__arete-two-award",
   "settings": [
@@ -144,7 +144,7 @@
   ],
   "presets": [
     {
-      "name": "Custom awards",
+      "name": "Awards",
       "category": "Custom"
     }
   ]

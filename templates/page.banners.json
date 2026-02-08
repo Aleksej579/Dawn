@@ -17,6 +17,20 @@
         "padding_bottom": 28
       }
     },
+    "0_custom_banner_v2_YDRJNW": {
+      "type": "0-custom-banner-v2",
+      "name": "Banner V2",
+      "settings": {
+        "bg_banner": "#f15c25",
+        "banner_image": "shopify://shop_images/post-1.jpg",
+        "title": "Lorem ipsum dolor sit amet",
+        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "btn": "Button",
+        "btn_link": "#",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "0_collection_banner_grid_kfCbgH": {
       "type": "0-collection-banner-grid",
       "blocks": {
@@ -24,9 +38,9 @@
           "type": "block_1",
           "settings": {
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "",
-            "title": "",
-            "subtitle": "",
+            "badge": "Lorem",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_date": ""
           }
         },
@@ -34,9 +48,9 @@
           "type": "block_1",
           "settings": {
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "",
-            "title": "",
-            "subtitle": "",
+            "badge": "Loreum",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_date": ""
           }
         },
@@ -44,9 +58,9 @@
           "type": "block_1",
           "settings": {
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "",
-            "title": "",
-            "subtitle": "",
+            "badge": "Loreum",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_date": ""
           }
         }
@@ -66,10 +80,133 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
       }
+    },
+    "0_collection_banner_half_Qfx3JU": {
+      "type": "0-collection-banner-half",
+      "blocks": {
+        "block_1_8M8qYk": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Lorem",
+            "title": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "block_1_pPHH6G": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Lorem",
+            "title": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_1_8M8qYk",
+        "block_1_pPHH6G"
+      ],
+      "name": "Collection banner half",
+      "settings": {
+        "color_scheme": "",
+        "section_bg": "#ffffff",
+        "color_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_custom_banner_yt_tTmdQk": {
+      "type": "0-custom-banner-yt",
+      "name": "Banner you-tube",
+      "settings": {
+        "full_width_banner": false,
+        "image_1": "shopify://shop_images/image-placeholder.jpg",
+        "image_2": "shopify://shop_images/image-placeholder.jpg",
+        "btn_video_name": "Button",
+        "video": "shopify://files/videos/video-1.mp4",
+        "btn_video_fragment_name": "Button",
+        "btn_video_fragment_link": "",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_custom_banner_cWmUPh": {
+      "type": "0-custom-banner",
+      "name": "Custom banner",
+      "settings": {
+        "image_bg": "shopify://shop_images/post-1.jpg",
+        "image_bg_mobile": "shopify://shop_images/post-2.jpg",
+        "image_clothing": "shopify://shop_images/image-placeholder.jpg",
+        "image_clothing_mobile": "shopify://shop_images/image-placeholder.jpg",
+        "title": "<p>Lorem ipsum dolor sit amet</p>",
+        "sub_title": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>",
+        "btn_name": "Button",
+        "btn_url": "#",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_custom_banner_v1_WF6YxB": {
+      "type": "0-custom-banner-v1",
+      "blocks": {
+        "heading_tHkfaH": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_KzqeP7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_AD3kqx": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_tHkfaH",
+        "text_KzqeP7",
+        "button_AD3kqx"
+      ],
+      "name": "Custom banner v1",
+      "settings": {
+        "image": "shopify://shop_images/image-placeholder.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
-    "0_collection_banner_grid_kfCbgH"
+    "0_custom_banner_v2_YDRJNW",
+    "0_collection_banner_grid_kfCbgH",
+    "0_collection_banner_half_Qfx3JU",
+    "0_custom_banner_yt_tTmdQk",
+    "0_custom_banner_cWmUPh",
+    "0_custom_banner_v1_WF6YxB"
   ]
 }

@@ -1,0 +1,430 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "0_custom_advantages_Kzq8qB": {
+      "type": "0-custom-advantages",
+      "blocks": {
+        "popup_link_Akgh7H": {
+          "type": "popup_link",
+          "settings": {
+            "block_btn_name": "Button",
+            "block_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "popup_cards_eKDNJ9": {
+          "type": "popup_cards",
+          "settings": {
+            "a_btn_mobile_name": "What does OC take?",
+            "a_title_mobile": "OC  take any types of soft plastic*",
+            "a_subtitle_mobile": "What OC take?",
+            "desk_card_icon_1": "shopify://shop_images/icon.svg",
+            "desk_card_text_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_2": "shopify://shop_images/icon.svg",
+            "desk_card_text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_3": "shopify://shop_images/icon.svg",
+            "desk_card_text_3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_4": "shopify://shop_images/icon.svg",
+            "desk_card_text_4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_5": "shopify://shop_images/icon.svg",
+            "desk_card_text_5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_6": "shopify://shop_images/icon.svg",
+            "desk_card_text_6": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_7": "shopify://shop_images/icon.svg",
+            "desk_card_text_7": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "desk_card_icon_8": "shopify://shop_images/icon.svg",
+            "desk_card_text_8": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        }
+      },
+      "block_order": [
+        "popup_link_Akgh7H",
+        "popup_cards_eKDNJ9"
+      ],
+      "name": "Advantages",
+      "settings": {
+        "color_scheme": "",
+        "a_title": "Lorem ipsum dolor sit amet",
+        "title_font_family": "var(--ps-times-regular)",
+        "a_logo": "shopify://shop_images/Logo_square_transparent.png",
+        "a_image": "shopify://shop_images/image-placeholder.jpg",
+        "desk_card_icon_1": "shopify://shop_images/icon.svg",
+        "desk_card_text_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_2": "shopify://shop_images/icon.svg",
+        "desk_card_text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_3": "shopify://shop_images/icon.svg",
+        "desk_card_text_3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_4": "shopify://shop_images/icon.svg",
+        "desk_card_text_4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_5": "shopify://shop_images/icon.svg",
+        "desk_card_text_5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_6": "shopify://shop_images/icon.svg",
+        "desk_card_text_6": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_7": "shopify://shop_images/icon.svg",
+        "desk_card_text_7": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "desk_card_icon_8": "shopify://shop_images/icon.svg",
+        "desk_card_text_8": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_custom_benefits_N7BXE6": {
+      "type": "0-custom-benefits",
+      "blocks": {
+        "benefits_kQDViw": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "benefits_4aEFMf": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "benefits_DjNYj9": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "benefits_NawKJ9": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "benefits_jxhggC": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "benefits_XD3Wkk": {
+          "type": "benefits",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefits_kQDViw",
+        "benefits_4aEFMf",
+        "benefits_DjNYj9",
+        "benefits_NawKJ9",
+        "benefits_jxhggC",
+        "benefits_XD3Wkk"
+      ],
+      "name": "Benefits",
+      "settings": {
+        "full_width": false,
+        "padding_top": 32,
+        "padding_bottom": 0
+      }
+    },
+    "0_ambassadors_Kj9Feg": {
+      "type": "0-ambassadors",
+      "blocks": {
+        "ambassador_3Qyy6X": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/persone-6.jpg",
+            "name": "John Doe",
+            "experience": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "ambassador_RcUENV": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/persone-9.jpg",
+            "name": "John Doe",
+            "experience": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "ambassador_FN8QDW": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/persone-4.jpg",
+            "name": "John Doe",
+            "experience": "Lorem ipsum dolor sit amet"
+          }
+        }
+      },
+      "block_order": [
+        "ambassador_3Qyy6X",
+        "ambassador_RcUENV",
+        "ambassador_FN8QDW"
+      ],
+      "name": "Ambassadors",
+      "settings": {
+        "title": "<p>Lorem ipsum dolor sit amet</p>",
+        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_custom_award_Uxx3G7": {
+      "type": "0-custom-award",
+      "blocks": {
+        "award_RVUWTx": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "award_pcWHKE": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "award_LY9Hnj": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "award_zHRyTV": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "award_bNBG7Q": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "award_BYzCQL": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "text_1": "Lorem ipsum dolor sit amet",
+            "text_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        }
+      },
+      "block_order": [
+        "award_RVUWTx",
+        "award_pcWHKE",
+        "award_LY9Hnj",
+        "award_zHRyTV",
+        "award_bNBG7Q",
+        "award_BYzCQL"
+      ],
+      "name": "Custom awards",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "title": "<p>Lorem ipsum dolor sit amet</p>"
+      }
+    },
+    "0_custom_designers_kUCPe9": {
+      "type": "0-custom-designers",
+      "blocks": {
+        "designers_N7bUAy": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_mExp4K": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_p6M4FN": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_FVpr7J": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_i8Xgn7": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_Fzj8qf": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_XK6DKK": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_Xg6MG4": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_LEMxwJ": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_t3iwah": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_VE88gx": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        },
+        "designers_FxBdYk": {
+          "type": "Designers",
+          "settings": {
+            "designer_logo": "shopify://shop_images/image-placeholder.jpg",
+            "designer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "designers_N7bUAy",
+        "designers_mExp4K",
+        "designers_p6M4FN",
+        "designers_FVpr7J",
+        "designers_i8Xgn7",
+        "designers_Fzj8qf",
+        "designers_XK6DKK",
+        "designers_Xg6MG4",
+        "designers_LEMxwJ",
+        "designers_t3iwah",
+        "designers_VE88gx",
+        "designers_FxBdYk"
+      ],
+      "name": "Designers",
+      "settings": {
+        "heading": "Designers",
+        "padding_top": 36,
+        "padding_bottom": 124
+      }
+    },
+    "0_custom_why_use_mJfkLt": {
+      "type": "0-custom-why-use",
+      "blocks": {
+        "why_use_erGYpb": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "title_item": "Lorem ipsum dolor sit amet",
+            "sub_title_item": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "why_use_UPR4PR": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "title_item": "Lorem ipsum dolor sit amet",
+            "sub_title_item": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "why_use_UjadMR": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "title_item": "Lorem ipsum dolor sit amet",
+            "sub_title_item": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "why_use_DwfxkU": {
+          "type": "why_use",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "title_item": "Lorem ipsum dolor sit amet",
+            "sub_title_item": "Lorem ipsum dolor sit amet"
+          }
+        }
+      },
+      "block_order": [
+        "why_use_erGYpb",
+        "why_use_UPR4PR",
+        "why_use_UjadMR",
+        "why_use_DwfxkU"
+      ],
+      "name": "Why use",
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet",
+        "sub_title": "Lorem ipsum dolor sit amet",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "0_custom_advantages_Kzq8qB",
+    "0_custom_benefits_N7BXE6",
+    "0_ambassadors_Kj9Feg",
+    "0_custom_award_Uxx3G7",
+    "0_custom_designers_kUCPe9",
+    "0_custom_why_use_mJfkLt"
+  ]
+}
