@@ -18,7 +18,7 @@
       }
     },
     "0_custom_blog_popup_kRTBia": {
-      "type": "0-custom-blog-popup",
+      "type": "0-blog-popup",
       "blocks": {
         "blogitem_R3NEMz": {
           "type": "blogitem",
@@ -76,13 +76,7 @@
           }
         }
       },
-      "block_order": [
-        "blogitem_R3NEMz",
-        "blogitem_3D9Aq9",
-        "blogitem_Hh7Xgb",
-        "blogitem_6D9znx",
-        "blogitem_birjCT"
-      ],
+      "block_order": ["blogitem_R3NEMz", "blogitem_3D9Aq9", "blogitem_Hh7Xgb", "blogitem_6D9znx", "blogitem_birjCT"],
       "name": "Blog Popup",
       "settings": {
         "title": "",
@@ -91,7 +85,7 @@
       }
     },
     "0_custom_blog_v1_hq8LcJ": {
-      "type": "0-custom-blog-v1",
+      "type": "0-blog-v1",
       "name": "Blog v1",
       "settings": {
         "title": "",
@@ -100,15 +94,10 @@
       }
     },
     "0_custom_popup_blog_qhiBDN": {
-      "type": "0-custom-popup-blog",
+      "type": "0-popup-blog",
       "name": "Popup for blog",
       "settings": {}
     }
   },
-  "order": [
-    "main",
-    "0_custom_blog_popup_kRTBia",
-    "0_custom_blog_v1_hq8LcJ",
-    "0_custom_popup_blog_qhiBDN"
-  ]
+  "order": ["main", "0_custom_blog_popup_kRTBia", "0_custom_blog_v1_hq8LcJ", "0_custom_popup_blog_qhiBDN"]
 }

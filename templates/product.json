@@ -10,7 +10,7 @@
 {
   "sections": {
     "0_custom_breadcrumb_HNYAxf": {
-      "type": "0-custom-breadcrumb",
+      "type": "0-breadcrumb",
       "settings": {
         "home_text_color": "#6b6b6b",
         "active_text_color": "#ababab",
@@ -120,22 +120,7 @@
           }
         }
       },
-      "block_order": [
-        "title",
-        "price",
-        "judge_me_reviews_preview_badge_cgVHEF",
-        "wishlist_myappgurus_pdp_wishlist_ng6nfz",
-        "description",
-        "variant_picker",
-        "quantity_selector",
-        "related_product_h7LJ3T",
-        "about_sale_block_KwFPT7",
-        "buy_buttons",
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "collapsible-row-3"
-      ],
+      "block_order": ["title", "price", "judge_me_reviews_preview_badge_cgVHEF", "wishlist_myappgurus_pdp_wishlist_ng6nfz", "description", "variant_picker", "quantity_selector", "related_product_h7LJ3T", "about_sale_block_KwFPT7", "buy_buttons", "collapsible-row-0", "collapsible-row-1", "collapsible-row-2", "collapsible-row-3"],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "",
@@ -153,7 +138,7 @@
       }
     },
     "0_custom_tabs_product_jdACVn": {
-      "type": "0-custom-tabs-product",
+      "type": "0-tabs-product",
       "settings": {
         "name_1": "Tab 1",
         "show_rating": false,
@@ -191,11 +176,5 @@
       }
     }
   },
-  "order": [
-    "0_custom_breadcrumb_HNYAxf",
-    "main",
-    "0_custom_tabs_product_jdACVn",
-    "related-products",
-    "175637146195213884"
-  ]
+  "order": ["0_custom_breadcrumb_HNYAxf", "main", "0_custom_tabs_product_jdACVn", "related-products", "175637146195213884"]
 }

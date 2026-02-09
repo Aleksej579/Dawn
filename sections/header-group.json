@@ -12,7 +12,7 @@
   "type": "header",
   "sections": {
     "0_custom_marquee_WyWPDb": {
-      "type": "0-custom-marquee",
+      "type": "0-marquee",
       "blocks": {
         "item_KcpH7B": {
           "type": "item",
@@ -36,11 +36,7 @@
           }
         }
       },
-      "block_order": [
-        "item_KcpH7B",
-        "item_43LF9g",
-        "item_myxpTi"
-      ],
+      "block_order": ["item_KcpH7B", "item_43LF9g", "item_myxpTi"],
       "name": "Custom Marquee",
       "settings": {
         "speed": 50,
@@ -64,9 +60,7 @@
           }
         }
       },
-      "block_order": [
-        "announcement-bar-0"
-      ],
+      "block_order": ["announcement-bar-0"],
       "disabled": true,
       "settings": {
         "color_scheme": "",
@@ -98,9 +92,5 @@
       }
     }
   },
-  "order": [
-    "0_custom_marquee_WyWPDb",
-    "announcement-bar",
-    "header"
-  ]
+  "order": ["0_custom_marquee_WyWPDb", "announcement-bar", "header"]
 }

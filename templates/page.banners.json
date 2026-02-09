@@ -18,7 +18,7 @@
       }
     },
     "0_custom_banner_v2_YDRJNW": {
-      "type": "0-custom-banner-v2",
+      "type": "0-banner-v2",
       "name": "Banner V2",
       "settings": {
         "bg_banner": "#f15c25",
@@ -32,7 +32,7 @@
       }
     },
     "0_collection_banner_grid_kfCbgH": {
-      "type": "0-collection-banner-grid",
+      "type": "0-banner-grid",
       "blocks": {
         "block_1_xecQe3": {
           "type": "block_1",
@@ -65,11 +65,7 @@
           }
         }
       },
-      "block_order": [
-        "block_1_xecQe3",
-        "block_1_ybCqwy",
-        "block_1_dWFjNQ"
-      ],
+      "block_order": ["block_1_xecQe3", "block_1_ybCqwy", "block_1_dWFjNQ"],
       "name": "Collection banner grid",
       "settings": {
         "color_scheme": "",
@@ -82,7 +78,7 @@
       }
     },
     "0_collection_banner_half_Qfx3JU": {
-      "type": "0-collection-banner-half",
+      "type": "0-banner-half",
       "blocks": {
         "block_1_8M8qYk": {
           "type": "block_1",
@@ -101,10 +97,7 @@
           }
         }
       },
-      "block_order": [
-        "block_1_8M8qYk",
-        "block_1_pPHH6G"
-      ],
+      "block_order": ["block_1_8M8qYk", "block_1_pPHH6G"],
       "name": "Collection banner half",
       "settings": {
         "color_scheme": "",
@@ -117,7 +110,7 @@
       }
     },
     "0_custom_banner_yt_tTmdQk": {
-      "type": "0-custom-banner-yt",
+      "type": "0-banner-yt",
       "name": "Banner you-tube",
       "settings": {
         "full_width_banner": false,
@@ -134,7 +127,7 @@
       }
     },
     "0_custom_banner_cWmUPh": {
-      "type": "0-custom-banner",
+      "type": "0-banner",
       "name": "Custom banner",
       "settings": {
         "image_bg": "shopify://shop_images/post-1.jpg",
@@ -152,7 +145,7 @@
       }
     },
     "0_custom_banner_v1_WF6YxB": {
-      "type": "0-custom-banner-v1",
+      "type": "0-banner-v1",
       "blocks": {
         "heading_tHkfaH": {
           "type": "heading",
@@ -177,11 +170,7 @@
           }
         }
       },
-      "block_order": [
-        "heading_tHkfaH",
-        "text_KzqeP7",
-        "button_AD3kqx"
-      ],
+      "block_order": ["heading_tHkfaH", "text_KzqeP7", "button_AD3kqx"],
       "name": "Custom banner v1",
       "settings": {
         "image": "shopify://shop_images/image-placeholder.jpg",
@@ -200,13 +189,5 @@
       }
     }
   },
-  "order": [
-    "main",
-    "0_custom_banner_v2_YDRJNW",
-    "0_collection_banner_grid_kfCbgH",
-    "0_collection_banner_half_Qfx3JU",
-    "0_custom_banner_yt_tTmdQk",
-    "0_custom_banner_cWmUPh",
-    "0_custom_banner_v1_WF6YxB"
-  ]
+  "order": ["main", "0_custom_banner_v2_YDRJNW", "0_collection_banner_grid_kfCbgH", "0_collection_banner_half_Qfx3JU", "0_custom_banner_yt_tTmdQk", "0_custom_banner_cWmUPh", "0_custom_banner_v1_WF6YxB"]
 }

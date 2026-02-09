@@ -18,7 +18,7 @@
       }
     },
     "0_custom_advantages_Kzq8qB": {
-      "type": "0-custom-advantages",
+      "type": "0-advantages",
       "blocks": {
         "popup_link_Akgh7H": {
           "type": "popup_link",
@@ -52,10 +52,7 @@
           }
         }
       },
-      "block_order": [
-        "popup_link_Akgh7H",
-        "popup_cards_eKDNJ9"
-      ],
+      "block_order": ["popup_link_Akgh7H", "popup_cards_eKDNJ9"],
       "name": "Advantages",
       "settings": {
         "color_scheme": "",
@@ -86,7 +83,7 @@
       }
     },
     "0_custom_benefits_N7BXE6": {
-      "type": "0-custom-benefits",
+      "type": "0-benefits",
       "blocks": {
         "benefits_kQDViw": {
           "type": "benefits",
@@ -131,14 +128,7 @@
           }
         }
       },
-      "block_order": [
-        "benefits_kQDViw",
-        "benefits_4aEFMf",
-        "benefits_DjNYj9",
-        "benefits_NawKJ9",
-        "benefits_jxhggC",
-        "benefits_XD3Wkk"
-      ],
+      "block_order": ["benefits_kQDViw", "benefits_4aEFMf", "benefits_DjNYj9", "benefits_NawKJ9", "benefits_jxhggC", "benefits_XD3Wkk"],
       "name": "Benefits",
       "settings": {
         "full_width": false,
@@ -174,11 +164,7 @@
           }
         }
       },
-      "block_order": [
-        "ambassador_3Qyy6X",
-        "ambassador_RcUENV",
-        "ambassador_FN8QDW"
-      ],
+      "block_order": ["ambassador_3Qyy6X", "ambassador_RcUENV", "ambassador_FN8QDW"],
       "name": "Ambassadors",
       "settings": {
         "title": "<p>Lorem ipsum dolor sit amet</p>",
@@ -190,7 +176,7 @@
       }
     },
     "0_custom_award_Uxx3G7": {
-      "type": "0-custom-award",
+      "type": "0-award",
       "blocks": {
         "award_RVUWTx": {
           "type": "award",
@@ -241,14 +227,7 @@
           }
         }
       },
-      "block_order": [
-        "award_RVUWTx",
-        "award_pcWHKE",
-        "award_LY9Hnj",
-        "award_zHRyTV",
-        "award_bNBG7Q",
-        "award_BYzCQL"
-      ],
+      "block_order": ["award_RVUWTx", "award_pcWHKE", "award_LY9Hnj", "award_zHRyTV", "award_bNBG7Q", "award_BYzCQL"],
       "name": "Custom awards",
       "settings": {
         "padding_top": 0,
@@ -259,7 +238,7 @@
       }
     },
     "0_custom_designers_kUCPe9": {
-      "type": "0-custom-designers",
+      "type": "0-designers",
       "blocks": {
         "designers_N7bUAy": {
           "type": "Designers",
@@ -346,20 +325,7 @@
           }
         }
       },
-      "block_order": [
-        "designers_N7bUAy",
-        "designers_mExp4K",
-        "designers_p6M4FN",
-        "designers_FVpr7J",
-        "designers_i8Xgn7",
-        "designers_Fzj8qf",
-        "designers_XK6DKK",
-        "designers_Xg6MG4",
-        "designers_LEMxwJ",
-        "designers_t3iwah",
-        "designers_VE88gx",
-        "designers_FxBdYk"
-      ],
+      "block_order": ["designers_N7bUAy", "designers_mExp4K", "designers_p6M4FN", "designers_FVpr7J", "designers_i8Xgn7", "designers_Fzj8qf", "designers_XK6DKK", "designers_Xg6MG4", "designers_LEMxwJ", "designers_t3iwah", "designers_VE88gx", "designers_FxBdYk"],
       "name": "Designers",
       "settings": {
         "heading": "Designers",
@@ -368,7 +334,7 @@
       }
     },
     "0_custom_why_use_mJfkLt": {
-      "type": "0-custom-why-use",
+      "type": "0-why-use",
       "blocks": {
         "why_use_erGYpb": {
           "type": "why_use",
@@ -403,12 +369,7 @@
           }
         }
       },
-      "block_order": [
-        "why_use_erGYpb",
-        "why_use_UPR4PR",
-        "why_use_UjadMR",
-        "why_use_DwfxkU"
-      ],
+      "block_order": ["why_use_erGYpb", "why_use_UPR4PR", "why_use_UjadMR", "why_use_DwfxkU"],
       "name": "Why use",
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
@@ -418,13 +379,5 @@
       }
     }
   },
-  "order": [
-    "main",
-    "0_custom_advantages_Kzq8qB",
-    "0_custom_benefits_N7BXE6",
-    "0_ambassadors_Kj9Feg",
-    "0_custom_award_Uxx3G7",
-    "0_custom_designers_kUCPe9",
-    "0_custom_why_use_mJfkLt"
-  ]
+  "order": ["main", "0_custom_advantages_Kzq8qB", "0_custom_benefits_N7BXE6", "0_ambassadors_Kj9Feg", "0_custom_award_Uxx3G7", "0_custom_designers_kUCPe9", "0_custom_why_use_mJfkLt"]
 }
