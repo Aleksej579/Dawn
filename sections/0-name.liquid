@@ -1,6 +1,4 @@
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
-{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> {% endcomment %}
-{% comment %} <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
 
 {% comment %}
   <link rel="stylesheet" href="{{'swiper-bundle.min.css' |  asset_url}}">
@@ -18,21 +16,43 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  .name {
-    background: {{ section.settings.section_bg }};
-    /*background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);*/
 
-    & .__container {
-      background: {{ section.settings.color_bg }};
+  {%- if section.settings.bg_gradient_full == true -%}
+    .name {
+        background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);
+        .name__wrapper {
+            background: none;
+            background-color: none;
+        }
     }
-  }
+  {% else %}
+    .name {
+        .name__wrapper {
+            background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);
+        }
+    }
+  {%- endif -%}
+
+  {% if section.settings.image_bg != blank and section.settings.bg_image_full_container == true %}
+    .name {
+        background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;
+        .name__wrapper {
+            background: none;
+        }
+    }
+  {% elsif section.settings.image_bg != blank and section.settings.bg_image_full_container == false %}
+    .name {
+        .name__wrapper {
+            background: none;
+            background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;
+        }
+    }
+  {% endif %}
 {%- endstyle -%}
 
+
 <div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
-  <div
-    class="__container"
-    style="background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;"
-  >
+  <div class="__container">
     <h2
       class="__title {{ section.settings.title_size }}"
       style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
@@ -81,11 +101,9 @@
           <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
             <figure>
               {%- if block.settings.block_image != blank -%}
-                {{ block.settings.block_image | image_url: width: 100 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+                {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
               {% else %}
                 {{ 'image' | placeholder_svg_tag }}
-                {% comment %} {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }} {% endcomment %}
-                {% comment %} {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }} {% endcomment %}
               {%- endif -%}
               <figcaption>{{ block.settings.block_text }}</figcaption>
             </figure>
@@ -96,7 +114,7 @@
           <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
             <figure>
               {%- if article.image != blank -%}
-                {{ article.image | image_url: width: 400 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
+                {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
               {% else %}
                 {{ 'image' | placeholder_svg_tag }}
               {%- endif -%}
@@ -113,7 +131,7 @@
           <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
             <a href="{{ product.url }}">
               {% if product.featured_image != blank %}
-                {{ product.featured_image | image_url: width: 300 | image_tag: alt: product.title, class: 'product__image', loading: 'lazy' }}
+                {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: 'product__image', loading: 'lazy' }}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
@@ -234,23 +252,6 @@
         "label": "Color Scheme"
     },
     {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section BG-color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_bg",
-      "label": "Section BG-image"
-    },
-    {
-      "type": "color",
-      "id": "color_bg",
-      "label": "Container BG-color",
-      "default": "#ffffff"
-    },
-    {
         "type": "header",
         "content": "Gradient BG"
     },
@@ -274,13 +275,35 @@
         "type": "color",
         "id": "color_1",
         "label": "Color 1",
-        "default": "#131313"
+        "default": "#F4F6F8"
     },
     {
         "type": "color",
         "id": "color_2",
         "label": "Color 2",
-        "default": "#3C3C38"
+        "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_gradient_full",
+      "label": "BG gradient full",
+      "default": true
+    },
+    {
+        "type": "header",
+        "content": "Image BG"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Section BG-image"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_image_full_container",
+      "label": "BG image full or container",
+      "default": true,
+      "info": "True - full screen, False - container width."
     },
     {
       "type": "header",

@@ -9,62 +9,51 @@
  */
 {
   "sections": {
-    "0_name_9tAUga": {
+    "0_name_ffpUn6": {
       "type": "0-name",
       "blocks": {
-        "block_1_fr79Nh": {
+        "block_1_WpAnWJ": {
           "type": "block_1",
           "settings": {
-            "title": "Item",
-            "block_image": "shopify://shop_images/icon.svg",
-            "block_text": "Description",
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_number": 5
           }
         },
-        "block_1_ih9DxA": {
+        "block_1_bg8re7": {
           "type": "block_1",
           "settings": {
-            "title": "Item",
-            "block_image": "shopify://shop_images/icon.svg",
-            "block_text": "Description",
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_number": 5
           }
         },
-        "block_1_96Umzi": {
+        "block_1_pdrREn": {
           "type": "block_1",
           "settings": {
-            "title": "Item",
-            "block_image": "shopify://shop_images/icon.svg",
-            "block_text": "Description",
-            "block_number": 5
-          }
-        },
-        "block_1_cTBt49": {
-          "type": "block_1",
-          "settings": {
-            "title": "Item",
-            "block_image": "shopify://shop_images/icon.svg",
-            "block_text": "Description",
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "block_number": 5
           }
         }
       },
       "block_order": [
-        "block_1_fr79Nh",
-        "block_1_ih9DxA",
-        "block_1_96Umzi",
-        "block_1_cTBt49"
+        "block_1_WpAnWJ",
+        "block_1_bg8re7",
+        "block_1_pdrREn"
       ],
-      "disabled": true,
-      "name": "Name (+ block)",
+      "name": "Name",
       "settings": {
         "color_scheme": "",
-        "section_bg": "#ffffff",
-        "color_bg": "#f9f6f2",
-        "direction": "135deg",
-        "color_1": "#131313",
-        "color_2": "#3c3c38",
-        "title": "Title",
+        "direction": "90deg",
+        "color_1": "#f4f6f8",
+        "color_2": "#f4f6f8",
+        "bg_gradient_full": false,
+        "bg_image_full_container": false,
+        "title": "Lorem ipsum dolor sit amet",
         "show_advanced_settings": false,
         "title_size": "h2",
         "title_align": "center",
@@ -74,15 +63,19 @@
         "btn_name": "Button",
         "btn_url": "#",
         "if_slider": false,
-        "product_list": [],
-        "padding_top": 32,
-        "padding_bottom": 32,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
       }
     }
   },
   "order": [
-    "0_name_9tAUga"
+    "0_name_ffpUn6"
   ]
 }

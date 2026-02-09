@@ -73,7 +73,13 @@
           }
         }
       },
-      "block_order": ["benefits_R3h3KN", "benefits_jBT7tw", "benefits_Nr4qcH", "benefits_FTp4Rc", "benefits_gBFf3A"],
+      "block_order": [
+        "benefits_R3h3KN",
+        "benefits_jBT7tw",
+        "benefits_Nr4qcH",
+        "benefits_FTp4Rc",
+        "benefits_gBFf3A"
+      ],
       "settings": {
         "full_width": true,
         "padding_top": 0,
@@ -112,7 +118,12 @@
           }
         }
       },
-      "block_order": ["heading_K8FEjJ", "text_JHwd9R", "button_tJX6Et", "image_kHDFEn"],
+      "block_order": [
+        "heading_K8FEjJ",
+        "text_JHwd9R",
+        "button_tJX6Et",
+        "image_kHDFEn"
+      ],
       "settings": {
         "image": "shopify://shop_images/post-3.jpg",
         "height": "large",
@@ -210,7 +221,19 @@
           }
         }
       },
-      "block_order": ["designers_riNcp4", "designers_YeBNtC", "designers_g3QiMg", "designers_wMPKYb", "designers_NPK9FW", "designers_8eLwHp", "designers_dWHRPr", "designers_rdxBgR", "designers_aFpxzk", "designers_n7myAt", "designers_YnMMXh"],
+      "block_order": [
+        "designers_riNcp4",
+        "designers_YeBNtC",
+        "designers_g3QiMg",
+        "designers_wMPKYb",
+        "designers_NPK9FW",
+        "designers_8eLwHp",
+        "designers_dWHRPr",
+        "designers_rdxBgR",
+        "designers_aFpxzk",
+        "designers_n7myAt",
+        "designers_YnMMXh"
+      ],
       "settings": {
         "heading": "Designers",
         "padding_top": 36,
@@ -258,7 +281,11 @@
           }
         }
       },
-      "block_order": ["ambassador_Az777a", "ambassador_TG7NPa", "ambassador_dyXPiY"],
+      "block_order": [
+        "ambassador_Az777a",
+        "ambassador_TG7NPa",
+        "ambassador_dyXPiY"
+      ],
       "settings": {
         "title": "<p>Title</p>",
         "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
@@ -271,8 +298,6 @@
     "0_custom_banner_jr4QrC": {
       "type": "0-banner",
       "settings": {
-        "image_bg": "shopify://shop_images/placeholder-banner.png",
-        "image_bg_mobile": "shopify://shop_images/placeholder-banner.png",
         "image_clothing": "shopify://shop_images/image-placeholder.jpg",
         "image_clothing_mobile": "shopify://shop_images/image-placeholder.jpg",
         "title": "<p>Title</p>",
@@ -305,7 +330,11 @@
       "settings": {
         "commercial_series": false,
         "title": "Title",
-        "product_list": ["product", "halsa-baby-all-in-one-wellness-monitor", "babyliveadvice®-subscription"],
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -314,7 +343,6 @@
       "type": "0-banner-yt",
       "settings": {
         "full_width_banner": true,
-        "image_1": "shopify://shop_images/placeholder-banner.png",
         "image_2": "shopify://shop_images/image-placeholder.jpg",
         "btn_video_name": "Button",
         "btn_video_fragment_name": "Button",
@@ -389,7 +417,14 @@
           }
         }
       },
-      "block_order": ["why_use_ngyWHP", "why_use_XU3Dax", "why_use_Gkk6ab", "why_use_z6XhWT", "why_use_aCx7fG", "why_use_aJ7mMM"],
+      "block_order": [
+        "why_use_ngyWHP",
+        "why_use_XU3Dax",
+        "why_use_Gkk6ab",
+        "why_use_z6XhWT",
+        "why_use_aCx7fG",
+        "why_use_aJ7mMM"
+      ],
       "settings": {
         "title": "Lorem ipsum dolor sit amet.",
         "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -413,102 +448,9 @@
         "padding_bottom": 0
       }
     },
-    "0_custom_blog_v1_aQJWFe": {
-      "type": "0-blog-v1",
-      "settings": {
-        "title": "Lorem ipsum dolor sit amet",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "0_custom_blog_popup_8xUmrU": {
-      "type": "0-blog-popup",
-      "blocks": {
-        "blogitem_zjjJP3": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-3.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        },
-        "blogitem_7KtiEN": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-2.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        },
-        "blogitem_EVjcy9": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-1.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        },
-        "blogitem_JGRqwj": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-3.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        },
-        "blogitem_UFeXVN": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-2.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        },
-        "blogitem_QbrzX8": {
-          "type": "blogitem",
-          "settings": {
-            "image": "shopify://shop_images/post-1.jpg",
-            "title": "Lorem ipsum dolor sit amet",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "button_link": "#",
-            "popup_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "image_popup": "shopify://shop_images/theme_cover_image.jpg"
-          }
-        }
-      },
-      "block_order": ["blogitem_zjjJP3", "blogitem_7KtiEN", "blogitem_EVjcy9", "blogitem_JGRqwj", "blogitem_UFeXVN", "blogitem_QbrzX8"],
-      "settings": {
-        "title": "Lorem ipsum dolor sit amet",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "0_custom_popup_blog_Rqy6qA": {
       "type": "0-popup-blog",
       "settings": {}
-    },
-    "0_custom_locator_PaCQGR": {
-      "type": "0-locator",
-      "settings": {
-        "title": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     },
     "0_custom_reviews_w49BQ8": {
       "type": "0-reviews",
@@ -546,7 +488,12 @@
           }
         }
       },
-      "block_order": ["reviews_FHnX8j", "reviews_PwDU6R", "reviews_a4icik", "reviews_f8D8iD"],
+      "block_order": [
+        "reviews_FHnX8j",
+        "reviews_PwDU6R",
+        "reviews_a4icik",
+        "reviews_f8D8iD"
+      ],
       "settings": {
         "title": "Life is better witha little butter",
         "sub_title": "(and a lot of cookies)!",
@@ -563,59 +510,15 @@
       "type": "0-products",
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
-        "product_list": ["product", "halsa-baby-all-in-one-wellness-monitor", "babyliveadvice®-subscription"],
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
         "padding_top": 0,
         "padding_bottom": 0,
         "margin_top": 40,
         "margin_bottom": 40
-      }
-    },
-    "adaptive_banner_UEbeRi": {
-      "type": "adaptive-banner",
-      "blocks": {
-        "description_pgcmhA": {
-          "type": "description",
-          "settings": {
-            "description": "<p>Description</p>"
-          }
-        },
-        "button_9b8Jx6": {
-          "type": "button",
-          "settings": {
-            "button_name": "Button name",
-            "button_link": "",
-            "button_style": "secondary"
-          }
-        }
-      },
-      "block_order": ["description_pgcmhA", "button_9b8Jx6"],
-      "settings": {
-        "section_link": "",
-        "image": "shopify://shop_images/theme_cover_image.jpg",
-        "image_mobile": "shopify://shop_images/theme_cover_image.jpg",
-        "markup": "image_as_background",
-        "image_height_auto": false,
-        "image_height_desktop": 33,
-        "image_max_height_desktop": 480,
-        "image_height_mobile": 82,
-        "image_max_height_mobile": 310,
-        "fit_to_container": "none",
-        "color_scheme": "",
-        "bg": "",
-        "bg_blur": 0,
-        "vertical_alignment": "center",
-        "horizontal_alignment": "center",
-        "alignment": "center",
-        "max_width": 780,
-        "content_box_bg": false,
-        "content_padding_top": 20,
-        "content_padding_bottom": 20,
-        "content_padding_top_mobile": 20,
-        "content_padding_bottom_mobile": 20,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "padding_top_mobile": 24,
-        "padding_bottom_mobile": 24
       }
     },
     "0_custom_e_book_JR8JgK": {
@@ -634,82 +537,19 @@
         "margin_bottom": 0
       }
     },
-    "0_custom_advantages_KVe6G9": {
-      "type": "0-advantages",
-      "blocks": {
-        "popup_link_meFtTq": {
-          "type": "popup_link",
-          "settings": {
-            "block_btn_name": "Title",
-            "block_content": "<p>Description</p>"
-          }
-        },
-        "popup_cards_9mkpea": {
-          "type": "popup_cards",
-          "settings": {
-            "a_btn_mobile_name": "What does OC take?",
-            "a_title_mobile": "OC  take any types of soft plastic*",
-            "a_subtitle_mobile": "What OC take?",
-            "desk_card_icon_1": "shopify://shop_images/image-placeholder.jpg",
-            "desk_card_text_1": "",
-            "desk_card_icon_2": "shopify://shop_images/icon.svg",
-            "desk_card_text_2": "",
-            "desk_card_text_3": "",
-            "desk_card_text_4": "",
-            "desk_card_text_5": "",
-            "desk_card_text_6": "",
-            "desk_card_text_7": "",
-            "desk_card_text_8": ""
-          }
-        },
-        "popup_cards_MbzxVH": {
-          "type": "popup_cards",
-          "settings": {
-            "a_btn_mobile_name": "What does OC take?",
-            "a_title_mobile": "OC  take any types of soft plastic*",
-            "a_subtitle_mobile": "What OC take?",
-            "desk_card_text_1": "",
-            "desk_card_text_2": "",
-            "desk_card_text_3": "",
-            "desk_card_text_4": "",
-            "desk_card_text_5": "",
-            "desk_card_text_6": "",
-            "desk_card_text_7": "",
-            "desk_card_text_8": ""
-          }
-        }
-      },
-      "block_order": ["popup_link_meFtTq", "popup_cards_9mkpea", "popup_cards_MbzxVH"],
-      "name": "Advantages",
-      "settings": {
-        "color_scheme": "",
-        "a_title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        "title_font_family": "var(--ps-times-regular)",
-        "desk_card_icon_1": "shopify://shop_images/icon.svg",
-        "desk_card_text_1": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        "desk_card_icon_2": "shopify://shop_images/icon_cc90a866-de29-42ca-9f20-15c036527fb7.svg",
-        "desk_card_text_2": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        "desk_card_icon_3": "shopify://shop_images/icon_427b8dad-c427-442f-b66b-0178b5425f61.svg",
-        "desk_card_text_3": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        "desk_card_text_4": "",
-        "desk_card_icon_5": "shopify://shop_images/icon.svg",
-        "desk_card_text_5": "",
-        "desk_card_icon_6": "shopify://shop_images/icon.svg",
-        "desk_card_text_6": "",
-        "desk_card_icon_7": "shopify://shop_images/icon.svg",
-        "desk_card_text_7": "",
-        "desk_card_icon_8": "shopify://shop_images/icon.svg",
-        "desk_card_text_8": "",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "0_custom_accessories_VV4Brz": {
       "type": "0-accessories",
       "blocks": {
         "accessories_aMxceb": {
+          "type": "accessories",
+          "settings": {
+            "benefits": "Title",
+            "image_product": "shopify://shop_images/image-placeholder.jpg",
+            "show_default_image": true,
+            "product": "halsa-baby-all-in-one-accessories"
+          }
+        },
+        "accessories_UmbGad": {
           "type": "accessories",
           "settings": {
             "benefits": "Title",
@@ -728,7 +568,11 @@
           }
         }
       },
-      "block_order": ["accessories_aMxceb", "accessories_MmUdzQ"],
+      "block_order": [
+        "accessories_aMxceb",
+        "accessories_UmbGad",
+        "accessories_MmUdzQ"
+      ],
       "name": "Custom accesories",
       "settings": {
         "padding_top": 30,
@@ -739,5 +583,26 @@
       }
     }
   },
-  "order": ["main", "0_custom_breadcrumb_anVbCE", "0_custom_banner_v2_gzBzy3", "0_custom_benefits_87EBPc", "0_custom_banner_v1_kMFmEe", "0_custom_designers_iKLLJx", "0_custom_header_title_NJ43iJ", "0_ambassadors_wWRCfP", "0_custom_banner_jr4QrC", "0_custom_thank_you_DjFeB3", "0_custom_best_sellers_qe6JcQ", "0_custom_banner_yt_PRL63e", "0_custom_subscribe_wP3e6e", "0_custom_why_use_pPyRL4", "0_custom_base_3_NtGWb8", "0_custom_blog_v1_aQJWFe", "0_custom_blog_popup_8xUmrU", "0_custom_popup_blog_Rqy6qA", "0_custom_locator_PaCQGR", "0_custom_reviews_w49BQ8", "0_custom_products_xKLrjc", "adaptive_banner_UEbeRi", "0_custom_e_book_JR8JgK", "0_custom_advantages_KVe6G9", "0_custom_accessories_VV4Brz"]
+  "order": [
+    "main",
+    "0_custom_breadcrumb_anVbCE",
+    "0_custom_banner_v2_gzBzy3",
+    "0_custom_benefits_87EBPc",
+    "0_custom_banner_v1_kMFmEe",
+    "0_custom_designers_iKLLJx",
+    "0_custom_header_title_NJ43iJ",
+    "0_ambassadors_wWRCfP",
+    "0_custom_banner_jr4QrC",
+    "0_custom_thank_you_DjFeB3",
+    "0_custom_best_sellers_qe6JcQ",
+    "0_custom_banner_yt_PRL63e",
+    "0_custom_subscribe_wP3e6e",
+    "0_custom_why_use_pPyRL4",
+    "0_custom_base_3_NtGWb8",
+    "0_custom_popup_blog_Rqy6qA",
+    "0_custom_reviews_w49BQ8",
+    "0_custom_products_xKLrjc",
+    "0_custom_e_book_JR8JgK",
+    "0_custom_accessories_VV4Brz"
+  ]
 }

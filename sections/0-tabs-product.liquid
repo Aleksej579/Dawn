@@ -1,8 +1,8 @@
 {{ '0-custom-tabs-product.out.css' | asset_url | stylesheet_tag }}
 {{ '0-library-accordion.css' | asset_url | stylesheet_tag }}
 <script src="{{ '0-library-accordion.js' | asset_url }}" defer></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>-->
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -198,7 +198,7 @@
 
 {% schema %}
 {
-  "name": "Custom tabs-product",
+  "name": "Tabs product",
   "class": "product-tabs-wrapper",
   "settings": [
     {
@@ -274,7 +274,7 @@
   ],
   "presets": [
     {
-      "name": "Custom tabs-product",
+      "name": "Tabs product",
       "category": "Custom"
     }
   ]

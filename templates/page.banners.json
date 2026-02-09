@@ -17,55 +17,65 @@
         "padding_bottom": 28
       }
     },
-    "0_custom_banner_v2_YDRJNW": {
+    "0_e_book_VEwHga": {
+      "type": "0-e-book",
+      "name": "E-book",
+      "settings": {
+        "color_scheme": "",
+        "title": "Lorem ipsum dolor sit amet",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "image": "shopify://shop_images/image-placeholder.jpg",
+        "btn_name": "Button",
+        "btn_url": "#",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_banner_v2_yfXDdr": {
       "type": "0-banner-v2",
       "name": "Banner V2",
       "settings": {
         "bg_banner": "#f15c25",
-        "banner_image": "shopify://shop_images/post-1.jpg",
-        "title": "Lorem ipsum dolor sit amet",
-        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "btn": "Button",
-        "btn_link": "#",
+        "title": "",
+        "sub_title": "",
+        "btn": "",
+        "btn_link": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "0_collection_banner_grid_kfCbgH": {
+    "0_banner_yt_WzhhX8": {
+      "type": "0-banner-yt",
+      "name": "Banner you-tube",
+      "settings": {
+        "full_width_banner": false,
+        "btn_video_name": "",
+        "btn_video_fragment_name": "",
+        "btn_video_fragment_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_banner_Hyhx7x": {
+      "type": "0-banner",
+      "name": "Custom banner",
+      "settings": {
+        "title": "",
+        "sub_title": "",
+        "btn_name": "",
+        "btn_url": "",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "0_banner_grid_Byeh36": {
       "type": "0-banner-grid",
-      "blocks": {
-        "block_1_xecQe3": {
-          "type": "block_1",
-          "settings": {
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "Lorem",
-            "title": "<p>Lorem ipsum dolor sit amet</p>",
-            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_date": ""
-          }
-        },
-        "block_1_ybCqwy": {
-          "type": "block_1",
-          "settings": {
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "Loreum",
-            "title": "<p>Lorem ipsum dolor sit amet</p>",
-            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_date": ""
-          }
-        },
-        "block_1_dWFjNQ": {
-          "type": "block_1",
-          "settings": {
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "Loreum",
-            "title": "<p>Lorem ipsum dolor sit amet</p>",
-            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_date": ""
-          }
-        }
-      },
-      "block_order": ["block_1_xecQe3", "block_1_ybCqwy", "block_1_dWFjNQ"],
       "name": "Collection banner grid",
       "settings": {
         "color_scheme": "",
@@ -77,27 +87,8 @@
         "padding_bottom_mobile": 0
       }
     },
-    "0_collection_banner_half_Qfx3JU": {
+    "0_banner_half_CEit7D": {
       "type": "0-banner-half",
-      "blocks": {
-        "block_1_8M8qYk": {
-          "type": "block_1",
-          "settings": {
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "Lorem",
-            "title": "<p>Lorem ipsum dolor sit amet</p>"
-          }
-        },
-        "block_1_pPHH6G": {
-          "type": "block_1",
-          "settings": {
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "badge": "Lorem",
-            "title": "<p>Lorem ipsum dolor sit amet</p>"
-          }
-        }
-      },
-      "block_order": ["block_1_8M8qYk", "block_1_pPHH6G"],
       "name": "Collection banner half",
       "settings": {
         "color_scheme": "",
@@ -109,59 +100,38 @@
         "padding_bottom_mobile": 0
       }
     },
-    "0_custom_banner_yt_tTmdQk": {
-      "type": "0-banner-yt",
-      "name": "Banner you-tube",
+    "0_subscribe_v2_mhtyXx": {
+      "type": "0-subscribe-v2",
+      "name": "Collection subscribe",
       "settings": {
-        "full_width_banner": false,
-        "image_1": "shopify://shop_images/image-placeholder.jpg",
-        "image_2": "shopify://shop_images/image-placeholder.jpg",
-        "btn_video_name": "Button",
-        "video": "shopify://files/videos/video-1.mp4",
-        "btn_video_fragment_name": "Button",
-        "btn_video_fragment_link": "",
-        "padding_top": 12,
-        "padding_bottom": 12,
-        "margin_top": 0,
-        "margin_bottom": 0
+        "color_scheme": "",
+        "direction": "135deg",
+        "color_1": "#131313",
+        "color_2": "#3C3C38",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
-    "0_custom_banner_cWmUPh": {
-      "type": "0-banner",
-      "name": "Custom banner",
-      "settings": {
-        "image_bg": "shopify://shop_images/post-1.jpg",
-        "image_bg_mobile": "shopify://shop_images/post-2.jpg",
-        "image_clothing": "shopify://shop_images/image-placeholder.jpg",
-        "image_clothing_mobile": "shopify://shop_images/image-placeholder.jpg",
-        "title": "<p>Lorem ipsum dolor sit amet</p>",
-        "sub_title": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>",
-        "btn_name": "Button",
-        "btn_url": "#",
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
-    },
-    "0_custom_banner_v1_WF6YxB": {
+    "0_banner_v1_3N94Df": {
       "type": "0-banner-v1",
       "blocks": {
-        "heading_tHkfaH": {
+        "heading_RfJ3mH": {
           "type": "heading",
           "settings": {
             "heading": "",
             "heading_size": "h1"
           }
         },
-        "text_KzqeP7": {
+        "text_WQpC3D": {
           "type": "text",
           "settings": {
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "text_style": "body"
           }
         },
-        "button_AD3kqx": {
+        "button_tT6b9K": {
           "type": "button",
           "settings": {
             "button_label": "Button label",
@@ -170,10 +140,13 @@
           }
         }
       },
-      "block_order": ["heading_tHkfaH", "text_KzqeP7", "button_AD3kqx"],
+      "block_order": [
+        "heading_RfJ3mH",
+        "text_WQpC3D",
+        "button_tT6b9K"
+      ],
       "name": "Custom banner v1",
       "settings": {
-        "image": "shopify://shop_images/image-placeholder.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -189,5 +162,15 @@
       }
     }
   },
-  "order": ["main", "0_custom_banner_v2_YDRJNW", "0_collection_banner_grid_kfCbgH", "0_collection_banner_half_Qfx3JU", "0_custom_banner_yt_tTmdQk", "0_custom_banner_cWmUPh", "0_custom_banner_v1_WF6YxB"]
+  "order": [
+    "main",
+    "0_e_book_VEwHga",
+    "0_banner_v2_yfXDdr",
+    "0_banner_yt_WzhhX8",
+    "0_banner_Hyhx7x",
+    "0_banner_grid_Byeh36",
+    "0_banner_half_CEit7D",
+    "0_subscribe_v2_mhtyXx",
+    "0_banner_v1_3N94Df"
+  ]
 }
