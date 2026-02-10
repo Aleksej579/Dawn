@@ -334,7 +334,7 @@
       }
     },
     "0_custom_why_use_mJfkLt": {
-      "type": "0-why-use",
+      "type": "0-grid-cards-v1",
       "blocks": {
         "why_use_erGYpb": {
           "type": "why_use",

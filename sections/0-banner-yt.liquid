@@ -15,7 +15,7 @@
     }
   {%- endif -%}
 {%- endstyle -%}
-<div class="aptus-banner-yt__wrapper section-{{ section.id }}-padding page-width">
+<div class="aptus-banner-yt__wrapper section-{{ section.id }} page-width">
   <div class="left-side__wrapp">
     {%- if section.settings.image_1 != blank -%}
       {{ section.settings.image_1 | image_url: width: 600 | image_tag: class: '__image', loading: 'lazy' }}

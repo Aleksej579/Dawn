@@ -1,13 +1,13 @@
 .aptus__why-use {
-        padding-left: 30px;
-        padding-right: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     .aptus-why-use__wrapper {
         @media screen and (max-width: 768px) {
             padding-left: 0;
             padding-right: 0;
         }
         h2.main-title {
-            color: #f15c25;
+            /* color: #f15c25; */
             font-size: 28px;
             font-weight: 800;
             text-align: center;
@@ -20,7 +20,7 @@
             line-height: 1.4em;
             text-align: center;
             margin-bottom: 58px;
-            font-family: "Inter";
+            font-family: 'Inter';
         }
         .aptus-why-use__wrapp-grid {
             display: flex;
@@ -79,7 +79,7 @@
                         font-size: 15px;
                         font-weight: 400;
                         margin: 0;
-                        font-family: "Inter";
+                        font-family: 'Inter';
                     }
                 }
             }
