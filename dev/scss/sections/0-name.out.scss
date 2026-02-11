@@ -76,11 +76,14 @@ $xxl: 1400px;
                 }
             }
 
+            /* layout */
             .__grid--wrapp {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 12px;
             }
+
+            /* component */
             article {
                 border-radius: 12px;
                 overflow: hidden;
@@ -104,7 +107,9 @@ $xxl: 1400px;
                         object-position: center;
                     }
 
-                    .__text {
+                    h4.__title {
+                    }
+                    .__description {
                     }
                 }
             }

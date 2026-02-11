@@ -53,12 +53,15 @@
 
 <div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
   <div class="__container">
-    <h2
-      class="__title {{ section.settings.title_size }}"
-      style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
-    >
-      {{ section.settings.title }}
-    </h2>
+      <header>
+        <h2
+            class="__title {{ section.settings.title_size }}"
+            style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
+        >
+            {{ section.settings.title }}
+        </h2>
+        <p class='__subtitle'>{{ section.settings.subtitle }}</p>
+      </header>
 
     {% comment %} Half Image Video  {% endcomment %}
     <div class="__wrapper">
@@ -103,7 +106,8 @@
                                 {{ 'image' | placeholder_svg_tag }}
                             {%- endif -%}
                         </div>
-                        <p class='__text'>{{ block.settings.block_text }}</p>
+                        <h4 class='__title'>{{ block.settings.title }}</h4>
+                        <p class='__description'>{{ block.settings.description }}</p>
                     </article>
             {% endcase %}
         {%- endfor -%}
@@ -167,14 +171,15 @@
                                 {{ 'image' | placeholder_svg_tag }}
                             {%- endif -%}
                         </div>
-                        <p class='__text'>{{ block.settings.block_text }}</p>
+                        <h4 class='__title'>{{ block.settings.title }}</h4>
+                        <p class='__description'>{{ block.settings.description }}</p>
                     </article>
             {% endcase %}
         {%- endfor -%}
       </div>
-      <div class="swiper-button-next swiper-button-next-{{ section.index }}">Next</div>
-      <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">Prev</div>
-      <div class="swiper-pagination swiper-pagination-{{ section.index }}"></div>
+      <div class="swiper-button-next swiper-button-next-{{ section.id }}">Next</div>
+      <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
+      <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
     </div>
   </div>
 </div>
@@ -334,6 +339,11 @@
       "type": "text",
       "id": "title",
       "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
     },
     {
       "type": "checkbox",
@@ -507,7 +517,7 @@
         },
         {
           "type": "text",
-          "id": "block_text",
+          "id": "description",
           "label": "Description"
         }
       ]
