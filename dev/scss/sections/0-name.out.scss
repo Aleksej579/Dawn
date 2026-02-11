@@ -76,7 +76,7 @@ $xxl: 1400px;
                 }
             }
 
-            .__grid-slider {
+            .__grid--wrapp {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 12px;
@@ -91,9 +91,10 @@ $xxl: 1400px;
                         transition: 0.5s all ease-in-out;
                         transform: scale(1.1);
                     }
-                    figure {
-                        margin: 0;
-                        height: 100%;
+                    .__img--wrapp {
+                        overflow: hidden;
+                        aspect-ratio: 1;
+                        display: block;
 
                         img {
                             width: 100%;
@@ -102,7 +103,7 @@ $xxl: 1400px;
                             object-position: center;
                         }
 
-                        figcaption {
+                        .__text {
                         }
                     }
                 }

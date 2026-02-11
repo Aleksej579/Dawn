@@ -90,87 +90,87 @@
     {%- endif -%}
 
 
-    <!--simple blocks SWIPER-->
-    <div class="__grid-slider--wrapp {% if section.settings.if_slider == true %}swiper swiper-{{ section.id }}{% endif %}">
-      <div class="__grid-slider {% if section.settings.if_slider == true %}swiper-wrapper{% endif %}">
+    <!--simple blocks-->
+    <div class="__grid--wrapp">
         {%- for block in section.blocks -%}
             {% case block.type %}
                 {% when 'block_1' %}
-                    <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
-                        <figure>
-                        {%- if block.settings.block_image != blank -%}
-                            {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag }}
-                        {%- endif -%}
-                        <figcaption>{{ block.settings.block_text }}</figcaption>
-                        </figure>
+                    <article>
+                        <div class='__img--wrapp'>
+                            {%- if block.settings.block_image != blank -%}
+                                {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}
+                            {%- endif -%}
+                        </div>
+                        <p class='__text'>{{ block.settings.block_text }}</p>
                     </article>
             {% endcase %}
         {%- endfor -%}
-      </div>
-      <div class="swiper-button-next swiper-button-next-{{ section.index }}">Next</div>
-      <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">Prev</div>
-      <div class="swiper-pagination swiper-pagination-{{ section.index }}"></div>
     </div>
 
-
-
-
-    <div class="__grid-slider--wrapp {% if section.settings.if_slider == true %}swiper swiper-{{ section.id }}{% endif %}">
-      <div class="__grid-slider {% if section.settings.if_slider == true %}swiper-wrapper{% endif %}">
-
-        {%- for block in section.blocks -%}
-          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
-            <figure>
-              {%- if block.settings.block_image != blank -%}
-                {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
-              {% else %}
-                {{ 'image' | placeholder_svg_tag }}
-              {%- endif -%}
-              <figcaption>{{ block.settings.block_text }}</figcaption>
-            </figure>
-          </article>
-        {%- endfor -%}
-
+    <!--blogs-->
+    <div class="__grid--wrapp">
         {% for article in blogs.news.articles %}
-          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
-            <figure>
-              {%- if article.image != blank -%}
-                {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
-              {% else %}
-                {{ 'image' | placeholder_svg_tag }}
-              {%- endif -%}
-              <figcaption>{{ article.title | link_to: article.url }}</figcaption>
-            </figure>
-            <div>
-              {{- article.excerpt }}
-              {{ 'Read More' | link_to: article.url }}
-            </div>
-          </article>
+            <article>
+                <div class='__img--wrapp'>
+                    {%- if article.image != blank -%}
+                        {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag }}
+                    {%- endif -%}
+                    <p class='__text'>{{ article.title | link_to: article.url }}</p>
+                </div>
+                <div>
+                    {{- article.excerpt }}
+                    {{ 'Read More' | link_to: article.url }}
+                </div>
+            </article>
         {% endfor %}
+    </div>
 
+    <!--products-->
+    <div class="__grid--wrapp">
         {% for product in section.settings.product_list %}
-          <article class="{% if section.settings.if_slider == true %}swiper-slide{% endif %}">
-            <a href="{{ product.url }}">
-              {% if product.featured_image != blank %}
-                {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: 'product__image', loading: 'lazy' }}
-              {% else %}
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-              <h3 class="product__title">{{ product.title }}</h3>
+        <article>
+            <a href="{{ product.url }}" class='__img--wrapp'>
+                {% if product.featured_image != blank %}
+                    {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: '__image', loading: 'lazy' }}
+                {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
             </a>
+            <h3 class="product__title">{{ product.title }}</h3>
             <div class="product__content">
-              {{ product.description }}
-              <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
-              <span class="product__price">
-                {{- cart.currency.iso_code -}}
-                {{ product.price | money_without_currency -}}
-              </span>
+                {{ product.description }}
+                <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                <span class="product__price">
+                    {{- cart.currency.iso_code -}}
+                    {{ product.price | money_without_currency -}}
+                </span>
             </div>
-          </article>
+        </article>
         {% endfor %}
+    </div>
 
+    <!--slider-->
+    <div class="swiper swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+            {% case block.type %}
+                {% when 'block_1' %}
+                    <article class="swiper-slide">
+                        <div class='__img--wrapp'>
+                            {%- if block.settings.block_image != blank -%}
+                                {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}
+                            {%- endif -%}
+                        </div>
+                        <p class='__text'>{{ block.settings.block_text }}</p>
+                    </article>
+            {% endcase %}
+        {%- endfor -%}
       </div>
       <div class="swiper-button-next swiper-button-next-{{ section.index }}">Next</div>
       <div class="swiper-button-prev swiper-button-prev-{{ section.index }}">Prev</div>
@@ -436,17 +436,6 @@
       "label": "Button url"
     },
     {
-      "type": "header",
-      "content": "If slider",
-      "info": "Switching between grid and slider display"
-    },
-    {
-      "type": "checkbox",
-      "id": "if_slider",
-      "label": "Is Slider",
-      "default": false
-    },
-    {
       "type": "product_list",
       "id": "product_list",
       "label": "Products",
@@ -522,12 +511,6 @@
           "type": "text",
           "id": "block_text",
           "label": "Description"
-        },
-        {
-          "type": "number",
-          "id": "block_number",
-          "label": "Count",
-          "default": 5
         }
       ]
     }
