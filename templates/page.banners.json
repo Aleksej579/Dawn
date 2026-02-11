@@ -17,6 +17,67 @@
         "padding_bottom": 28
       }
     },
+    "0_marquee_9YPYka": {
+      "type": "0-marquee",
+      "blocks": {
+        "image_bGqwEK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Logo_square_transparent.png",
+            "image_width": 120
+          }
+        },
+        "icon_gBWNkd": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/icon.svg",
+            "icon_width": 32
+          }
+        },
+        "text_6wyAJd": {
+          "type": "text",
+          "settings": {
+            "text": "Make things better",
+            "heading_tag": "h2",
+            "font_size": 48,
+            "text_color": ""
+          }
+        },
+        "text_BTPMmP": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping",
+            "heading_tag": "h2",
+            "font_size": 48,
+            "text_color": ""
+          }
+        },
+        "text_tLznJa": {
+          "type": "text",
+          "settings": {
+            "text": "New collection",
+            "heading_tag": "h2",
+            "font_size": 48,
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_bGqwEK",
+        "icon_gBWNkd",
+        "text_6wyAJd",
+        "text_BTPMmP",
+        "text_tLznJa"
+      ],
+      "name": "Marquee",
+      "settings": {
+        "movement_direction": "reverse",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "gap_between_elements": 24
+      }
+    },
     "0_banner_grid_Byeh36": {
       "type": "0-banner-grid",
       "blocks": {
@@ -230,6 +291,7 @@
   },
   "order": [
     "main",
+    "0_marquee_9YPYka",
     "0_banner_grid_Byeh36",
     "0_banner_half_CEit7D",
     "0_subscribe_v2_KqYCmQ",
