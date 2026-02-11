@@ -181,7 +181,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    {%- if section.settings.if_slider == true -%}
       document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
       const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
         slidesPerView: 1.3,
@@ -202,7 +201,6 @@
           type: 'bullets',
         }
       });
-    {%- endif -%}
 
     //product add to cart
     document.querySelectorAll('.add-to-cart').forEach((button) => {
