@@ -17,8 +17,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_number": 5
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           }
         },
         "block_1_bg8re7": {
@@ -26,8 +25,15 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_number": 5
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "block_1_NcQMAW": {
+          "type": "block_1",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           }
         },
         "block_1_pdrREn": {
@@ -35,14 +41,14 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "block_image": "shopify://shop_images/image-placeholder.jpg",
-            "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "block_number": 5
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           }
         }
       },
       "block_order": [
         "block_1_WpAnWJ",
         "block_1_bg8re7",
+        "block_1_NcQMAW",
         "block_1_pdrREn"
       ],
       "name": "Name",
@@ -58,16 +64,18 @@
         "title_size": "h2",
         "title_align": "center",
         "title_font_family": "var(--font-heading-family)",
-        "image_desk": "shopify://shop_images/image-placeholder.jpg",
-        "image_mobi": "shopify://shop_images/image-placeholder.jpg",
+        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "image_desk": "shopify://shop_images/post-1.jpg",
+        "image_mobi": "shopify://shop_images/post-2.jpg",
         "btn_name": "Button",
         "btn_url": "#",
-        "if_slider": false,
+        "banner_position": "split-right",
         "product_list": [
           "product",
           "halsa-baby-all-in-one-wellness-monitor",
           "babyliveadvice®-subscription"
         ],
+        "blog": "news",
         "padding_top": 30,
         "padding_bottom": 30,
         "padding_top_mobile": 10,

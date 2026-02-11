@@ -14,15 +14,17 @@ $xxl: 1400px;
 
 .name {
     &__wrapper {
-        .__container {
-            background: none;
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
             .__title {
-                font-size: 60px;
                 line-height: 110%;
                 font-weight: 400;
                 letter-spacing: -0.03em;
-                margin: 0 auto;
-                max-width: 670px;
+                margin: 0;
 
                 &.h2 {
                     font-size: 48px;
@@ -39,6 +41,106 @@ $xxl: 1400px;
                 @include media-breakpoint-down(sm) {
                     font-size: 28px;
                     line-height: 100%;
+                }
+            }
+            .__subtitle {
+                font-size: 18px;
+                line-height: 150%;
+                font-weight: 400;
+                letter-spacing: -0.03em;
+                margin: 0;
+                max-width: 600px;
+
+                @include media-breakpoint-down(sm) {
+                    font-size: 16px;
+                    line-height: 100%;
+                }
+            }
+        }
+        .__container {
+            background: none;
+
+            .__banner--wrapp {
+                position: relative;
+                border: 1px solid red;
+
+                .__image-wrapp {
+                    aspect-ratio: 2 / 1;
+                    display: block;
+
+                    img,
+                    video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+                }
+                .__banner-content {
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding: 12px;
+
+                    backdrop-filter: blur(8px);
+                    background: rgba(255, 255, 255, 0.2);
+
+                    a {
+                        text-decoration: none;
+                    }
+                }
+                &.center {
+                    .__banner-content {
+                        max-width: 50%;
+                        left: 50%;
+                        transform: translate(-50%);
+                    }
+                }
+                &.left {
+                    .__banner-content {
+                        max-width: 50%;
+                        left: 0;
+                    }
+                }
+                &.right {
+                    .__banner-content {
+                        max-width: 50%;
+                        right: 0;
+                    }
+                }
+                &.full {
+                    .__banner-content {
+                        max-width: 100%;
+                    }
+                }
+                &.split-left {
+                    .__banner-content {
+                        max-width: 50%;
+                        left: 0;
+                    }
+                    .__image-wrapp {
+                        max-width: 50%;
+                        margin-left: auto;
+                        aspect-ratio: 1 / 1;
+                    }
+                }
+                &.split-right {
+                    .__banner-content {
+                        max-width: 50%;
+                        right: 0;
+                    }
+                    .__image-wrapp {
+                        max-width: 50%;
+                        margin-right: auto;
+                        aspect-ratio: 1 / 1;
+                    }
                 }
             }
 
@@ -70,9 +172,6 @@ $xxl: 1400px;
                         height: 100%;
                         object-fit: cover;
                     }
-                }
-
-                .__right-wrapp {
                 }
             }
 
