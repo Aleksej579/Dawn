@@ -9,6 +9,47 @@
  */
 {
   "sections": {
+    "0_marquee_ejrKyT": {
+      "type": "0-marquee",
+      "blocks": {
+        "image_TxWMWq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Logo_square_transparent.png",
+            "image_width": 120
+          }
+        },
+        "icon_fn9Eq6": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/icon.svg",
+            "icon_width": 32
+          }
+        },
+        "text_w9NHHU": {
+          "type": "text",
+          "settings": {
+            "text": "Make things better",
+            "heading_tag": "p",
+            "font_size": 18,
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_TxWMWq",
+        "icon_fn9Eq6",
+        "text_w9NHHU"
+      ],
+      "name": "Marquee",
+      "settings": {
+        "movement_direction": "reverse",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "gap_between_elements": 24
+      }
+    },
     "0_name_ffpUn6": {
       "type": "0-name",
       "blocks": {
@@ -45,7 +86,6 @@
         "block_1_bg8re7",
         "block_1_pdrREn"
       ],
-      "disabled": true,
       "name": "Name",
       "settings": {
         "color_scheme": "",
@@ -74,63 +114,10 @@
         "padding_top_mobile": 10,
         "padding_bottom_mobile": 10
       }
-    },
-    "0_four_card_jMefPy": {
-      "type": "0-four-card",
-      "blocks": {
-        "card_fyyQ7H": {
-          "type": "Card",
-          "settings": {
-            "card_text": "Lorem ipsum dolor sit amet",
-            "card_image": "shopify://shop_images/image-placeholder.jpg",
-            "card_button_name": "Button",
-            "card_button_url": "",
-            "search_parameter": ""
-          }
-        },
-        "card_RFkUFr": {
-          "type": "Card",
-          "settings": {
-            "card_text": "Lorem ipsum dolor sit amet",
-            "card_image": "shopify://shop_images/image-placeholder.jpg",
-            "card_button_name": "Button",
-            "card_button_url": "",
-            "search_parameter": ""
-          }
-        },
-        "card_gzGc4M": {
-          "type": "Card",
-          "settings": {
-            "card_text": "Lorem ipsum dolor sit amet",
-            "card_image": "shopify://shop_images/image-placeholder.jpg",
-            "card_button_name": "Button",
-            "card_button_url": "",
-            "search_parameter": ""
-          }
-        },
-        "card_fpLYE6": {
-          "type": "Card",
-          "settings": {
-            "card_text": "Lorem ipsum dolor sit amet",
-            "card_image": "shopify://shop_images/image-placeholder.jpg",
-            "card_button_name": "Button",
-            "card_button_url": "",
-            "search_parameter": ""
-          }
-        }
-      },
-      "block_order": [
-        "card_fyyQ7H",
-        "card_RFkUFr",
-        "card_gzGc4M",
-        "card_fpLYE6"
-      ],
-      "name": "Four card",
-      "settings": {}
     }
   },
   "order": [
-    "0_name_ffpUn6",
-    "0_four_card_jMefPy"
+    "0_marquee_ejrKyT",
+    "0_name_ffpUn6"
   ]
 }

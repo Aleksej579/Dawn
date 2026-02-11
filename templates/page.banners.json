@@ -17,6 +17,151 @@
         "padding_bottom": 28
       }
     },
+    "0_banner_grid_Byeh36": {
+      "type": "0-banner-grid",
+      "blocks": {
+        "block_1_FGwarV": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Badge",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "Lorem ipsum dolor sit amet",
+            "block_date": "2027-12-06"
+          }
+        },
+        "block_1_mcnijG": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Badge",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "",
+            "block_date": ""
+          }
+        },
+        "block_1_cm8D8V": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Badge",
+            "title": "<p>Lorem ipsum dolor sit amet</p>",
+            "subtitle": "",
+            "block_date": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_1_FGwarV",
+        "block_1_mcnijG",
+        "block_1_cm8D8V"
+      ],
+      "name": "Collection banner grid",
+      "settings": {
+        "color_scheme": "",
+        "section_bg": "#ffffff",
+        "color_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_banner_half_CEit7D": {
+      "type": "0-banner-half",
+      "blocks": {
+        "block_1_EgE9LN": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Badge",
+            "title": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        },
+        "block_1_QUjKNj": {
+          "type": "block_1",
+          "settings": {
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "badge": "Badge",
+            "title": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_1_EgE9LN",
+        "block_1_QUjKNj"
+      ],
+      "name": "Collection banner half",
+      "settings": {
+        "color_scheme": "",
+        "section_bg": "#ffffff",
+        "color_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_subscribe_v2_KqYCmQ": {
+      "type": "0-subscribe-v2",
+      "blocks": {
+        "title_ReDaTU": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Lorem ipsum dolor sit amet</p>"
+          }
+        },
+        "subtitle_kLGmPV": {
+          "type": "subtitle",
+          "settings": {
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        },
+        "subscribe_citDB6": {
+          "type": "subscribe",
+          "settings": {}
+        },
+        "benefits_AccWQX": {
+          "type": "benefits",
+          "settings": {
+            "svg_code": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewbox=\"0 0 18 18\" fill=\"none\">\n<path d=\"M9 18C11.3869 18 13.6761 17.0518 15.364 15.364C17.0518 13.6761 18 11.3869 18 9C18 6.61305 17.0518 4.32387 15.364 2.63604C13.6761 0.948212 11.3869 0 9 0C6.61305 0 4.32387 0.948212 2.63604 2.63604C0.948212 4.32387 0 6.61305 0 9C0 11.3869 0.948212 13.6761 2.63604 15.364C4.32387 17.0518 6.61305 18 9 18ZM12.9727 7.34766L8.47266 11.8477C8.14219 12.1781 7.60781 12.1781 7.28086 11.8477L5.03086 9.59766C4.70039 9.26719 4.70039 8.73281 5.03086 8.40586C5.36133 8.07891 5.8957 8.07539 6.22266 8.40586L7.875 10.0582L11.7773 6.15234C12.1078 5.82188 12.6422 5.82188 12.9691 6.15234C13.2961 6.48281 13.2996 7.01719 12.9691 7.34414L12.9727 7.34766Z\" fill=\"#FEE301\"></path>\n</svg>",
+            "text_benefits_1": "Text benefits",
+            "text_benefits_2": "Text benefits",
+            "text_benefits_3": "Text benefits"
+          }
+        }
+      },
+      "block_order": [
+        "title_ReDaTU",
+        "subtitle_kLGmPV",
+        "subscribe_citDB6",
+        "benefits_AccWQX"
+      ],
+      "name": "Subscribe v-2",
+      "settings": {
+        "color_scheme": "",
+        "direction": "90deg",
+        "color_1": "#131313",
+        "color_2": "#3c3c38",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "0_subscribe_j6BYHB": {
+      "type": "0-subscribe",
+      "name": "Subscribe",
+      "settings": {
+        "popup": true,
+        "full_width": false,
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
     "0_e_book_VEwHga": {
       "type": "0-e-book",
       "name": "E-book",
@@ -38,35 +183,26 @@
       "name": "Banner V2",
       "settings": {
         "bg_banner": "#f15c25",
-        "title": "",
-        "sub_title": "",
-        "btn": "",
-        "btn_link": "",
+        "banner_image": "shopify://shop_images/post-1.jpg",
+        "title": "Lorem ipsum dolor sit amet",
+        "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "btn": "Button",
+        "btn_link": "#",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "0_banner_yt_WzhhX8": {
-      "type": "0-banner-yt",
-      "name": "Banner you-tube",
-      "settings": {
-        "full_width_banner": false,
-        "btn_video_name": "",
-        "btn_video_fragment_name": "",
-        "btn_video_fragment_link": "",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "margin_top": 0,
-        "margin_bottom": 0
       }
     },
     "0_banner_Hyhx7x": {
       "type": "0-banner",
       "name": "Custom banner",
       "settings": {
-        "title": "",
-        "sub_title": "",
-        "btn_name": "",
+        "image_bg": "shopify://shop_images/post-1.jpg",
+        "image_bg_mobile": "shopify://shop_images/post-1.jpg",
+        "image_clothing": "shopify://shop_images/image-placeholder.jpg",
+        "image_clothing_mobile": "shopify://shop_images/image-placeholder.jpg",
+        "title": "<p>Lorem ipsum dolor sit amet</p>",
+        "sub_title": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>",
+        "btn_name": "Button",
         "btn_url": "",
         "padding_top": 30,
         "padding_bottom": 30,
@@ -74,103 +210,33 @@
         "margin_bottom": 0
       }
     },
-    "0_banner_grid_Byeh36": {
-      "type": "0-banner-grid",
-      "name": "Collection banner grid",
+    "0_banner_yt_WzhhX8": {
+      "type": "0-banner-yt",
+      "name": "Banner you-tube",
       "settings": {
-        "color_scheme": "",
-        "section_bg": "#ffffff",
-        "color_bg": "#ffffff",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
-    "0_banner_half_CEit7D": {
-      "type": "0-banner-half",
-      "name": "Collection banner half",
-      "settings": {
-        "color_scheme": "",
-        "section_bg": "#ffffff",
-        "color_bg": "#ffffff",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
-    "0_subscribe_v2_mhtyXx": {
-      "type": "0-subscribe-v2",
-      "name": "Collection subscribe",
-      "settings": {
-        "color_scheme": "",
-        "direction": "135deg",
-        "color_1": "#131313",
-        "color_2": "#3C3C38",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
-    "0_banner_v1_3N94Df": {
-      "type": "0-banner-v1",
-      "blocks": {
-        "heading_RfJ3mH": {
-          "type": "heading",
-          "settings": {
-            "heading": "",
-            "heading_size": "h1"
-          }
-        },
-        "text_WQpC3D": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_tT6b9K": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_RfJ3mH",
-        "text_WQpC3D",
-        "button_tT6b9K"
-      ],
-      "name": "Custom banner v1",
-      "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "full_width_banner": false,
+        "image_1": "shopify://shop_images/Logo_square_transparent.png",
+        "image_2": "shopify://shop_images/post-1.jpg",
+        "btn_video_name": "Play preview",
+        "video": "shopify://files/videos/video-1.mp4",
+        "btn_video_fragment_name": "Go to the channel",
+        "btn_video_fragment_link": "https://www.youtube.com/@cleverdevice4u",
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "margin_top": 32,
+        "margin_bottom": 32
       }
     }
   },
   "order": [
     "main",
-    "0_e_book_VEwHga",
-    "0_banner_v2_yfXDdr",
-    "0_banner_yt_WzhhX8",
-    "0_banner_Hyhx7x",
     "0_banner_grid_Byeh36",
     "0_banner_half_CEit7D",
-    "0_subscribe_v2_mhtyXx",
-    "0_banner_v1_3N94Df"
+    "0_subscribe_v2_KqYCmQ",
+    "0_subscribe_j6BYHB",
+    "0_e_book_VEwHga",
+    "0_banner_v2_yfXDdr",
+    "0_banner_Hyhx7x",
+    "0_banner_yt_WzhhX8"
   ]
 }

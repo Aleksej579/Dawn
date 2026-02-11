@@ -1,247 +1,247 @@
-{{ '0-custom-marquee.out.css' | asset_url | stylesheet_tag }}
+{{ '0-marquee.out.css' | asset_url | stylesheet_tag }}
+<script src="{{ '0-marquee.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-      margin-top: {{ section.settings.margin_top }}px;
-      margin-bottom: {{ section.settings.margin_bottom }}px;
-  }
-  @media screen and (max-width: 1024px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
-      margin-top: {{ section.settings.margin_top | divided_by: 2 }}px;
-      margin-bottom: {{ section.settings.margin_bottom | divided_by: 2 }}px;
-    }
-  }
-  .marquee-header {
-    background: {{ section.settings.bg_color }};
-  }
-  .marquee:before {
-    background-image: linear-gradient(to right, {{ section.settings.bg_color }}, transparent);
-  }
-  .marquee:after {
-    background-image: linear-gradient(to left, {{ section.settings.bg_color }}, transparent);
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --marquee-gap: {{ section.settings.gap_between_elements }}px;
+    --marquee-direction: {{ section.settings.movement_direction }};
   }
 {%- endstyle -%}
 
-<div
-  class="
-    marquee-wrapper
-    js-section-{{ section.index }}
-    page-width
-    section-{{ section.id }}-padding
-  "
-  style="color: {{ section.settings.text_color }};"
->
-  <div class="marquee" data-marquee>
-    <div class="marquee-content">
-      {% for block in section.blocks %}
-        <div class="marquee-item" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 40 }}" alt="{{ block.settings.image.alt }}" width="40" height="40" loading="lazy">
-          {% endif %}
-          <span>{{ block.settings.text }}</span>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
+<div class="marquee-section color-{{ section.settings.color_scheme }} gradient">
+  <marquee-component
+    class="marquee"
+    data-speed-factor="25"
+    data-movement-direction="{{ section.settings.movement_direction }}"
+  >
+    <div class="marquee__wrapper" data-marquee-wrapper>
+      <div class="marquee__content" data-marquee-content>
+        <div class="marquee__repeated-items" data-marquee-items>
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="marquee__item marquee__item--text" {{ block.shopify_attributes }}>
+                  <{{ block.settings.heading_tag }}
+                    class="marquee__text"
+                    style="
+                      font-size: {{ block.settings.font_size }}px;
+                      {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
+                        color: {{ block.settings.text_color }};
+                      {%- endif -%}
+                    "
+                  >
+                    {{- block.settings.text | escape -}}
+                  </{{ block.settings.heading_tag }}>
+                </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const marquee = document.querySelector('[data-marquee]');
-    if (!marquee) return;
-    const content = marquee.querySelector('.marquee-content');
-    const wrapper = marquee.closest('.js-section-{{ section.index }}.marquee-wrapper');
-    const speed = {{ section.settings.speed | default: 50 }};
-    const pauseOnHover = {{ section.settings.pause_on_hover | default: false }};
-    // Clone items until content fills wrapper width
-    function cloneItems() {
-      const wrapperWidth = wrapper.offsetWidth;
-      let contentWidth = content.scrollWidth;
-      while (contentWidth < wrapperWidth * 1.5) {
-        content.innerHTML += content.innerHTML;
-        contentWidth = content.scrollWidth;
-      }
-    }
-    cloneItems();
-    let animationFrame;
-    let startTime;
-    let progress = 0;
-    const contentWidth = content.scrollWidth / 2;
-    function animate(currentTime) {
-      if (!startTime) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      progress = (elapsed * speed / 1000) % contentWidth;
-      content.style.transform = `translateX(-${progress}px)`;
-      animationFrame = requestAnimationFrame(animate);
-    }
-    // Reset on resize
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(function() {
-        content.style.transform = 'translateX(0)';
-        content.innerHTML = content.innerHTML.replace(/<div class="marquee-item" aria-hidden="true">.*?<\/div>/g, '');
-        cloneItems();
-        startTime = null;
-        if (animationFrame) cancelAnimationFrame(animationFrame);
-        animationFrame = requestAnimationFrame(animate);
-      }, 100);
-    });
-    animationFrame = requestAnimationFrame(animate);
-    if (pauseOnHover) {
-      wrapper.addEventListener('mouseenter', () => {
-        cancelAnimationFrame(animationFrame);
-      });
-      wrapper.addEventListener('mouseleave', () => {
-        startTime = performance.now() - (progress / speed * 1000);
-        animationFrame = requestAnimationFrame(animate);
-      });
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrame);
-      } else {
-        startTime = performance.now() - (progress / speed * 1000);
-        animationFrame = requestAnimationFrame(animate);
-      }
-    });
-  });
-</script>
+              {%- when 'icon' -%}
+                <div class="marquee__item marquee__item--icon" {{ block.shopify_attributes }}>
+                  {%- if block.settings.icon != blank -%}
+                    {%- assign icon_width = block.settings.icon_width | default: 24 -%}
+                    {{
+                      block.settings.icon
+                      | image_url: width: icon_width
+                      | image_tag:
+                        width: icon_width,
+                        class: 'marquee__icon',
+                        loading: 'lazy'
+                    }}
+                  {%- endif -%}
+                </div>
+
+              {%- when 'image' -%}
+                <div class="marquee__item marquee__item--image" {{ block.shopify_attributes }}>
+                  {%- if block.settings.image != blank -%}
+                    {%- assign img_width = block.settings.image_width | default: 120 -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: img_width
+                      | image_tag:
+                        width: img_width,
+                        class: 'marquee__image',
+                        loading: 'lazy'
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'marquee__image marquee__image--placeholder' }}
+                  {%- endif -%}
+                </div>
+
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </marquee-component>
+</div>
 
 {% schema %}
 {
   "name": "Marquee",
   "tag": "section",
-  "class": "marquee-header",
-  "settings": [
-    {
-      "type": "range",
-      "id": "speed",
-      "min": 10,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Speed",
-      "default": 50
-    },
-    {
-      "type": "checkbox",
-      "id": "pause_on_hover",
-      "label": "Pause on hover",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background color",
-      "default": "#2F2F2F"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Top",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Bottom",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Margin"
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Top",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Bottom",
-      "default": 0
-    }
-  ],
+  "class": "section",
   "blocks": [
     {
-      "type": "item",
-      "name": "Marquee Item",
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Make things better",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading tag",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "p",  "label": "Paragraph" }
+          ],
+          "default": "h2"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font size",
+          "min": 12,
+          "max": 120,
+          "step": 2,
+          "unit": "px",
+          "default": 48
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color"
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Icon width",
+          "min": 16,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "default": 32
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image / Logo",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image (optional)"
+          "label": "Image"
         },
         {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "Special offer"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link (optional)"
+          "type": "range",
+          "id": "image_width",
+          "label": "Image width",
+          "min": 40,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 120
         }
       ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "movement_direction",
+      "label": "Movement direction",
+      "options": [
+        { "value": "reverse", "label": "Forward (left)" },
+        { "value": "normal",  "label": "Reverse (right)" }
+      ],
+      "default": "reverse"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "gap_between_elements",
+      "label": "Gap between elements",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     }
   ],
   "presets": [
     {
       "name": "Marquee",
-      "category": "Custom",
       "blocks": [
         {
-          "type": "item",
+          "type": "text",
           "settings": {
-            "text": "✨ New arrivals",
-            "image": "shopify://shop_images/new-arrival.png"
+            "text": "Make things better",
+            "heading_tag": "h2",
+            "font_size": 48
           }
         },
         {
-          "type": "item",
+          "type": "text",
           "settings": {
-            "text": "🛍️ Free shipping"
+            "text": "Free shipping",
+            "heading_tag": "h2",
+            "font_size": 48
           }
         },
         {
-          "type": "item",
+          "type": "text",
           "settings": {
-            "text": "🔥 Limited time offer",
-            "image": "shopify://shop_images/hot-deal.png"
+            "text": "New collection",
+            "heading_tag": "h2",
+            "font_size": 48
           }
         }
       ]
