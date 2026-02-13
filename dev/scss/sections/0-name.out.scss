@@ -1,17 +1,5 @@
 @use '../settings/config' as *;
 
-$font-family-base: var(--font-body-family);
-$font-family-headings: var(--font-heading-family);
-
-$white: #fff;
-$black: #000000;
-
-$sm: 576px;
-$md: 750px;
-$lg: 990px;
-$xl: 1200px;
-$xxl: 1400px;
-
 .name {
     &__wrapper {
         header {
@@ -62,7 +50,6 @@ $xxl: 1400px;
 
             .__banner--wrapp {
                 position: relative;
-                border: 1px solid red;
 
                 .__image-wrapp {
                     aspect-ratio: 2 / 1;
@@ -81,14 +68,11 @@ $xxl: 1400px;
                     height: 100%;
                     width: 100%;
                     top: 0;
-
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-
                     padding: 12px;
-
                     backdrop-filter: blur(8px);
                     background: rgba(255, 255, 255, 0.2);
 
@@ -144,42 +128,55 @@ $xxl: 1400px;
                 }
             }
 
-            .__wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                @include media-breakpoint-down(md) {
-                    flex-direction: column;
-                }
-
-                .__left-wrapp,
-                .__right-wrapp {
-                    width: 50%;
-
-                    @include media-breakpoint-down(md) {
-                        width: 100%;
-                    }
-                }
-
-                .__left-wrapp {
-                    aspect-ratio: 1 / 1;
-                    overflow: hidden;
-
-                    img,
-                    video {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-            }
-
             /* layout */
             .__grid--wrapp {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(5, 1fr);
                 gap: 12px;
+            }
+
+            .__accordion--wrapp {
+                display: flex;
+                gap: 12px;
+                @media screen and (max-width: 750px) {
+                    flex-direction: column;
+                }
+
+                & .__accordion {
+                    display: flex;
+                    gap: 12px;
+                    width: 50%;
+                    @media screen and (max-width: 1250px) {
+                        flex-direction: column;
+                    }
+                    @media screen and (max-width: 750px) {
+                        width: 100%;
+                    }
+
+                    & > div {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+                    details[open] > summary svg {
+                        transform: rotate(180deg);
+                    }
+                }
+
+                picture,
+                video {
+                    width: 50%;
+                    @media screen and (max-width: 750px) {
+                        width: 100%;
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
             }
 
             /* component */

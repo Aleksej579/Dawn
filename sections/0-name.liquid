@@ -93,8 +93,7 @@
                 {%- endif -%}
             </div>
         </div>
-
-        <!--simple blocks-->
+        <!--blocks-->
         <div class="__grid--wrapp">
             {%- for block in section.blocks -%}
                 {% case block.type %}
@@ -112,10 +111,7 @@
                         </article>
                 {% endcase %}
             {%- endfor -%}
-        </div>
-
-        <!--blogs-->
-        <div class="__grid--wrapp">
+            <!--blogs-->
             {% for article in section.settings.blog.articles %}
                 <article>
                     <div class='__img--wrapp'>
@@ -132,29 +128,26 @@
                     </div>
                 </article>
             {% endfor %}
-        </div>
-
-        <!--products-->
-        <div class="__grid--wrapp">
+            <!--products-->
             {% for product in section.settings.product_list %}
-            <article>
-                <a href="{{ product.url }}" class='__img--wrapp'>
-                    {% if product.featured_image != blank %}
-                        {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: '__image', loading: 'lazy' }}
-                    {% else %}
-                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                    {% endif %}
-                </a>
-                <h3 class="product__title">{{ product.title }}</h3>
-                <div class="product__content">
-                    {{ product.description }}
-                    <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
-                    <span class="product__price">
-                        {{- cart.currency.iso_code -}}
-                        {{ product.price | money_without_currency -}}
-                    </span>
-                </div>
-            </article>
+                <article>
+                    <a href="{{ product.url }}" class='__img--wrapp'>
+                        {% if product.featured_image != blank %}
+                            {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: '__image', loading: 'lazy' }}
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </a>
+                    <h3 class="product__title">{{ product.title }}</h3>
+                    <div class="product__content">
+                        {{ product.description }}
+                        <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                        <span class="product__price">
+                            {{- cart.currency.iso_code -}}
+                            {{ product.price | money_without_currency -}}
+                        </span>
+                    </div>
+                </article>
             {% endfor %}
         </div>
 
@@ -182,31 +175,97 @@
             <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
+
+        <!--Accordion-->
+        <div class="__accordion--wrapp">
+            <div class="__accordion">
+                {%- assign half_size = section.blocks.size | divided_by: 2.0 | ceil -%}
+                <div>
+                    {%- for block in section.blocks limit: half_size -%}
+                        {% case block.type %}
+                            {% when 'block_1' %}
+                                <details{% if forloop.first %} open{% endif %}>
+                                    <summary>
+                                        {{ block.settings.title }}
+                                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                                    </summary>
+                                    <div>{{ block.settings.description }}</div>
+                                </details>
+                        {% endcase %}
+                    {%- endfor -%}
+                </div>
+                <div>
+                    {%- for block in section.blocks offset: half_size -%}
+                        {% case block.type %}
+                            {% when 'block_1' %}
+                                <details>
+                                    <summary>
+                                        {{ block.settings.title }}
+                                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                                    </summary>
+                                    <div>{{ block.settings.description }}</div>
+                                </details>
+                        {% endcase %}
+                    {%- endfor -%}
+                </div>
+            </div>
+
+            {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
+            {% if section.settings.image_desk != blank and section.settings.video == blank %}
+                <picture class="__image-wrapp">
+                    <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
+                    <img
+                        class="__image"
+                        src="{{ section.settings.image_desk | image_url: width: 1920 }}"
+                        alt="{{ section.settings.image_desk.alt | escape }}"
+                        width="{{ article.image.width }}"
+                        height="{{ article.image.height }}"
+                        loading="lazy"
+                    >
+                </picture>
+            {% else %}
+                {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+            {% endif %}
+        </div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
-      const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
-        slidesPerView: 1.3,
-        spaceBetween: 12,
-        grabCursor: true,
-        breakpoints: {
-          450: {
-            slidesPerView: 3,
-          }
-        },
-        navigation: {
-          nextEl: '.swiper-button-next-{{ section.id }}',
-          prevEl: '.swiper-button-prev-{{ section.id }}'
-        },
-        pagination: {
-          el: ".swiper-pagination-{{ section.id }}",
-          clickable: true,
-          type: 'bullets',
+
+    const accordionDetails = document.querySelectorAll('.section-{{ section.id }} .__accordion--wrapp details');
+    accordionDetails.forEach((details, index) => {
+      details.addEventListener('click', (e) => {
+        if (!details.open) {
+          accordionDetails.forEach((openDetails) => {
+            if (openDetails !== details) {
+              openDetails.open = false;
+            }
+          });
         }
       });
+    });
+
+    document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
+    const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
+      slidesPerView: 1.3,
+      spaceBetween: 12,
+      grabCursor: true,
+      breakpoints: {
+        450: {
+          slidesPerView: 3,
+        }
+      },
+      navigation: {
+        nextEl: '.swiper-button-next-{{ section.id }}',
+        prevEl: '.swiper-button-prev-{{ section.id }}'
+      },
+      pagination: {
+        el: ".swiper-pagination-{{ section.id }}",
+        clickable: true,
+        type: 'bullets',
+      }
+    });
 
     //product add to cart
     document.querySelectorAll('.add-to-cart').forEach((button) => {

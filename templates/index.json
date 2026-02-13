@@ -43,13 +43,31 @@
             "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           }
+        },
+        "block_1_9qRXM8": {
+          "type": "block_1",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "block_1_t9mUjz": {
+          "type": "block_1",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "block_image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
         }
       },
       "block_order": [
         "block_1_WpAnWJ",
         "block_1_bg8re7",
         "block_1_NcQMAW",
-        "block_1_pdrREn"
+        "block_1_pdrREn",
+        "block_1_9qRXM8",
+        "block_1_t9mUjz"
       ],
       "name": "Name",
       "settings": {
@@ -60,7 +78,7 @@
         "bg_gradient_full": false,
         "bg_image_full_container": false,
         "title": "Lorem ipsum dolor sit amet",
-        "show_advanced_settings": false,
+        "show_advanced_settings": true,
         "title_size": "h2",
         "title_align": "center",
         "title_font_family": "var(--font-heading-family)",
@@ -69,7 +87,7 @@
         "image_mobi": "shopify://shop_images/post-2.jpg",
         "btn_name": "Button",
         "btn_url": "#",
-        "banner_position": "split-right",
+        "banner_position": "center",
         "product_list": [
           "product",
           "halsa-baby-all-in-one-wellness-monitor",
