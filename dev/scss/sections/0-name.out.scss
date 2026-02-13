@@ -128,11 +128,13 @@
                 }
             }
 
-            /* layout */
             .__grid--wrapp {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
                 gap: 12px;
+            }
+
+            .__slider--wrapp {
             }
 
             .__accordion--wrapp {

@@ -1,10 +1,5 @@
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
 
-{% comment %}
-  <link rel="stylesheet" href="{{'swiper-bundle.min.css' |  asset_url}}">
-  <script async src="{{'swiper-bundle.min.js' |  asset_url}}"></script>
-{% endcomment %}
-
 {%- style -%}
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -150,9 +145,8 @@
                 </article>
             {% endfor %}
         </div>
-
         <!--slider-->
-        <div class="swiper swiper-{{ section.id }}">
+        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
             <div class="swiper-wrapper">
                 {%- for block in section.blocks -%}
                     {% case block.type %}
@@ -175,7 +169,6 @@
             <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
-
         <!--Accordion-->
         <div class="__accordion--wrapp">
             <div class="__accordion">
