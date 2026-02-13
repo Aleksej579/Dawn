@@ -54,7 +54,14 @@
         >
             {{ section.settings.title }}
         </h2>
-        <p class='__subtitle'>{{ section.settings.subtitle }}</p>
+        <p class='__subtitle'>
+            {{ section.settings.subtitle }}
+        </p>
+        {%- if section.settings.btn_name != blank -%}
+            <a class="__link" href="{{ section.settings.btn_url }}">
+                {{ section.settings.btn_name -}}
+            </a>
+        {%- endif -%}
     </header>
 
     <div class="__container">
@@ -88,6 +95,7 @@
                 {%- endif -%}
             </div>
         </div>
+
         <!--blocks-->
         <div class="__grid--wrapp">
             {%- for block in section.blocks -%}
@@ -106,6 +114,7 @@
                         </article>
                 {% endcase %}
             {%- endfor -%}
+
             <!--blogs-->
             {% for article in section.settings.blog.articles %}
                 <article>
@@ -123,6 +132,7 @@
                     </div>
                 </article>
             {% endfor %}
+
             <!--products-->
             {% for product in section.settings.product_list %}
                 <article>
@@ -145,6 +155,7 @@
                 </article>
             {% endfor %}
         </div>
+
         <!--slider-->
         <div class="__slider--wrapp swiper swiper-{{ section.id }}">
             <div class="swiper-wrapper">
@@ -169,6 +180,7 @@
             <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
+
         <!--Accordion-->
         <div class="__accordion--wrapp">
             <div class="__accordion">
