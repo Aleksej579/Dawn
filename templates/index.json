@@ -105,49 +105,9 @@
         "padding_top_mobile": 10,
         "padding_bottom_mobile": 10
       }
-    },
-    "0_infinity_slider_MQ7A4P": {
-      "type": "0-infinity-slider",
-      "blocks": {
-        "card_iWcCwX": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/image-placeholder.jpg",
-            "tag": "Slider",
-            "label": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
-          }
-        },
-        "card_R67P73": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/image-placeholder.jpg",
-            "tag": "Slider",
-            "label": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
-          }
-        },
-        "card_gWEVHF": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/image-placeholder.jpg",
-            "tag": "Slider",
-            "label": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
-          }
-        }
-      },
-      "block_order": [
-        "card_iWcCwX",
-        "card_R67P73",
-        "card_gWEVHF"
-      ],
-      "name": "Infinity slider",
-      "settings": {
-        "title": "<p>Lorem ipsum dolor sit amet</p>",
-        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
-      }
     }
   },
   "order": [
-    "0_name_ffpUn6",
-    "0_infinity_slider_MQ7A4P"
+    "0_name_ffpUn6"
   ]
 }
