@@ -111,7 +111,6 @@
                             </div>
                             <h4 class='__title'>{{ block.settings.title }}</h4>
                             <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
-                            <!--stars-->
                             <p class="reviews">
                                 {% for i in (1..5) %}
                                     {% if i <= block.settings.number %}
@@ -246,12 +245,25 @@
                 {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
             {% endif %}
         </div>
+
+        <!--Tabs-->
+        <div class='__tabs-wrapp'>
+            <ul class="__tabs">
+                <li class="active"><span>Part 1</span></li>
+                <li><span>Part 2</span></li>
+            </ul>
+            <div class="__tabs-content">
+                <div class="__tabs-panel active">content here 1</div>
+                <div class="__tabs-panel">content here 2</div>
+            </div>
+        </div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
 
+    // accordion
     const accordionDetails = document.querySelectorAll('.section-{{ section.id }} .__accordion--wrapp details');
     accordionDetails.forEach((details, index) => {
       details.addEventListener('click', (e) => {
@@ -265,6 +277,20 @@
       });
     });
 
+    // tabs
+    const tabLinks = document.querySelectorAll('.__tabs span');
+    const tabPanels = document.querySelectorAll('.__tabs-panel');
+    tabLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.__tabs li.active')?.classList.remove('active');
+        document.querySelector('.__tabs-panel.active')?.classList.remove('active');
+        link.parentElement.classList.add('active');
+        tabPanels[index].classList.add('active');
+      });
+    });
+
+    // slider
     document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
     const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
       slidesPerView: 1.3,
