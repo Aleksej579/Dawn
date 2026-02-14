@@ -120,7 +120,22 @@
           }
         }
       },
-      "block_order": ["title", "price", "judge_me_reviews_preview_badge_cgVHEF", "wishlist_myappgurus_pdp_wishlist_ng6nfz", "description", "variant_picker", "quantity_selector", "related_product_h7LJ3T", "about_sale_block_KwFPT7", "buy_buttons", "collapsible-row-0", "collapsible-row-1", "collapsible-row-2", "collapsible-row-3"],
+      "block_order": [
+        "title",
+        "price",
+        "judge_me_reviews_preview_badge_cgVHEF",
+        "wishlist_myappgurus_pdp_wishlist_ng6nfz",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "related_product_h7LJ3T",
+        "about_sale_block_KwFPT7",
+        "buy_buttons",
+        "collapsible-row-0",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "collapsible-row-3"
+      ],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "",
@@ -174,7 +189,53 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "0_infinity_slider_XK9AhG": {
+      "type": "0-infinity-slider",
+      "blocks": {
+        "card_gNRtPt": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "tag": "qqqq",
+            "label": "<p>sss wdwdwd dwdwdw  wdwdw</p>"
+          }
+        },
+        "card_UAbjf3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "tag": "qqqq",
+            "label": "<p>sss wdwdwd dwdwdw  wdwdw</p>"
+          }
+        },
+        "card_zALfjk": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "tag": "qqqq",
+            "label": "<p>sss wdwdwd dwdwdw  wdwdw</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_gNRtPt",
+        "card_UAbjf3",
+        "card_zALfjk"
+      ],
+      "name": "Infinity slider",
+      "settings": {
+        "title": "",
+        "subtitle": ""
+      }
     }
   },
-  "order": ["0_custom_breadcrumb_HNYAxf", "main", "0_custom_tabs_product_jdACVn", "related-products", "175637146195213884"]
+  "order": [
+    "0_custom_breadcrumb_HNYAxf",
+    "main",
+    "0_custom_tabs_product_jdACVn",
+    "related-products",
+    "175637146195213884",
+    "0_infinity_slider_XK9AhG"
+  ]
 }
