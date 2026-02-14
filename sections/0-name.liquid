@@ -113,11 +113,8 @@
                             <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
                             <!--stars-->
                             <p class="reviews">
-                                <!--{% assign stars_count = product.metafields.custom.rating_stars | times: 1 %}-->
-                                {% assign stars_count = block.settings.number %}
-
                                 {% for i in (1..5) %}
-                                    {% if i <= stars_count %}
+                                    {% if i <= block.settings.number %}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                         <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
                                     </svg>
@@ -128,18 +125,6 @@
                                     {% endif %}
                                 {% endfor %}
                             </p>
-                            <style>
-                                p.reviews__stars {
-                                    color: #6A8388;
-                                    display: flex;
-                                    align-items: center;
-                                    gap: 3px;
-
-                                    span {
-                                    margin-left: 8px;
-                                    }
-                                }
-                            </style>
                         </article>
                 {% endcase %}
             {%- endfor -%}
