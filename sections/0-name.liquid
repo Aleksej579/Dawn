@@ -96,12 +96,12 @@
             </div>
         </div>
 
-        <!--blocks-->
         <div class="__grid--wrapp">
+            <!--blocks-->
             {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
-                        <article>
+                        <article class='number-{{ forloop.index }}'>
                             <div class='__img--wrapp'>
                                 {%- if block.settings.block_image != blank -%}
                                     {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}

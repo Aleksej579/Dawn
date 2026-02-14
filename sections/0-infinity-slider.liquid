@@ -1,0 +1,147 @@
+{{ '0-infinity-slider.out.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .infinity--slider {
+    -webkit-transition-timing-function: linear !important;
+    -o-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+  }
+</style>
+
+{%- capture slides -%}
+  {%- for block in section.blocks -%}
+      <li class="infinity--slider__item swiper-slide">
+        {%- if block.settings.image != blank -%}
+          <div class="infinity--slider__item--image">
+            {{ block.settings.image | image_url: width: 600, height: 600 | image_tag: alt: block.settings.label, widths: '375, 550, 750' }}
+          </div>
+        {%- endif -%}
+
+        <div class="infinity--slider__item--info">
+          {% if block.settings.tag != blank %}
+            <span class="infinity--slider__item--tag">
+              {{ block.settings.tag }}
+            </span>
+          {% endif %}
+
+          {%- if block.settings.label != blank -%}
+            <span class="infinity--slider__item--label">
+              {{ block.settings.label }}
+            </span>
+          {%- endif -%}
+        </div>
+      </li>
+    {%- endfor -%}
+{%- endcapture -%}
+
+<div class="infinity--slider__wrapper">
+  {% if section.settings.title != blank %}
+    <h2 class="infinity--slider__title">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% if section.settings.subtitle != blank %}
+    <div class="infinity--slider__subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+  {% endif %}
+
+
+  <div class="infinity--slider__content swiper {{section.id}}--swiper" id="{{section.id}}--swiper">
+    <ul class="infinity--slider swiper-wrapper">
+      {{ slides }}
+      {{ slides }}
+      {{ slides }}
+    </ul>
+  </div>
+</div>
+
+<script type="module">
+  const sliderEl = document.querySelector('.{{ section.id }}--swiper');
+  const infinitySlider = new Swiper('.{{ section.id }}--swiper', {
+    spaceBetween: 6,
+    grabCursor: true,
+    a11y: false,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+    },
+    speed: 7500,
+    loop: true,
+    slidesPerView: "auto",
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: true,
+    },
+    mousewheel: {
+      enabled: true,
+      forceToAxis: true,
+      thresholdTime: null
+    },
+    simulateTouch: true,
+    allowTouchMove: true,
+    breakpoints:{
+      768: {
+        centeredSlides: false
+      }
+    }
+  });
+
+  sliderEl.addEventListener('mouseenter', () => {
+    infinitySlider.autoplay.stop();
+    infinitySlider.params.speed = 0;
+    // infinitySlider.setTransition(0);
+
+    // const currentTranslate = infinitySlider.getTranslate();
+    // infinitySlider.setTranslate(currentTranslate);
+    // infinitySlider.updateProgress();
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Infinity slider",
+    "tag": "section",
+    "class": "infinity--slider__section",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "title",
+        "label": "Title "
+      }, {
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Subtitle "
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Card",
+        "type": "card",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "image"
+          }, {
+            "type": "text",
+            "id": "tag",
+            "label": "Tag"
+          }, {
+            "type": "richtext",
+            "id": "label",
+            "label": "Label"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Infinity slider",
+        "category": "Custom",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

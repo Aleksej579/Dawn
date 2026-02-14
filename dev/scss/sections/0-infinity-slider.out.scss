@@ -1,0 +1,137 @@
+@use '../settings/config' as *;
+@use '../settings/variables';
+
+.infinity--slider__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: clamp(4rem, 4.2dvw, 6rem) 0rem;
+
+    .infinity--slider__title {
+        margin-bottom: 3.7rem;
+
+        font-family: 'AetherMonoA' !important;
+        font-size: clamp(2.8rem, 3.1dvw, 4.4rem);
+        line-height: 1;
+        letter-spacing: -0.04rem;
+        text-align: center;
+        text-transform: uppercase;
+        /* color: $text-primary; */
+
+        @media (width >= 750px) {
+            margin-bottom: 2.4rem;
+        }
+
+        * {
+            font-family: inherit;
+            color: inherit;
+            letter-spacing: inherit;
+        }
+
+        strong {
+            padding: 0 clamp(1.2rem, 1.4dvw, 2rem);
+            font-weight: 400;
+            border-radius: 7rem;
+            /* background-color: $yellow; */
+
+            @media (width >= 768px) {
+                padding-top: 0.6rem;
+                padding-bottom: 0.6rem;
+            }
+        }
+    }
+
+    .infinity--slider__subtitle {
+        max-width: 68.5rem;
+        margin-bottom: 2.4rem;
+        padding: 0 3.1rem;
+
+        font-size: 1.8rem;
+        line-height: 1;
+        text-align: center;
+        /* color: $text-primary; */
+
+        @media (width >= 750px) {
+            padding: 0 2.3rem;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+    }
+
+    .infinity--slider__content {
+        width: 100%;
+        padding: 0 0.8rem;
+    }
+
+    .infinity--slider {
+        padding: 0;
+
+        .infinity--slider__item {
+            display: flex;
+            flex-direction: column;
+
+            width: clamp(23.7rem, 22.5dvw, 32rem);
+            border-radius: 1rem;
+            overflow: hidden;
+
+            /* background-color: $sand; */
+
+            .infinity--slider__item--image {
+                width: 100%;
+                height: clamp(23rem, 21.6dvw, 31rem);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+
+                    object-position: center;
+                    object-fit: cover;
+                    mix-blend-mode: multiply;
+                }
+            }
+
+            .infinity--slider__item--info {
+                display: flex;
+                flex-direction: column;
+                gap: clamp(0.8rem, 1.5dvw, 1.6rem);
+                padding: 0 clamp(1rem, 1.5dvw, 1.6rem) clamp(1.2rem, 1.5dvw, 1.6rem);
+            }
+
+            .infinity--slider__item--tag {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                height: 2.1rem;
+                width: fit-content;
+                padding: 0 1.2rem;
+                border-radius: 4.3rem;
+
+                font-size: 1.2rem;
+                line-height: 1.3;
+                font-weight: 500;
+                text-transform: uppercase;
+                /* color: $text-primary; */
+
+                /* background-color: $yellow; */
+            }
+
+            .infinity--slider__item--label {
+                font-family: 'AetherMonoA';
+                font-size: clamp(1.6rem, 1.7dvw, 2.4rem);
+                line-height: 1.1;
+                letter-spacing: -0.04rem;
+                text-transform: uppercase;
+                /* color: $text-primary; */
+
+                * {
+                    font-family: inherit;
+                    letter-spacing: inherit;
+                }
+            }
+        }
+    }
+}

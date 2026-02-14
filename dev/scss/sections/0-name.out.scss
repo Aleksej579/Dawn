@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '../settings/config' as *;
 
 .name {
@@ -7,7 +8,6 @@
             justify-content: space-between;
             gap: 12px;
             flex-wrap: wrap;
-            /* flex-direction: column; */
 
             .__title {
                 line-height: 110%;
@@ -167,12 +167,43 @@
                 gap: 12px;
 
                 @media screen and (max-width: 1024px) {
-                    grid-template-columns: repeat(ceil($grid-num / 2), 1fr);
+                    grid-template-columns: repeat(math.ceil(math.div($grid-num, 2)), 1fr);
                 }
                 @media screen and (max-width: 750px) {
-                    grid-template-columns: repeat(1, 1fr);
+                    grid-template-columns: 1fr;
                 }
             }
+
+            $i: 1;
+            /* $grid-items: 6;
+            .__grid--wrapp {
+                display: grid;
+                gap: 8px;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: auto auto auto;
+                grid-template-areas:
+                    'item-1 item-1 item-2'
+                    'item-3 item-4 item-4'
+                    'item-5 item-5 item-6';
+
+                @media (max-width: $sm) {
+                    grid-template-columns: 1fr;
+                    grid-template-areas:
+                        'item-1'
+                        'item-2'
+                        'item-3'
+                        'item-4'
+                        'item-5'
+                        'item-6';
+                }
+                article {
+                    @for $i from 1 through $grid-items {
+                        &.number-#{$i} {
+                            grid-area: item-#{$i};
+                        }
+                    }
+                }
+            } */
 
             .__slider--wrapp {
             }
