@@ -1,88 +1,259 @@
-<style>
-  .breadcrumbs {
-    padding: {{ section.settings.padding_top }}px var(--page-gutter) {{ section.settings.padding_bottom }}px;
-    max-width: var(--page-width);
-    margin: 0 auto;
-  }
+{% comment %}
+  Renders breadcrumbs with structured data and customization
+  Usage: {% section 'breadcrumbs' %}
+{% endcomment %}
 
-  .breadcrumbs__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+{{ '0-breadcrumb.out.css' | asset_url | stylesheet_tag }}
 
-  .breadcrumbs__item {
-    display: inline-block;
-  }
+{%- unless template.name == 'index' or template.name == 'cart' or template.name == 'list-collections' or template.name == '404' -%}
+  {%- liquid
+    assign show_home = section.settings.show_home
+    assign show_on_product = section.settings.show_on_product
+    assign show_on_collection = section.settings.show_on_collection
+    assign show_on_page = section.settings.show_on_page
+    assign show_on_blog = section.settings.show_on_blog
+    assign separator = section.settings.separator
+    assign capitalize = section.settings.capitalize
 
-  .breadcrumbs__item:not(:last-child):after {
-    content: '/';
-    margin: 0 10px;
-    color: {{ section.settings.home_text_color }};
-  }
+    assign should_show = false
+    if template.name == 'product' and show_on_product
+      assign should_show = true
+    elsif template.name == 'collection' and show_on_collection
+      assign should_show = true
+    elsif template.name == 'page' and show_on_page
+      assign should_show = true
+    elsif template.name == 'blog' or template.name == 'article' and show_on_blog
+      assign should_show = true
+    endif
 
-  .breadcrumbs__link {
-    text-decoration: none;
-    font-size: 16px;
-  }
+    assign position = 1
+    assign breadcrumb_list = ''
+  -%}
 
-  .breadcrumbs__link[aria-current='page'] {
-    color: {{ section.settings.active_text_color }};
-  }
-</style>
+  {%- if should_show -%}
+    <nav class="breadcrumbs{% if capitalize %} breadcrumbs--capitalize{% endif %}"
+         role="navigation"
+         aria-label="Breadcrumbs"
+         style="--breadcrumb-padding-top: {{ section.settings.padding_top }}px; --breadcrumb-padding-bottom: {{ section.settings.padding_bottom }}px;">
 
-{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
-  <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
-    <ol class="breadcrumbs__list">
-      <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link" href="/" style="color: {{ section.settings.home_text_color }}">Home</a>
-      </li>
+      <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        {%- if show_home -%}
+          {%- liquid
+            if section.settings.home_title != blank
+              assign home_title = section.settings.home_title
+            else
+              assign home_title = 'Home'
+            endif
+            assign home_item = '{"@type":"ListItem","position":1,"name":"' | append: home_title | json | append: '","item":"' | append: shop.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: home_item
+            assign position = position | plus: 1
+          -%}
 
-      {%- if collection -%}
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ collection.url }}" style="color: {{ section.settings.home_text_color }}">{{ collection.title }}</a>
-        </li>
-      {%- endif -%}
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" href="{{ routes.root_url }}" itemprop="item">
+              {%- if section.settings.show_home_icon -%}
+                <svg class="breadcrumbs__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 6L8 2L14 6V13C14 13.2652 13.8946 13.5196 13.7071 13.7071C13.5196 13.8946 13.2652 14 13 14H3C2.73478 14 2.48043 13.8946 2.29289 13.7071C2.10536 13.5196 2 13.2652 2 13V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 14V8H10V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {%- endif -%}
+              <span itemprop="name">{{ home_title }}</span>
+            </a>
+            <meta itemprop="position" content="1">
+          </li>
+        {%- endif -%}
 
-      {%- if product -%}
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page" style="color: {{ section.settings.active_text_color }}">{{ product.title }}</a>
-        </li>
-      {%- elsif page -%}
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page" style="color: {{ section.settings.active_text_color }}">{{ page.title }}</a>
-        </li>
-      {%- elsif article -%}
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ blog.url }}" style="color: {{ section.settings.home_text_color }}">{{ blog.title }}</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ article.url }}" aria-current="page" style="color: {{ section.settings.active_text_color }}">{{ article.title }}</a>
-        </li>
-      {%- else -%}
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" aria-current="page" style="color: {{ section.settings.active_text_color }}">{{ page_title }}</a>
-        </li>
-      {%- endif -%}
-    </ol>
-  </nav>
+        {%- if collection and collection.handle -%}
+          {%- liquid
+            assign collection_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: collection.title | json | append: '","item":"' | append: collection.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: collection_item
+            assign position = position | plus: 1
+          -%}
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" href="{{ collection.url }}" itemprop="item">
+              <span itemprop="name">{{ collection.title }}</span>
+            </a>
+            <meta itemprop="position" content="{{ position | minus: 1 }}">
+          </li>
+        {%- endif -%}
+
+        {%- if product -%}
+          {%- liquid
+            assign product_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: product.title | json | append: '","item":"' | append: product.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: product_item
+          -%}
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span class="breadcrumbs__link breadcrumbs__link--active" aria-current="page" itemprop="item">
+              <span itemprop="name">{{ product.title | truncate: 60 }}</span>
+            </span>
+            <meta itemprop="position" content="{{ position }}">
+          </li>
+        {%- elsif page -%}
+          {%- liquid
+            assign page_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: page.title | json | append: '","item":"' | append: page.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: page_item
+          -%}
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span class="breadcrumbs__link breadcrumbs__link--active" aria-current="page" itemprop="item">
+              <span itemprop="name">{{ page.title | truncate: 60 }}</span>
+            </span>
+            <meta itemprop="position" content="{{ position }}">
+          </li>
+        {%- elsif article -%}
+          {%- liquid
+            assign blog_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: blog.title | json | append: '","item":"' | append: blog.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: blog_item
+            assign position = position | plus: 1
+
+            assign article_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: article.title | json | append: '","item":"' | append: article.url | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: article_item
+          -%}
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumbs__link" href="{{ blog.url }}" itemprop="item">
+              <span itemprop="name">{{ blog.title }}</span>
+            </a>
+            <meta itemprop="position" content="{{ position | minus: 1 }}">
+          </li>
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span class="breadcrumbs__link breadcrumbs__link--active" aria-current="page" itemprop="item">
+              <span itemprop="name">{{ article.title | truncate: 60 }}</span>
+            </span>
+            <meta itemprop="position" content="{{ position }}">
+          </li>
+        {%- else -%}
+          {%- liquid
+            assign current_item = '{"@type":"ListItem","position":' | append: position | append: ',"name":"' | append: page_title | json | append: '","item":"' | append: request.path | append: '"}'
+            assign breadcrumb_list = breadcrumb_list | append: ',' | append: current_item
+          -%}
+
+          {%- if separator != 'none' -%}
+            <li class="breadcrumbs__separator breadcrumbs__separator--{{ separator }}" aria-hidden="true"></li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span class="breadcrumbs__link breadcrumbs__link--active" aria-current="page" itemprop="item">
+              <span itemprop="name">{{ page_title | truncate: 60 }}</span>
+            </span>
+            <meta itemprop="position" content="{{ position }}">
+          </li>
+        {%- endif -%}
+      </ol>
+    </nav>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{{ breadcrumb_list }}]
+    }
+    </script>
+  {%- endif -%}
 {%- endunless -%}
 
 {% schema %}
 {
   "name": "Breadcrumbs",
+  "tag": "section",
+  "class": "section-breadcrumbs",
   "settings": [
     {
-      "type": "color",
-      "id": "home_text_color",
-      "label": "Link color",
-      "default": "#2f2f2f"
+      "type": "header",
+      "content": "Display settings"
     },
     {
-      "type": "color",
-      "id": "active_text_color",
-      "label": "Active color",
-      "default": "#a2a2a2"
+      "type": "checkbox",
+      "id": "show_home",
+      "label": "Show home link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_home_icon",
+      "label": "Show home icon",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "home_title",
+      "label": "Home link text",
+      "default": "Home",
+      "info": "Leave empty to use default 'Home'"
+    },
+    {
+      "type": "checkbox",
+      "id": "capitalize",
+      "label": "Capitalize breadcrumbs",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "separator",
+      "label": "Separator style",
+      "options": [
+        { "value": "slash", "label": "Slash (/)" },
+        { "value": "chevron", "label": "Chevron (›)" },
+        { "value": "arrow", "label": "Arrow (→)" },
+        { "value": "dot", "label": "Dot (•)" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "chevron"
+    },
+    {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_product",
+      "label": "Show on product pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_collection",
+      "label": "Show on collection pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_page",
+      "label": "Show on pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_blog",
+      "label": "Show on blog & articles",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
     },
     {
       "type": "range",
@@ -107,8 +278,7 @@
   ],
   "presets": [
     {
-      "name": "Breadcrumbs",
-      "category": "Custom"
+      "name": "Breadcrumbs"
     }
   ]
 }

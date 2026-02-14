@@ -29,9 +29,27 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "0_breadcrumb_Xyy97i": {
+      "type": "0-breadcrumb",
+      "name": "Breadcrumbs",
+      "settings": {
+        "show_home": true,
+        "show_home_icon": false,
+        "home_title": "Home",
+        "capitalize": false,
+        "separator": "chevron",
+        "show_on_product": true,
+        "show_on_collection": true,
+        "show_on_page": true,
+        "show_on_blog": true,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "0_breadcrumb_Xyy97i"
   ]
 }
