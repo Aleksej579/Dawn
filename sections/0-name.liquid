@@ -114,7 +114,7 @@
                             <!--stars-->
                             <p class="reviews">
                                 <!--{% assign stars_count = product.metafields.custom.rating_stars | times: 1 %}-->
-                                {% assign stars_count = block.settings.title %}
+                                {% assign stars_count = block.settings.number %}
 
                                 {% for i in (1..5) %}
                                     {% if i <= stars_count %}
