@@ -48,23 +48,105 @@
 
 <div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
     <header>
-        <h2
-            class="__title {{ section.settings.title_size }}"
-            style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};"
-        >
-            {{ section.settings.title }}
-        </h2>
-        <p class='__subtitle'>
-            {{ section.settings.subtitle }}
-        </p>
+        <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
+        <div class='__subtitle'>{{ section.settings.subtitle }}</div>
         {%- if section.settings.btn_name != blank -%}
-            <a class="__link" href="{{ section.settings.btn_url }}">
-                {{ section.settings.btn_name -}}
-            </a>
+            <a class="__link" href="{{ section.settings.btn_url }}">{{ section.settings.btn_name -}}</a>
         {%- endif -%}
     </header>
 
     <div class="__container">
+        <div class="__grid--wrapp">
+            <!--blocks-->
+            {%- for block in section.blocks -%}
+                {% case block.type %}
+                    {% when 'block_1' %}
+                        <article class='number-{{ forloop.index }}'>
+                            <div class='__img--wrapp'>
+                                {%- if block.settings.block_image != blank -%}
+                                    {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+                                {% else %}
+                                    {{ 'image' | placeholder_svg_tag }}
+                                {%- endif -%}
+                            </div>
+                            <h4 class='__title'>{{ block.settings.title }}</h4>
+                            <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
+                            <p class="reviews">
+                                {% for i in (1..5) %}
+                                    {% if i <= block.settings.number %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                            <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
+                                        </svg>
+                                    {% else %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                            <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#BDCCD1"/>
+                                        </svg>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                        </article>
+                {% endcase %}
+            {%- endfor -%}
+
+            <!--blogs-->
+            {% for article in section.settings.blog.articles %}
+                <article>
+                    <div class='__img--wrapp'>
+                        {%- if article.image != blank -%}
+                            {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag }}
+                        {%- endif -%}
+                    </div>
+                    <div class="__content">
+                        {{- article.excerpt }}
+                        {{ 'Read More' | link_to: article.url }}
+                    </div>
+                </article>
+            {% endfor %}
+
+            <!--products-->
+            {% for product in section.settings.product_list %}
+                <article>
+                    <a href="{{ product.url }}" class='__img--wrapp'>
+                        {% if product.featured_image != blank %}
+                            {{ product.featured_image | image_url: width: 700 | image_tag: class: '__image', alt: product.title, loading: 'lazy' }}
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag }}
+                        {% endif %}
+                    </a>
+                    <h4 class="__title">{{ product.title }}</h4>
+                    <div class="__content">
+                        {{ product.description | truncate: 100 }}
+                        <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                        <span class="__price">{{- cart.currency.iso_code -}} {{ product.price | money_without_currency -}}</span>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <!--slider-->
+        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
+            <div class="swiper-wrapper">
+                {%- for block in section.blocks -%}
+                    <article class="swiper-slide">
+                        <div class='__img--wrapp'>
+                            {%- if block.settings.block_image != blank -%}
+                                {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}
+                            {%- endif -%}
+                        </div>
+                        <h4 class='__title'>{{ block.settings.title }}</h4>
+                        <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
+                    </article>
+                {%- endfor -%}
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ section.id }}">Next</div>
+            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
+            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
+        </div>
+
         <!--Banner full-->
         <div class="__banner--wrapp {{ section.settings.banner_position }}">
             {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
@@ -84,116 +166,14 @@
                 {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
             {% endif %}
             <div class='__banner-content'>
-                <h2 class="__title {{ section.settings.title_size }}">
-                    {{ section.settings.title }}
-                </h2>
-                <p class='__subtitle'>{{ section.settings.subtitle }}</p>
+                <h2 class="__title {{ section.settings.title_size }}">{{ section.settings.title }}</h2>
+                <div class='__subtitle'>{{ section.settings.subtitle }}</div>
                 {%- if section.settings.btn_name != blank -%}
-                    <a class="__link" href="{{ section.settings.btn_url }}">
-                        {{ section.settings.btn_name -}}
-                    </a>
+                    <a class="__link" href="{{ section.settings.btn_url }}">{{- section.settings.btn_name -}}</a>
                 {%- endif -%}
             </div>
         </div>
 
-        <div class="__grid--wrapp">
-
-            <!--blocks-->
-            {%- for block in section.blocks -%}
-                {% case block.type %}
-                    {% when 'block_1' %}
-                        <article class='number-{{ forloop.index }}'>
-                            <div class='__img--wrapp'>
-                                {%- if block.settings.block_image != blank -%}
-                                    {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
-                                {% else %}
-                                    {{ 'image' | placeholder_svg_tag }}
-                                {%- endif -%}
-                            </div>
-                            <h4 class='__title'>{{ block.settings.title }}</h4>
-                            <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
-                            <p class="reviews">
-                                {% for i in (1..5) %}
-                                    {% if i <= block.settings.number %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                        <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
-                                    </svg>
-                                    {% else %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                        <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#BDCCD1"/>
-                                    </svg>
-                                    {% endif %}
-                                {% endfor %}
-                            </p>
-                        </article>
-                {% endcase %}
-            {%- endfor -%}
-
-            <!--blogs-->
-            {% for article in section.settings.blog.articles %}
-                <article>
-                    <div class='__img--wrapp'>
-                        {%- if article.image != blank -%}
-                            {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag }}
-                        {%- endif -%}
-                        <p class='__text'>{{ article.title | link_to: article.url }}</p>
-                    </div>
-                    <div>
-                        {{- article.excerpt }}
-                        {{ 'Read More' | link_to: article.url }}
-                    </div>
-                </article>
-            {% endfor %}
-
-            <!--products-->
-            {% for product in section.settings.product_list %}
-                <article>
-                    <a href="{{ product.url }}" class='__img--wrapp'>
-                        {% if product.featured_image != blank %}
-                            {{ product.featured_image | image_url: width: 700 | image_tag: alt: product.title, class: '__image', loading: 'lazy' }}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                        {% endif %}
-                    </a>
-                    <h3 class="product__title">{{ product.title }}</h3>
-                    <div class="product__content">
-                        {{ product.description | truncate: 100 }}
-                        <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
-                        <span class="product__price">
-                            {{- cart.currency.iso_code -}}
-                            {{ product.price | money_without_currency -}}
-                        </span>
-                    </div>
-                </article>
-            {% endfor %}
-        </div>
-
-        <!--slider-->
-        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
-            <div class="swiper-wrapper">
-                {%- for block in section.blocks -%}
-                    {% case block.type %}
-                        {% when 'block_1' %}
-                            <article class="swiper-slide">
-                                <div class='__img--wrapp'>
-                                    {%- if block.settings.block_image != blank -%}
-                                        {{ block.settings.block_image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.block_image.alt, loading: 'lazy' }}
-                                    {% else %}
-                                        {{ 'image' | placeholder_svg_tag }}
-                                    {%- endif -%}
-                                </div>
-                                <h4 class='__title'>{{ block.settings.title }}</h4>
-                                <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
-                            </article>
-                    {% endcase %}
-                {%- endfor -%}
-            </div>
-            <div class="swiper-button-next swiper-button-next-{{ section.id }}">Next</div>
-            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
-            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
-        </div>
 
         <!--Accordion-->
         <div class="__accordion--wrapp">
@@ -201,34 +181,27 @@
                 {%- assign half_size = section.blocks.size | divided_by: 2.0 | ceil -%}
                 <div>
                     {%- for block in section.blocks limit: half_size -%}
-                        {% case block.type %}
-                            {% when 'block_1' %}
-                                <details{% if forloop.first %} open{% endif %}>
-                                    <summary>
-                                        {{ block.settings.title }}
-                                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                                    </summary>
-                                    <div>{{ block.settings.description }}</div>
-                                </details>
-                        {% endcase %}
+                        <details {% if forloop.first %} open{% endif %}>
+                            <summary>
+                                {{ block.settings.title }}
+                                {{- 'icon-caret.svg' | inline_asset_content -}}
+                            </summary>
+                            <div>{{ block.settings.description }}</div>
+                        </details>
                     {%- endfor -%}
                 </div>
                 <div>
                     {%- for block in section.blocks offset: half_size -%}
-                        {% case block.type %}
-                            {% when 'block_1' %}
-                                <details>
-                                    <summary>
-                                        {{ block.settings.title }}
-                                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                                    </summary>
-                                    <div>{{ block.settings.description }}</div>
-                                </details>
-                        {% endcase %}
+                        <details>
+                            <summary>
+                                {{ block.settings.title }}
+                                {{- 'icon-caret.svg' | inline_asset_content -}}
+                            </summary>
+                            <div>{{ block.settings.description }}</div>
+                        </details>
                     {%- endfor -%}
                 </div>
             </div>
-
             {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
             {% if section.settings.image_desk != blank and section.settings.video == blank %}
                 <picture class="__image-wrapp">
@@ -263,15 +236,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-
     // accordion
-    const accordionDetails = document.querySelectorAll('.section-{{ section.id }} .__accordion--wrapp details');
-    accordionDetails.forEach((details, index) => {
-      details.addEventListener('click', (e) => {
+    const accordionDetails = document.querySelectorAll('.section-{{ section.id }} details');
+    accordionDetails.forEach((details) => {
+      details.addEventListener('click', () => {
         if (!details.open) {
-          accordionDetails.forEach((openDetails) => {
-            if (openDetails !== details) {
-              openDetails.open = false;
+          accordionDetails.forEach((item) => {
+            if (item !== details) {
+              item.open = false;
             }
           });
         }
@@ -512,7 +484,7 @@
       "visible_if": "{{ section.settings.show_advanced_settings == true }}"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "subtitle",
       "label": "Subtitle"
     },

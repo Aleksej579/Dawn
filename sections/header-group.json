@@ -38,13 +38,7 @@
         "show_home_icon": false,
         "home_title": "Home",
         "capitalize": false,
-        "separator": "chevron",
-        "show_on_product": true,
-        "show_on_collection": true,
-        "show_on_page": true,
-        "show_on_blog": true,
-        "padding_top": 24,
-        "padding_bottom": 24
+        "separator": "chevron"
       }
     }
   },

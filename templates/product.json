@@ -11,12 +11,7 @@
   "sections": {
     "0_custom_breadcrumb_HNYAxf": {
       "type": "0-breadcrumb",
-      "settings": {
-        "home_text_color": "#6b6b6b",
-        "active_text_color": "#ababab",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+      "settings": {}
     },
     "main": {
       "type": "main-product",
