@@ -412,4 +412,25 @@
             width: 100%;
         }
     }
+
+    /* component SLIDER ---------- */
+    .swiper-button-prev {
+        left: auto;
+        right: 50px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 40px;
+        height: 40px;
+
+        @media (max-width: 750px) {
+            display: none;
+        }
+    }
+
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        display: none;
+    }
 }
