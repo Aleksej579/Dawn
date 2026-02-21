@@ -2,7 +2,11 @@
 @use '../settings/config' as *;
 
 .name {
+    /* background: grey; */
     &__wrapper {
+        background: rgb(var(--color-background));
+        /* background: var(--gradient-background); */
+
         header {
             display: flex;
             justify-content: space-between;
@@ -11,21 +15,36 @@
             /* flex-direction: column; */
 
             .__title {
-                line-height: 110%;
-                font-weight: 400;
-                letter-spacing: -0.03em;
+                letter-spacing: normal;
+                color: rgb(var(--color-foreground));
                 margin: 0;
 
+                & * {
+                    margin: 0;
+                }
+
+                &.h1 {
+                    font-size: 56px;
+                    font-weight: 700;
+                    line-height: 110%;
+                }
+
                 &.h2 {
-                    font-size: 40px;
+                    font-size: 36px;
+                    font-weight: 600;
+                    line-height: 120%;
                 }
 
                 &.h3 {
-                    font-size: 32px;
+                    font-size: 26px;
+                    font-weight: 600;
+                    line-height: 130%;
                 }
 
                 &.h4 {
-                    font-size: 24px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 130%;
                 }
 
                 @media (max-width: 750px) {
@@ -35,16 +54,20 @@
             }
 
             .__subtitle {
-                font-size: 18px;
-                line-height: 150%;
+                font-size: 16px;
+                line-height: 160%;
                 font-weight: 400;
-                letter-spacing: -0.03em;
+                letter-spacing: normal;
                 margin: 0;
                 max-width: 600px;
+                color: rgb(var(--color-foreground));
+
+                & * {
+                    margin: 0;
+                }
 
                 @media (max-width: 750px) {
                     font-size: 16px;
-                    line-height: 100%;
                 }
             }
 
@@ -101,6 +124,60 @@
             } */
 
             .__slider--wrapp {
+                padding: 50px 0 30px 0;
+                position: relative;
+
+                .swiper-button-prev {
+                    left: auto;
+                    right: 56px;
+                }
+
+                .swiper-button-prev,
+                .swiper-button-next {
+                    width: 40px;
+                    height: 40px;
+                    top: 30px;
+
+                    @media (max-width: 750px) {
+                        display: none;
+                    }
+                }
+
+                .swiper-button-prev:after,
+                .swiper-button-next:after {
+                    display: none;
+                }
+
+                .swiper-button-prev:hover svg,
+                .swiper-button-next:hover svg {
+                    fill: #ecebde;
+
+                    path {
+                        stroke: #40543e;
+
+                        &:last-child {
+                            stroke: #727270;
+                        }
+                    }
+                }
+
+                .swiper-pagination {
+                    width: auto;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+
+                    &-bullet {
+                        background: rgb(var(--color-button-text)) !important;
+                        opacity: 1 !important;
+                        width: 12px !important;
+                        height: 12px !important;
+                        display: block;
+                        &-active {
+                            background: rgb(var(--color-button)) !important;
+                        }
+                    }
+                }
             }
 
             .__banner--wrapp {
@@ -122,9 +199,8 @@
                     justify-content: center;
                     padding: 12px;
                     backdrop-filter: blur(8px);
-                    background: rgba(255, 255, 255, 0.2);
                     overflow-y: auto;
-                    /* background: rgb(var(--color-background)); */
+                    background: rgb(var(--color-background), 0.5);
 
                     @media (max-width: 750px) {
                         justify-content: end;
@@ -135,12 +211,12 @@
 
                     &::-webkit-scrollbar {
                         width: 3px;
-                    }
-                    &::-webkit-scrollbar-track {
-                        background: #f1f1f1;
-                    }
-                    &::-webkit-scrollbar-thumb {
-                        background: #888;
+                        &-track {
+                            background: #f1f1f1;
+                        }
+                        &-thumb {
+                            background: #888;
+                        }
                     }
                 }
                 &.center {
@@ -326,14 +402,57 @@
             width: auto;
         }
 
-        h4.__title {
+        .__badge {
+            font-size: 11px;
+            line-height: 100%;
+            font-weight: 600;
         }
 
-        p.__description {
-        }
+        .__content--wrapp {
+            h4.__title {
+                font-size: 20px;
+                line-height: 100%;
+                font-weight: 400;
+                letter-spacing: normal;
 
-        .__content {
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            p.__author-data {
+                font-size: 12px;
+                line-height: 100%;
+                font-weight: 400;
+                letter-spacing: normal;
+
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .__description {
+                font-size: 16px;
+                line-height: 100%;
+                font-weight: 400;
+                letter-spacing: normal;
+            }
+
+            a {
+                font-size: 15px;
+                line-height: 100%;
+                font-weight: 600;
+                letter-spacing: normal;
+            }
+
             button.add-to-cart {
+                font-size: 15px;
+                line-height: 100%;
+                font-weight: 600;
+                letter-spacing: normal;
             }
 
             .__price {
@@ -371,7 +490,7 @@
         width: 100%;
         aspect-ratio: 1;
 
-        &:hover img {
+        &:hover :is(img, svg) {
             transition: 0.5s all ease-in-out;
             transform: scale(1.1);
         }
@@ -383,7 +502,7 @@
             object-position: center;
         }
         svg {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(var(--color-foreground), 0.1);
         }
     }
 
@@ -392,14 +511,14 @@
         text-decoration: none;
         background: rgb(var(--color-button));
         color: rgb(var(--color-button-text));
-        font-size: 16px;
-        line-height: 140%;
+        font-size: 15px;
+        line-height: 120%;
         font-weight: 600;
         text-align: center;
         padding: 12px 40px;
         max-height: 46px;
-        border-radius: 23px;
         border: 1px solid rgb(var(--color-button));
+        border-radius: 23px;
         transition: all 0.3s ease;
 
         &:hover {
@@ -411,26 +530,5 @@
         @media (max-width: 750px) {
             width: 100%;
         }
-    }
-
-    /* component SLIDER ---------- */
-    .swiper-button-prev {
-        left: auto;
-        right: 50px;
-    }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 40px;
-        height: 40px;
-
-        @media (max-width: 750px) {
-            display: none;
-        }
-    }
-
-    .swiper-button-prev:after,
-    .swiper-button-next:after {
-        display: none;
     }
 }

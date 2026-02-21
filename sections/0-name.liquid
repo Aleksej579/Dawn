@@ -11,51 +11,29 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  {%- if section.settings.bg_gradient_full == true -%}
-    .name {
-        background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);
-        .name__wrapper {
-            background: none;
-            background-color: none;
-        }
-    }
-  {% else %}
-    .name {
-        .name__wrapper {
-            background: linear-gradient({{ section.settings.direction }}, {{ section.settings.color_1 }} 0%, {{ section.settings.color_2 }} 70.71%);
-        }
-    }
-  {%- endif -%}
-
-  {% if section.settings.image_bg != blank and section.settings.bg_image_full_container == true %}
-    .name {
-        background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;
-        .name__wrapper {
-            background: none;
-        }
-    }
-  {% elsif section.settings.image_bg != blank and section.settings.bg_image_full_container == false %}
-    .name {
-        .name__wrapper {
-            background: none;
-            background-image: url('{{ section.settings.image_bg | image_url: width: 2560 }}'); background-size: cover; background-position: center;
-        }
-    }
-  {% endif %}
 {%- endstyle -%}
 
 
-<div class="name__wrapper section-{{ section.id }} page-width color-{{ section.settings.color_scheme }}">
-    <header>
+<div class="
+    name__wrapper section-{{ section.id }}
+    page-width
+    color-{{ section.settings.color_scheme }}"
+>
+    <header class='
+        <!--page-width-->
+        '>
         <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
         <div class='__subtitle'>{{ section.settings.subtitle }}</div>
+
         {%- if section.settings.btn_name != blank -%}
             <a class="__link" href="{{ section.settings.btn_url }}">{{ section.settings.btn_name -}}</a>
         {%- endif -%}
     </header>
 
-    <div class="__container">
+    <div class="
+        __container
+        <!--page-width-->
+        ">
         <div class="__grid--wrapp">
             <!--blocks-->
             {%- for block in section.blocks -%}
@@ -71,6 +49,7 @@
                             </div>
                             <h4 class='__title'>{{ block.settings.title }}</h4>
                             <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
+
                             <p class="reviews">
                                 {% for i in (1..5) %}
                                     {% if i <= block.settings.number %}
@@ -91,6 +70,10 @@
             <!--blogs-->
             {% for article in section.settings.blog.articles %}
                 <article>
+                    {%- if article.metafields.custom.badge != blank -%}
+                        <p class="__badge">{{ article.metafields.custom.badge | metafield_tag }}</p>
+                    {%- endif -%}
+
                     <div class='__img--wrapp'>
                         {%- if article.image != blank -%}
                             {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
@@ -98,8 +81,14 @@
                             {{ 'image' | placeholder_svg_tag }}
                         {%- endif -%}
                     </div>
-                    <div class="__content">
-                        {{- article.excerpt }}
+
+                    <div class='__content--wrapp'>
+                        <p class='__author-data'>
+                            <span>{{ article.author }}</span>
+                            <span>{{ article.published_at | date: '%d.%m.%Y' }}</span>
+                        </p>
+                        <h4 class="__title">{{ article.title }}</h4>
+                        <div class='__description'>{{- article.excerpt | truncate: 100 }}</div>
                         {{ 'Read More' | link_to: article.url }}
                     </div>
                 </article>
@@ -115,11 +104,12 @@
                             {{ 'image' | placeholder_svg_tag }}
                         {% endif %}
                     </a>
-                    <h4 class="__title">{{ product.title }}</h4>
-                    <div class="__content">
-                        {{ product.description | truncate: 100 }}
+
+                    <div class='__content--wrapp'>
+                        <h4 class="__title">{{ product.title | link_to: product.url }}</h4>
+                        <div class='__description'>{{ product.description | truncate: 100 }}</div>
+                        <p class="__price">{{- cart.currency.iso_code -}} {{ product.price | money_without_currency -}}</p>
                         <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
-                        <span class="__price">{{- cart.currency.iso_code -}} {{ product.price | money_without_currency -}}</span>
                     </div>
                 </article>
             {% endfor %}
@@ -127,6 +117,20 @@
 
         <!--slider-->
         <div class="__slider--wrapp swiper swiper-{{ section.id }}">
+            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" fill="white"/>
+                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                    <path d="M17.5 26.6667L24.1667 20L17.5 13.3334" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 20 20)"/>
+                </svg>
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" fill="white"/>
+                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                    <path d="M17.5 26.6667L24.1667 20L17.5 13.3334" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <div class="swiper-wrapper">
                 {%- for block in section.blocks -%}
                     <article class="swiper-slide">
@@ -137,13 +141,14 @@
                                 {{ 'image' | placeholder_svg_tag }}
                             {%- endif -%}
                         </div>
-                        <h4 class='__title'>{{ block.settings.title }}</h4>
-                        <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
+
+                        <div class='__content--wrapp'>
+                            <h4 class='__title'>{{ block.settings.title }}</h4>
+                            <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
+                        </div>
                     </article>
                 {%- endfor -%}
             </div>
-            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">Prev</div>
-            <div class="swiper-button-next swiper-button-next-{{ section.id }}">Next</div>
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
 
@@ -269,13 +274,16 @@
     const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
       slidesPerView: 1.3,
       spaceBetween: 12,
+      centeredSlides: true,
       grabCursor: true,
       breakpoints: {
         750: {
-          slidesPerView: 2.2,
+          slidesPerView: 2,
+          centeredSlides: false,
         },
         1200: {
-          slidesPerView: 3.2,
+          slidesPerView: 3,
+          centeredSlides: false,
         }
       },
       navigation: {
@@ -360,60 +368,6 @@
         "label": "Color Scheme"
     },
     {
-        "type": "header",
-        "content": "Gradient BG"
-    },
-    {
-        "type": "select",
-        "id": "direction",
-        "label": "Direction",
-        "options": [
-            { "value": "0deg", "label": "↑ Up" },
-            { "value": "45deg", "label": "↗ Up-Right" },
-            { "value": "90deg", "label": "→ Right" },
-            { "value": "135deg", "label": "↘ Down-Right" },
-            { "value": "180deg", "label": "↓ Down" },
-            { "value": "225deg", "label": "↙ Down-Left" },
-            { "value": "270deg", "label": "← Left" },
-            { "value": "315deg", "label": "↖ Up-Left" }
-        ],
-        "default": "135deg"
-    },
-    {
-        "type": "color",
-        "id": "color_1",
-        "label": "Color 1",
-        "default": "#FFFFFF"
-    },
-    {
-        "type": "color",
-        "id": "color_2",
-        "label": "Color 2",
-        "default": "#FFFFFF"
-    },
-    {
-      "type": "checkbox",
-      "id": "bg_gradient_full",
-      "label": "BG gradient full",
-      "default": true
-    },
-    {
-        "type": "header",
-        "content": "Image BG"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_bg",
-      "label": "Section BG-image"
-    },
-    {
-      "type": "checkbox",
-      "id": "bg_image_full_container",
-      "label": "BG image full or container",
-      "default": true,
-      "info": "True - full screen, False - container width."
-    },
-    {
       "type": "header",
       "content": "Main Title"
     },
@@ -434,16 +388,20 @@
       "label": "Title size",
       "options": [
         {
-          "value": "h2",
-          "label": "H2"
+            "value": "h1",
+            "label": "H1"
         },
         {
-          "value": "h3",
-          "label": "H3"
+            "value": "h2",
+            "label": "H2"
         },
         {
-          "value": "h4",
-          "label": "H4"
+            "value": "h3",
+            "label": "H3"
+        },
+        {
+            "value": "h4",
+            "label": "H4"
         }
       ],
       "default": "h2",
@@ -508,27 +466,25 @@
     },
     {
       "type": "header",
-      "content": "Image-Video",
-      "info": "Block - responsive image or video"
+      "content": "Responsive Image or Video",
     },
     {
       "type": "image_picker",
       "id": "image_desk",
-      "label": "Main Image for Descktop"
+      "label": "Image desktop",
+      "info": "Image for display on the desktop"
     },
     {
       "type": "image_picker",
       "id": "image_mobi",
-      "label": "Main Image for Mobile"
+      "label": "Image mobile",
+      "info": "Image for display on mobile devices"
     },
     {
       "type": "video",
       "id": "video",
-      "label": "Main Video"
-    },
-    {
-      "type": "header",
-      "content": "Banner"
+      "label": "Video",
+      "info": "Video for display on the desktop or mobile devices"
     },
     {
         "type": "select",
