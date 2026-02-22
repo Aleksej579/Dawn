@@ -219,9 +219,9 @@
       "scheme-3": {
         "settings": {
           "background": "#242833",
-          "background_gradient": "",
+          "background_gradient": "linear-gradient(90deg, rgba(21, 209, 252, 1) 14%, rgba(187, 48, 254, 1) 83%)",
           "text": "#ffffff",
-          "button": "#ffffff",
+          "button": "#e91e63",
           "button_label": "#000000",
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"

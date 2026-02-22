@@ -16,7 +16,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 3
           }
@@ -25,7 +24,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 2
           }
@@ -34,7 +32,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 4
           }
@@ -43,7 +40,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 5
           }
@@ -52,7 +48,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 4
           }
@@ -61,7 +56,6 @@
           "type": "block_1",
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
-            "block_image": "shopify://shop_images/image-placeholder.jpg",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "number": 3
           }
@@ -77,22 +71,17 @@
       ],
       "name": "Name",
       "settings": {
-        "color_scheme": "",
-        "direction": "90deg",
-        "color_1": "#f4f6f8",
-        "color_2": "#f4f6f8",
-        "bg_gradient_full": false,
-        "bg_image_full_container": false,
+        "color_scheme": "scheme-3",
         "title": "<p>Lorem <br/>ipsum dolor sit amet</p>",
         "show_advanced_settings": false,
         "title_size": "h2",
         "title_align": "left",
         "title_font_family": "var(--font-heading-family)",
         "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-        "image_desk": "shopify://shop_images/post-1.jpg",
-        "image_mobi": "shopify://shop_images/post-2.jpg",
         "btn_name": "Button",
         "btn_url": "#",
+        "image_desk": "shopify://shop_images/post-1.jpg",
+        "image_mobi": "shopify://shop_images/post-2.jpg",
         "banner_position": "center",
         "product_list": [
           "product",

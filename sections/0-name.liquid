@@ -13,14 +13,13 @@
   }
 {%- endstyle -%}
 
-
 <div class="
     name__wrapper section-{{ section.id }}
     page-width
     color-{{ section.settings.color_scheme }}"
 >
     <header class='
-        <!--page-width-->
+        {% comment %}page-width{% endcomment %}
         '>
         <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
         <div class='__subtitle'>{{ section.settings.subtitle }}</div>
@@ -32,10 +31,10 @@
 
     <div class="
         __container
-        <!--page-width-->
+        {% comment %}page-width{% endcomment %}
         ">
         <div class="__grid--wrapp">
-            <!--blocks-->
+
             {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
@@ -47,27 +46,33 @@
                                     {{ 'image' | placeholder_svg_tag }}
                                 {%- endif -%}
                             </div>
-                            <h4 class='__title'>{{ block.settings.title }}</h4>
-                            <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
 
-                            <p class="reviews">
-                                {% for i in (1..5) %}
-                                    {% if i <= block.settings.number %}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                            <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
-                                        </svg>
-                                    {% else %}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                            <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#BDCCD1"/>
-                                        </svg>
-                                    {% endif %}
-                                {% endfor %}
-                            </p>
+                            <div class='__content--wrapp'>
+                                <h4 class='__title'>{{ block.settings.title }}</h4>
+                                <p class='__description'>{{ block.settings.description | truncate: 100 }}</p>
+
+                                {%- if block.settings.btn_name != blank -%}
+                                    <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
+                                {%- endif -%}
+
+                                <p class="__reviews">
+                                    {% for i in (1..5) %}
+                                        {% if i <= block.settings.number %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
+                                            </svg>
+                                        {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#BDCCD1"/>
+                                            </svg>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
                         </article>
                 {% endcase %}
             {%- endfor -%}
 
-            <!--blogs-->
             {% for article in section.settings.blog.articles %}
                 <article>
                     {%- if article.metafields.custom.badge != blank -%}
@@ -94,7 +99,6 @@
                 </article>
             {% endfor %}
 
-            <!--products-->
             {% for product in section.settings.product_list %}
                 <article>
                     <a href="{{ product.url }}" class='__img--wrapp'>
@@ -115,20 +119,17 @@
             {% endfor %}
         </div>
 
-        <!--slider-->
         <div class="__slider--wrapp swiper swiper-{{ section.id }}">
             <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" fill="white"/>
-                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                    <path d="M17.5 26.6667L24.1667 20L17.5 13.3334" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 20 20)"/>
+                  <circle cx="20" cy="20" r="19.5" fill="#fff" stroke="#ECEBDE"/>
+                  <path d="M22.5 13.333 15.833 20 22.5 26.667" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <div class="swiper-button-next swiper-button-next-{{ section.id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" fill="white"/>
-                    <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                    <path d="M17.5 26.6667L24.1667 20L17.5 13.3334" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="20" cy="20" r="19.5" fill="#fff" stroke="#ECEBDE"/>
+                  <path d="M17.5 26.667 24.167 20 17.5 13.333" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <div class="swiper-wrapper">
@@ -145,6 +146,10 @@
                         <div class='__content--wrapp'>
                             <h4 class='__title'>{{ block.settings.title }}</h4>
                             <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
+
+                            {%- if block.settings.btn_name != blank -%}
+                                <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
+                            {%- endif -%}
                         </div>
                     </article>
                 {%- endfor -%}
@@ -152,18 +157,19 @@
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
 
-        <!--Banner full-->
+        <hr>
+
         <div class="__banner--wrapp {{ section.settings.banner_position }}">
             {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
             {% if section.settings.image_desk != blank and section.settings.video == blank %}
-                <picture class="__image-wrapp">
+                <picture class="__img--wrapp">
                     <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
                     <img
                         class="__image"
                         src="{{ section.settings.image_desk | image_url: width: 1920 }}"
                         alt="{{ section.settings.image_desk.alt | escape }}"
-                        width="{{ article.image.width }}"
-                        height="{{ article.image.height }}"
+                        width="{{ section.settings.image_desk.width }}"
+                        height="{{ section.settings.image_desk.height }}"
                         loading="lazy"
                     >
                 </picture>
@@ -180,8 +186,44 @@
             </div>
         </div>
 
+        <hr>
 
-        <!--Accordion-->
+        <div class="__split--wrapp {{ section.settings.banner_position }}">
+            <div class='__left'>
+                {%- for block in section.blocks -%}
+                    <a class="__card--link" href="{{ block.settings.btn_url }}">
+                        {%- if block.settings.image != blank -%}
+                            {{ block.settings.image | image_url: width: 100 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
+                        {% else %}
+                            {{ 'product-1' | placeholder_svg_tag }}
+                        {%- endif -%}
+                        <p class='__card--name'>{{- block.settings.btn_name -}}</p>
+                    </a>
+                {%- endfor -%}
+            </div>
+
+            <div class='__right'>
+                {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
+                {% if section.settings.image_desk != blank and section.settings.video == blank %}
+                    <picture class="__img--wrapp">
+                        <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
+                        <img
+                            class="__image"
+                            src="{{ section.settings.image_desk | image_url: width: 1920 }}"
+                            alt="{{ section.settings.image_desk.alt | escape }}"
+                            width="{{ section.settings.image_desk.width }}"
+                            height="{{ section.settings.image_desk.height }}"
+                            loading="lazy"
+                        >
+                    </picture>
+                {% else %}
+                    {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+                {% endif %}
+            </div>
+        </div>
+
+        <hr>
+
         <div class="__accordion--wrapp">
             <div class="__accordion">
                 {%- assign half_size = section.blocks.size | divided_by: 2.0 | ceil -%}
@@ -190,7 +232,7 @@
                         <details {% if forloop.first %} open{% endif %}>
                             <summary>
                                 {{ block.settings.title }}
-                                {{- 'icon-caret.svg' | inline_asset_content -}}
+                                <!--{{- 'icon-caret.svg' | inline_asset_content -}}-->
                             </summary>
                             <div>{{ block.settings.description }}</div>
                         </details>
@@ -201,7 +243,7 @@
                         <details>
                             <summary>
                                 {{ block.settings.title }}
-                                {{- 'icon-caret.svg' | inline_asset_content -}}
+                                <!--{{- 'icon-caret.svg' | inline_asset_content -}}-->
                             </summary>
                             <div>{{ block.settings.description }}</div>
                         </details>
@@ -210,7 +252,7 @@
             </div>
             {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
             {% if section.settings.image_desk != blank and section.settings.video == blank %}
-                <picture class="__image-wrapp">
+                <picture class="__img--wrapp">
                     <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
                     <img
                         class="__image"
@@ -226,7 +268,8 @@
             {% endif %}
         </div>
 
-        <!--Tabs-->
+        <hr>
+
         <div class='__tabs-wrapp'>
             <ul class="__tabs">
                 <li class="active"><span>Part 1</span></li>
@@ -237,13 +280,15 @@
                 <div class="__tabs-panel">content here 2</div>
             </div>
         </div>
-  </div>
+    </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.section-{{ section.id }}');
+
     // accordion
-    const accordionDetails = document.querySelectorAll('.section-{{ section.id }} details');
+    const accordionDetails = section.querySelectorAll('details');
     accordionDetails.forEach((details) => {
       details.addEventListener('click', () => {
         if (!details.open) {
@@ -257,20 +302,20 @@
     });
 
     // tabs
-    const tabLinks = document.querySelectorAll('.__tabs span');
-    const tabPanels = document.querySelectorAll('.__tabs-panel');
+    const tabLinks = section.querySelectorAll('.__tabs span');
+    const tabPanels = section.querySelectorAll('.__tabs-panel');
     tabLinks.forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        document.querySelector('.__tabs li.active')?.classList.remove('active');
-        document.querySelector('.__tabs-panel.active')?.classList.remove('active');
+        section.querySelector('.__tabs li.active')?.classList.remove('active');
+        section.querySelector('.__tabs-panel.active')?.classList.remove('active');
         link.parentElement.classList.add('active');
         tabPanels[index].classList.add('active');
       });
     });
 
     // slider
-    document.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
+    section.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
     const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
       slidesPerView: 1.3,
       spaceBetween: 12,
@@ -297,8 +342,8 @@
       }
     });
 
-    //product add to cart
-    document.querySelectorAll('.add-to-cart').forEach((button) => {
+    // product add to cart
+    section.querySelectorAll('.add-to-cart').forEach((button) => {
       button.addEventListener('click', async () => {
         const variantId = button.dataset.variantId;
         try {
@@ -466,7 +511,7 @@
     },
     {
       "type": "header",
-      "content": "Responsive Image or Video",
+      "content": "Responsive Image or Video"
     },
     {
       "type": "image_picker",
@@ -496,7 +541,7 @@
             { "value": "right", "label": "Right" },
             { "value": "full", "label": "Full" },
             { "value": "split-left", "label": "Split-left" },
-            { "value": "split-right", "label": "Split-right" },
+            { "value": "split-right", "label": "Split-right" }
         ],
         "default": "center"
     },
@@ -591,11 +636,21 @@
           "label": "Description"
         },
         {
+          "type": "text",
+          "id": "btn_name",
+          "label": "Button name"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button url"
+        },
+        {
           "type": "number",
           "id": "number",
           "label": "Count",
           "default": 5
-        },
+        }
       ]
     }
   ],
