@@ -1,6 +1,8 @@
 // CONFIG
 $bp-mobile: 750px;
+$bp-tablet-min: 980px;
 $bp-tablet: 1024px;
+$bp-descktop: 1441px;
 $grid-num: 5; /* <-- */
 
 @use 'sass:math';
@@ -26,9 +28,10 @@ $grid-num: 5; /* <-- */
             .__title {
                 color: rgb(var(--color-foreground));
                 font-weight: 600;
+                margin-bottom: 24px;
+
                 &.h1 {
                     font-size: 56px;
-                    font-weight: 700;
                     line-height: 110%;
                 }
                 &.h2 {
@@ -44,12 +47,24 @@ $grid-num: 5; /* <-- */
                     line-height: 130%;
                 }
 
+                @media (max-width: #{$bp-tablet}) {
+                    &.h1,
+                    &.h2,
+                    &.h3 {
+                        font-size: 50px;
+                    }
+                }
+
                 @media (max-width: #{$bp-mobile}) {
+                    & * br {
+                        display: none;
+                    }
                     &.h1,
                     &.h2,
                     &.h3 {
                         font-size: 24px;
                         line-height: 100%;
+                        margin-bottom: 12px;
                     }
                 }
             }
@@ -115,6 +130,23 @@ $grid-num: 5; /* <-- */
                             grid-area: item-#{$i};
                         }
                     }
+                }
+            } */
+
+            /* .__grid--wrapp {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                grid-template-areas:
+                    'item-1 item-2'
+                    'item-3 item-3';
+
+                @media (max-width: #{$bp-mobile}) {
+                    grid-template-columns: 1fr;
+                    grid-template-areas:
+                        'item-1'
+                        'item-2'
+                        'item-3';
                 }
             } */
 
@@ -194,6 +226,7 @@ $grid-num: 5; /* <-- */
                     overflow-y: auto;
                     backdrop-filter: blur(8px);
                     background: rgb(var(--color-background), 0.5);
+                    /* background: linear-gradient(270deg, rgba(64, 84, 62, 0) 0%, #40543E 35.64%); */
 
                     @media (max-width: #{$bp-mobile}) {
                         justify-content: end;
@@ -352,10 +385,6 @@ $grid-num: 5; /* <-- */
                         gap: 12px;
                     }
 
-                    /* details[open] > summary svg {
-                        transform: rotate(180deg);
-                    } */
-
                     details {
                         summary {
                             list-style: none;
@@ -379,6 +408,9 @@ $grid-num: 5; /* <-- */
                                 &::after {
                                     content: '−';
                                 }
+                                /* svg {
+                                    transform: rotate(180deg);
+                                } */
                             }
                         }
                     }
@@ -528,6 +560,7 @@ $grid-num: 5; /* <-- */
     .__img--wrapp,
     .__video {
         height: 300px; /* <-- */
+        /* height: inherit; */
         object-fit: cover;
         width: 100%;
         display: block;
@@ -543,6 +576,7 @@ $grid-num: 5; /* <-- */
             display: block;
             width: 100%;
             height: 100%;
+            max-height: inherit;
             object-fit: cover;
             object-position: center;
             background-color: rgba(var(--color-foreground), 0.1);
