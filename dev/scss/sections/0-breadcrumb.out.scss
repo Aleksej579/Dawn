@@ -1,4 +1,12 @@
 .breadcrumbs {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    @media (max-width: 480px) {
+        margin-top: 9px;
+        margin-bottom: 9px;
+    }
+
     &--capitalize {
         text-transform: capitalize;
     }
@@ -6,7 +14,6 @@
 
 .breadcrumbs__list {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
     list-style: none;
@@ -18,11 +25,28 @@
 .breadcrumbs__item {
     display: flex;
     align-items: center;
+
+    &:first-child * {
+        color: #727270;
+    }
+
+    &:not(:first-child),
+    &:not(:first-child) * {
+        color: #2d2c29;
+    }
+
+    &:not(:first-child) {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .breadcrumbs__link {
-    color: #666;
     text-decoration: none;
+    width: max-content;
 
     &:hover {
         color: #000;
@@ -30,7 +54,6 @@
     }
 
     &--active {
-        color: #000;
         pointer-events: none;
     }
 }
@@ -42,7 +65,7 @@
 }
 
 .breadcrumbs__separator {
-    color: #999;
+    color: #727270;
 
     &--slash::after {
         content: '/';
