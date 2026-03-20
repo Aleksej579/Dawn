@@ -1,7 +1,9 @@
 // CONFIG
+$bp-mobile-small: 450px;
 $bp-mobile: 750px;
 $bp-tablet-min: 980px;
 $bp-tablet: 1024px;
+$bp-notebook: 1200px;
 $bp-descktop: 1441px;
 $grid-num: 5;
 
@@ -29,6 +31,7 @@ $grid-num: 5;
                 color: rgb(var(--color-foreground));
                 font-weight: 600;
                 margin-bottom: 24px;
+                color: #131211;
 
                 &.h1-txt {
                     font-size: 56px;
@@ -575,7 +578,7 @@ $grid-num: 5;
             max-height: inherit;
             object-fit: cover;
             object-position: center;
-            background-color: rgba(var(--color-foreground), 0.1);
+            /* background-color: rgba(var(--color-foreground), 0.1); */
         }
     }
 
@@ -590,7 +593,7 @@ $grid-num: 5;
         text-align: center;
         padding: 12px 40px;
         max-height: 46px;
-        max-width: fit-content;
+        width: fit-content;
         border: 1px solid rgb(var(--color-button));
         border-radius: 23px;
         transition: all 0.3s ease;
