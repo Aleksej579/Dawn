@@ -34,18 +34,25 @@
         {% comment %}page-width{% endcomment %}
         ">
         <div class="__grid--wrapp">
-
             {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
                         <article class='number-{{ forloop.index }}'>
-                            <div class='__img--wrapp'>
+                            <figure class='__img--wrapp'>
+                                {%- if section.settings.title != blank -%}
+                                    <figcaption class='__badge'>{{ block.settings.title }}</figcaption>
+                                {%- endif -%}
+
                                 {%- if block.settings.image != blank -%}
                                     {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
+                                    {% comment %}
+                                        {% assign image_poster = block.settings.image.src | image_url: width: 700 %}
+                                        {{ block.settings.video | video_tag: image_size: '700x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+                                    {% endcomment %}
                                 {% else %}
                                     {{ 'image' | placeholder_svg_tag }}
                                 {%- endif -%}
-                            </div>
+                            </figure>
 
                             <div class='__content--wrapp'>
                                 <h4 class='__title'>{{ block.settings.title }}</h4>
@@ -79,13 +86,13 @@
                         <p class="__badge">{{ article.metafields.custom.badge | metafield_tag }}</p>
                     {%- endif -%}
 
-                    <div class='__img--wrapp'>
+                    <figure class='__img--wrapp'>
                         {%- if article.image != blank -%}
                             {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
                         {% else %}
                             {{ 'image' | placeholder_svg_tag }}
                         {%- endif -%}
-                    </div>
+                    </figure>
 
                     <div class='__content--wrapp'>
                         <p class='__author-data'>
@@ -101,16 +108,21 @@
 
             {% for product in section.settings.product_list %}
                 <article>
-                    <a href="{{ product.url }}" class='__img--wrapp'>
-                        {% if product.featured_image != blank %}
-                            {{ product.featured_image | image_url: width: 700 | image_tag: class: '__image', alt: product.title, loading: 'lazy' }}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag }}
-                        {% endif %}
-                    </a>
+                    <figure class='__img--wrapp'>
+                        {%- assign img = product.metafields.custom.image_secondary | default: product.featured_image -%}
+                        {%- if img != blank -%}
+                            {{- img | image_url: width: 700 | image_tag:
+                                class: '__image',
+                                alt: img.alt | default: product.title,
+                                loading: 'lazy'
+                            -}}
+                        {%- else -%}
+                            {{- 'image' | placeholder_svg_tag -}}
+                        {%- endif -%}
+                    </figure>
 
                     <div class='__content--wrapp'>
-                        <h4 class="__title">{{ product.title | link_to: product.url }}</h4>
+                        <h4 class="__title">{{ product.metafields.custom.title_secondary | default: product.title | link_to: product.url }}</h4>
                         <div class='__description'>{{ product.description | truncate: 100 }}</div>
                         <p class="__price">{{ cart.currency.symbol }} {{ product.price | money_without_currency -}}</p>
                         <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
@@ -119,45 +131,34 @@
             {% endfor %}
         </div>
 
-        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
-            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
-                <svg role="img" aria-label="button-prev" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="19.5" fill="#fff" stroke="#ECEBDE"/>
-                  <path d="M22.5 13.333 15.833 20 22.5 26.667" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
-                <svg role="img" aria-label="button-next" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="19.5" fill="#fff" stroke="#ECEBDE"/>
-                  <path d="M17.5 26.667 24.167 20 17.5 13.333" stroke="#727270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="swiper-wrapper">
-                {%- for block in section.blocks -%}
-                    <article class="swiper-slide">
-                        <div class='__img--wrapp'>
-                            {%- if block.settings.image != blank -%}
-                                {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
-                            {% else %}
-                                {{ 'image' | placeholder_svg_tag }}
-                            {%- endif -%}
-                        </div>
-
-                        <div class='__content--wrapp'>
-                            <h4 class='__title'>{{ block.settings.title }}</h4>
-                            <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
-
-                            {%- if block.settings.btn_name != blank -%}
-                                <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
-                            {%- endif -%}
-                        </div>
-                    </article>
-                {%- endfor -%}
-            </div>
-            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
-        </div>
-
-        <hr>
+        {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
+        {% if section.settings.image_desk != blank and section.settings.video == blank %}
+            <picture class="__img--wrapp">
+                <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
+                <img
+                    class="__image"
+                    src="{{ section.settings.image_desk | image_url: width: 1920 }}"
+                    alt="{{ section.settings.image_desk.alt | escape }}"
+                    width="{{ section.settings.image_desk.width }}"
+                    height="{{ section.settings.image_desk.height }}"
+                    loading="lazy"
+                >
+            </picture>
+        {% else %}
+            <figure class="__video--wrapp">
+                {{- section.settings.video | video_tag:
+                    image_size: '1920x',
+                    class: '__video',
+                    poster: image_poster,
+                    controls: true,
+                    loop: true,
+                    muted: true,
+                    autoplay: true,
+                    playsinline: true,
+                    loading: 'lazy'
+                -}}
+            </figure>
+        {% endif %}
 
         <div class="__banner--wrapp {{ section.settings.banner_position }}">
             {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
@@ -174,7 +175,19 @@
                     >
                 </picture>
             {% else %}
-                {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+                <figure class="__video--wrapp">
+                    {{ section.settings.video | video_tag:
+                        image_size: '1920x',
+                        class: '__video',
+                        poster: image_poster,
+                        controls: true,
+                        loop: true,
+                        muted: true,
+                        autoplay: true,
+                        playsinline: true,
+                        loading: 'lazy'
+                    }}
+                </figure>
             {% endif %}
 
             <div class='__banner-content'>
@@ -186,43 +199,43 @@
             </div>
         </div>
 
-        <hr>
-
-        <div class="__split--wrapp {{ section.settings.banner_position }}">
-            <div class='__left'>
+        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
+            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"transform="rotate(180 20 20)"/>
+              </svg>
+            </div>
+            <div class="swiper-wrapper">
                 {%- for block in section.blocks -%}
-                    <a class="__card--link" href="{{ block.settings.btn_url }}">
-                        {%- if block.settings.image != blank -%}
-                            {{ block.settings.image | image_url: width: 100 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
-                        {% else %}
-                            {{ 'product-1' | placeholder_svg_tag }}
-                        {%- endif -%}
-                        <p class='__card--name'>{{- block.settings.btn_name -}}</p>
-                    </a>
+                    <article class="swiper-slide">
+                        <figure class='__img--wrapp'>
+                            {%- if block.settings.image != blank -%}
+                                {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}
+                            {%- endif -%}
+                        </figure>
+
+                        <div class='__content--wrapp'>
+                            <h4 class='__title'>{{ block.settings.title }}</h4>
+                            <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
+
+                            {%- if block.settings.btn_name != blank -%}
+                                <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
+                            {%- endif -%}
+                        </div>
+                    </article>
                 {%- endfor -%}
             </div>
-
-            <div class='__right'>
-                {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
-                {% if section.settings.image_desk != blank and section.settings.video == blank %}
-                    <picture class="__img--wrapp">
-                        <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
-                        <img
-                            class="__image"
-                            src="{{ section.settings.image_desk | image_url: width: 1920 }}"
-                            alt="{{ section.settings.image_desk.alt | escape }}"
-                            width="{{ section.settings.image_desk.width }}"
-                            height="{{ section.settings.image_desk.height }}"
-                            loading="lazy"
-                        >
-                    </picture>
-                {% else %}
-                    {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
-                {% endif %}
-            </div>
+            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
-
-        <hr>
 
         <div class="__accordion--wrapp">
             <div class="__accordion">
@@ -250,25 +263,7 @@
                     {%- endfor -%}
                 </div>
             </div>
-            {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
-            {% if section.settings.image_desk != blank and section.settings.video == blank %}
-                <picture class="__img--wrapp">
-                    <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
-                    <img
-                        class="__image"
-                        src="{{ section.settings.image_desk | image_url: width: 1920 }}"
-                        alt="{{ section.settings.image_desk.alt | escape }}"
-                        width="{{ section.settings.image_desk.width }}"
-                        height="{{ section.settings.image_desk.height }}"
-                        loading="lazy"
-                    >
-                </picture>
-            {% else %}
-                {{ section.settings.video | video_tag: image_size: '1920x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
-            {% endif %}
         </div>
-
-        <hr>
 
         <div class='__tabs-wrapp'>
             <ul class="__tabs">
@@ -339,7 +334,12 @@
         el: ".swiper-pagination-{{ section.id }}",
         clickable: true,
         type: 'bullets',
-      }
+      },
+      autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+      },
     });
 
     // product add to cart
@@ -625,6 +625,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
         },
         {
           "type": "richtext",

@@ -1,21 +1,19 @@
 {{ '0-breadcrumb.out.css' | asset_url | stylesheet_tag }}
 
 {%- unless template.name == 'index' or template.name == 'cart' or template.name == 'list-collections' or template.name == '404' -%}
-
   <nav class="page-width breadcrumbs{% if section.settings.capitalize %} breadcrumbs--capitalize{% endif %}" aria-label="Breadcrumbs">
     <ol class="breadcrumbs__list">
-
       {%- comment -%} Home link {%- endcomment -%}
       {%- if section.settings.show_home -%}
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ routes.root_url }}">
+          <a class="breadcrumbs__link" href="{{ section.settings.home_url | default: routes.root_url }}">
             {%- if section.settings.show_home_icon -%}
               <svg class="breadcrumbs__icon" viewBox="0 0 16 16" fill="none">
                 <path d="M2 6L8 2L14 6V13C14 13.55 13.55 14 13 14H3C2.45 14 2 13.55 2 13V6Z" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M6 14V8H10V14" stroke="currentColor" stroke-width="1.5"/>
               </svg>
             {%- endif -%}
-            <span>{{ section.settings.home_title | default: 'Home' }}</span>
+            <span>{{ section.settings.home_title | default: 'Shop all' }}</span>
           </a>
         </li>
       {%- endif -%}
@@ -38,7 +36,8 @@
       <li class="breadcrumbs__item">
         <span class="breadcrumbs__link breadcrumbs__link--active">
           {%- if product -%}
-            {{ product.title }}
+            {%- assign custom_title = product.metafields.custom.pdp_title_short.value -%}
+            {{ custom_title | default: product.title | escape }}
           {%- elsif page -%}
             {{ page.title }}
           {%- elsif article -%}
@@ -48,10 +47,8 @@
           {%- endif -%}
         </span>
       </li>
-
     </ol>
   </nav>
-
 {%- endunless -%}
 
 {% schema %}
@@ -75,6 +72,11 @@
       "id": "home_title",
       "label": "Home link text",
       "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "home_url",
+      "label": "Home link URL"
     },
     {
       "type": "checkbox",
