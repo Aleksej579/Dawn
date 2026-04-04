@@ -341,6 +341,14 @@
           pauseOnMouseEnter: true,
       },
     });
+    window.addEventListener('resize', () => {
+      swiperCard{{ section.index }}.update();
+      if (window.innerWidth < 750) {
+        swiperCard{{ section.index }}.slideTo(1, 0);
+      } else {
+        swiperCard{{ section.index }}.slideTo(0, 0);
+      }
+    });
 
     // product add to cart
     section.querySelectorAll('.add-to-cart').forEach((button) => {
