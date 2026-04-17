@@ -5,7 +5,6 @@ $bp-tablet-min: 980px;
 $bp-tablet: 1024px;
 $bp-notebook: 1200px;
 $bp-descktop: 1441px;
-$grid-num: 5;
 
 @use 'sass:math';
 @use '../settings/config' as *;
@@ -32,6 +31,7 @@ $grid-num: 5;
                 font-weight: 400;
                 margin-bottom: 24px;
                 color: #131211;
+                letter-spacing: normal;
 
                 &.h1-txt {
                     font-size: 56px;
@@ -74,6 +74,7 @@ $grid-num: 5;
                 font-weight: 400;
                 max-width: 600px;
                 color: rgb(var(--color-foreground));
+                letter-spacing: normal;
 
                 @media (max-width: #{$bp-mobile}) {
                     font-size: 16px;
@@ -89,6 +90,7 @@ $grid-num: 5;
             background: none;
 
             .__grid--wrapp {
+                $grid-num: 5;
                 display: grid;
                 grid-template-columns: repeat($grid-num, 1fr);
                 gap: 12px;
@@ -101,38 +103,10 @@ $grid-num: 5;
                 }
             }
 
+            /*
             $i: 1;
-            /* $grid-items: 6;
+            $grid-items: 6;
             .__grid--wrapp {
-                display: grid;
-                gap: 8px;
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: auto auto auto;
-                grid-template-areas:
-                    'item-1 item-1 item-2'
-                    'item-3 item-4 item-4'
-                    'item-5 item-5 item-6';
-
-                @media (max-width: #{$bp-mobile}) {
-                    grid-template-columns: 1fr;
-                    grid-template-areas:
-                        'item-1'
-                        'item-2'
-                        'item-3'
-                        'item-4'
-                        'item-5'
-                        'item-6';
-                }
-                article {
-                    @for $i from 1 through $grid-items {
-                        &.number-#{$i} {
-                            grid-area: item-#{$i};
-                        }
-                    }
-                }
-            } */
-
-            /* .__grid--wrapp {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto auto;
@@ -146,6 +120,13 @@ $grid-num: 5;
                         'item-1'
                         'item-2'
                         'item-3';
+                }
+                article {
+                    @for $i from 1 through $grid-items {
+                        &.number-#{$i} {
+                            grid-area: item-#{$i};
+                        }
+                    }
                 }
             } */
 
@@ -377,6 +358,7 @@ $grid-num: 5;
             line-height: 100%;
             font-weight: 600;
             color: rgb(var(--color-button));
+            letter-spacing: normal;
         }
 
         .__content--wrapp {
@@ -404,6 +386,7 @@ $grid-num: 5;
                 line-height: 100%;
                 font-weight: 400;
                 color: rgb(var(--color-foreground));
+                letter-spacing: normal;
 
                 display: -webkit-box;
                 -webkit-line-clamp: 1;
@@ -416,6 +399,7 @@ $grid-num: 5;
                 line-height: 100%;
                 font-weight: 400;
                 color: rgb(var(--color-foreground), 0.5);
+                letter-spacing: normal;
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
@@ -426,6 +410,7 @@ $grid-num: 5;
                 line-height: 100%;
                 font-weight: 400;
                 color: rgb(var(--color-foreground));
+                letter-spacing: normal;
             }
 
             .__reviews {
@@ -437,6 +422,7 @@ $grid-num: 5;
                 font-weight: 600;
                 color: rgb(var(--color-button));
                 text-decoration: none;
+                letter-spacing: normal;
                 &:hover {
                     color: rgb(var(--color-button), 0.8);
                     text-decoration: underline;
@@ -477,6 +463,7 @@ $grid-num: 5;
             max-height: inherit;
             object-fit: cover;
             object-position: center;
+            /* mix-blend-mode: multiply; */
         }
     }
 
@@ -487,6 +474,7 @@ $grid-num: 5;
         font-weight: 600;
         text-align: center;
         text-decoration: none;
+        letter-spacing: normal;
         padding: 12px 40px;
         max-height: 46px;
         width: fit-content;

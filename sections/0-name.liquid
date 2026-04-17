@@ -3,24 +3,26 @@
 {%- style -%}
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
-    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px
+    /*background: url({{ section.settings.image_mobi | image_url: width: 800 }}) center / cover;*/
   }
   @media (min-width: 750px) {
     .section-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      /*background: url({{ section.settings.image_desk | image_url: width: 1920 }}) center / cover;*/
     }
   }
 {%- endstyle -%}
 
 <div class="
     name__wrapper section-{{ section.id }}
-    page-width
-    color-{{ section.settings.color_scheme }}"
+    color-{{ section.settings.color_scheme }}
+    page-width"
 >
-    <header class='
-        {% comment %}page-width{% endcomment %}
-        '>
+    <header
+        {% comment %}class='page-width'{% endcomment %}
+    >
         <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
         <div class='__subtitle'>{{ section.settings.subtitle }}</div>
 
@@ -134,7 +136,7 @@
         {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
         {% if section.settings.image_desk != blank and section.settings.video == blank %}
             <picture class="__img--wrapp">
-                <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
+                <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 750 }}">
                 <img
                     class="__image"
                     src="{{ section.settings.image_desk | image_url: width: 1920 }}"
