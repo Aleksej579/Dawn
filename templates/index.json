@@ -21,7 +21,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 3
+            "number": 3,
+            "col_span": 1,
+            "row_span": 1
           }
         },
         "block_1_bg8re7": {
@@ -31,7 +33,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 2
+            "number": 2,
+            "col_span": 1,
+            "row_span": 1
           }
         },
         "block_1_NcQMAW": {
@@ -41,7 +45,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 4
+            "number": 4,
+            "col_span": 1,
+            "row_span": 1
           }
         },
         "block_1_pdrREn": {
@@ -51,7 +57,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 5
+            "number": 5,
+            "col_span": 1,
+            "row_span": 1
           }
         },
         "block_1_9qRXM8": {
@@ -61,7 +69,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 4
+            "number": 4,
+            "col_span": 1,
+            "row_span": 1
           }
         },
         "block_1_t9mUjz": {
@@ -71,7 +81,9 @@
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "",
             "btn_url": "",
-            "number": 3
+            "number": 3,
+            "col_span": 1,
+            "row_span": 1
           }
         }
       },
@@ -103,6 +115,7 @@
           "babyliveadvice®-subscription"
         ],
         "blog": "news",
+        "grid_columns": 4,
         "padding_top": 30,
         "padding_bottom": 30,
         "padding_top_mobile": 10,

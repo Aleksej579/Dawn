@@ -1,12 +1,10 @@
-// CONFIG
 $bp-mobile-small: 450px;
 $bp-mobile: 750px;
 $bp-tablet-min: 980px;
 $bp-tablet: 1024px;
 $bp-notebook: 1200px;
-$bp-descktop: 1441px;
+$bp-descktop: 1440px;
 
-@use 'sass:math';
 @use '../settings/config' as *;
 
 .name {
@@ -27,11 +25,10 @@ $bp-descktop: 1441px;
             }
 
             .__title {
-                color: rgb(var(--color-foreground));
                 font-weight: 400;
-                margin-bottom: 24px;
-                color: #131211;
+                color: rgb(var(--color-foreground));
                 letter-spacing: normal;
+                margin-bottom: 24px;
 
                 &.h1-txt {
                     font-size: 56px;
@@ -72,9 +69,9 @@ $bp-descktop: 1441px;
                 font-size: 18px;
                 line-height: 160%;
                 font-weight: 400;
-                max-width: 600px;
-                color: rgb(var(--color-foreground));
                 letter-spacing: normal;
+                color: rgb(var(--color-foreground));
+                max-width: 600px;
 
                 @media (max-width: #{$bp-mobile}) {
                     font-size: 16px;
@@ -87,62 +84,12 @@ $bp-descktop: 1441px;
         }
 
         .__container {
-            background: none;
-
-            .__grid--wrapp {
-                $grid-num: 5;
-                display: grid;
-                grid-template-columns: repeat($grid-num, 1fr);
-                gap: 12px;
-
-                @media (max-width: #{$bp-tablet}) {
-                    grid-template-columns: repeat(math.ceil(math.div($grid-num, 2)), 1fr);
-                }
-                @media (max-width: #{$bp-mobile}) {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            /*
-            $i: 1;
-            $grid-items: 6;
-            .__grid--wrapp {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                grid-template-areas:
-                    'item-1 item-2'
-                    'item-3 item-3';
-
-                @media (max-width: #{$bp-mobile}) {
-                    grid-template-columns: 1fr;
-                    grid-template-areas:
-                        'item-1'
-                        'item-2'
-                        'item-3';
-                }
-                article {
-                    @for $i from 1 through $grid-items {
-                        &.number-#{$i} {
-                            grid-area: item-#{$i};
-                        }
-                    }
-                }
-            } */
-
-            .__slider--wrapp {
-                padding: 50px 0 30px 0;
-                position: relative;
-            }
-
             .__banner--wrapp {
                 height: 600px;
                 position: relative;
 
-                .__img--wrapp,
-                .__video {
+                .__media--wrapp {
                     height: 100%;
-                    border-radius: 0;
 
                     &:hover :is(img, video) {
                         transform: scale(1);
@@ -162,13 +109,15 @@ $bp-descktop: 1441px;
                     overflow-y: auto;
                     backdrop-filter: blur(8px);
                     background: rgb(var(--color-background), 0.5);
-                    /* background: linear-gradient(270deg, rgba(64, 84, 62, 0) 0%, #40543E 35.64%); */
+                    /* background: linear-gradient(270deg, rgba(64, 84, 62, 0) 0%, #40543e 35.64%); */
 
                     @media (max-width: #{$bp-mobile}) {
                         justify-content: end;
                         height: auto;
                         bottom: 0;
                         top: auto;
+
+                        max-width: 100%;
                     }
 
                     &::-webkit-scrollbar {
@@ -186,27 +135,18 @@ $bp-descktop: 1441px;
                         max-width: 50%;
                         left: 50%;
                         transform: translate(-50%);
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
                 }
                 &.left {
                     .__banner-content {
                         max-width: 50%;
                         left: 0;
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
                 }
                 &.right {
                     .__banner-content {
                         max-width: 50%;
                         right: 0;
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
                 }
                 &.full {
@@ -218,35 +158,56 @@ $bp-descktop: 1441px;
                     .__banner-content {
                         max-width: 50%;
                         left: 0;
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
-                    .__img--wrapp {
+                    .__media--wrapp {
                         max-width: 50%;
                         margin-left: auto;
                         aspect-ratio: 1 / 1;
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
                 }
                 &.split-right {
                     .__banner-content {
                         max-width: 50%;
                         right: 0;
-                        @media (max-width: #{$bp-mobile}) {
-                            max-width: 100%;
-                        }
                     }
-                    .__img--wrapp {
+                    .__media--wrapp {
                         max-width: 50%;
                         margin-right: auto;
                         aspect-ratio: 1 / 1;
+                    }
+                }
+                &.center,
+                &.left,
+                &.right,
+                &.full,
+                &.split-left,
+                &.split-right {
+                    .__media--wrapp,
+                    .__banner-content {
                         @media (max-width: #{$bp-mobile}) {
                             max-width: 100%;
                         }
                     }
+                }
+            }
+
+            .__slider--wrapp {
+                padding: 50px 0 30px 0;
+                position: relative;
+            }
+
+            .__grid--wrapp {
+                display: grid;
+                gap: 12px;
+                grid-template-columns: repeat(var(--grid-cols, 3), 1fr);
+                grid-auto-rows: minmax(300px, auto);
+
+                @media (max-width: #{$bp-tablet}) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                @media (max-width: #{$bp-mobile}) {
+                    grid-template-columns: 1fr;
+                    grid-auto-rows: auto;
                 }
             }
 
@@ -341,13 +302,15 @@ $bp-descktop: 1441px;
     /* ARTICLE ---------- */
     article {
         position: relative;
+        display: flex;
+        flex-direction: column;
 
         &.swiper-slide {
             width: auto;
         }
 
-        .__img--wrapp {
-            height: 300px;
+        .__media--wrapp {
+            min-height: 300px;
         }
 
         .__badge {
@@ -371,6 +334,7 @@ $bp-descktop: 1441px;
             border-top: none;
             border-radius: 0 0 12px 12px;
             overflow: hidden;
+            flex-shrink: 0;
 
             /*position: absolute;
             bottom: 0;
@@ -441,15 +405,15 @@ $bp-descktop: 1441px;
     }
 
     /* IMAGE ---------- */
-    .__img--wrapp,
-    .__video--wrapp {
+    .__media--wrapp {
         height: 100%;
         margin: 0;
         object-fit: cover;
         width: 100%;
         display: block;
+        flex: 1;
+        min-height: 200px;
         overflow: hidden;
-        border-radius: 12px 12px 0 0;
 
         &:hover :is(img, svg) {
             transition: 0.5s all ease-in-out;
@@ -473,16 +437,16 @@ $bp-descktop: 1441px;
         line-height: 120%;
         font-weight: 600;
         text-align: center;
-        text-decoration: none;
         letter-spacing: normal;
+        text-decoration: none;
         padding: 12px 40px;
         max-height: 46px;
+        border-radius: 23px;
         width: fit-content;
+        transition: all 0.3s ease;
         color: rgb(var(--color-button-text));
         background: rgb(var(--color-button));
         border: 1px solid rgb(var(--color-button));
-        border-radius: 23px;
-        transition: all 0.3s ease;
 
         &:hover {
             color: rgb(var(--color-button));

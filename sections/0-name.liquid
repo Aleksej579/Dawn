@@ -35,18 +35,107 @@
         __container
         {% comment %}page-width{% endcomment %}
         ">
-        <div class="__grid--wrapp">
+        <div class="__banner--wrapp {{ section.settings.banner_position }}">
+            {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
+            {% if section.settings.image_desk != blank and section.settings.video == blank %}
+                <picture class="__media--wrapp">
+                    <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 750 }}">
+                    <img
+                        class="__image"
+                        src="{{ section.settings.image_desk | image_url: width: 1920 }}"
+                        alt="{{ section.settings.image_desk.alt | escape }}"
+                        width="{{ section.settings.image_desk.width }}"
+                        height="{{ section.settings.image_desk.height }}"
+                        loading="lazy"
+                    >
+                </picture>
+            {% else %}
+                <figure class="__media--wrapp">
+                    {{- section.settings.video | video_tag:
+                        image_size: '1920x',
+                        class: '__video',
+                        poster: image_poster,
+                        controls: true,
+                        loop: true,
+                        muted: true,
+                        autoplay: true,
+                        playsinline: true,
+                        loading: 'lazy'
+                    -}}
+                </figure>
+            {% endif %}
+
+            <div class='__banner-content'>
+                <h2 class="__title {{ section.settings.title_size }}">{{ section.settings.title }}</h2>
+                <div class='__subtitle'>{{ section.settings.subtitle }}</div>
+                {%- if section.settings.btn_name != blank -%}
+                    <a class="__link" href="{{ section.settings.btn_url }}">{{- section.settings.btn_name -}}</a>
+                {%- endif -%}
+            </div>
+        </div>
+
+        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
+            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"transform="rotate(180 20 20)"/>
+              </svg>
+            </div>
+            <div class="swiper-wrapper">
+                {%- for block in section.blocks -%}
+                    <article class="swiper-slide">
+                        <figure class='__media--wrapp'>
+                            {%- if section.settings.title != blank -%}
+                                <figcaption class='__badge'>{{ block.settings.title }}</figcaption>
+                            {%- endif -%}
+                            {%- if block.settings.image != blank -%}
+                                {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}
+                            {%- endif -%}
+                        </figure>
+
+                        <div class='__content--wrapp'>
+                            <h4 class='__title'>{{ block.settings.title }}</h4>
+                            <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
+
+                            {%- if block.settings.btn_name != blank -%}
+                                <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
+                            {%- endif -%}
+                        </div>
+                    </article>
+                {%- endfor -%}
+            </div>
+            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
+        </div>
+
+        <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns | default: 3 }};">
             {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
-                        <article class='number-{{ forloop.index }}'>
-                            <figure class='__img--wrapp'>
+                        <article
+                            class='number-{{ forloop.index }}'
+                            style="
+                                grid-column: span {{ block.settings.col_span | default: 1 }};
+                                grid-row: span {{ block.settings.row_span | default: 1 }};
+                                "
+                        >
+                            <figure class='__media--wrapp'>
                                 {%- if section.settings.title != blank -%}
                                     <figcaption class='__badge'>{{ block.settings.title }}</figcaption>
                                 {%- endif -%}
 
                                 {%- if block.settings.image != blank -%}
-                                    {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
+                                    {{ block.settings.image
+                                        | image_url: width: 700
+                                        | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy'
+                                    }}
                                     {% comment %}
                                         {% assign image_poster = block.settings.image.src | image_url: width: 700 %}
                                         {{ block.settings.video | video_tag: image_size: '700x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
@@ -82,35 +171,12 @@
                 {% endcase %}
             {%- endfor -%}
 
-            {% for article in section.settings.blog.articles %}
-                <article>
-                    {%- if article.metafields.custom.badge != blank -%}
-                        <p class="__badge">{{ article.metafields.custom.badge | metafield_tag }}</p>
-                    {%- endif -%}
-
-                    <figure class='__img--wrapp'>
-                        {%- if article.image != blank -%}
-                            {{ article.image | image_url: width: 700 | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy' }}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag }}
-                        {%- endif -%}
-                    </figure>
-
-                    <div class='__content--wrapp'>
-                        <p class='__author-data'>
-                            <span>{{ article.author }}</span>
-                            <span>{{ article.published_at | date: '%d.%m.%Y' }}</span>
-                        </p>
-                        <h4 class="__title">{{ article.title }}</h4>
-                        <div class='__description'>{{- article.excerpt | truncate: 100 }}</div>
-                        {{ 'Read More' | link_to: article.url }}
-                    </div>
-                </article>
-            {% endfor %}
-
             {% for product in section.settings.product_list %}
                 <article>
-                    <figure class='__img--wrapp'>
+                    <figure class='__media--wrapp'>
+                        {%- if product.metafields.custom.badge != blank -%}
+                            <figcaption class="__badge">{{ product.metafields.custom.badge }}</figcaption>
+                        {%- endif -%}
                         {%- assign img = product.metafields.custom.image_secondary | default: product.featured_image -%}
                         {%- if img != blank -%}
                             {{- img | image_url: width: 700 | image_tag:
@@ -131,112 +197,35 @@
                     </div>
                 </article>
             {% endfor %}
-        </div>
 
-        {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
-        {% if section.settings.image_desk != blank and section.settings.video == blank %}
-            <picture class="__img--wrapp">
-                <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 750 }}">
-                <img
-                    class="__image"
-                    src="{{ section.settings.image_desk | image_url: width: 1920 }}"
-                    alt="{{ section.settings.image_desk.alt | escape }}"
-                    width="{{ section.settings.image_desk.width }}"
-                    height="{{ section.settings.image_desk.height }}"
-                    loading="lazy"
-                >
-            </picture>
-        {% else %}
-            <figure class="__video--wrapp">
-                {{- section.settings.video | video_tag:
-                    image_size: '1920x',
-                    class: '__video',
-                    poster: image_poster,
-                    controls: true,
-                    loop: true,
-                    muted: true,
-                    autoplay: true,
-                    playsinline: true,
-                    loading: 'lazy'
-                -}}
-            </figure>
-        {% endif %}
+            {% for article in section.settings.blog.articles %}
+                <article>
+                    <figure class='__media--wrapp'>
+                        {%- if article.metafields.custom.badge != blank -%}
+                            <figcaption class='__badge'>{{ article.metafields.custom.badge }}</figcaption>
+                        {%- endif -%}
 
-        <div class="__banner--wrapp {{ section.settings.banner_position }}">
-            {% assign image_poster = section.settings.image_desk.src | image_url: width: 1920 %}
-            {% if section.settings.image_desk != blank and section.settings.video == blank %}
-                <picture class="__img--wrapp">
-                    <source media="(max-width: 750px)" srcset="{{ section.settings.image_mobi | image_url: width: 576 }}">
-                    <img
-                        class="__image"
-                        src="{{ section.settings.image_desk | image_url: width: 1920 }}"
-                        alt="{{ section.settings.image_desk.alt | escape }}"
-                        width="{{ section.settings.image_desk.width }}"
-                        height="{{ section.settings.image_desk.height }}"
-                        loading="lazy"
-                    >
-                </picture>
-            {% else %}
-                <figure class="__video--wrapp">
-                    {{ section.settings.video | video_tag:
-                        image_size: '1920x',
-                        class: '__video',
-                        poster: image_poster,
-                        controls: true,
-                        loop: true,
-                        muted: true,
-                        autoplay: true,
-                        playsinline: true,
-                        loading: 'lazy'
-                    }}
-                </figure>
-            {% endif %}
+                        {%- if article.image != blank -%}
+                            {{ article.image
+                                | image_url: width: 700
+                                | image_tag: class: '__image', alt: article.image.alt, loading: 'lazy'
+                            }}
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag }}
+                        {%- endif -%}
+                    </figure>
 
-            <div class='__banner-content'>
-                <h2 class="__title {{ section.settings.title_size }}">{{ section.settings.title }}</h2>
-                <div class='__subtitle'>{{ section.settings.subtitle }}</div>
-                {%- if section.settings.btn_name != blank -%}
-                    <a class="__link" href="{{ section.settings.btn_url }}">{{- section.settings.btn_name -}}</a>
-                {%- endif -%}
-            </div>
-        </div>
-
-        <div class="__slider--wrapp swiper swiper-{{ section.id }}">
-            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"transform="rotate(180 20 20)"/>
-              </svg>
-            </div>
-            <div class="swiper-wrapper">
-                {%- for block in section.blocks -%}
-                    <article class="swiper-slide">
-                        <figure class='__img--wrapp'>
-                            {%- if block.settings.image != blank -%}
-                                {{ block.settings.image | image_url: width: 700 | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy' }}
-                            {% else %}
-                                {{ 'image' | placeholder_svg_tag }}
-                            {%- endif -%}
-                        </figure>
-
-                        <div class='__content--wrapp'>
-                            <h4 class='__title'>{{ block.settings.title }}</h4>
-                            <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
-
-                            {%- if block.settings.btn_name != blank -%}
-                                <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
-                            {%- endif -%}
-                        </div>
-                    </article>
-                {%- endfor -%}
-            </div>
-            <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
+                    <div class='__content--wrapp'>
+                        <p class='__author-data'>
+                            <span>{{ article.author }}</span>
+                            <span>{{ article.published_at | date: '%d.%m.%Y' }}</span>
+                        </p>
+                        <h4 class="__title">{{ article.title }}</h4>
+                        <div class='__description'>{{- article.excerpt | truncate: 100 }}</div>
+                        {{ 'Read More' | link_to: article.url }}
+                    </div>
+                </article>
+            {% endfor %}
         </div>
 
         <div class="__accordion--wrapp">
@@ -429,7 +418,7 @@
     {
       "type": "richtext",
       "id": "title",
-      "label": "Title"
+      "label": "Title",
     },
     {
       "type": "checkbox",
@@ -443,16 +432,13 @@
       "label": "Title size",
       "options": [
         {
-            "value": "h1-txt",
-            "label": "H1"
+            "value": "h1-txt", "label": "H1"
         },
         {
-            "value": "h2-txt",
-            "label": "H2"
+            "value": "h2-txt", "label": "H2"
         },
         {
-            "value": "h3-txt",
-            "label": "H3"
+            "value": "h3-txt", "label": "H3"
         },
       ],
       "default": "h2-txt",
@@ -464,16 +450,13 @@
       "label": "Title align",
       "options": [
         {
-          "value": "left",
-          "label": "Left"
+          "value": "left", "label": "Left"
         },
         {
-          "value": "center",
-          "label": "Center"
+          "value": "center", "label": "Center"
         },
         {
-          "value": "right",
-          "label": "Right"
+          "value": "right", "label": "Right"
         }
       ],
       "default": "center",
@@ -485,12 +468,10 @@
       "label": "Title font family",
       "options": [
         {
-          "value": "var(--font-heading-family)",
-          "label": "Font-1"
+          "value": "var(--font-heading-family)", "label": "Font-1"
         },
         {
-          "value": "var(--font-body-family)",
-          "label": "Font-2"
+          "value": "var(--font-body-family)", "label": "Font-2"
         }
       ],
       "default": "var(--font-heading-family)",
@@ -499,7 +480,7 @@
     {
       "type": "richtext",
       "id": "subtitle",
-      "label": "Subtitle"
+      "label": "Subtitle",
     },
     {
       "type": "header",
@@ -508,7 +489,8 @@
     {
       "type": "text",
       "id": "btn_name",
-      "label": "Button name"
+      "label": "Button name",
+      "default": "Read More"
     },
     {
       "type": "url",
@@ -529,13 +511,13 @@
       "type": "image_picker",
       "id": "image_mobi",
       "label": "Image mobile",
-      "info": "Image for display on mobile devices"
+      "info": "Image for display on mobile"
     },
     {
       "type": "video",
       "id": "video",
       "label": "Video",
-      "info": "Video for display on the desktop or mobile devices"
+      "info": "Video for display on the desktop or mobile"
     },
     {
         "type": "select",
@@ -571,6 +553,15 @@
       "label": "Blog"
     },
     {
+        "type": "range",
+        "id": "grid_columns",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 3,
+        "label": "Columns"
+    },
+    {
       "type": "header",
       "content": "Padding"
     },
@@ -581,7 +572,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding top",
       "default": 0
     },
     {
@@ -591,7 +582,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding bottom",
       "default": 0
     },
     {
@@ -605,7 +596,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding top",
       "default": 0
     },
     {
@@ -615,7 +606,7 @@
       "max": 200,
       "step": 2,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding bottom",
       "default": 0
     }
   ],
@@ -629,7 +620,7 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Item"
+          "default": "Title"
         },
         {
           "type": "image_picker",
@@ -649,7 +640,8 @@
         {
           "type": "text",
           "id": "btn_name",
-          "label": "Button name"
+          "label": "Button name",
+          "default": "Button"
         },
         {
           "type": "url",
@@ -661,7 +653,9 @@
           "id": "number",
           "label": "Count",
           "default": 5
-        }
+        },
+        { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
+        { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
       ]
     }
   ],
