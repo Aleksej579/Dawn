@@ -1,0 +1,110 @@
+<div class="block">
+  <!--{{ block.settings.title }}-->
+  <article
+      {{ block.shopify_attributes }}
+      class='number-{{ forloop.index }}'
+      style="
+          grid-column: span {{ block.settings.col_span | default: 1 }};
+          grid-row: span {{ block.settings.row_span | default: 1 }};
+          "
+  >
+      <figure class='__media--wrapp'>
+          {%- if section.settings.title != blank -%}
+              <figcaption class='__badge'>{{ block.settings.title }}</figcaption>
+          {%- endif -%}
+
+          {%- if block.settings.image != blank -%}
+              {{ block.settings.image
+                  | image_url: width: 700
+                  | image_tag: class: '__image', alt: block.settings.image.alt, loading: 'lazy'
+              }}
+              {% comment %}
+                  {% assign image_poster = block.settings.image.src | image_url: width: 700 %}
+                  {{ block.settings.video | video_tag: image_size: '700x', class: '__video', poster: image_poster, controls: true, loop: true, muted: true, autoplay: true, playsinline: true, loading: 'lazy' }}
+              {% endcomment %}
+          {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+          {%- endif -%}
+      </figure>
+
+      <div class='__content--wrapp'>
+          <h4 class='__title'>{{ block.settings.title }}</h4>
+          <div class='__description'>{{ block.settings.description | truncate: 100 }}</div>
+
+          {%- if block.settings.btn_name != blank -%}
+              <a class="__link" href="{{ block.settings.btn_url }}">{{- block.settings.btn_name -}}</a>
+          {%- endif -%}
+
+          <p class="__reviews">
+              {% for i in (1..5) %}
+                  {% if i <= block.settings.number %}
+                      <svg role="img" aria-label="Star active"xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#6A8388"/>
+                      </svg>
+                  {% else %}
+                      <svg role="img" aria-label="Star default" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M6.18145 0.542997C6.41666 -0.180892 7.44077 -0.180893 7.67597 0.542996L8.77293 3.91909C8.87812 4.24283 9.1798 4.46201 9.52019 4.46201H13.07C13.8312 4.46201 14.1476 5.436 13.5319 5.88339L10.66 7.96993C10.3846 8.17001 10.2694 8.52465 10.3746 8.84839L11.4715 12.2245C11.7067 12.9484 10.8782 13.5503 10.2624 13.1029L7.39054 11.0164C7.11516 10.8163 6.74226 10.8163 6.46688 11.0164L3.595 13.1029C2.97922 13.5503 2.1507 12.9484 2.3859 12.2245L3.48286 8.84839C3.58805 8.52465 3.47282 8.17001 3.19744 7.96993L0.325557 5.88339C-0.290219 5.436 0.026247 4.46201 0.787389 4.46201H4.33723C4.67762 4.46201 4.9793 4.24283 5.08449 3.91909L6.18145 0.542997Z" fill="#BDCCD1"/>
+                      </svg>
+                  {% endif %}
+              {% endfor %}
+          </p>
+      </div>
+  </article>
+</div>
+
+{% stylesheet %}
+  .text-block.text-left { text-align: left; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+    },
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+    },
+    {
+        "type": "video",
+        "id": "video",
+        "label": "Video"
+    },
+    {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+    },
+    {
+        "type": "text",
+        "id": "btn_name",
+        "label": "Button name",
+        "default": "Button"
+    },
+    {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button url"
+    },
+    {
+        "type": "number",
+        "id": "number",
+        "label": "Count",
+        "default": 5
+    },
+    { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
+    { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
+  ],
+  "presets": [
+    {
+      "name": "Block"
+    }
+  ]
+}
+{% endschema %}

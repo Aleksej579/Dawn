@@ -15,6 +15,8 @@
   }
 {%- endstyle -%}
 
+
+
 <div class="
     name__wrapper section-{{ section.id }}
     color-{{ section.settings.color_scheme }}
@@ -116,10 +118,14 @@
         </div>
 
         <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns | default: 3 }};">
-            {%- for block in section.blocks -%}
+
+            {% content_for 'blocks' %}
+
+            <!--{%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
                         <article
+                            {{ block.shopify_attributes }}
                             class='number-{{ forloop.index }}'
                             style="
                                 grid-column: span {{ block.settings.col_span | default: 1 }};
@@ -169,7 +175,7 @@
                             </div>
                         </article>
                 {% endcase %}
-            {%- endfor -%}
+            {%- endfor -%}-->
 
             {% for product in section.settings.product_list %}
                 <article>
@@ -613,50 +619,10 @@
   "max_blocks": 10,
   "blocks": [
     {
-      "type": "block_1",
-      "name": "Block",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Title"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "video",
-          "id": "video",
-          "label": "Video",
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "text",
-          "id": "btn_name",
-          "label": "Button name",
-          "default": "Button"
-        },
-        {
-          "type": "url",
-          "id": "btn_url",
-          "label": "Button url"
-        },
-        {
-          "type": "number",
-          "id": "number",
-          "label": "Count",
-          "default": 5
-        },
-        { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
-        { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
-      ]
+        "type": "@theme"
+    },
+    {
+        "type": "@app"
     }
   ],
   "presets": [
@@ -667,3 +633,55 @@
   ]
 }
 {% endschema %}
+
+
+{% comment %}
+"blocks": [
+  {
+    "type": "block_1",
+    "name": "Block",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "video",
+        "id": "video",
+        "label": "Video"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "btn_name",
+        "label": "Button name",
+        "default": "Button"
+      },
+      {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button url"
+      },
+      {
+        "type": "number",
+        "id": "number",
+        "label": "Count",
+        "default": 5
+      },
+      { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
+      { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
+    ]
+  }
+],
+{% endcomment %}
