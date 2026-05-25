@@ -82,6 +82,8 @@
     {%- endcase -%}
   {%- endfor -%}
 
+
+
   <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
       <span class="icon-wrap">
@@ -291,6 +293,37 @@
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
+
+
+{% comment %}<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const main = document.querySelector('.article-template__content');
+    const aside = document.querySelector('.article-template__title');
+        if (!main || !aside) return;
+
+
+    main.querySelectorAll('h2').forEach((heading, i) => {
+        heading.id = `id-${i}`;
+
+        const link = document.createElement('a');
+        link.href = `#id-${i}`;
+        link.className = 'p__auto-link';
+        link.innerHTML = `${i + 1}.<span class="title-text">${heading.innerText}</span>`;
+
+        link.addEventListener('click', (e) => {
+        e.preventDefault();
+        aside.querySelectorAll('.p__auto-link').forEach(l => l.classList.remove('is-active'));
+        link.classList.add('is-active');
+        window.scrollTo({
+            top: heading.getBoundingClientRect().top + window.scrollY - 100,
+            behavior: 'smooth'
+        });
+        });
+
+        aside.append(link);
+    });
+    });
+</script>{% endcomment %}
 
 {% schema %}
 {
