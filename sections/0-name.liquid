@@ -3,7 +3,7 @@
 {%- style -%}
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
-    padding-bottom: {{ section.settings.padding_bottom_mobile }}px
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     /*background: url({{ section.settings.image_mobi | image_url: width: 800 }}) center / cover;*/
   }
   @media (min-width: 750px) {
@@ -25,11 +25,15 @@
     <header
         {% comment %}class='page-width'{% endcomment %}
     >
-        <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
-        <div class='__subtitle'>{{ section.settings.subtitle }}</div>
+        {%- if section.settings.title != blank -%}
+          <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <div class="__subtitle">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
 
         {%- if section.settings.btn_name != blank -%}
-            <a class="__link" href="{{ section.settings.btn_url }}">{{ section.settings.btn_name -}}</a>
+          <a class="__link" href="{{ section.settings.btn_url }}">{{ section.settings.btn_name -}}</a>
         {%- endif -%}
     </header>
 
@@ -77,18 +81,6 @@
         </div>
 
         <div class="__slider--wrapp swiper swiper-{{ section.id }}">
-            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"transform="rotate(180 20 20)"/>
-              </svg>
-            </div>
             <div class="swiper-wrapper">
                 {%- for block in section.blocks -%}
                     <article class="swiper-slide">
@@ -114,6 +106,20 @@
                     </article>
                 {%- endfor -%}
             </div>
+
+            <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ section.id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
+                <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"transform="rotate(180 20 20)"/>
+              </svg>
+            </div>
+
             <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
         </div>
 
@@ -332,6 +338,10 @@
         clickable: true,
         type: 'bullets',
       },
+      // pagination: {
+      //     el: ".swiper-pagination-{{ section.id }}",
+      //     type: 'progressbar',
+      // },
       autoplay: {
           delay: 3000,
           disableOnInteraction: false,
@@ -398,7 +408,7 @@
               });
           }
         } catch (error) {
-          console.error('Ошибка:', error);
+          console.error('Error:', error);
         }
       });
     });
@@ -547,7 +557,7 @@
       "type": "product_list",
       "id": "product_list",
       "label": "Products",
-      "limit": 3
+      "limit": 12
     },
     {
       "type": "header",

@@ -15,6 +15,10 @@
                 margin: 0;
             }
 
+            @media (width < 750px) {
+                margin-bottom: 32px;
+            }
+
             .__title {
                 font-weight: 400;
                 color: rgb(var(--color-foreground));
@@ -35,6 +39,12 @@
                 &.h3-txt {
                     font-size: 26px;
                     line-height: 130%;
+                }
+
+                em {
+                    font-family: var(--font-family-orbikular);
+                    letter-spacing: normal;
+                    font-weight: 400;
                 }
 
                 @media (width < 1024px) {
@@ -417,6 +427,13 @@
         color: rgb(var(--color-button-text));
         background: rgb(var(--color-button));
         border: 1px solid rgb(var(--color-button));
+
+        justify-content: center;
+
+        /* icon */
+        display: flex;
+        align-items: center;
+        gap: 6px;
 
         &:hover {
             color: rgb(var(--color-button));
