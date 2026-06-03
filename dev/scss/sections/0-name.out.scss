@@ -465,16 +465,17 @@
         border-radius: 23px;
         width: fit-content;
         transition: all 0.3s ease;
-        color: rgb(var(--color-button-text));
-        background: rgb(var(--color-button));
-        border: 1px solid rgb(var(--color-button));
-
         justify-content: center;
 
         /* icon */
         display: flex;
         align-items: center;
         gap: 6px;
+
+        color: rgb(var(--color-button-text));
+        background: rgb(var(--color-button));
+        border: 1px solid rgb(var(--color-button));
+        /* border: 1px solid transparent; */
 
         &:hover {
             color: rgb(var(--color-button));

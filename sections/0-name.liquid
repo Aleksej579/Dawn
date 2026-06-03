@@ -130,10 +130,9 @@
         </div>
 
         <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns | default: 3 }};">
+            {% comment %}{% content_for 'blocks' %}{% endcomment %}
 
-            {% content_for 'blocks' %}
-
-            <!--{%- for block in section.blocks -%}
+            {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
                         <article
@@ -187,7 +186,7 @@
                             </div>
                         </article>
                 {% endcase %}
-            {%- endfor -%}-->
+            {%- endfor -%}
 
             {% for product in section.settings.product_list %}
                 <article>
@@ -641,8 +640,8 @@
       "type": "range",
       "id": "padding_top_mobile",
       "min": 0,
-      "max": 200,
-      "step": 2,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "Padding top",
       "default": 0
@@ -651,8 +650,8 @@
       "type": "range",
       "id": "padding_bottom_mobile",
       "min": 0,
-      "max": 200,
-      "step": 2,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "Padding bottom",
       "default": 0

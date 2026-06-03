@@ -27,7 +27,52 @@
           },
           "blocks": {}
         },
+        "block_Nt8mhj": {
+          "type": "block",
+          "name": "Block",
+          "settings": {
+            "title": "Title",
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "<p>вфывфв</p>",
+            "btn_name": "Button",
+            "btn_url": "",
+            "number": 5,
+            "col_span": 1,
+            "row_span": 1
+          },
+          "blocks": {}
+        },
         "block_cE3pwV": {
+          "type": "block",
+          "name": "Block",
+          "settings": {
+            "title": "Title",
+            "image": "shopify://shop_images/second-image.png",
+            "description": "",
+            "btn_name": "Button",
+            "btn_url": "",
+            "number": 5,
+            "col_span": 1,
+            "row_span": 1
+          },
+          "blocks": {}
+        },
+        "block_FrMJJb": {
+          "type": "block",
+          "name": "Block",
+          "settings": {
+            "title": "Title",
+            "image": "shopify://shop_images/second-image.png",
+            "description": "",
+            "btn_name": "Button",
+            "btn_url": "",
+            "number": 5,
+            "col_span": 1,
+            "row_span": 1
+          },
+          "blocks": {}
+        },
+        "block_PnWQFy": {
           "type": "block",
           "name": "Block",
           "settings": {
@@ -45,7 +90,10 @@
       },
       "block_order": [
         "block_r6zkNg",
-        "block_cE3pwV"
+        "block_Nt8mhj",
+        "block_cE3pwV",
+        "block_FrMJJb",
+        "block_PnWQFy"
       ],
       "name": "Name",
       "settings": {
@@ -68,6 +116,8 @@
         ],
         "blog": "news",
         "grid_columns": 4,
+        "margin_top": 0,
+        "margin_bottom": 0,
         "padding_top": 30,
         "padding_bottom": 30,
         "padding_top_mobile": 10,
