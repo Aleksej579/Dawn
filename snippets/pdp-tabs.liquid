@@ -1,0 +1,141 @@
+{% assign tabs = product.metafields.custom.pdp_how_to_use.value %}
+
+{% if tabs and tabs.size > 0 %}
+  <h3 class="pdp-tabs__title">{{ block.settings.title }}</h3>
+  <div class="pdp-tabs__wrapper" id="pdp-tabs-{{ section.id }}">
+    <ul class="pdpt__tabs">
+      {% for tab in tabs %}
+        <li class="{% if forloop.first %}active{% endif %}">
+          <span>{{ tab.tab_name.value }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="pdpt__tabs-content">
+      {% for tab in tabs %}
+        <div class="pdpt__tabs-panel {% if forloop.first %}active{% endif %}">
+          {{ tab.tab_content | metafield_tag }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .pdp-tabs__title {
+    font-size: 22px;
+    line-height: 100%;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 19px;
+    color: #015455;
+
+    @media (width < 750px) {
+      font-size: 24px;
+    }
+  }
+  .pdp-tabs__wrapper {
+    margin: 24px 0;
+
+    .pdpt__tabs {
+      display: flex;
+      gap: 18px;
+      padding: 0;
+      margin: 0 0 24px;
+      align-items: stretch;
+
+      @media (width < 750px) {
+        gap: 6px;
+      }
+
+      li {
+        list-style: none;
+        flex: 1;
+        display: flex;
+
+        span {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 8px 24px;
+          border-radius: 50px;
+          border: 1px solid #4e7f7f;
+          color: #015455;
+          font-size: 14px;
+          line-height: 110%;
+          font-weight: 400;
+          cursor: pointer;
+          background: transparent;
+          transition: background 0.15s, color 0.15s;
+          box-sizing: border-box;
+          opacity: 0.5;
+
+          @media (width < 750px) {
+            padding: 12px 16px;
+          }
+        }
+
+        &.active span {
+          background: #4e7f7f;
+          color: #fff;
+          opacity: 1;
+          font-weight: 600;
+          padding: 11px 14px;
+        }
+
+        &:not(.active) span:hover {
+          background: #2d6b6215;
+        }
+      }
+    }
+
+    .pdpt__tabs-content {
+      .pdpt__tabs-panel {
+        display: none;
+        max-width: 490px;
+
+        &.active {
+          display: block;
+        }
+
+        p {
+          margin: 0 0 12px;
+          font-size: 16px;
+          line-height: 130%;
+          font-weight: 400;
+          letter-spacing: -0.02em;
+          color: #4e7f7f;
+
+          &:first-child {
+            font-weight: 600;
+            color: #015455;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('#pdp-tabs-{{ section.id }}');
+    if (!section) return;
+
+    const tabLinks = section.querySelectorAll('.pdpt__tabs span');
+    const tabPanels = section.querySelectorAll('.pdpt__tabs-panel');
+
+    tabLinks.forEach((link, index) => {
+      link.addEventListener('click', () => {
+        section.querySelector('.pdpt__tabs li.active')?.classList.remove('active');
+        section.querySelector('.pdpt__tabs-panel.active')?.classList.remove('active');
+        link.parentElement.classList.add('active');
+        tabPanels[index].classList.add('active');
+      });
+    });
+  });
+</script>

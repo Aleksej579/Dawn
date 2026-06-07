@@ -1,0 +1,155 @@
+{% assign faqs = product.metafields.custom.pdp_faq.value %}
+
+{% if faqs and faqs.size > 0 %}
+  <h3 class="pdp-faq__title">{{ block.settings.title }}</h3>
+  <div class="pdp-faq__wrapper" id="pdp-faq-{{ section.id }}">
+    {% for faq in faqs %}
+      <details>
+        <summary>
+          <span>{{ faq.question.value }}</span>
+          <svg class="pdp-faq__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line class="pdp-faq__icon-h" x1="0" y1="8" x2="16" y2="8" stroke="#015455" stroke-width="2"/>
+            <line class="pdp-faq__icon-v" x1="8" y1="0" x2="8" y2="16" stroke="#015455" stroke-width="2"/>
+          </svg>
+        </summary>
+        <div class="pdp-faq__answer">
+          {{ faq.answer | metafield_tag }}
+        </div>
+      </details>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<style>
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    ::details-content {
+      height: 0;
+      overflow: clip;
+      transition: height 0.35s ease-in-out, content-visibility 0.35s ease-in-out allow-discrete;
+    }
+    [open]::details-content {
+      height: auto;
+    }
+  }
+
+  .pdp-faq__title {
+    font-size: 22px;
+    line-height: 100%;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    color: #015455;
+
+    @media (width < 750px) {
+      font-size: 24px;
+    }
+  }
+
+  .pdp-faq__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @media (width < 750px) {
+      gap: 8px;
+    }
+
+    details {
+      background: #eef4f4;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+
+      &[open] .pdp-faq__icon-v {
+        opacity: 0;
+      }
+      summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 24px 16px;
+        cursor: pointer;
+        list-style: none;
+        color: #015455;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 110%;
+        letter-spacing: normal;
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+      }
+
+      .pdp-faq__icon {
+        flex-shrink: 0;
+
+        line {
+          transition: opacity 0.2s;
+        }
+      }
+    }
+
+    .pdp-faq__answer {
+      padding: 0 20px 20px;
+      color: #4e7f7f;
+      font-size: 16px;
+      line-height: 130%;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+
+      p {
+        margin: 0 0 8px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      ul,
+      ol {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('#pdp-faq-{{ section.id }}');
+    if (!wrapper) return;
+
+    const allDetails = wrapper.querySelectorAll('details');
+
+    // Accordion: close others on open
+    allDetails.forEach((details) => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          allDetails.forEach((item) => {
+            if (item !== details) item.open = false;
+          });
+        }
+      });
+    });
+
+    // Fallback animation for browsers without interpolate-size support
+    if (!CSS.supports('interpolate-size', 'allow-keywords')) {
+      allDetails.forEach((el) => {
+        const content = el.querySelector('div');
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (el.open) {
+            content.animate([{ height: content.scrollHeight + 'px' }, { height: '0' }], { duration: 350, easing: 'ease-in-out' }).onfinish = () => el.removeAttribute('open');
+          } else {
+            el.setAttribute('open', '');
+            content.animate([{ height: '0' }, { height: content.scrollHeight + 'px' }], { duration: 350, easing: 'ease-in-out' });
+          }
+        });
+      });
+    }
+  });
+</script>

@@ -11,7 +11,14 @@
   "sections": {
     "0_custom_breadcrumb_HNYAxf": {
       "type": "0-breadcrumb",
-      "settings": {}
+      "settings": {
+        "show_home": true,
+        "show_home_icon": false,
+        "home_title": "Home",
+        "home_url": "",
+        "capitalize": false,
+        "separator": "chevron"
+      }
     },
     "main": {
       "type": "main-product",
@@ -113,6 +120,26 @@
             "content": "",
             "page": ""
           }
+        },
+        "pdp_banner_zydfpP": {
+          "type": "pdp_banner",
+          "settings": {
+            "image": "shopify://shop_images/photo.png",
+            "title": "“111We designed Chat Chains to help kids practice conversation in a way that feels playful, structured, and easy to use at home, in therapy, or in the classroom.”",
+            "subtitle": "— Dr. Anton & Dr. Rebecca, ThinkPsych founders"
+          }
+        },
+        "pdp_tabs_PJeRbC": {
+          "type": "pdp_tabs",
+          "settings": {
+            "title": "How to use"
+          }
+        },
+        "pdp_faq_NqNRfM": {
+          "type": "pdp_faq",
+          "settings": {
+            "title": "FAQ"
+          }
         }
       },
       "block_order": [
@@ -129,12 +156,15 @@
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
-        "collapsible-row-3"
+        "collapsible-row-3",
+        "pdp_banner_zydfpP",
+        "pdp_tabs_PJeRbC",
+        "pdp_faq_NqNRfM"
       ],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "",
-        "media_size": "large",
+        "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "thumbnail_slider",
@@ -149,6 +179,7 @@
     },
     "0_custom_tabs_product_jdACVn": {
       "type": "0-tabs-product",
+      "disabled": true,
       "settings": {
         "name_1": "Tab 1",
         "show_rating": false,
@@ -163,6 +194,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -181,6 +213,7 @@
     },
     "175637146195213884": {
       "type": "apps",
+      "disabled": true,
       "settings": {
         "include_margins": true
       }

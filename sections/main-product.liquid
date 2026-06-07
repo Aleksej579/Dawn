@@ -493,7 +493,6 @@
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
                   render 'share-button', block: block, share_link: share_url
                 %}
-
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
@@ -670,6 +669,12 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'pdp_banner' -%}
+                {% render 'pdp-banner', block: block %}
+              {%- when 'pdp_tabs' -%}
+                {% render 'pdp-tabs', block: block %}
+              {%- when 'pdp_faq' -%}
+                {% render 'pdp-faq', block: block %}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -742,6 +747,56 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "pdp_banner",
+      "name": "PDP Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "“We designed Chat Chains to help kids practice conversation in a way that feels playful, structured, and easy to use at home, in therapy, or in the classroom.”"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "— Dr. Anton & Dr. Rebecca, ThinkPsych founders"
+        }
+      ]
+    },
+    {
+      "type": "pdp_tabs",
+      "name": "PDP Tabs",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "How to use"
+        }
+      ]
+    },
+    {
+      "type": "pdp_faq",
+      "name": "PDP FAQ",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "FAQ"
+        }
+      ]
     },
     {
       "type": "about_sale_block",

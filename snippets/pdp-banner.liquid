@@ -1,0 +1,62 @@
+{%- liquid
+  assign meta_banner = product.metafields.custom.pdp_banner.value
+  assign banner_image = meta_banner.image.value | default: block.settings.image
+  assign banner_title = meta_banner.title | default: block.settings.title
+  assign banner_subtitle = meta_banner.subtitle | default: block.settings.subtitle
+-%}
+
+<div class="pdp-banner__wrapper">
+  <figure class="pdpb__media--wrapp">
+    {%- if banner_image != blank -%}
+      {{ banner_image | image_url: width: 100 | image_tag: class: 'pdpb__image', alt: banner_image.alt, loading: 'lazy' }}
+    {%- endif -%}
+  </figure>
+
+  <h4 class="pdpb__title">{{ banner_title }}</h4>
+  <div class="pdpb__description">{{ banner_subtitle }}</div>
+</div>
+
+<style>
+  .pdp-banner__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #e8f3f1;
+    padding: 32px;
+    border-radius: 30px;
+
+    .pdpb__media--wrapp {
+      width: auto;
+      height: 40px;
+      margin: 0;
+
+      .pdpb__image {
+        width: 100%;
+        height: 100%;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+
+    .pdpb__title {
+      font-size: 24px;
+      line-height: 130%;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #015455;
+      margin: 16px 0 23px;
+      max-width: 492px;
+    }
+
+    .pdpb__description {
+      font-size: 14px;
+      line-height: 110%;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #4e7f7f;
+      margin: 0;
+      max-width: 492px;
+    }
+  }
+</style>
