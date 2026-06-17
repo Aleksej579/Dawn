@@ -660,10 +660,50 @@
   "max_blocks": 10,
   "blocks": [
     {
-        "type": "@theme"
-    },
-    {
-        "type": "@app"
+      "type": "block_1",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "btn_name",
+          "label": "Button name",
+          "default": "Button"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button url"
+        },
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Count",
+          "default": 5
+        },
+        { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
+        { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
+      ]
     }
   ],
   "presets": [
@@ -674,55 +714,3 @@
   ]
 }
 {% endschema %}
-
-
-{% comment %}
-"blocks": [
-  {
-    "type": "block_1",
-    "name": "Block",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title",
-        "default": "Title"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "video",
-        "id": "video",
-        "label": "Video"
-      },
-      {
-        "type": "richtext",
-        "id": "description",
-        "label": "Description"
-      },
-      {
-        "type": "text",
-        "id": "btn_name",
-        "label": "Button name",
-        "default": "Button"
-      },
-      {
-        "type": "url",
-        "id": "btn_url",
-        "label": "Button url"
-      },
-      {
-        "type": "number",
-        "id": "number",
-        "label": "Count",
-        "default": 5
-      },
-      { "type": "range", "id": "col_span", "min": 1, "max": 6, "step": 1, "default": 1, "label": "Column span" },
-      { "type": "range", "id": "row_span", "min": 1, "max": 4, "step": 1, "default": 1, "label": "Row span" }
-    ]
-  }
-],
-{% endcomment %}
