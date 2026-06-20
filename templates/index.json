@@ -9,106 +9,97 @@
  */
 {
   "sections": {
-    "0_name_ffpUn6": {
+    "0_name_3bw4wK": {
       "type": "0-name",
       "blocks": {
-        "block_r6zkNg": {
-          "type": "block",
-          "name": "Block",
+        "block_1_4WpUnp": {
+          "type": "block_1",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
-            "description": "<p>вфывфв</p>",
+            "video": "shopify://files/videos/video-1.mp4",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
             "btn_url": "",
             "number": 5,
             "col_span": 1,
             "row_span": 1
-          },
-          "blocks": {}
+          }
         },
-        "block_Nt8mhj": {
-          "type": "block",
-          "name": "Block",
+        "block_1_bcaJXV": {
+          "type": "block_1",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
-            "description": "<p>вфывфв</p>",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
             "btn_url": "",
             "number": 5,
             "col_span": 1,
             "row_span": 1
-          },
-          "blocks": {}
+          }
         },
-        "block_cE3pwV": {
-          "type": "block",
-          "name": "Block",
+        "block_1_9y8LpW": {
+          "type": "block_1",
           "settings": {
             "title": "Title",
-            "image": "shopify://shop_images/second-image.png",
-            "description": "",
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
             "btn_url": "",
             "number": 5,
             "col_span": 1,
             "row_span": 1
-          },
-          "blocks": {}
+          }
         },
-        "block_FrMJJb": {
-          "type": "block",
-          "name": "Block",
+        "block_1_z7HxFK": {
+          "type": "block_1",
           "settings": {
             "title": "Title",
-            "image": "shopify://shop_images/second-image.png",
-            "description": "",
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
             "btn_url": "",
             "number": 5,
             "col_span": 1,
             "row_span": 1
-          },
-          "blocks": {}
+          }
         },
-        "block_PnWQFy": {
-          "type": "block",
-          "name": "Block",
+        "block_1_hhbXck": {
+          "type": "block_1",
           "settings": {
             "title": "Title",
-            "image": "shopify://shop_images/second-image.png",
-            "description": "",
+            "image": "shopify://shop_images/image-placeholder.jpg",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
             "btn_url": "",
             "number": 5,
             "col_span": 1,
             "row_span": 1
-          },
-          "blocks": {}
+          }
         }
       },
       "block_order": [
-        "block_r6zkNg",
-        "block_Nt8mhj",
-        "block_cE3pwV",
-        "block_FrMJJb",
-        "block_PnWQFy"
+        "block_1_4WpUnp",
+        "block_1_bcaJXV",
+        "block_1_9y8LpW",
+        "block_1_z7HxFK",
+        "block_1_hhbXck"
       ],
       "name": "Name",
       "settings": {
         "color_scheme": "scheme-3",
-        "title": "<p>Lorem <br/>ipsum dolor sit amet</p>",
-        "show_advanced_settings": true,
+        "title": "<p>Lorem ipsum dolor sit amet</p>",
+        "show_advanced_settings": false,
         "title_size": "h2-txt",
         "title_align": "left",
         "title_font_family": "var(--font-heading-family)",
-        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-        "btn_name": "Button",
+        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+        "btn_name": "Read More",
         "btn_url": "#",
         "image_desk": "shopify://shop_images/post-1.jpg",
         "image_mobi": "shopify://shop_images/post-2.jpg",
-        "banner_position": "left",
+        "banner_position": "center",
         "product_list": [
           "product",
           "halsa-baby-all-in-one-wellness-monitor",
@@ -118,14 +109,14 @@
         "grid_columns": 4,
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "padding_top_mobile": 10,
-        "padding_bottom_mobile": 10
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     }
   },
   "order": [
-    "0_name_ffpUn6"
+    "0_name_3bw4wK"
   ]
 }

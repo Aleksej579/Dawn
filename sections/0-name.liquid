@@ -1,4 +1,5 @@
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
+<script src="{{ '0-name.out.js' | asset_url }}" defer></script>
 
 {%- style -%}
   .section-{{ section.id }} {
@@ -21,12 +22,13 @@
   }
 {%- endstyle -%}
 
-
-
 <div class="
     name__wrapper section-{{ section.id }}
     color-{{ section.settings.color_scheme }}
     page-width"
+    data-section-id="{{ section.id }}"
+    data-section-type="name"
+    data-grid-columns="{{ section.settings.grid_columns | default: 3 }}"
 >
     <header
         {% comment %}class='page-width'{% endcomment %}
@@ -130,8 +132,6 @@
         </div>
 
         <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns | default: 3 }};">
-            {% comment %}{% content_for 'blocks' %}{% endcomment %}
-
             {%- for block in section.blocks -%}
                 {% case block.type %}
                     {% when 'block_1' %}
@@ -285,142 +285,6 @@
         </div>
     </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.querySelector('.section-{{ section.id }}');
-
-    // accordion
-    const accordionDetails = section.querySelectorAll('details');
-    accordionDetails.forEach((details) => {
-      details.addEventListener('click', () => {
-        if (!details.open) {
-          accordionDetails.forEach((item) => {
-            if (item !== details) {
-              item.open = false;
-            }
-          });
-        }
-      });
-    });
-
-    // tabs
-    const tabLinks = section.querySelectorAll('.__tabs span');
-    const tabPanels = section.querySelectorAll('.__tabs-panel');
-    tabLinks.forEach((link, index) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        section.querySelector('.__tabs li.active')?.classList.remove('active');
-        section.querySelector('.__tabs-panel.active')?.classList.remove('active');
-        link.parentElement.classList.add('active');
-        tabPanels[index].classList.add('active');
-      });
-    });
-
-    // slider
-    section.querySelector('.swiper-{{ section.id }} .swiper-wrapper').style.display = "flex";
-    const swiperCard{{ section.index }} = new Swiper('.swiper-{{ section.id }}', {
-      slidesPerView: 1.3,
-      spaceBetween: 12,
-      centeredSlides: true,
-      // slidesOffsetBefore: 12,
-      // slidesOffsetAfter: 12,
-      grabCursor: true,
-      breakpoints: {
-        750: {
-          slidesPerView: 2,
-          centeredSlides: false,
-        },
-        1200: {
-          slidesPerView: {{ section.settings.grid_columns | default: 3 }},
-          centeredSlides: false,
-        }
-      },
-      navigation: {
-        nextEl: '.swiper-button-next-{{ section.id }}',
-        prevEl: '.swiper-button-prev-{{ section.id }}'
-      },
-      pagination: {
-        el: ".swiper-pagination-{{ section.id }}",
-        clickable: true,
-        type: 'bullets',
-      },
-      // pagination: {
-      //     el: ".swiper-pagination-{{ section.id }}",
-      //     type: 'progressbar',
-      // },
-      autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-      },
-    });
-    window.addEventListener('resize', () => {
-      swiperCard{{ section.index }}.update();
-      if (window.innerWidth < 750) {
-        swiperCard{{ section.index }}.slideTo(1, 0);
-      } else {
-        swiperCard{{ section.index }}.slideTo(0, 0);
-      }
-    });
-
-    // product add to cart
-    section.querySelectorAll('.add-to-cart').forEach((button) => {
-      button.addEventListener('click', async () => {
-        const variantId = button.dataset.variantId;
-        try {
-          const response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              items: [
-                {
-                  id: variantId,
-                  quantity: 1,
-                },
-              ],
-            }),
-          });
-          const result = await response.json();
-          const drawer = document.querySelector('cart-drawer');
-          if (drawer) {
-            fetch('/?section_id=cart-drawer')
-              .then((response) => response.text())
-              .then((text) => {
-                const html = new DOMParser().parseFromString(text, 'text/html');
-                const newDrawer = html.querySelector('cart-drawer');
-                if (newDrawer) {
-                  drawer.innerHTML = newDrawer.innerHTML;
-                  drawer.classList.remove('is-empty');
-                  drawer.classList.add('animate');
-                  drawer.classList.add('active');
-                  document.body.classList.add('overflow-hidden');
-                }
-              })
-              .then(() => {
-                fetch('/cart.js')
-                  .then((response) => response.json())
-                  .then((cart) => {
-                    const cartCount = document.querySelector('.cart-count-bubble span');
-                    if (cartCount) {
-                      cartCount.textContent = cart.item_count;
-                      const bubble = document.querySelector('.cart-count-bubble');
-                      if (bubble) {
-                        bubble.style.display = cart.item_count > 0 ? 'flex' : 'none';
-                      }
-                    }
-                  });
-              });
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      });
-    });
-  });
-</script>
 
 {% schema %}
 {
@@ -659,6 +523,9 @@
   ],
   "max_blocks": 10,
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "block_1",
       "name": "Block",
