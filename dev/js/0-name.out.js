@@ -1,3 +1,8 @@
+/**
+ * NameSection - Universal section with two animation approaches (GSAP vs anime.js)
+ * Compare animations for .__title (GSAP) and .__subtitle (anime.js)
+ * Both perform same effect: fade-in + slide-up on scroll
+ */
 class NameSection {
   constructor(container) {
     this.container = container;
@@ -5,6 +10,7 @@ class NameSection {
     this.gridColumns = Number(container.dataset.gridColumns) || 3;
     this.swiperInstance = null;
     this.resizeHandler = null;
+    this.observer = null; // for anime.js IntersectionObserver
     this.init();
   }
 
@@ -13,8 +19,59 @@ class NameSection {
     this.initTabs();
     this.initSlider();
     this.initCart();
+    this.initAnimationsGSAP(); // .__title - GSAP + ScrollTrigger
+    this.initAnimationsAnime(); // .__subtitle - anime.js + IntersectionObserver
   }
 
+  // ===== GSAP ANIMATION (for .__title) =====
+  initAnimationsGSAP() {
+    if (typeof gsap === 'undefined') return;
+    const title = this.container.querySelector('.__title');
+    if (!title) return;
+
+    gsap.from(title, {
+      opacity: 0,
+      y: 30, // same as anime
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
+  // ===== ANIME.JS ANIMATION (for .__subtitle) =====
+  initAnimationsAnime() {
+    if (typeof anime === 'undefined') return;
+    const subtitle = this.container.querySelector('.__subtitle');
+    if (!subtitle) return;
+
+    // Use IntersectionObserver to trigger anime on scroll
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: subtitle,
+              opacity: [0, 1],
+              translateY: [30, 0],
+              duration: 800,
+              easing: 'easeOutQuad',
+            });
+            // Unobserve after first play (same as toggleActions: 'play none none none')
+            this.observer.unobserve(subtitle);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    this.observer.observe(subtitle);
+  }
+
+  // ===== ACCORDION =====
   initAccordion() {
     const details = this.container.querySelectorAll('details');
     if (!details.length) return;
@@ -29,6 +86,7 @@ class NameSection {
     });
   }
 
+  // ===== TABS =====
   initTabs() {
     const tabLinks = this.container.querySelectorAll('.__tabs span');
     const tabPanels = this.container.querySelectorAll('.__tabs-panel');
@@ -46,6 +104,7 @@ class NameSection {
     });
   }
 
+  // ===== SLIDER (Swiper) =====
   initSlider() {
     if (typeof Swiper === 'undefined') return;
     const swiperContainer = this.container.querySelector(`.swiper-${this.sectionId}`);
@@ -93,6 +152,7 @@ class NameSection {
     }
   }
 
+  // ===== CART =====
   initCart() {
     const buttons = this.container.querySelectorAll('.add-to-cart');
     if (!buttons.length) return;
@@ -145,6 +205,7 @@ class NameSection {
     }
   }
 
+  // ===== DESTROY =====
   destroy() {
     if (this.swiperInstance) {
       this.swiperInstance.destroy(true, true);
@@ -154,9 +215,20 @@ class NameSection {
       window.removeEventListener('resize', this.resizeHandler);
       this.resizeHandler = null;
     }
+    // GSAP cleanup
+    if (typeof gsap !== 'undefined') {
+      gsap.killTweensOf(this.container);
+      ScrollTrigger?.getAll()?.forEach((st) => st.kill());
+    }
+    // anime.js cleanup – disconnect observer
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
   }
 }
 
+// ===== INITIALISATION FUNCTIONS =====
 function initNameSections() {
   document.querySelectorAll('[data-section-type="name"]').forEach((el) => {
     if (el._nameSectionInstance) return;
@@ -171,6 +243,7 @@ function destroyNameSections(container) {
   }
 }
 
+// ===== SHOPIFY EVENTS =====
 document.addEventListener('DOMContentLoaded', initNameSections);
 document.addEventListener('shopify:section:load', (e) => {
   const section = e.target;
