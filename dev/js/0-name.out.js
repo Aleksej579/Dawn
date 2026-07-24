@@ -88,20 +88,62 @@ class NameSection {
 
   // ===== TABS =====
   initTabs() {
-    const tabLinks = this.container.querySelectorAll('.__tabs span');
+    const tabList = this.container.querySelector('.__tabs');
+    const tabLinks = this.container.querySelectorAll('.__tabs [role="tab"]');
     const tabPanels = this.container.querySelectorAll('.__tabs-panel');
     if (!tabLinks.length || !tabPanels.length) return;
+
+    const deactivateTabs = () => {
+      tabLinks.forEach((t) => {
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+        t.closest('li')?.classList.remove('active');
+      });
+      tabPanels.forEach((p) => p.classList.remove('active'));
+    };
+
+    const activateTab = (index) => {
+      if (!tabLinks[index] || !tabPanels[index]) return;
+      deactivateTabs();
+      tabLinks[index].setAttribute('aria-selected', 'true');
+      tabLinks[index].setAttribute('tabindex', '0');
+      tabLinks[index].closest('li')?.classList.add('active');
+      tabPanels[index].classList.add('active');
+      tabLinks[index].focus();
+    };
+
     tabLinks.forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const parentLi = link.closest('li');
-        if (!parentLi) return;
-        this.container.querySelectorAll('.__tabs li').forEach((li) => li.classList.remove('active'));
-        this.container.querySelectorAll('.__tabs-panel').forEach((panel) => panel.classList.remove('active'));
-        parentLi.classList.add('active');
-        if (tabPanels[index]) tabPanels[index].classList.add('active');
+        activateTab(index);
+      });
+
+      link.addEventListener('keydown', (e) => {
+        const lastIndex = tabLinks.length - 1;
+        let targetIndex;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          targetIndex = index === lastIndex ? 0 : index + 1;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          targetIndex = index === 0 ? lastIndex : index - 1;
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          targetIndex = 0;
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          targetIndex = lastIndex;
+        }
+        if (targetIndex !== undefined) activateTab(targetIndex);
       });
     });
+
+    if (tabList) {
+      tabList.addEventListener('focus', () => {
+        const active = this.container.querySelector('[role="tab"][aria-selected="true"]');
+        if (active) active.focus();
+      }, true);
+    }
   }
 
   // ===== SLIDER (Swiper) =====
@@ -109,14 +151,16 @@ class NameSection {
     if (typeof Swiper === 'undefined') return;
     const swiperContainer = this.container.querySelector(`.swiper-${this.sectionId}`);
     if (!swiperContainer) return;
-    const wrapper = swiperContainer.querySelector('.swiper-wrapper');
-    if (wrapper) wrapper.style.display = 'flex';
     try {
       this.swiperInstance = new Swiper(`.swiper-${this.sectionId}`, {
         slidesPerView: 1.3,
         spaceBetween: 12,
         centeredSlides: true,
         grabCursor: true,
+        lazy: {
+          loadPrevNext: true,
+          loadPrevNextAmount: 1,
+        },
         breakpoints: {
           750: { slidesPerView: 2, centeredSlides: false },
           1200: { slidesPerView: this.gridColumns, centeredSlides: false },
@@ -136,15 +180,19 @@ class NameSection {
           pauseOnMouseEnter: true,
         },
       });
+      let resizeTimer;
       this.resizeHandler = () => {
-        if (this.swiperInstance) {
-          this.swiperInstance.update();
-          if (window.innerWidth < 750) {
-            this.swiperInstance.slideTo(1, 0);
-          } else {
-            this.swiperInstance.slideTo(0, 0);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (this.swiperInstance) {
+            this.swiperInstance.update();
+            if (window.innerWidth < 750) {
+              this.swiperInstance.slideTo(1, 0);
+            } else {
+              this.swiperInstance.slideTo(0, 0);
+            }
           }
-        }
+        }, 250);
       };
       window.addEventListener('resize', this.resizeHandler);
     } catch (error) {
