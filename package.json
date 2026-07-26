@@ -1,6 +1,7 @@
 {
   "name": "shopify-cli-3.0",
-  "version": "3.0.0",
+  "version": "4.0.0",
+  "type": "module",
   "author": "SPLIT Development",
   "scripts": {
     "start": "run-p -sr shopify:dev gulp:watch",
@@ -12,18 +13,20 @@
     "gulp:production": "gulp production"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "gulp": "^5.0.0",
-    "gulp-autoprefixer": "^8.0.0",
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "autoprefixer": "^10.4.21",
+    "gulp": "^5.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-cached": "^1.1.1",
-    "gulp-newer": "^1.4.0",
+    "gulp-changed": "^5.0.4",
+    "gulp-postcss": "^10.0.0",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
+    "gulp-sass": "^6.0.1",
     "gulp-uglify": "^3.0.2",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.79.4"
+    "postcss": "^8.5.6",
+    "sass": "^1.91.0"
   },
   "license": "ISC"
 }

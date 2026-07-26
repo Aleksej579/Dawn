@@ -7,3 +7,6 @@ gulpfile.js
 README.md
 yarn.lock
 .vscode/
+.agents/
+.claude/
+CLAUDE.md

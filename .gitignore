@@ -7,15 +7,14 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+.shopify
+node_modules
+*.zip
 
-node_modules/
 *.log
 yarn.lock
 package-lock.json
 
-# Webstorm
-.idea/
-
 # Local development
-.local_dev/
-.shopify
+.idea/
+.vscode/
