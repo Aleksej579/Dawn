@@ -1,7 +1,6 @@
 /**
- * NameSection - Universal section with two animation approaches (GSAP vs anime.js)
- * Compare animations for .__title (GSAP) and .__subtitle (anime.js)
- * Both perform same effect: fade-in + slide-up on scroll
+ * NameSection - Universal section with GSAP scroll animations
+ * Fade-in + slide-up on scroll via ScrollTrigger
  */
 class NameSection {
   constructor(container) {
@@ -10,7 +9,7 @@ class NameSection {
     this.gridColumns = Number(container.dataset.gridColumns) || 3;
     this.swiperInstance = null;
     this.resizeHandler = null;
-    this.observer = null; // for anime.js IntersectionObserver
+    this.scrollTriggers = []; // ScrollTrigger instances owned by this section
     this.init();
   }
 
@@ -19,19 +18,18 @@ class NameSection {
     this.initTabs();
     this.initSlider();
     this.initCart();
-    this.initAnimationsGSAP(); // .__title - GSAP + ScrollTrigger
-    this.initAnimationsAnime(); // .__subtitle - anime.js + IntersectionObserver
+    this.initAnimations(); // .__title - GSAP + ScrollTrigger
   }
 
   // ===== GSAP ANIMATION (for .__title) =====
-  initAnimationsGSAP() {
+  initAnimations() {
     if (typeof gsap === 'undefined') return;
     const title = this.container.querySelector('.__title');
     if (!title) return;
 
-    gsap.from(title, {
+    const trigger = gsap.from(title, {
       opacity: 0,
-      y: 30, // same as anime
+      y: 30,
       duration: 0.8,
       ease: 'power2.out',
       scrollTrigger: {
@@ -40,35 +38,7 @@ class NameSection {
         toggleActions: 'play none none none',
       },
     });
-  }
-
-  // ===== ANIME.JS ANIMATION (for .__subtitle) =====
-  initAnimationsAnime() {
-    if (typeof anime === 'undefined') return;
-    const subtitle = this.container.querySelector('.__subtitle');
-    if (!subtitle) return;
-
-    // Use IntersectionObserver to trigger anime on scroll
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            anime({
-              targets: subtitle,
-              opacity: [0, 1],
-              translateY: [30, 0],
-              duration: 800,
-              easing: 'easeOutQuad',
-            });
-            // Unobserve after first play (same as toggleActions: 'play none none none')
-            this.observer.unobserve(subtitle);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    this.observer.observe(subtitle);
+    if (trigger && trigger.scrollTrigger) this.scrollTriggers.push(trigger.scrollTrigger);
   }
 
   // ===== ACCORDION =====
@@ -157,6 +127,9 @@ class NameSection {
         spaceBetween: 12,
         centeredSlides: true,
         grabCursor: true,
+        // slidesOffsetBefore: 16,
+        // slidesOffsetAfter: 16,
+
         lazy: {
           loadPrevNext: true,
           loadPrevNextAmount: 1,
@@ -263,16 +236,14 @@ class NameSection {
       window.removeEventListener('resize', this.resizeHandler);
       this.resizeHandler = null;
     }
-    // GSAP cleanup
+    // GSAP cleanup – only triggers owned by this section
     if (typeof gsap !== 'undefined') {
       gsap.killTweensOf(this.container);
-      ScrollTrigger?.getAll()?.forEach((st) => st.kill());
+      if (window.ScrollTrigger) {
+        this.scrollTriggers.forEach((st) => st.kill());
+      }
     }
-    // anime.js cleanup – disconnect observer
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
-    }
+    this.scrollTriggers = [];
   }
 }
 
