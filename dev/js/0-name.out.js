@@ -1,7 +1,3 @@
-/**
- * NameSection - Universal section with GSAP scroll animations
- * Fade-in + slide-up on scroll via ScrollTrigger
- */
 class NameSection {
   constructor(container) {
     this.container = container;
@@ -18,13 +14,13 @@ class NameSection {
     this.initTabs();
     this.initSlider();
     this.initCart();
-    this.initAnimations(); // .__title - GSAP + ScrollTrigger
+    this.initAnimations();
   }
 
-  // ===== GSAP ANIMATION (for .__title) =====
+  // ===== GSAP ANIMATION (for [data-name-title]) =====
   initAnimations() {
     if (typeof gsap === 'undefined') return;
-    const title = this.container.querySelector('.__title');
+    const title = this.container.querySelector('[data-name-title]');
     if (!title) return;
 
     const trigger = gsap.from(title, {
@@ -58,9 +54,9 @@ class NameSection {
 
   // ===== TABS =====
   initTabs() {
-    const tabList = this.container.querySelector('.__tabs');
-    const tabLinks = this.container.querySelectorAll('.__tabs [role="tab"]');
-    const tabPanels = this.container.querySelectorAll('.__tabs-panel');
+    const tabList = this.container.querySelector('[data-name-tabs]');
+    const tabLinks = this.container.querySelectorAll('[data-name-tabs] [role="tab"]');
+    const tabPanels = this.container.querySelectorAll('[data-name-tab-panel]');
     if (!tabLinks.length || !tabPanels.length) return;
 
     const deactivateTabs = () => {
@@ -119,10 +115,10 @@ class NameSection {
   // ===== SLIDER (Swiper) =====
   initSlider() {
     if (typeof Swiper === 'undefined') return;
-    const swiperContainer = this.container.querySelector(`.swiper-${this.sectionId}`);
+    const swiperContainer = this.container.querySelector(`[data-name-swiper="${this.sectionId}"]`);
     if (!swiperContainer) return;
     try {
-      this.swiperInstance = new Swiper(`.swiper-${this.sectionId}`, {
+      this.swiperInstance = new Swiper(`[data-name-swiper="${this.sectionId}"]`, {
         slidesPerView: 1.3,
         spaceBetween: 12,
         centeredSlides: true,
@@ -139,11 +135,11 @@ class NameSection {
           1200: { slidesPerView: this.gridColumns, centeredSlides: false },
         },
         navigation: {
-          nextEl: `.swiper-button-next-${this.sectionId}`,
-          prevEl: `.swiper-button-prev-${this.sectionId}`,
+          nextEl: `[data-name-swiper-next="${this.sectionId}"]`,
+          prevEl: `[data-name-swiper-prev="${this.sectionId}"]`,
         },
         pagination: {
-          el: `.swiper-pagination-${this.sectionId}`,
+          el: `[data-name-swiper-pagination="${this.sectionId}"]`,
           clickable: true,
           type: 'bullets',
         },
@@ -175,7 +171,7 @@ class NameSection {
 
   // ===== CART =====
   initCart() {
-    const buttons = this.container.querySelectorAll('.add-to-cart');
+    const buttons = this.container.querySelectorAll('[data-name-add-to-cart]');
     if (!buttons.length) return;
     buttons.forEach((button) => {
       button.addEventListener('click', async (e) => {

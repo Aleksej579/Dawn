@@ -47,7 +47,7 @@
     {% comment %}class='page-width'{% endcomment %}
   >
     {%- if section.settings.title != blank -%}
-      <h2 class="__title {{ section.settings.title_size }}" style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
+      <h2 class="__title {{ section.settings.title_size }}" data-name-title style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
     {%- endif -%}
     {%- if section.settings.subtitle != blank -%}
       <div class="__subtitle">{{ section.settings.subtitle }}</div>
@@ -85,7 +85,7 @@
       {% endif %}
 
       <div class="__banner-content">
-        <h2 class="__title {{ section.settings.title_size }}">{{ section.settings.title }}</h2>
+        <h2 class="__title {{ section.settings.title_size }}" data-name-title>{{ section.settings.title }}</h2>
         <div class="__subtitle">{{ section.settings.subtitle }}</div>
         {%- if section.settings.btn_name != blank -%}
           <a class="__link" href="{{ section.settings.btn_url }}">{{- section.settings.btn_name -}}</a>
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div class="__slider--wrapp swiper swiper-{{ section.id }}">
+    <div class="__slider--wrapp swiper" data-name-swiper="{{ section.id }}">
       <div class="swiper-wrapper">
         {%- for block in section.blocks -%}
           <article class="swiper-slide">
@@ -122,7 +122,8 @@
 
       <button
         type="button"
-        class="swiper-button-prev swiper-button-prev-{{ section.id }}"
+        class="swiper-button-prev"
+        data-name-swiper-prev="{{ section.id }}"
         aria-label="{{ 'general.slider.previous_slide' | t }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
@@ -132,7 +133,8 @@
       </button>
       <button
         type="button"
-        class="swiper-button-next swiper-button-next-{{ section.id }}"
+        class="swiper-button-next"
+        data-name-swiper-next="{{ section.id }}"
         aria-label="{{ 'general.slider.next_slide' | t }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
@@ -141,7 +143,7 @@
         </svg>
       </button>
 
-      <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
+      <div class="swiper-pagination" data-name-swiper-pagination="{{ section.id }}"></div>
     </div>
 
     <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns | default: 3 }};">
@@ -219,7 +221,7 @@
               {{ cart.currency.symbol }}
               {{ product.price | money_without_currency -}}
             </p>
-            <button class="add-to-cart button button--primary" data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+            <button class="add-to-cart button button--primary" data-name-add-to-cart data-variant-id="{{ product.variants.first.id }}">{{ 'products.product.add_to_cart' | t }}</button>
           </div>
         </article>
       {% endfor %}
@@ -284,13 +286,13 @@
     </div>
 
     <div class="__tabs-wrapp">
-      <ul class="__tabs" role="tablist">
+      <ul class="__tabs" data-name-tabs role="tablist">
         <li class="active"><span role="tab" aria-selected="true" aria-controls="tabs-panel-{{ section.id }}-1" id="tabs-tab-{{ section.id }}-1" tabindex="0">Part 1</span></li>
         <li><span role="tab" aria-selected="false" aria-controls="tabs-panel-{{ section.id }}-2" id="tabs-tab-{{ section.id }}-2" tabindex="-1">Part 2</span></li>
       </ul>
       <div class="__tabs-content">
-        <div class="__tabs-panel active" role="tabpanel" aria-labelledby="tabs-tab-{{ section.id }}-1" id="tabs-panel-{{ section.id }}-1" tabindex="0">content here 1</div>
-        <div class="__tabs-panel" role="tabpanel" aria-labelledby="tabs-tab-{{ section.id }}-2" id="tabs-panel-{{ section.id }}-2" tabindex="0">content here 2</div>
+        <div class="__tabs-panel active" data-name-tab-panel role="tabpanel" aria-labelledby="tabs-tab-{{ section.id }}-1" id="tabs-panel-{{ section.id }}-1" tabindex="0">content here 1</div>
+        <div class="__tabs-panel" data-name-tab-panel role="tabpanel" aria-labelledby="tabs-tab-{{ section.id }}-2" id="tabs-panel-{{ section.id }}-2" tabindex="0">content here 2</div>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 .name {
+
     /* background: grey; */
     .name__wrapper {
         background: rgb(var(--color-background));
@@ -28,14 +29,17 @@
                 &:empty {
                     display: none;
                 }
+
                 &.h1-txt {
                     font-size: 56px;
                     line-height: 110%;
                 }
+
                 &.h2-txt {
                     font-size: 36px;
                     line-height: 120%;
                 }
+
                 &.h3-txt {
                     font-size: 26px;
                     line-height: 130%;
@@ -50,16 +54,19 @@
                 }
 
                 @media (width < 1024px) {
+
                     &.h1-txt,
                     &.h2-txt,
                     &.h3-txt {
                         font-size: 30px;
                     }
                 }
+
                 @media (width < 750px) {
                     & * br {
                         display: none;
                     }
+
                     &.h1-txt,
                     &.h2-txt,
                     &.h3-txt {
@@ -67,10 +74,12 @@
                         line-height: 100%;
                         margin-bottom: 12px;
                     }
+
                     em {
                         font-size: 36px;
                         line-height: 120%;
                     }
+
                     &:empty {
                         display: none;
                     }
@@ -91,8 +100,7 @@
                 }
             }
 
-            a.__link {
-            }
+            a.__link {}
         }
 
         .__container {
@@ -102,6 +110,7 @@
 
                 .__media--wrapp {
                     height: 100%;
+
                     &:hover :is(img, video) {
                         transform: scale(1);
                     }
@@ -119,9 +128,11 @@
                     padding: 12px;
                     overflow-y: auto;
                     background: rgb(var(--color-background), 0.5);
+
                     @supports not (backdrop-filter: blur(8px)) {
                         background: rgb(var(--color-background), 0.85);
                     }
+
                     backdrop-filter: blur(8px);
                     -webkit-backdrop-filter: blur(8px);
 
@@ -136,9 +147,11 @@
                     &::-webkit-scrollbar {
                         width: 3px;
                     }
+
                     &::-webkit-scrollbar-track {
                         background: #f1f1f1;
                     }
+
                     &::-webkit-scrollbar-thumb {
                         background: #888;
                     }
@@ -149,14 +162,17 @@
                     left: 50%;
                     transform: translate(-50%);
                 }
+
                 &.left .__banner-content {
                     max-width: 50%;
                     left: 0;
                 }
+
                 &.right .__banner-content {
                     max-width: 50%;
                     right: 0;
                 }
+
                 &.full .__banner-content {
                     max-width: 100%;
                 }
@@ -166,17 +182,20 @@
                         max-width: 50%;
                         left: 0;
                     }
+
                     .__media--wrapp {
                         max-width: 50%;
                         margin-left: auto;
                         aspect-ratio: 1 / 1;
                     }
                 }
+
                 &.split-right {
                     .__banner-content {
                         max-width: 50%;
                         right: 0;
                     }
+
                     .__media--wrapp {
                         max-width: 50%;
                         margin-right: auto;
@@ -190,6 +209,7 @@
                 &.full,
                 &.split-left,
                 &.split-right {
+
                     .__media--wrapp,
                     .__banner-content {
                         @media (width < 750px) {
@@ -228,11 +248,12 @@
                     @media (width < 1024px) {
                         flex-direction: column;
                     }
+
                     @media (width < 750px) {
                         width: 100%;
                     }
 
-                    & > div {
+                    &>div {
                         flex: 1;
                         display: flex;
                         flex-direction: column;
@@ -242,6 +263,7 @@
                     details {
                         padding: 16px 0;
                         border-bottom: 1px solid #6b7c6e4d;
+
                         summary {
                             list-style: none;
                             display: flex;
@@ -257,15 +279,18 @@
                             &::-webkit-details-marker {
                                 display: none;
                             }
+
                             &::after {
                                 content: '+';
                                 font-size: 24px;
                                 font-weight: 300;
                             }
                         }
+
                         &[open] summary::after {
                             content: '−';
                         }
+
                         /* &[open] > summary::after {
                           transform: rotate(180deg);
                         } */
@@ -298,10 +323,12 @@
 
                     li {
                         list-style-type: none;
+
                         span {
                             border-bottom: 1px solid transparent;
                             transition: all 0.1s ease-in-out;
                         }
+
                         &.active span,
                         [aria-selected="true"] {
                             border-bottom: 1px solid black;
@@ -316,6 +343,7 @@
 
                     .__tabs-panel {
                         display: none;
+
                         &.active {
                             display: block;
                         }
@@ -362,7 +390,7 @@
             overflow: hidden;
             flex-shrink: 0;
 
-            & > * {
+            &>* {
                 margin: 0;
             }
 
@@ -377,6 +405,7 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
+
                 & a {
                     color: inherit;
                     text-decoration: none;
@@ -405,10 +434,10 @@
                 color: rgb(var(--color-foreground));
                 letter-spacing: normal;
             }
-            .__reviews {
-            }
-            .__price {
-            }
+
+            .__reviews {}
+
+            .__price {}
 
             a:not(.__link) {
                 font-size: 15px;
@@ -417,6 +446,7 @@
                 color: rgb(var(--color-button));
                 text-decoration: none;
                 letter-spacing: normal;
+
                 &:hover {
                     color: rgb(var(--color-button), 0.8);
                     text-decoration: underline;
@@ -487,9 +517,11 @@
             background: rgb(var(--color-background));
             border: 1px solid rgb(var(--color-button));
         }
+
         @media (width < 750px) {
             width: 100%;
         }
+
         /* @media (width < 750px) {
             display: none;
         }
@@ -520,9 +552,11 @@
         &::after {
             display: none;
         }
+
         @media (width < 750px) {
             display: none;
         }
+
         svg {
             width: 16px;
             height: 16px;
@@ -531,14 +565,17 @@
 
     .swiper-button-prev {
         right: calc(56px + 0px);
+
         @media (width < 750px) {
             right: auto;
             left: 50%;
             transform: translateX(-105%);
         }
     }
+
     .swiper-button-next {
         right: 0;
+
         @media (width < 750px) {
             right: 50%;
             transform: translateX(105%);
@@ -565,8 +602,10 @@
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 6px; /* added for better spacing */
+        gap: 6px;
+        /* added for better spacing */
     }
+
     .swiper-pagination-bullet {
         background: rgb(var(--color-button-text));
         opacity: 1;
@@ -576,6 +615,7 @@
         border-radius: 50%;
         transition: width 0.3s ease;
     }
+
     .swiper-pagination-bullet-active {
         background: rgb(var(--color-button));
         width: 24px;
