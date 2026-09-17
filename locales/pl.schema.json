@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "Włącz uwagę dotyczącą koszyka"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Szuflada koszyka",
           "collection": {

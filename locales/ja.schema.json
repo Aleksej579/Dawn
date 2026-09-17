@@ -275,6 +275,9 @@
         "show_cart_note": {
           "label": "カートメモを有効にする"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "カートドロワー",
           "collection": {

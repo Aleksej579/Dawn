@@ -275,6 +275,9 @@
         "show_cart_note": {
           "label": "Ota tilauskommentit käyttöön"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Veto-ostoskori",
           "collection": {

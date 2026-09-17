@@ -1,0 +1,89 @@
+/*
+  Cart drawer "coupon / note" toggle row.
+  Depends on the theme's global custom properties: --color-foreground,
+  --duration-short (see base.css). Border color/radius on the icon box are
+  intentionally hardcoded to match the design (#e2e2e2, 6px), not tied to the
+  theme's configurable "Inputs radius" setting.
+*/
+
+.cart-drawer__utility {
+  margin-top: -1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.2);
+}
+
+.cart-drawer__utility + .cart-drawer__footer {
+  padding-top: 1.5rem;
+}
+
+.cart-drawer__utility-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  padding: 1.5rem 0;
+}
+
+.cart-drawer__utility-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  min-width: 0;
+  min-height: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.cart-drawer__utility-toggle:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.cart-drawer__utility-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 0.1rem solid #e2e2e2;
+  border-radius: 0.6rem;
+  transition:
+    border-color var(--duration-short) ease,
+    background-color var(--duration-short) ease;
+}
+
+.cart-drawer__utility-icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.cart-drawer__utility-toggle[aria-expanded='true'] .cart-drawer__utility-icon {
+  border-color: #b0b0b0;
+  background-color: #f7f7f7;
+}
+
+.cart-drawer__utility-panel {
+  padding-top: 1.5rem;
+}
+
+.cart-discount__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cart-discount__row .field {
+  flex: 1;
+}
+
+.cart-discount__submit {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "카트 참고 사항 사용"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "카트 서랍",
           "collection": {

@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "Abilita nota carrello"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Finestra del carrello",
           "collection": {

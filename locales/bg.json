@@ -290,6 +290,11 @@
       },
       "update": "Актуализиране",
       "note": "Специални инструкции за поръчката",
+      "add_note": "Add special instructions",
+      "discount_code": "Apply a coupon",
+      "discount_code_placeholder": "Discount code",
+      "apply_discount_code": "Apply",
+      "discount_code_error": "This code isn't valid for your cart.",
       "login": {
         "title": "Имате профил?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Влезте</a> за по-бързо преминаване към плащане."

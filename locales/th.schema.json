@@ -275,6 +275,9 @@
         "show_cart_note": {
           "label": "เปิดใช้หมายเหตุสำหรับตะกร้าสินค้า"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "ตะกร้าสินค้าแบบเลื่อนด้านข้าง",
           "collection": {

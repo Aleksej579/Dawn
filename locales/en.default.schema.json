@@ -337,6 +337,9 @@
         "show_cart_note": {
           "label": "Enable cart note"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Cart drawer",
           "collection": {

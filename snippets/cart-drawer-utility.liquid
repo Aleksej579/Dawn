@@ -1,0 +1,107 @@
+{% comment %}
+  Renders the cart-drawer "coupon / note" toggle row: two independent
+  icon+label buttons, each opening its own panel below (discount code input
+  + Apply, and the order-note textarea).
+
+  Usage: render this where the note/discount block should sit inside the
+  drawer footer (right before the subtotal/discounts block), e.g.:
+
+    {% render 'cart-drawer-utility' %}
+
+  Requires (see ../README.md for the full list):
+  - settings.show_cart_discount_code / settings.show_cart_note checkboxes
+  - assets/cart-drawer-utility.js loaded on the page
+  - assets/icon-coupon.svg, assets/icon-note.svg, and the theme's own
+    icon-error.svg
+  - Dawn's shared .field / .field__input / .field__label / .button /
+    .form__message primitives (base.css)
+  - cart.js's CartItems.fetchCartData(), and the theme's debounce/fetchConfig/
+    routes/publish/PUB_SUB_EVENTS globals
+  - window.StandardEvents (Shopify's standard-events.js) for
+    CartDiscountUpdateEvent / CartErrorEvent — optional, code degrades
+    gracefully without it
+  - locale keys: sections.cart.discount_code, discount_code_placeholder,
+    apply_discount_code, discount_code_error, add_note, note
+  - window.cartStrings.discountCodeError (see README)
+{% endcomment %}
+
+{%- if settings.show_cart_discount_code or settings.show_cart_note -%}
+  <cart-drawer-utility class="cart-drawer__utility">
+    <div class="cart-drawer__utility-toggles">
+      {%- if settings.show_cart_discount_code -%}
+        <button
+          type="button"
+          class="cart-drawer__utility-toggle"
+          id="CartDrawer-Discount-Trigger"
+          aria-expanded="false"
+          aria-controls="CartDrawer-Discount-Panel"
+        >
+          <span class="cart-drawer__utility-icon">
+            {{- 'icon-coupon.svg' | inline_asset_content -}}
+          </span>
+          {{ 'sections.cart.discount_code' | t }}
+        </button>
+      {%- endif -%}
+
+      {%- if settings.show_cart_note -%}
+        <button
+          type="button"
+          class="cart-drawer__utility-toggle"
+          id="CartDrawer-Note-Trigger"
+          aria-expanded="false"
+          aria-controls="CartDrawer-Note-Panel"
+        >
+          <span class="cart-drawer__utility-icon">
+            {{- 'icon-note.svg' | inline_asset_content -}}
+          </span>
+          {{ 'sections.cart.add_note' | t }}
+        </button>
+      {%- endif -%}
+    </div>
+
+    {%- if settings.show_cart_discount_code -%}
+      <div id="CartDrawer-Discount-Panel" class="cart-drawer__utility-panel" hidden>
+        <cart-discount>
+          <div class="cart-discount__row">
+            <div class="field">
+              <input
+                type="text"
+                id="CartDrawer-Discount-Code"
+                class="field__input"
+                name="discount"
+                autocomplete="off"
+                placeholder="{{ 'sections.cart.discount_code_placeholder' | t }}"
+              >
+              <label class="field__label" for="CartDrawer-Discount-Code">
+                {{ 'sections.cart.discount_code_placeholder' | t }}
+              </label>
+            </div>
+            <button type="button" class="button button--small cart-discount__submit">
+              {{ 'sections.cart.apply_discount_code' | t }}
+            </button>
+          </div>
+          <p class="cart-discount__message form__message" role="alert" hidden>
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            <span class="cart-discount__message-text"></span>
+          </p>
+        </cart-discount>
+      </div>
+    {%- endif -%}
+
+    {%- if settings.show_cart_note -%}
+      <div id="CartDrawer-Note-Panel" class="cart-drawer__utility-panel" hidden>
+        <cart-note class="cart__note field">
+          <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+          <textarea
+            id="CartDrawer-Note"
+            class="text-area text-area--resize-vertical field__input"
+            name="note"
+            placeholder="{{ 'sections.cart.note' | t }}"
+          >{{ cart.note }}</textarea>
+        </cart-note>
+      </div>
+    {%- endif -%}
+  </cart-drawer-utility>
+{%- endif -%}

@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "Ativar nota do carrinho"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Painel deslizante do carrinho",
           "collection": {

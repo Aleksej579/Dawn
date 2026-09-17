@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "启用购物车备注"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "购物车抽屉",
           "collection": {

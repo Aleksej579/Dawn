@@ -275,6 +275,9 @@
         "show_cart_note": {
           "label": "啟用購物車備註"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "購物車導覽匣",
           "collection": {

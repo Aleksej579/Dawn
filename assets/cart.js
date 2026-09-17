@@ -27,6 +27,20 @@ class CartItems extends HTMLElement {
 
   cartUpdateUnsubscriber = undefined;
 
+  static cartFetchPromise = null;
+
+  static fetchCartData() {
+    CartItems.cartFetchPromise =
+      CartItems.cartFetchPromise ||
+      fetch(`${routes.cart_url}.json`)
+        .then((response) => response.json())
+        .finally(() => {
+          CartItems.cartFetchPromise = null;
+        });
+
+    return CartItems.cartFetchPromise;
+  }
+
   connectedCallback() {
     this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, (event) => {
       if (event.source === 'cart-items') {

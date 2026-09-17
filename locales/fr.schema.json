@@ -261,6 +261,9 @@
         "show_cart_note": {
           "label": "Activer la note de panier"
         },
+        "show_cart_discount_code": {
+          "label": "Show discount code field"
+        },
         "cart_drawer": {
           "header": "Panier coulissant",
           "collection": {
