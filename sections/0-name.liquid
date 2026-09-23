@@ -49,6 +49,7 @@
     {%- if section.settings.title != blank -%}
       <h2 class="__title {{ section.settings.title_size }}" data-name-title style="font-family:{{ section.settings.title_font_family }}; text-align:{{ section.settings.title_align }};">{{ section.settings.title }}</h2>
     {%- endif -%}
+
     {%- if section.settings.subtitle != blank -%}
       <div class="__subtitle">{{ section.settings.subtitle }}</div>
     {%- endif -%}
@@ -96,7 +97,7 @@
     <div class="__slider--wrapp swiper" data-name-swiper="{{ section.id }}">
       <div class="swiper-wrapper">
         {%- for block in section.blocks -%}
-          <article class="swiper-slide">
+          <article class="swiper-slide" {{ block.shopify_attributes }}>
             <figure class="__media--wrapp">
               {%- if section.settings.title != blank -%}
                 <figcaption class="__badge">{{ block.settings.title }}</figcaption>
@@ -259,6 +260,7 @@
         <div>
           {%- for block in section.blocks limit: half_size -%}
             <details
+              {{ block.shopify_attributes }}
               {% if forloop.first %}
                 open
               {% endif %}
@@ -267,18 +269,18 @@
                 {{ block.settings.title }}
                 <!-- {{- 'icon-caret.svg' | inline_asset_content -}} -->
               </summary>
-              <div>{{ block.settings.description }}</div>
+              <div class="__accordion-content">{{ block.settings.description }}</div>
             </details>
           {%- endfor -%}
         </div>
         <div>
           {%- for block in section.blocks offset: half_size -%}
-            <details>
+            <details {{ block.shopify_attributes }}>
               <summary>
                 {{ block.settings.title }}
                 <!-- {{- 'icon-caret.svg' | inline_asset_content -}} -->
               </summary>
-              <div>{{ block.settings.description }}</div>
+              <div class="__accordion-content">{{ block.settings.description }}</div>
             </details>
           {%- endfor -%}
         </div>

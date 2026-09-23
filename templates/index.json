@@ -99,7 +99,7 @@
         "btn_url": "#",
         "image_desk": "shopify://shop_images/post-1.jpg",
         "image_mobi": "shopify://shop_images/post-2.jpg",
-        "banner_position": "center",
+        "banner_position": "left",
         "product_list": [
           "product",
           "halsa-baby-all-in-one-wellness-monitor",
