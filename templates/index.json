@@ -13,21 +13,21 @@
       "type": "0-name",
       "blocks": {
         "block_1_4WpUnp": {
-          "type": "block_1",
+          "type": "base_block",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
             "video": "shopify://files/videos/video-1.mp4",
-            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&nbsp;<br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;<br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
             "btn_name": "Button",
-            "btn_url": "",
+            "btn_url": "#",
             "number": 5,
             "col_span": 1,
             "row_span": 1
           }
         },
         "block_1_bcaJXV": {
-          "type": "block_1",
+          "type": "base_block",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
@@ -40,7 +40,7 @@
           }
         },
         "block_1_9y8LpW": {
-          "type": "block_1",
+          "type": "base_block",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
@@ -53,7 +53,7 @@
           }
         },
         "block_1_z7HxFK": {
-          "type": "block_1",
+          "type": "base_block",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
@@ -66,7 +66,7 @@
           }
         },
         "block_1_hhbXck": {
-          "type": "block_1",
+          "type": "base_block",
           "settings": {
             "title": "Title",
             "image": "shopify://shop_images/image-placeholder.jpg",
@@ -90,11 +90,11 @@
       "settings": {
         "color_scheme": "scheme-3",
         "title": "<p>Lorem ipsum dolor sit amet</p>",
-        "show_advanced_settings": false,
+        "show_advanced_settings": true,
         "title_size": "h2-txt",
         "title_align": "left",
         "title_font_family": "var(--font-heading-family)",
-        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+        "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&nbsp;<br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;<br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
         "btn_name": "Read More",
         "btn_url": "#",
         "image_desk": "shopify://shop_images/post-1.jpg",
@@ -106,6 +106,7 @@
           "babyliveadvice®-subscription"
         ],
         "blog": "news",
+        "slider_columns": 4,
         "grid_columns": 4,
         "margin_top": 0,
         "margin_bottom": 0,

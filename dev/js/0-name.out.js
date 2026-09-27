@@ -1,283 +1,166 @@
-class NameSection {
-  constructor(container) {
-    this.container = container;
-    this.sectionId = container.dataset.sectionId;
-    this.gridColumns = Number(container.dataset.gridColumns) || 3;
-    this.swiperInstance = null;
-    this.resizeHandler = null;
-    this.scrollTriggers = []; // ScrollTrigger instances owned by this section
-    this.init();
-  }
+/*
+  New section:
+  - rename name-section, NameSection, data-name-*
+  - drop unused modules (init() call + block)
+*/
+if (!customElements.get('name-section')) {
+  customElements.define(
+    'name-section',
+    class NameSection extends HTMLElement {
+      // CORE (keep)
+      connectedCallback() {
+        this.abort = new AbortController();
+        this.init();
+      }
 
-  init() {
-    this.initAccordion();
-    this.initTabs();
-    this.initSlider();
-    this.initCart();
-    this.initAnimations();
-  }
+      disconnectedCallback() {
+        this.abort.abort();
+      }
 
-  // ===== GSAP ANIMATION (for [data-name-title]) =====
-  initAnimations() {
-    if (typeof gsap === 'undefined') return;
-    const title = this.container.querySelector('[data-name-title]');
-    if (!title) return;
+      init() {
+        // To drop a module: remove its call + its block below
+        this.initTabs();
+        this.initSlider();
+        this.initCart();
+        this.initAnimation();
+      }
 
-    const trigger = gsap.from(title, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: title,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    });
-    if (trigger && trigger.scrollTrigger) this.scrollTriggers.push(trigger.scrollTrigger);
-  }
+      // TABS: [data-name-tabs], [data-name-tab-panel]
+      initTabs() {
+        const tabs = this.querySelectorAll('[data-name-tabs] [role="tab"]');
+        const panels = this.querySelectorAll('[data-name-tab-panel]');
+        const { signal } = this.abort;
 
-  // ===== ACCORDION =====
-  initAccordion() {
-    const details = this.container.querySelectorAll('details');
-    if (!details.length) return;
-    details.forEach((el) => {
-      el.addEventListener('click', () => {
-        if (!el.open) {
-          details.forEach((other) => {
-            if (other !== el) other.open = false;
+        const activate = (index) => {
+          tabs.forEach((tab, i) => {
+            const active = i === index;
+            tab.setAttribute('aria-selected', active);
+            tab.tabIndex = active ? 0 : -1;
+            panels[i]?.toggleAttribute('hidden', !active);
           });
-        }
-      });
-    });
-  }
+          tabs[index].focus();
+        };
 
-  // ===== TABS =====
-  initTabs() {
-    const tabList = this.container.querySelector('[data-name-tabs]');
-    const tabLinks = this.container.querySelectorAll('[data-name-tabs] [role="tab"]');
-    const tabPanels = this.container.querySelectorAll('[data-name-tab-panel]');
-    if (!tabLinks.length || !tabPanels.length) return;
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => activate(index), { signal });
 
-    const deactivateTabs = () => {
-      tabLinks.forEach((t) => {
-        t.setAttribute('aria-selected', 'false');
-        t.setAttribute('tabindex', '-1');
-        t.closest('li')?.classList.remove('active');
-      });
-      tabPanels.forEach((p) => p.classList.remove('active'));
-    };
+          tab.addEventListener(
+            'keydown',
+            (e) => {
+              const last = tabs.length - 1;
+              const target = {
+                ArrowRight: index === last ? 0 : index + 1,
+                ArrowDown: index === last ? 0 : index + 1,
+                ArrowLeft: index === 0 ? last : index - 1,
+                ArrowUp: index === 0 ? last : index - 1,
+                Home: 0,
+                End: last,
+              }[e.key];
+              if (target === undefined) return;
 
-    const activateTab = (index) => {
-      if (!tabLinks[index] || !tabPanels[index]) return;
-      deactivateTabs();
-      tabLinks[index].setAttribute('aria-selected', 'true');
-      tabLinks[index].setAttribute('tabindex', '0');
-      tabLinks[index].closest('li')?.classList.add('active');
-      tabPanels[index].classList.add('active');
-      tabLinks[index].focus();
-    };
+              e.preventDefault();
+              activate(target);
+            },
+            { signal }
+          );
+        });
+      }
 
-    tabLinks.forEach((link, index) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        activateTab(index);
-      });
+      // SLIDER: [data-name-swiper], Swiper
+      initSlider() {
+        const slider = this.querySelector('[data-name-swiper]');
+        if (!slider || typeof Swiper === 'undefined') return;
 
-      link.addEventListener('keydown', (e) => {
-        const lastIndex = tabLinks.length - 1;
-        let targetIndex;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-          e.preventDefault();
-          targetIndex = index === lastIndex ? 0 : index + 1;
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          targetIndex = index === 0 ? lastIndex : index - 1;
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          targetIndex = 0;
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          targetIndex = lastIndex;
-        }
-        if (targetIndex !== undefined) activateTab(targetIndex);
-      });
-    });
+        const swiper = new Swiper(slider, {
+          slidesPerView: 1.3,
+          spaceBetween: 12,
+          centeredSlides: true,
+          grabCursor: true,
+          // slidesOffsetBefore: 16,
+          // slidesOffsetAfter: 16,
+          breakpoints: {
+            750: { slidesPerView: 2, centeredSlides: false },
+            1200: { slidesPerView: Number(slider.dataset.columns), centeredSlides: false },
+          },
+          navigation: {
+            nextEl: this.querySelector('[data-name-swiper-next]'),
+            prevEl: this.querySelector('[data-name-swiper-prev]'),
+          },
+          pagination: {
+            el: this.querySelector('[data-name-swiper-pagination]'),
+            clickable: true,
+          },
+          autoplay: matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? false
+            : { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+        });
 
-    if (tabList) {
-      tabList.addEventListener('focus', () => {
-        const active = this.container.querySelector('[role="tab"][aria-selected="true"]');
-        if (active) active.focus();
-      }, true);
-    }
-  }
+        this.abort.signal.addEventListener('abort', () => swiper.destroy(true, true));
+      }
 
-  // ===== SLIDER (Swiper) =====
-  initSlider() {
-    if (typeof Swiper === 'undefined') return;
-    const swiperContainer = this.container.querySelector(`[data-name-swiper="${this.sectionId}"]`);
-    if (!swiperContainer) return;
-    try {
-      this.swiperInstance = new Swiper(`[data-name-swiper="${this.sectionId}"]`, {
-        slidesPerView: 1.3,
-        spaceBetween: 12,
-        centeredSlides: true,
-        grabCursor: true,
-        // slidesOffsetBefore: 16,
-        // slidesOffsetAfter: 16,
+      // CART: form[data-name-add-to-cart], Dawn <cart-drawer>; without the drawer the form submits natively
+      initCart() {
+        const drawer = document.querySelector('cart-drawer');
+        if (!drawer?.renderContents) return;
 
-        lazy: {
-          loadPrevNext: true,
-          loadPrevNextAmount: 1,
-        },
-        breakpoints: {
-          750: { slidesPerView: 2, centeredSlides: false },
-          1200: { slidesPerView: this.gridColumns, centeredSlides: false },
-        },
-        navigation: {
-          nextEl: `[data-name-swiper-next="${this.sectionId}"]`,
-          prevEl: `[data-name-swiper-prev="${this.sectionId}"]`,
-        },
-        pagination: {
-          el: `[data-name-swiper-pagination="${this.sectionId}"]`,
-          clickable: true,
-          type: 'bullets',
-        },
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-      });
-      let resizeTimer;
-      this.resizeHandler = () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          if (this.swiperInstance) {
-            this.swiperInstance.update();
-            if (window.innerWidth < 750) {
-              this.swiperInstance.slideTo(1, 0);
-            } else {
-              this.swiperInstance.slideTo(0, 0);
-            }
-          }
-        }, 250);
-      };
-      window.addEventListener('resize', this.resizeHandler);
-    } catch (error) {
-      console.warn('Swiper initialization failed:', error);
-    }
-  }
+        this.querySelectorAll('[data-name-add-to-cart]').forEach((form) => {
+          form.addEventListener(
+            'submit',
+            (e) => {
+              e.preventDefault();
+              this.addToCart(form, drawer);
+            },
+            { signal: this.abort.signal }
+          );
+        });
+      }
 
-  // ===== CART =====
-  initCart() {
-    const buttons = this.container.querySelectorAll('[data-name-add-to-cart]');
-    if (!buttons.length) return;
-    buttons.forEach((button) => {
-      button.addEventListener('click', async (e) => {
-        const variantId = button.dataset.variantId;
-        if (!variantId) {
-          console.warn('Missing variant-id');
-          return;
-        }
+      async addToCart(form, drawer) {
+        const button = form.querySelector('[type="submit"]');
+        const error = form.querySelector('[role="alert"]');
+        const body = new FormData(form);
+        body.append('sections', 'cart-drawer,cart-icon-bubble');
+        body.append('sections_url', window.location.pathname);
+
+        button.disabled = true;
+        error.hidden = true;
         try {
-          const response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] }),
-          });
-          if (!response.ok) throw new Error('Failed to add to cart');
-          await this.updateCartDrawer();
-        } catch (error) {
-          console.error('Add to cart error:', error);
+          const response = await fetch('/cart/add.js', { method: 'POST', body });
+          const state = await response.json();
+          if (!response.ok) throw new Error(state.description);
+
+          drawer.classList.remove('is-empty');
+          drawer.renderContents(state);
+        } catch (e) {
+          error.textContent = e.message;
+          error.hidden = false;
+        } finally {
+          button.disabled = false;
         }
-      });
-    });
-  }
-
-  async updateCartDrawer() {
-    const drawer = document.querySelector('cart-drawer');
-    if (!drawer) return;
-    try {
-      const response = await fetch('/?section_id=cart-drawer');
-      const text = await response.text();
-      const html = new DOMParser().parseFromString(text, 'text/html');
-      const newDrawer = html.querySelector('cart-drawer');
-      if (newDrawer) {
-        drawer.innerHTML = newDrawer.innerHTML;
-        drawer.classList.remove('is-empty');
-        drawer.classList.add('animate', 'active');
-        document.body.classList.add('overflow-hidden');
       }
-      const cartResponse = await fetch('/cart.js');
-      const cart = await cartResponse.json();
-      const countSpan = document.querySelector('.cart-count-bubble span');
-      if (countSpan) {
-        countSpan.textContent = cart.item_count;
-        const bubble = document.querySelector('.cart-count-bubble');
-        if (bubble) bubble.style.display = cart.item_count > 0 ? 'flex' : 'none';
-      }
-    } catch (error) {
-      console.warn('Cart update failed:', error);
-    }
-  }
 
-  // ===== DESTROY =====
-  destroy() {
-    if (this.swiperInstance) {
-      this.swiperInstance.destroy(true, true);
-      this.swiperInstance = null;
-    }
-    if (this.resizeHandler) {
-      window.removeEventListener('resize', this.resizeHandler);
-      this.resizeHandler = null;
-    }
-    // GSAP cleanup – only triggers owned by this section
-    if (typeof gsap !== 'undefined') {
-      gsap.killTweensOf(this.container);
-      if (window.ScrollTrigger) {
-        this.scrollTriggers.forEach((st) => st.kill());
+      // ANIMATION: [data-name-title], gsap (script tags in section liquid)
+      initAnimation() {
+        const title = this.querySelector('[data-name-title]');
+        if (!title || typeof gsap === 'undefined' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const tween = gsap.from(title, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+
+        this.abort.signal.addEventListener('abort', () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+        });
       }
     }
-    this.scrollTriggers = [];
-  }
+  );
 }
-
-// ===== INITIALISATION FUNCTIONS =====
-function initNameSections() {
-  document.querySelectorAll('[data-section-type="name"]').forEach((el) => {
-    if (el._nameSectionInstance) return;
-    el._nameSectionInstance = new NameSection(el);
-  });
-}
-
-function destroyNameSections(container) {
-  if (container && container._nameSectionInstance) {
-    container._nameSectionInstance.destroy();
-    delete container._nameSectionInstance;
-  }
-}
-
-// ===== SHOPIFY EVENTS =====
-document.addEventListener('DOMContentLoaded', initNameSections);
-document.addEventListener('shopify:section:load', (e) => {
-  const section = e.target;
-  if (section && section.dataset.sectionType === 'name') {
-    initNameSections();
-  }
-});
-document.addEventListener('shopify:section:unload', (e) => {
-  const section = e.target;
-  if (section) {
-    destroyNameSections(section);
-  }
-});
-document.addEventListener('shopify:section:reload', (e) => {
-  const section = e.target;
-  if (section) {
-    destroyNameSections(section);
-    if (section.dataset.sectionType === 'name') {
-      section._nameSectionInstance = new NameSection(section);
-    }
-  }
-});

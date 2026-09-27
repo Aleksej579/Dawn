@@ -19,12 +19,7 @@
     },
     "0_custom_breadcrumb_anVbCE": {
       "type": "0-breadcrumb",
-      "settings": {
-        "home_text_color": "#000000",
-        "active_text_color": "#ff0050",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+      "settings": {}
     },
     "0_custom_banner_v2_gzBzy3": {
       "type": "0-banner-v2",
@@ -73,58 +68,15 @@
           }
         }
       },
-      "block_order": ["benefits_R3h3KN", "benefits_jBT7tw", "benefits_Nr4qcH", "benefits_FTp4Rc", "benefits_gBFf3A"],
+      "block_order": [
+        "benefits_R3h3KN",
+        "benefits_jBT7tw",
+        "benefits_Nr4qcH",
+        "benefits_FTp4Rc",
+        "benefits_gBFf3A"
+      ],
       "settings": {
         "full_width": true,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "0_custom_banner_v1_kMFmEe": {
-      "type": "0-banner-v1",
-      "blocks": {
-        "heading_K8FEjJ": {
-          "type": "heading",
-          "settings": {
-            "heading": "<p>Lorem ipsum dolor sit amet</p>",
-            "heading_size": "h1"
-          }
-        },
-        "text_JHwd9R": {
-          "type": "block",
-          "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_tJX6Et": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button",
-            "button_link": "#",
-            "button_style_secondary": false
-          }
-        },
-        "image_kHDFEn": {
-          "type": "Image",
-          "settings": {
-            "second_image": "shopify://shop_images/post-1.jpg"
-          }
-        }
-      },
-      "block_order": ["heading_K8FEjJ", "text_JHwd9R", "button_tJX6Et", "image_kHDFEn"],
-      "settings": {
-        "image": "shopify://shop_images/post-3.jpg",
-        "height": "large",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-3",
-        "color_scheme": "scheme-3",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -210,7 +162,19 @@
           }
         }
       },
-      "block_order": ["designers_riNcp4", "designers_YeBNtC", "designers_g3QiMg", "designers_wMPKYb", "designers_NPK9FW", "designers_8eLwHp", "designers_dWHRPr", "designers_rdxBgR", "designers_aFpxzk", "designers_n7myAt", "designers_YnMMXh"],
+      "block_order": [
+        "designers_riNcp4",
+        "designers_YeBNtC",
+        "designers_g3QiMg",
+        "designers_wMPKYb",
+        "designers_NPK9FW",
+        "designers_8eLwHp",
+        "designers_dWHRPr",
+        "designers_rdxBgR",
+        "designers_aFpxzk",
+        "designers_n7myAt",
+        "designers_YnMMXh"
+      ],
       "settings": {
         "heading": "Designers",
         "padding_top": 36,
@@ -258,7 +222,11 @@
           }
         }
       },
-      "block_order": ["ambassador_Az777a", "ambassador_TG7NPa", "ambassador_dyXPiY"],
+      "block_order": [
+        "ambassador_Az777a",
+        "ambassador_TG7NPa",
+        "ambassador_dyXPiY"
+      ],
       "settings": {
         "title": "<p>Title</p>",
         "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
@@ -303,7 +271,11 @@
       "settings": {
         "commercial_series": false,
         "title": "Title",
-        "product_list": ["product", "halsa-baby-all-in-one-wellness-monitor", "babyliveadvice®-subscription"],
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -386,7 +358,14 @@
           }
         }
       },
-      "block_order": ["why_use_ngyWHP", "why_use_XU3Dax", "why_use_Gkk6ab", "why_use_z6XhWT", "why_use_aCx7fG", "why_use_aJ7mMM"],
+      "block_order": [
+        "why_use_ngyWHP",
+        "why_use_XU3Dax",
+        "why_use_Gkk6ab",
+        "why_use_z6XhWT",
+        "why_use_aCx7fG",
+        "why_use_aJ7mMM"
+      ],
       "settings": {
         "title": "Lorem ipsum dolor sit amet.",
         "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -450,7 +429,12 @@
           }
         }
       },
-      "block_order": ["reviews_FHnX8j", "reviews_PwDU6R", "reviews_a4icik", "reviews_f8D8iD"],
+      "block_order": [
+        "reviews_FHnX8j",
+        "reviews_PwDU6R",
+        "reviews_a4icik",
+        "reviews_f8D8iD"
+      ],
       "settings": {
         "title": "Life is better witha little butter",
         "sub_title": "(and a lot of cookies)!",
@@ -467,7 +451,11 @@
       "type": "0-products",
       "settings": {
         "title": "Lorem ipsum dolor sit amet",
-        "product_list": ["product", "halsa-baby-all-in-one-wellness-monitor", "babyliveadvice®-subscription"],
+        "product_list": [
+          "product",
+          "halsa-baby-all-in-one-wellness-monitor",
+          "babyliveadvice®-subscription"
+        ],
         "padding_top": 0,
         "padding_bottom": 0,
         "margin_top": 40,
@@ -521,7 +509,11 @@
           }
         }
       },
-      "block_order": ["accessories_aMxceb", "accessories_UmbGad", "accessories_MmUdzQ"],
+      "block_order": [
+        "accessories_aMxceb",
+        "accessories_UmbGad",
+        "accessories_MmUdzQ"
+      ],
       "name": "Custom accesories",
       "settings": {
         "padding_top": 30,
@@ -532,5 +524,25 @@
       }
     }
   },
-  "order": ["main", "0_custom_breadcrumb_anVbCE", "0_custom_banner_v2_gzBzy3", "0_custom_benefits_87EBPc", "0_custom_banner_v1_kMFmEe", "0_custom_designers_iKLLJx", "0_custom_header_title_NJ43iJ", "0_ambassadors_wWRCfP", "0_custom_banner_jr4QrC", "0_custom_thank_you_DjFeB3", "0_custom_best_sellers_qe6JcQ", "0_custom_banner_yt_PRL63e", "0_custom_subscribe_wP3e6e", "0_custom_why_use_pPyRL4", "0_custom_base_3_NtGWb8", "0_custom_popup_blog_Rqy6qA", "0_custom_reviews_w49BQ8", "0_custom_products_xKLrjc", "0_custom_e_book_JR8JgK", "0_custom_accessories_VV4Brz"]
+  "order": [
+    "main",
+    "0_custom_breadcrumb_anVbCE",
+    "0_custom_banner_v2_gzBzy3",
+    "0_custom_benefits_87EBPc",
+    "0_custom_designers_iKLLJx",
+    "0_custom_header_title_NJ43iJ",
+    "0_ambassadors_wWRCfP",
+    "0_custom_banner_jr4QrC",
+    "0_custom_thank_you_DjFeB3",
+    "0_custom_best_sellers_qe6JcQ",
+    "0_custom_banner_yt_PRL63e",
+    "0_custom_subscribe_wP3e6e",
+    "0_custom_why_use_pPyRL4",
+    "0_custom_base_3_NtGWb8",
+    "0_custom_popup_blog_Rqy6qA",
+    "0_custom_reviews_w49BQ8",
+    "0_custom_products_xKLrjc",
+    "0_custom_e_book_JR8JgK",
+    "0_custom_accessories_VV4Brz"
+  ]
 }
