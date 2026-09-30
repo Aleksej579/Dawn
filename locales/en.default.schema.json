@@ -340,6 +340,14 @@
         "show_cart_discount_code": {
           "label": "Show discount code field"
         },
+        "cart_free_shipping_threshold": {
+          "label": "Free shipping bar threshold",
+          "info": "Shows the cart progress bar. Amount in the shop's currency, e.g. 50. Set 0 to hide."
+        },
+        "cart_show_recommendations": {
+          "label": "Show product recommendations",
+          "info": "Complementary products from the Search & Discovery app"
+        },
         "cart_drawer": {
           "header": "Cart drawer",
           "collection": {

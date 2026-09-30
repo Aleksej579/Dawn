@@ -1455,6 +1455,20 @@
         "default": true
       },
       {
+        "type": "number",
+        "id": "cart_free_shipping_threshold",
+        "label": "t:settings_schema.cart.settings.cart_free_shipping_threshold.label",
+        "info": "t:settings_schema.cart.settings.cart_free_shipping_threshold.info",
+        "default": 0
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_recommendations",
+        "label": "t:settings_schema.cart.settings.cart_show_recommendations.label",
+        "info": "t:settings_schema.cart.settings.cart_show_recommendations.info",
+        "default": false
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.cart.settings.cart_drawer.header"
       },

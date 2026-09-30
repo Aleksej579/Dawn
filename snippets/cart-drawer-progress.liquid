@@ -1,0 +1,93 @@
+{% comment %}
+  Free-shipping progress bar. Self-contained: no JS, no asset files.
+
+  Usage:
+    {% render 'cart-drawer-progress' %}
+    {% render 'cart-drawer-progress', threshold: 75 %}  {# overrides the theme setting #}
+
+  Needs: settings.cart_free_shipping_threshold (shop currency, 0 = hidden) and the locale keys
+  sections.cart.free_shipping_reached / free_shipping_remaining_html.
+  Works anywhere the cart is re-rendered by the server (Section Rendering API), as in Dawn.
+
+  TODO if needed:
+  - Digital items count towards the goal (cart.total_price). To exclude them, sum
+    final_line_price of items with requires_shipping and subtract cart-level discounts.
+  - The threshold is not converted for Shopify Markets currencies.
+{% endcomment %}
+
+{%- assign goal = threshold | default: settings.cart_free_shipping_threshold | times: 100 | round -%}
+
+{%- if goal > 0 and cart.requires_shipping -%}
+  {%- assign left = goal | minus: cart.total_price | at_least: 0 -%}
+  {%- assign percent = cart.total_price | times: 100.0 | divided_by: goal | at_most: 100 -%}
+  {%- assign left_money = left | money -%}
+
+  <div class="cart-drawer__progress">
+    <p id="CartDrawer-ProgressText">
+      {%- if left == 0 -%}
+        {{ 'sections.cart.free_shipping_reached' | t }}
+      {%- else -%}
+        {{ 'sections.cart.free_shipping_remaining_html' | t: amount: left_money }}
+      {%- endif -%}
+    </p>
+    <div
+      role="progressbar"
+      aria-labelledby="CartDrawer-ProgressText"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="{{ percent | round }}"
+    >
+      <span style="width: {{ percent }}%"></span>
+    </div>
+  </div>
+
+  <style>
+    .cart-drawer__progress {
+      /* Theme tokens live here only: remap these two when porting to another theme. */
+      --progress-color: rgb(var(--color-foreground));
+      --progress-text: rgba(var(--color-foreground), 0.75);
+
+      display: grid;
+      gap: 0.8rem;
+      padding: 0.5rem 0 1.5rem;
+
+      & p {
+        margin: 0;
+        font-size: 1.4rem;
+        color: var(--progress-text);
+      }
+
+      & strong {
+        color: var(--progress-color);
+      }
+
+      [role='progressbar'] {
+        padding: 0.4rem;
+        border: 0.1rem solid color-mix(in srgb, var(--progress-color) 15%, transparent);
+        border-radius: 3.2rem;
+      }
+
+      & span {
+        display: block;
+        height: 0.4rem;
+        min-width: 0.4rem;
+        border-radius: 3.2rem;
+        background: var(--progress-color);
+        /* The bar is re-created on every cart update, so grow it on insert instead of transitioning. */
+        animation: cart-drawer-progress-grow 0.5s ease;
+      }
+    }
+
+    @keyframes cart-drawer-progress-grow {
+      from {
+        width: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cart-drawer__progress span {
+        animation: none;
+      }
+    }
+  </style>
+{%- endif -%}

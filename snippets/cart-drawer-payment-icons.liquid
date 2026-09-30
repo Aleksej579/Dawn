@@ -1,0 +1,47 @@
+{% comment %}
+  Payment-method icons row. Self-contained: no assets, no settings.
+
+  Usage:
+    {% render 'cart-drawer-payment-icons' %}
+    {% render 'cart-drawer-payment-icons', methods: 'visa,master,paypal' %}
+
+  By default shows the store's real payment methods (shop.enabled_payment_types).
+  `methods` overrides them: comma-separated Shopify payment type handles (visa, master,
+  american_express, paypal, ideal, klarna, ...), shown in that order.
+  Needs the locale key sections.footer.payment (Dawn has it).
+
+  TODO if needed: methods missing from shop.enabled_payment_types (some local ones, e.g. iDEAL or
+  Klarna, may not be reported) can be forced via `methods` or drawn as your own inline SVG branch.
+{% endcomment %}
+
+{%- if methods -%}
+  {%- assign types = methods | split: ',' -%}
+{%- else -%}
+  {%- assign types = shop.enabled_payment_types -%}
+{%- endif -%}
+
+{%- if types.size > 0 -%}
+  <ul class="cart-drawer__payment-icons" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
+    {%- for type in types -%}
+      <li>{{ type | payment_type_svg_tag }}</li>
+    {%- endfor -%}
+  </ul>
+
+  <style>
+    .cart-drawer__payment-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.2rem 0 0;
+      padding: 0;
+      list-style: none;
+
+      & svg {
+        display: block;
+        width: 3.8rem;
+        height: 2.4rem;
+      }
+    }
+  </style>
+{%- endif -%}

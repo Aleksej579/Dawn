@@ -81,6 +81,8 @@
           class=" is-empty"
         {% endif %}
       >
+        {% render 'cart-drawer-progress' %}
+
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
@@ -455,6 +457,8 @@
           </div>
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
+
+        {% render 'cart-drawer-recommendations' %}
       </cart-drawer-items>
       <div class="drawer__footer">
         {% render 'cart-drawer-utility' %}
@@ -539,6 +543,8 @@
             {{ 'sections.cart.checkout' | t }}
           </button>
         </div>
+
+        {% render 'cart-drawer-payment-icons' %}
       </div>
     </div>
   </div>
