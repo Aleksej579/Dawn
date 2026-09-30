@@ -1,5 +1,4 @@
 /*
-  New section:
   - rename name-section, NameSection, data-name-*
   - drop unused modules (init() call + block)
 */
