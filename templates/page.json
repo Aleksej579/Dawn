@@ -19,7 +19,15 @@
     },
     "0_custom_breadcrumb_anVbCE": {
       "type": "0-breadcrumb",
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "show_home": true,
+        "show_home_icon": false,
+        "home_title": "Home",
+        "home_url": "",
+        "capitalize": false,
+        "separator": "chevron"
+      }
     },
     "0_custom_banner_v2_gzBzy3": {
       "type": "0-banner-v2",
@@ -370,7 +378,9 @@
         "title": "Lorem ipsum dolor sit amet.",
         "sub_title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "0_custom_base_3_NtGWb8": {

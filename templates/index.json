@@ -91,7 +91,7 @@
         "color_scheme": "scheme-3",
         "title": "<p>Lorem ipsum dolor sit amet</p>",
         "show_advanced_settings": true,
-        "title_size": "h2-txt",
+        "title_size": "h1-txt",
         "title_align": "left",
         "title_font_family": "var(--font-heading-family)",
         "subtitle": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&nbsp;<br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;<br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;<br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
