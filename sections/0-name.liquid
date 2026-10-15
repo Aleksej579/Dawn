@@ -4,9 +4,12 @@
   - update schema: name, class, presets
   - drop unused blocks (markup + schema settings)
   - no JS: remove <script>, use <div> instead of name-section
+  - Swiper/GSAP tags are a fallback; normally move them to theme.liquid (skip if already loaded there)
 {% endcomment %}
 
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="{{ '0-name.out.js' | asset_url }}" defer></script>

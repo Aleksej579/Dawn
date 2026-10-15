@@ -73,13 +73,12 @@ if (!customElements.get('name-section')) {
         const swiper = new Swiper(slider, {
           slidesPerView: 1.3,
           spaceBetween: 12,
-          centeredSlides: true,
           grabCursor: true,
-          // slidesOffsetBefore: 16,
-          // slidesOffsetAfter: 16,
+          slidesOffsetBefore: 16,
+          slidesOffsetAfter: 16,
           breakpoints: {
-            750: { slidesPerView: 2, centeredSlides: false },
-            1200: { slidesPerView: Number(slider.dataset.columns), centeredSlides: false },
+            750: { slidesPerView: 2, slidesOffsetBefore: 0, slidesOffsetAfter: 0 },
+            1200: { slidesPerView: Number(slider.dataset.columns) },
           },
           navigation: {
             nextEl: this.querySelector('[data-name-swiper-next]'),
