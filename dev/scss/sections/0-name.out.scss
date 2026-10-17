@@ -640,12 +640,9 @@
     } */
 
     .swiper-pagination {
-        width: auto;
-        left: 50%;
-        transform: translateX(-50%);
         display: flex;
+        justify-content: center;
         gap: 6px;
-        /* added for better spacing */
     }
 
     .swiper-pagination-bullet {

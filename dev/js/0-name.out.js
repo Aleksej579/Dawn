@@ -78,7 +78,7 @@ if (!customElements.get('name-section')) {
           slidesOffsetAfter: 16,
           breakpoints: {
             750: { slidesPerView: 2, slidesOffsetBefore: 0, slidesOffsetAfter: 0 },
-            1200: { slidesPerView: Number(slider.dataset.columns) },
+            1200: { slidesPerView: Number(slider.dataset.columns), slidesOffsetBefore: 0, slidesOffsetAfter: 0 },
           },
           navigation: {
             nextEl: this.querySelector('[data-name-swiper-next]'),
