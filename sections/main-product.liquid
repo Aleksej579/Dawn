@@ -675,6 +675,8 @@
                 {% render 'pdp-tabs', block: block %}
               {%- when 'pdp_faq' -%}
                 {% render 'pdp-faq', block: block %}
+              {%- when 'pdp_subscription' -%}
+                {% render 'pdp-subscription', block: block, product_form_id: product_form_id %}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -795,6 +797,30 @@
           "id": "title",
           "label": "Title",
           "default": "FAQ"
+        }
+      ]
+    },
+    {
+      "type": "pdp_subscription",
+      "name": "Subscription widget",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Uses selling plans from the subscriptions app. Hide the app's own block."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Invite-only"
+        },
+        {
+          "type": "textarea",
+          "id": "benefits",
+          "label": "Benefits",
+          "info": "One benefit per line.",
+          "default": "Free shipping\nCancel anytime\nExclusive offers"
         }
       ]
     },

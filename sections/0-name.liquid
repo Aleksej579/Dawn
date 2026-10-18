@@ -4,12 +4,10 @@
   - update schema: name, class, presets
   - drop unused blocks (markup + schema settings)
   - no JS: remove <script>, use <div> instead of name-section
-  - Swiper/GSAP tags are a fallback; normally move them to theme.liquid (skip if already loaded there)
+  - Swiper: uses the theme's global Swiper if present, otherwise the JS loads it from CDN (see loadSwiper); GSAP tags below are a fallback, normally move them to theme.liquid
 {% endcomment %}
 
 {{ '0-name.out.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@10.3.1/swiper-bundle.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="{{ '0-name.out.js' | asset_url }}" defer></script>
@@ -66,6 +64,22 @@
     "
   >
     {%- assign content_blocks = section.blocks | where: 'type', 'base_block' -%}
+    {%- liquid
+      # Image sizes follow the layout: slider = 1.3 / 2 / N slides per view, grid = 1 / 2 / N columns
+      assign slider_vw = 100.0 | divided_by: section.settings.slider_columns | ceil
+      assign slider_sizes = '(min-width: 1200px) ' | append: slider_vw | append: 'vw, (min-width: 750px) 50vw, 77vw'
+      assign grid_vw = 100.0 | divided_by: section.settings.grid_columns | ceil
+      assign grid_sizes = '(min-width: 1024px) ' | append: grid_vw | append: 'vw, (min-width: 750px) 50vw, 100vw'
+    -%}
+    {%- capture video_controls -%}
+      <button type="button" class="__play" data-name-play aria-label="{{ 'products.product.media.play_video' | t }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M1.482.815A1 1 0 0 0 0 1.69v10.517a1 1 0 0 0 1.525.851L10.54 7.5a1 1 0 0 0-.043-1.728z" clip-rule="evenodd"/></svg>
+      </button>
+      <button type="button" class="__pause" data-name-pause aria-label="{{ 'products.product.media.pause_video' | t }}" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 12" aria-hidden="true"><path fill="currentColor" d="M1.2.75c-.387 0-.7.235-.7.525v9.45c0 .29.313.525.7.525s.7-.235.7-.525v-9.45c0-.29-.313-.525-.7-.525m5.6 0c-.387 0-.7.235-.7.525v9.45c0 .29.313.525.7.525s.7-.235.7-.525v-9.45c0-.29-.313-.525-.7-.525"/></svg>
+      </button>
+    {%- endcapture -%}
+
     {%- for block in section.blocks -%}
       {%- if block.type == '@app' -%}
         {% render block %}
@@ -125,7 +139,26 @@
       </div>
     </div>
 
-    <div class="__slider--wrapp swiper" data-name-swiper data-columns="{{ section.settings.slider_columns }}">
+    {%- capture slider_labels -%}
+      {
+        "prev": {{ 'sections.slideshow.previous_slideshow' | t | json }},
+        "next": {{ 'sections.slideshow.next_slideshow' | t | json }},
+        "pause": {{ 'sections.slideshow.pause_slideshow' | t | json }},
+        "play": {{ 'sections.slideshow.play_slideshow' | t | json }},
+        "carousel": {{ 'sections.slideshow.carousel' | t | json }},
+        "slide": {{ 'sections.slideshow.slide' | t | json }},
+        "loadSlide": {{ 'sections.slideshow.load_slide' | t | json }}
+      }
+    {%- endcapture -%}
+
+    <div
+      class="__slider--wrapp swiper"
+      role="region"
+      aria-label="{{ 'sections.slideshow.carousel' | t }}"
+      data-name-swiper
+      data-columns="{{ section.settings.slider_columns }}"
+      data-labels="{{ slider_labels | escape }}"
+    >
       <div class="swiper-wrapper">
         {%- for block in content_blocks -%}
           <article class="swiper-slide" {{ block.shopify_attributes }}>
@@ -135,9 +168,10 @@
               {%- endif -%}
               {%- if block.settings.video != blank -%}
                 {%- assign poster = block.settings.image | default: block.settings.video.preview_image | image_url: width: 1100 -%}
-                {{ block.settings.video | video_tag: class: '__video', poster: poster, autoplay: true, muted: true, loop: true, playsinline: true }}
+                {{ block.settings.video | video_tag: class: '__video', poster: poster, preload: 'none', loop: true, playsinline: true }}
+                {{ video_controls }}
               {%- elsif block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy' }}
+                {{ block.settings.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: slider_sizes, loading: 'lazy' }}
               {%- else -%}
                 {{ 'image' | placeholder_svg_tag }}
               {%- endif -%}
@@ -168,22 +202,39 @@
         type="button"
         class="swiper-button-prev"
         data-name-swiper-prev
-        aria-label="Previous slide"
+        aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-          <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="currentColor" stroke-opacity="0.25"/>
+          <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
       <button
         type="button"
         class="swiper-button-next"
         data-name-swiper-next
-        aria-label="Next slide"
+        aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="#ECEBDE"/>
-          <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="#727270" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 20 20)"/>
+          <path d="M20 0.5C30.7696 0.5 39.5 9.23045 39.5 20C39.5 30.7696 30.7696 39.5 20 39.5C9.23045 39.5 0.5 30.7696 0.5 20C0.5 9.23045 9.23045 0.5 20 0.5Z" stroke="currentColor" stroke-opacity="0.25"/>
+          <path d="M22.5 13.3337L15.8333 20.0003L22.5 26.667" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 20 20)"/>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="__autoplay"
+        data-name-swiper-autoplay
+        aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
+        hidden
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="19.5" stroke="currentColor" stroke-opacity="0.25"/>
+          <path d="M15.5 13.5v13M24.5 13.5v13" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="19.5" stroke="currentColor" stroke-opacity="0.25"/>
+          <path d="M16 13.5v13l10.5-6.5z" stroke="currentColor" stroke-width="1.67" stroke-linejoin="round"/>
         </svg>
       </button>
 
@@ -192,6 +243,11 @@
 
     <div class="__grid--wrapp" style="--grid-cols: {{ section.settings.grid_columns }};">
       {%- for block in content_blocks -%}
+        {%- liquid
+          assign span_vw = block.settings.col_span | times: grid_vw | at_most: 100
+          assign tablet_vw = block.settings.col_span | at_most: 2 | times: 50
+          assign block_sizes = '(min-width: 1024px) ' | append: span_vw | append: 'vw, (min-width: 750px) ' | append: tablet_vw | append: 'vw, 100vw'
+        -%}
         <article
           {{ block.shopify_attributes }}
           style="
@@ -206,9 +262,10 @@
 
             {%- if block.settings.video != blank -%}
               {%- assign poster = block.settings.image | default: block.settings.video.preview_image | image_url: width: 1100 -%}
-              {{ block.settings.video | video_tag: class: '__video', poster: poster, autoplay: true, muted: true, loop: true, playsinline: true }}
+              {{ block.settings.video | video_tag: class: '__video', poster: poster, preload: 'none', loop: true, playsinline: true }}
+              {{ video_controls }}
             {%- elsif block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy' }}
+              {{ block.settings.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: block_sizes, loading: 'lazy' }}
             {%- else -%}
               {{ 'image' | placeholder_svg_tag }}
             {%- endif -%}
@@ -260,7 +317,7 @@
             {%- assign img = product.metafields.custom.image_secondary | default: product.featured_image -%}
             {%- if img != blank -%}
               {%- assign img_alt = img.alt | default: product.title -%}
-              {{- img | image_url: width: 1100 | image_tag: class: '__image', alt: img_alt, widths: '360, 550, 720, 1100', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy' -}}
+              {{- img | image_url: width: 1100 | image_tag: class: '__image', alt: img_alt, widths: '360, 550, 720, 1100', sizes: grid_sizes, loading: 'lazy' -}}
             {%- else -%}
               {{- 'image' | placeholder_svg_tag -}}
             {%- endif -%}
@@ -285,7 +342,7 @@
                   {{ 'products.product.sold_out' | t }}
                 {%- endif -%}
               </button>
-              <p class="__cart-error" role="alert" hidden></p>
+              <p class="__cart-error" role="alert" data-fallback="{{ 'sections.cart.cart_error' | t | escape }}" hidden></p>
             {%- endform -%}
           </div>
         </article>
@@ -299,7 +356,7 @@
             {%- endif -%}
 
             {%- if article.image != blank -%}
-              {{ article.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy' }}
+              {{ article.image | image_url: width: 1100 | image_tag: class: '__image', widths: '360, 550, 720, 1100', sizes: grid_sizes, loading: 'lazy' }}
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
             {%- endif -%}

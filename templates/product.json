@@ -78,47 +78,32 @@
             "margin_bottom": 0
           }
         },
+        "subscriptions_app_block_MrQGDq": {
+          "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
+          "settings": {
+            "widget_style": "toggle",
+            "widget_style_card_selector": "radio_button",
+            "subscription_policy_url": "",
+            "color_text_body": "#6D7175",
+            "dividers_color": "#8F8D8D",
+            "background_color": "#FFFFFF",
+            "border_thickness": 1,
+            "border_radius": 0,
+            "product": "{{product}}"
+          }
+        },
+        "pdp_subscription": {
+          "type": "pdp_subscription",
+          "settings": {
+            "badge": "Invite-only",
+            "benefits": "Free shipping\nCancel anytime\nExclusive offers"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
-          }
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
-            "icon": "leather",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Dimensions",
-            "icon": "ruler",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-3": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
-            "page": ""
           }
         },
         "pdp_banner_zydfpP": {
@@ -152,11 +137,9 @@
         "quantity_selector",
         "related_product_h7LJ3T",
         "about_sale_block_KwFPT7",
+        "subscriptions_app_block_MrQGDq",
+        "pdp_subscription",
         "buy_buttons",
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "collapsible-row-3",
         "pdp_banner_zydfpP",
         "pdp_tabs_PJeRbC",
         "pdp_faq_NqNRfM"

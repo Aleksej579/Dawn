@@ -101,6 +101,9 @@
         }
 
         .__container {
+            /* Grid and accordion respond to this width (@container), not to the viewport: works in narrow columns too */
+            container-type: inline-size;
+
             .__banner--wrapp {
                 height: 600px;
                 position: relative;
@@ -108,8 +111,10 @@
                 .__media--wrapp {
                     height: 100%;
 
-                    &:hover :is(img, video) {
-                        transform: scale(1);
+                    @media (hover: hover) {
+                        &:hover :is(img, video) {
+                            transform: scale(1);
+                        }
                     }
                 }
 
@@ -125,13 +130,7 @@
                     padding: 12px;
                     overflow-y: auto;
                     background: rgb(var(--color-background), 0.5);
-
-                    @supports not (backdrop-filter: blur(8px)) {
-                        background: rgb(var(--color-background), 0.85);
-                    }
-
                     backdrop-filter: blur(8px);
-                    -webkit-backdrop-filter: blur(8px);
 
                     .__title {
                         text-wrap: balance;
@@ -145,33 +144,24 @@
                         max-width: 100%;
                     }
 
-                    &::-webkit-scrollbar {
-                        width: 3px;
-                    }
-
-                    &::-webkit-scrollbar-track {
-                        background: #f1f1f1;
-                    }
-
-                    &::-webkit-scrollbar-thumb {
-                        background: #888;
-                    }
+                    scrollbar-width: thin;
+                    scrollbar-color: rgb(var(--color-foreground), 0.4) transparent;
                 }
 
                 &.center .__banner-content {
                     max-width: 50%;
-                    left: 50%;
-                    transform: translate(-50%);
+                    inset-inline: 0;
+                    margin-inline: auto;
                 }
 
                 &.left .__banner-content {
                     max-width: 50%;
-                    left: 0;
+                    inset-inline-start: 0;
                 }
 
                 &.right .__banner-content {
                     max-width: 50%;
-                    right: 0;
+                    inset-inline-end: 0;
                 }
 
                 &.full .__banner-content {
@@ -181,12 +171,12 @@
                 &.split-left {
                     .__banner-content {
                         max-width: 50%;
-                        left: 0;
+                        inset-inline-start: 0;
                     }
 
                     .__media--wrapp {
                         max-width: 50%;
-                        margin-left: auto;
+                        margin-inline-start: auto;
                         aspect-ratio: 1 / 1;
                     }
                 }
@@ -194,12 +184,12 @@
                 &.split-right {
                     .__banner-content {
                         max-width: 50%;
-                        right: 0;
+                        inset-inline-end: 0;
                     }
 
                     .__media--wrapp {
                         max-width: 50%;
-                        margin-right: auto;
+                        margin-inline-end: auto;
                         aspect-ratio: 1 / 1;
                     }
                 }
@@ -236,11 +226,11 @@
                     min-height: 300px;
                 }
 
-                @media (width < 1024px) {
+                @container (width < 900px) {
                     grid-template-columns: repeat(2, minmax(0, 1fr));
                 }
 
-                @media (width < 750px) {
+                @container (width < 600px) {
                     grid-template-columns: minmax(0, 1fr);
                     grid-auto-rows: auto;
                 }
@@ -251,11 +241,11 @@
                     display: flex;
                     gap: 12px;
 
-                    @media (width < 1024px) {
+                    @container (width < 900px) {
                         flex-direction: column;
                     }
 
-                    @media (width < 750px) {
+                    @container (width < 600px) {
                         width: 100%;
                     }
 
@@ -269,6 +259,7 @@
                     details {
                         padding: 16px 0;
                         border-bottom: 1px solid rgb(var(--color-foreground), 0.3);
+                        interpolate-size: allow-keywords;
 
                         summary {
                             list-style: none;
@@ -296,13 +287,24 @@
                             transform: rotate(180deg);
                         }
 
-                        &[open] {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 8px;
+                        /* Smooth open/close where supported (Chromium); elsewhere the panel just toggles */
+                        &::details-content {
+                            height: 0;
+                            overflow: hidden;
+                            transition: height 0.3s ease, content-visibility 0.3s allow-discrete;
+
+                            @media (prefers-reduced-motion: reduce) {
+                                transition: none;
+                            }
+                        }
+
+                        &[open]::details-content {
+                            height: auto;
                         }
 
                         .__accordion-content {
+                            padding-top: 8px;
+
                             * {
                                 font-size: 16px;
                                 line-height: 26px;
@@ -369,7 +371,7 @@
         .__badge {
             position: absolute;
             top: 10px;
-            left: 10px;
+            inset-inline-start: 10px;
             font-size: 11px;
             line-height: 100%;
             font-weight: 600;
@@ -395,13 +397,13 @@
 
             h3.__title {
                 font-size: 20px;
-                line-height: 100%;
+                line-height: 120%;
                 font-weight: 400;
                 color: rgb(var(--color-foreground));
                 letter-spacing: normal;
                 display: -webkit-box;
-                -webkit-line-clamp: 1;
-                line-clamp: 1;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -410,8 +412,10 @@
                     color: inherit;
                     text-decoration: none;
 
-                    &:hover {
-                        text-decoration: underline;
+                    @media (hover: hover) {
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
@@ -429,17 +433,17 @@
 
             .__description {
                 font-size: 16px;
-                line-height: 100%;
+                line-height: 150%;
                 font-weight: 400;
                 color: rgb(var(--color-foreground));
                 letter-spacing: normal;
             }
 
             .__reviews {
-                color: #bdccd1;
+                color: rgb(var(--color-foreground), 0.25);
 
                 .active {
-                    color: #6a8388;
+                    color: rgb(var(--color-button));
                 }
             }
 
@@ -453,9 +457,11 @@
                 text-decoration: none;
                 letter-spacing: normal;
 
-                &:hover {
-                    color: rgb(var(--color-button), 0.8);
-                    text-decoration: underline;
+                @media (hover: hover) {
+                    &:hover {
+                        color: rgb(var(--color-button), 0.8);
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -473,9 +479,11 @@
                 cursor: pointer;
                 transition: color 0.3s ease, background 0.3s ease;
 
-                &:hover {
-                    color: rgb(var(--color-button));
-                    background: rgb(var(--color-background));
+                @media (hover: hover) {
+                    &:hover {
+                        color: rgb(var(--color-button));
+                        background: rgb(var(--color-background));
+                    }
                 }
 
                 &:disabled {
@@ -493,6 +501,7 @@
 
     /* IMAGE ---------- */
     :where(.__media--wrapp) {
+        position: relative;
         height: 100%;
         margin: 0;
         width: 100%;
@@ -501,11 +510,13 @@
         min-height: 200px;
         overflow: hidden;
 
-        &:hover :is(img, svg) {
-            transform: scale(1.1);
+        @media (hover: hover) {
+            &:hover :is(img, svg) {
+                transform: scale(1.1);
 
-            @media (prefers-reduced-motion: reduce) {
-                transform: none;
+                @media (prefers-reduced-motion: reduce) {
+                    transform: none;
+                }
             }
         }
 
@@ -517,8 +528,53 @@
             object-fit: cover;
             object-position: center;
             transition: transform 0.5s ease-in-out;
-            // mix-blend-mode: multiply;
+            /* mix-blend-mode: multiply; */
         }
+    }
+
+    /* VIDEO CONTROLS ---------- */
+    :where(.__play, .__pause) {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        color: rgb(var(--color-background));
+        background: rgb(var(--color-foreground), 0.8);
+        cursor: pointer;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    :where(.__play) {
+        inset: 0;
+        margin: auto;
+        width: 52px;
+        height: 52px;
+    }
+
+    :where(.__pause) {
+        inset-inline-end: 12px;
+        bottom: 12px;
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Placed after the media block on purpose: resets the img/svg rules above for the icons */
+    .__play svg,
+    .__pause svg {
+        width: 20px;
+        height: 20px;
+        transform: none;
+    }
+
+    .__pause svg {
+        width: 14px;
+        height: 14px;
     }
 
     /* LINK ---------- */
@@ -546,10 +602,12 @@
         border: 1px solid rgb(var(--color-button));
         /* border: 1px solid transparent; */
 
-        &:hover {
-            color: rgb(var(--color-button));
-            background: rgb(var(--color-background));
-            border: 1px solid rgb(var(--color-button));
+        @media (hover: hover) {
+            &:hover {
+                color: rgb(var(--color-button));
+                background: rgb(var(--color-background));
+                border: 1px solid rgb(var(--color-button));
+            }
         }
 
         &:not([href]) {
@@ -583,6 +641,7 @@
         z-index: auto;
         left: auto;
         top: 30px;
+        color: rgb(var(--color-foreground));
         background: none;
         border: none;
         padding: 0;
@@ -610,6 +669,46 @@
         right: 0;
     }
 
+    /* Autoplay pause/play (WCAG 2.2.2) */
+    .__autoplay {
+        position: absolute;
+        top: 8px;
+        /* aligned with the arrows: Swiper shifts them up by half their height */
+        right: 112px;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: none;
+        color: rgb(var(--color-foreground));
+        background: none;
+        cursor: pointer;
+
+        @media (width < 750px) {
+            right: 16px;
+        }
+
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        svg:last-child,
+        &[data-paused] svg:first-child {
+            display: none;
+        }
+
+        &[data-paused] svg:last-child {
+            display: block;
+        }
+    }
+
+    /* Controls sit on the clipped edge of the slider (overflow: hidden): keep the focus ring inside */
+    .swiper-button-prev:focus-visible,
+    .swiper-button-next:focus-visible,
+    .__autoplay:focus-visible {
+        outline-offset: -2px;
+    }
+
     /* Alternative: show arrows centered on mobile — remove display: none above and uncomment
     @media (width < 750px) {
         .swiper-button-prev {
@@ -626,17 +725,17 @@
 
     /* .swiper-button-prev:hover svg,
     .swiper-button-next:hover svg {
-        fill: #ecebde;
+        fill: rgb(var(--color-foreground), 0.25);
     }
 
     .swiper-button-prev:hover svg path,
     .swiper-button-next:hover svg path {
-        stroke: #40543e;
+        stroke: rgb(var(--color-button));
     }
 
     .swiper-button-prev:hover svg path:last-child,
     .swiper-button-next:hover svg path:last-child {
-        stroke: #727270;
+        stroke: rgb(var(--color-foreground), 0.6);
     } */
 
     .swiper-pagination {

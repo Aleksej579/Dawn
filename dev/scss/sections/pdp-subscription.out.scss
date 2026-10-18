@@ -1,0 +1,178 @@
+.pdp-subscription {
+  display: block;
+  margin-top: 3rem;
+
+  .pdp-subscription__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .ps__tab {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 0;
+      padding: 0;
+      background: rgb(var(--color-foreground));
+      color: rgba(var(--color-background), 0.6);
+      transition: background 0.2s ease, color 0.2s ease;
+
+      &.is-active {
+        background: rgb(var(--color-background));
+        color: rgb(var(--color-foreground));
+        box-shadow: inset 0 2px 0 rgb(var(--color-foreground));
+      }
+
+      & + .ps__tab {
+        border-left: 1px solid rgba(var(--color-background), 0.2);
+      }
+    }
+
+    .ps__tab--otp {
+      flex-direction: row;
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.2rem 1.6rem;
+      text-align: left;
+    }
+
+    .ps__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.2rem 1.6rem 0;
+      border: 0;
+      background: none;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .ps__tab--sub:not(.is-active) .ps__toggle {
+      padding-bottom: 1.2rem;
+    }
+
+    .ps__label,
+    .ps__price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .ps__price {
+      white-space: nowrap;
+    }
+
+    .ps__tab:not(.is-active) .ps__price {
+      opacity: 0.45;
+    }
+
+    .ps__details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 0 1.6rem 1.6rem;
+
+      &[hidden] {
+        display: none;
+      }
+    }
+
+    .ps__plans {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .ps__plan {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+
+      input {
+        margin: 0;
+        accent-color: rgb(var(--color-foreground));
+      }
+
+      &:has(:focus-visible) {
+        outline: 2px solid rgb(var(--color-foreground));
+        outline-offset: 2px;
+      }
+    }
+
+    .ps__plan-name {
+      font-size: 1.2rem;
+      line-height: 1.3;
+      opacity: 0.6;
+    }
+
+    .ps__plan-price {
+      margin-left: auto;
+      font-size: 1.2rem;
+    }
+
+    .ps__benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .ps__badge {
+      align-self: flex-start;
+      padding: 0.4rem 0.8rem;
+      background: rgba(var(--color-foreground), 0.08);
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .ps__benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        position: relative;
+        padding-left: 1.4rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.03em;
+        line-height: 1.25;
+        opacity: 0.65;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0.6rem;
+          left: 0;
+          width: 0.5rem;
+          height: 0.5rem;
+          background: currentColor;
+        }
+      }
+    }
+
+    .ps__tab :focus-visible {
+      outline: 2px solid rgb(var(--color-foreground));
+      outline-offset: -4px;
+    }
+
+    @media (width < 750px) {
+      .ps__label,
+      .ps__price {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

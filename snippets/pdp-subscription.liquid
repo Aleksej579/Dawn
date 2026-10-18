@@ -1,0 +1,86 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign sub_group = product.selling_plan_groups.first
+  assign plans = sub_group.selling_plans
+  assign benefits = block.settings.benefits | newline_to_br | split: '<br />'
+  assign has_plans = false
+  if plans.size > 0
+    assign has_plans = true
+  endif
+-%}
+
+{{ 'pdp-subscription.out.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pdp-subscription.out.js' | asset_url }}" defer></script>
+
+{%- if has_plans -%}
+  <pdp-subscription
+    class="pdp-subscription"
+    data-section-id="{{ section.id }}"
+    {{ block.shopify_attributes }}
+  >
+    <input type="hidden" name="selling_plan" form="{{ product_form_id }}" value="" disabled data-ps-input>
+
+    <div class="pdp-subscription__wrapper" role="group" aria-label="{{ 'products.product.pdp_subscription.label' | t }}">
+      <button class="ps__tab ps__tab--otp is-active" type="button" aria-pressed="true" data-ps-tab="otp">
+        <span class="ps__label">{{ 'products.product.pdp_subscription.one_time' | t }}</span>
+        <span class="ps__price" data-ps-price="otp">{{ variant.price | money_without_trailing_zeros }}</span>
+      </button>
+
+      <div class="ps__tab ps__tab--sub">
+        <button class="ps__toggle" type="button" aria-pressed="false" data-ps-tab="sub">
+          <span class="ps__label">{{ 'products.product.pdp_subscription.subscribe' | t }}</span>
+          <span class="ps__price" data-ps-price="sub">
+            {%- for allocation in variant.selling_plan_allocations -%}
+              {%- if allocation.selling_plan.id == plans.first.id -%}
+                {{- allocation.price | money_without_trailing_zeros -}}
+              {%- endif -%}
+            {%- endfor -%}
+          </span>
+        </button>
+
+        <div class="ps__details" data-ps-details hidden>
+          {%- if plans.size > 1 -%}
+            <fieldset class="ps__plans">
+              <legend class="visually-hidden">{{ sub_group.name }}</legend>
+              {%- for plan in plans -%}
+                <label class="ps__plan">
+                  <input
+                    type="radio"
+                    name="ps-plan-{{ section.id }}"
+                    value="{{ plan.id }}"
+                    data-ps-plan
+                    {% if forloop.first %}checked{% endif %}
+                  >
+                  <span class="ps__plan-name">{{ plan.name }}</span>
+                  {%- for allocation in variant.selling_plan_allocations -%}
+                    {%- if allocation.selling_plan.id == plan.id -%}
+                      <span class="ps__plan-price" data-ps-plan-price="{{ plan.id }}">{{ allocation.price | money_without_trailing_zeros }}</span>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- else -%}
+            <input type="radio" value="{{ plans.first.id }}" data-ps-plan checked hidden>
+            <span class="ps__plan-name">{{ plans.first.name }}</span>
+          {%- endif -%}
+
+          {%- if benefits.size > 0 and benefits.first != blank -%}
+            <div class="ps__benefits">
+              {%- if block.settings.badge != blank -%}
+                <span class="ps__badge">{{ block.settings.badge }}</span>
+              {%- endif -%}
+              <ul class="ps__benefits-list">
+                {%- for benefit in benefits -%}
+                  {%- if benefit != blank -%}
+                    <li>{{ benefit | strip }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </pdp-subscription>
+{%- endif -%}
