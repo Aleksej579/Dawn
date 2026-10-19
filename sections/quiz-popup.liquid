@@ -1,0 +1,352 @@
+{{ 'quiz-popup.out.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quiz-popup.out.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign genders = 'male,female' | split: ','
+  assign cities = section.settings.city_list | split: ','
+  assign question_blocks = section.blocks | where: 'type', 'question'
+-%}
+
+<qp-section
+  class="quiz-popup__wrapper"
+  style="--qp-bg: {{ section.settings.bg_color }}; --qp-accent: {{ section.settings.accent_color }}; --qp-text: {{ section.settings.text_color }};"
+>
+  <dialog class="qp__dialog" aria-labelledby="qp-title-{{ section.id }}" data-qp-dialog>
+    <button class="qp__close" type="button" aria-label="{{ 'sections.quiz_popup.close' | t }}" data-qp-close>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" />
+      </svg>
+    </button>
+
+    <form class="qp__form" data-action="{{ routes.root_url }}contact#contact_form" novalidate>
+      <input type="hidden" name="form_type" value="customer">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="contact[tags]" value="quiz-subscriber" data-qp-tags>
+
+      {%- comment -%} Step 1: city {%- endcomment -%}
+      <div class="qp__step" data-qp-step="city">
+        <h2 class="qp__title" id="qp-title-{{ section.id }}">{{ section.settings.intro_title }}</h2>
+        {%- if section.settings.intro_text != blank -%}
+          <p class="qp__text">{{ section.settings.intro_text | newline_to_br }}</p>
+        {%- endif -%}
+        <label class="visually-hidden" for="qp-city-{{ section.id }}">{{ 'sections.quiz_popup.city_label' | t }}</label>
+        <select class="qp__field" id="qp-city-{{ section.id }}" required data-qp-city>
+          <option value="">{{ 'sections.quiz_popup.city_placeholder' | t }}</option>
+          {%- for item in cities -%}
+            {%- assign city = item | strip -%}
+            {%- if city != blank -%}
+              <option value="{{ city | escape }}">{{ city }}</option>
+            {%- endif -%}
+          {%- endfor -%}
+          <option value="other">{{ 'sections.quiz_popup.city_other' | t }}</option>
+        </select>
+        <input
+          class="qp__field"
+          type="text"
+          placeholder="{{ 'sections.quiz_popup.city_custom_placeholder' | t }}"
+          aria-label="{{ 'sections.quiz_popup.city_custom_placeholder' | t }}"
+          hidden
+          data-qp-city-custom
+        >
+        <button class="qp__btn" type="button" data-qp-next>{{ 'sections.quiz_popup.continue' | t }}</button>
+      </div>
+
+      {%- comment -%} Step 2: gender {%- endcomment -%}
+      <div class="qp__step" data-qp-step="gender" hidden>
+        <h2 class="qp__title">{{ section.settings.gender_title }}</h2>
+        <div class="qp__genders">
+          {%- for gender in genders -%}
+            <button class="qp__btn" type="button" data-qp-gender="{{ gender }}">
+              {{- 'sections.quiz_popup.' | append: gender | t -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Questions: one fieldset per question, shown one at a time {%- endcomment -%}
+      {%- for gender in genders -%}
+        {%- liquid
+          assign total = 0
+          assign position = 0
+          for block in question_blocks
+            if block.settings.gender == gender
+              assign total = total | plus: 1
+            endif
+          endfor
+        -%}
+        {%- for block in question_blocks -%}
+          {%- if block.settings.gender != gender -%}{%- continue -%}{%- endif -%}
+          {%- assign position = position | plus: 1 -%}
+          <fieldset class="qp__step qp__question" data-qp-step="question" data-qp-question="{{ gender }}" hidden {{ block.shopify_attributes }}>
+            <legend class="qp__title">{{ block.settings.text }}</legend>
+            {%- assign option_ids = 'option_a,option_b,option_c,option_d' | split: ',' -%}
+            {%- assign letters = 'A,B,C,D' | split: ',' -%}
+            {%- for option_id in option_ids -%}
+              {%- assign option_text = block.settings[option_id] -%}
+              {%- if option_text != blank -%}
+                {%- assign score = 3 | minus: forloop.index0 -%}
+                <label class="qp__option">
+                  <input type="radio" name="qp-{{ block.id }}" value="{{ score }}" required>
+                  <span>{{ letters[forloop.index0] }}) {{ option_text }}</span>
+                </label>
+              {%- endif -%}
+            {%- endfor -%}
+            <div class="qp__nav">
+              <button class="qp__btn qp__btn--ghost" type="button" data-qp-prev>{{ 'sections.quiz_popup.back' | t }}</button>
+              <button class="qp__btn" type="button" data-qp-next>
+                {%- if position == total -%}
+                  {{- 'sections.quiz_popup.show_result' | t -}}
+                {%- else -%}
+                  {{- 'sections.quiz_popup.next' | t -}}
+                {%- endif -%}
+              </button>
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endfor -%}
+
+      {%- comment -%} Result {%- endcomment -%}
+      <div class="qp__step qp__result" data-qp-step="result" hidden>
+        {%- for gender in genders -%}
+          {%- for level in (1..3) -%}
+            {%- liquid
+              case level
+                when 1
+                  assign level_name = 'low'
+                when 2
+                  assign level_name = 'mid'
+                else
+                  assign level_name = 'high'
+              endcase
+              assign text_id = gender | append: '_result_' | append: level_name | append: '_text'
+            -%}
+            <p class="qp__title qp__result-text" data-qp-result="{{ gender }}-{{ level_name }}" hidden>
+              {{- section.settings[text_id] | newline_to_br -}}
+            </p>
+          {%- endfor -%}
+
+          {%- assign product_id = gender | append: '_product' -%}
+          {%- assign product = section.settings[product_id] -%}
+          {%- if product != blank -%}
+            <a class="qp__product" href="{{ product.url }}" data-qp-product="{{ gender }}" hidden>
+              {%- if product.featured_image != blank -%}
+                {{ product.featured_image | image_url: width: 240 | image_tag: class: 'qp__product-image', alt: product.title, loading: 'lazy' }}
+              {%- endif -%}
+              <span class="qp__product-info">
+                <span class="qp__product-title">{{ product.title }}</span>
+                <span class="qp__product-price">{{ product.price | money }}</span>
+                <span class="qp__product-cta">{{ 'sections.quiz_popup.shop_now' | t }}</span>
+              </span>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <div class="qp__email" data-qp-email>
+          {%- if section.settings.email_title != blank -%}
+            <p class="qp__email-title">{{ section.settings.email_title }}</p>
+          {%- endif -%}
+          <div class="qp__email-row">
+            <label class="visually-hidden" for="qp-email-{{ section.id }}">{{ 'sections.quiz_popup.email_label' | t }}</label>
+            <input
+              class="qp__field"
+              id="qp-email-{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              placeholder="{{ 'sections.quiz_popup.email_placeholder' | t }}"
+              autocomplete="email"
+              required
+              data-qp-email-input
+            >
+            <button class="qp__btn" type="submit">{{ 'sections.quiz_popup.subscribe' | t }}</button>
+          </div>
+        </div>
+        <p
+          class="qp__message"
+          role="status"
+          data-success="{{ 'sections.quiz_popup.subscribed' | t }}"
+          data-error="{{ 'sections.quiz_popup.subscribe_error' | t }}"
+          hidden
+          data-qp-message
+        ></p>
+
+        <button class="qp__btn qp__btn--ghost" type="button" data-qp-restart>{{ 'sections.quiz_popup.restart' | t }}</button>
+      </div>
+    </form>
+  </dialog>
+</qp-section>
+
+{% schema %}
+{
+  "name": "Quiz popup",
+  "class": "quiz-popup",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Open the popup with any link to #quiz or any element with the data-qp-open attribute."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#0b0b1a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Background glow",
+      "default": "#2d235a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "intro_title",
+      "label": "Title",
+      "default": "This isn't for everyone."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Text",
+      "default": "Six questions. Don't overthink it.\nWe'll decide if you belong."
+    },
+    {
+      "type": "text",
+      "id": "city_list",
+      "label": "Cities (comma separated)",
+      "default": "New York, Los Angeles, Chicago, Houston, Miami"
+    },
+    {
+      "type": "text",
+      "id": "gender_title",
+      "label": "Category step title",
+      "default": "State your category"
+    },
+    {
+      "type": "header",
+      "content": "Male result"
+    },
+    {
+      "type": "product",
+      "id": "male_product",
+      "label": "Product (shown for the high result)"
+    },
+    {
+      "type": "textarea",
+      "id": "male_result_low_text",
+      "label": "Low result",
+      "default": "Yeah… you're not ready for this.\n\nYou're moving like everything deserves your attention.\nIt doesn't.\nToo reactive. Too available.\n\nDirection: Fix your hygiene, presence, and stop chasing validation."
+    },
+    {
+      "type": "textarea",
+      "id": "male_result_mid_text",
+      "label": "Mid result",
+      "default": "You're definitely mid.\n\nYou have moments where it looks like you get it.\nThen you do something predictable and lose it.\n\nDirection: Clean up your behavior. Tighten your presence."
+    },
+    {
+      "type": "textarea",
+      "id": "male_result_high_text",
+      "label": "High result",
+      "default": "You're a little dangerous. We like that.\n\nYou don't chase. You don't react.\nYou move like you've done this before.\n\nDirection: Keep it clean — grooming, scent, presence."
+    },
+    {
+      "type": "header",
+      "content": "Female result"
+    },
+    {
+      "type": "product",
+      "id": "female_product",
+      "label": "Product (shown for the high result)"
+    },
+    {
+      "type": "textarea",
+      "id": "female_result_low_text",
+      "label": "Low result",
+      "default": "Yeah… you're not ready for this.\n\nYou give too much, too fast.\nYou react, adjust, and overextend.\n\nDirection: Fix your standards. Control your energy."
+    },
+    {
+      "type": "textarea",
+      "id": "female_result_mid_text",
+      "label": "Mid result",
+      "default": "You're definitely mid.\n\nYou know what to do. You just don't always do it.\n\nDirection: Slow down. Pull back. Be selective."
+    },
+    {
+      "type": "textarea",
+      "id": "female_result_high_text",
+      "label": "High result",
+      "default": "You're a little dangerous. We like that.\n\nYou don't chase. You don't compete.\nYou understand timing, control, and presence.\n\nDirection: Stay intentional. Keep standards high."
+    },
+    {
+      "type": "header",
+      "content": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_title",
+      "label": "Title",
+      "default": "Get exclusive updates"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "select",
+          "id": "gender",
+          "label": "Category",
+          "options": [
+            { "value": "male", "label": "Male" },
+            { "value": "female", "label": "Female" }
+          ],
+          "default": "male"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "type": "text",
+          "id": "option_a",
+          "label": "Answer A (3 points)",
+          "default": "Answer A"
+        },
+        {
+          "type": "text",
+          "id": "option_b",
+          "label": "Answer B (2 points)",
+          "default": "Answer B"
+        },
+        {
+          "type": "text",
+          "id": "option_c",
+          "label": "Answer C (1 point)",
+          "default": "Answer C"
+        },
+        {
+          "type": "text",
+          "id": "option_d",
+          "label": "Answer D (0 points)",
+          "default": "Answer D"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

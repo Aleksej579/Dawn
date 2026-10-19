@@ -1,0 +1,29 @@
+{%- liquid
+  assign items = block.settings.marquee_text | split: '|'
+  comment
+    Each set must be wider than the viewport, otherwise the track runs out before the loop restarts
+  endcomment
+  assign repeat = 12
+-%}
+
+{{ 'pdp-marquee.out.css' | asset_url | stylesheet_tag }}
+
+{%- if block.settings.marquee_text != blank -%}
+  <div
+    class="pdp-marquee"
+    style="--pm-duration: {{ 60 | divided_by: block.settings.marquee_speed }}s;"
+    {{ block.shopify_attributes }}
+  >
+    <div class="pm__track">
+      {%- for set in (1..2) -%}
+        <div class="pm__set"{% if set == 2 %} aria-hidden="true"{% endif %}>
+          {%- for i in (1..repeat) -%}
+            {%- for item in items -%}
+              <span class="pm__item">{{ item | strip }}&nbsp;·&nbsp;</span>
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

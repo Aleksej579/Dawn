@@ -11,6 +11,51 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "0_marquee_NP8P8N": {
+      "type": "0-marquee",
+      "blocks": {
+        "text_NGY9kj": {
+          "type": "text",
+          "settings": {
+            "text": "Make things better",
+            "heading_tag": "p",
+            "font_size": 12,
+            "text_color": ""
+          }
+        },
+        "text_AXHfE4": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping",
+            "heading_tag": "p",
+            "font_size": 12,
+            "text_color": ""
+          }
+        },
+        "text_8EwTDT": {
+          "type": "text",
+          "settings": {
+            "text": "New collection",
+            "heading_tag": "p",
+            "font_size": 12,
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_NGY9kj",
+        "text_AXHfE4",
+        "text_8EwTDT"
+      ],
+      "name": "Marquee",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "gap_between_elements": 24
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -37,12 +82,14 @@
         "show_home": true,
         "show_home_icon": false,
         "home_title": "Home",
+        "home_url": "",
         "capitalize": false,
         "separator": "chevron"
       }
     }
   },
   "order": [
+    "0_marquee_NP8P8N",
     "header",
     "0_breadcrumb_Xyy97i"
   ]

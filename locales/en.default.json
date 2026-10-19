@@ -106,6 +106,9 @@
   },
   "products": {
     "product": {
+      "pdp_payment_icons": {
+        "alt": "Payment method"
+      },
       "pdp_subscription": {
         "label": "Purchase options",
         "one_time": "One-Time",
@@ -271,6 +274,26 @@
     }
   },
   "sections": {
+    "quiz_popup": {
+      "close": "Close",
+      "city_label": "City",
+      "city_placeholder": "Select city",
+      "city_other": "Other (enter your city)",
+      "city_custom_placeholder": "Enter your city",
+      "continue": "Continue →",
+      "male": "Male",
+      "female": "Female",
+      "back": "← Back",
+      "next": "Next →",
+      "show_result": "Show result →",
+      "shop_now": "Shop now →",
+      "email_label": "Email",
+      "email_placeholder": "Your email address",
+      "subscribe": "Subscribe →",
+      "subscribed": "Thank you for subscribing!",
+      "subscribe_error": "Something went wrong. Please try again.",
+      "restart": "Take quiz again"
+    },
     "announcements": {
       "previous_announcement": "Previous announcement",
       "next_announcement": "Next announcement",

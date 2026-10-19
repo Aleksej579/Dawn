@@ -1,0 +1,40 @@
+.pdp-marquee {
+  margin-top: 1.6rem;
+  padding-block: 0.6rem;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.08);
+  color: rgb(var(--color-foreground));
+
+  .pm__track {
+    display: flex;
+    width: max-content;
+    animation: pm-scroll var(--pm-duration, 30s) linear infinite;
+  }
+
+  .pm__set {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .pm__item {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pm__track {
+      animation: none;
+    }
+  }
+}
+
+@keyframes pm-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

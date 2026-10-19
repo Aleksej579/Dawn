@@ -176,3 +176,8 @@
     }
   }
 }
+
+/* The subscriptions app embed renders its own widget before </body>: hide it, the app itself stays enabled */
+body > .shopify-app-block:has(.shopify_subscriptions_app_block_container) {
+  display: none;
+}

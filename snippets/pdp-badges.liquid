@@ -1,0 +1,11 @@
+{{ 'pdp-badges.out.css' | asset_url | stylesheet_tag }}
+
+<ul class="pdp-badges" {{ block.shopify_attributes }}>
+  {%- for i in (1..3) -%}
+    {%- assign badge_id = 'badge_text_' | append: i -%}
+    {%- assign badge = block.settings[badge_id] -%}
+    {%- if badge != blank -%}
+      <li class="pb__item">{{ badge }}</li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>

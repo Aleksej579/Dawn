@@ -1,0 +1,22 @@
+{%- assign icon_alt = 'products.product.pdp_payment_icons.alt' | t -%}
+{{ 'pdp-payment-icons.out.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="pdp-payment-icons"
+  style="--ppi-height: {{ block.settings.icon_height }}px; --ppi-gap: {{ block.settings.icon_gap }}px;"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.use_static_icons -%}
+    {%- for i in (1..7) -%}
+      {%- assign icon_id = 'icon_' | append: i -%}
+      {%- assign image = block.settings[icon_id] -%}
+      {%- if image != blank -%}
+        {{ image | image_url: width: 160 | image_tag: class: 'ppi__icon', alt: icon_alt, loading: 'lazy' }}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for type in shop.enabled_payment_types -%}
+      {{ type | payment_type_svg_tag: class: 'ppi__icon' }}
+    {%- endfor -%}
+  {%- endif -%}
+</div>

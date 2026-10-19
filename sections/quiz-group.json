@@ -1,0 +1,161 @@
+{
+  "name": "Quiz popup",
+  "type": "aside",
+  "sections": {
+    "quiz-popup": {
+      "type": "quiz-popup",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "You walk into a rooftop. A woman catches your eye. What do you do?",
+            "option_a": "Walk over like it's already handled",
+            "option_b": "Take a second, then approach clean",
+            "option_c": "Stay nearby hoping it lines up",
+            "option_d": "Do nothing and pretend you had a strategy"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "Conversation starts strong, then her replies slow down.",
+            "option_a": "You step back — she comes back or she doesn't",
+            "option_b": "You send one clean message later",
+            "option_c": "You keep feeding it so it doesn't die",
+            "option_d": "You double text and start auditioning"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "Another guy tries to get her attention.",
+            "option_a": "Nothing changes — you don't compete",
+            "option_b": "Stay present and keep your frame",
+            "option_c": "Try to regain focus",
+            "option_d": "Get thrown off and start trying to win the attention back"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "Someone gets close. What do they notice?",
+            "option_a": "Clean skin, controlled scent, no weak links",
+            "option_b": "You smell good and look put together",
+            "option_c": "Depends how serious you took the night",
+            "option_d": "It's a gamble—and you're hoping no one notices"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "You walk into a high-end lounge. What happens first?",
+            "option_a": "You move like the room was never above you",
+            "option_b": "You settle in after a minute",
+            "option_c": "You scan the room to figure out how to act",
+            "option_d": "You stay low and hope nobody clocks you"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "gender": "male",
+            "text": "She flakes last minute.",
+            "option_a": "Nothing — access dropped",
+            "option_b": "One more chance",
+            "option_c": "You help her reschedule your dignity",
+            "option_d": "You chase and call it effort"
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "You walk into a lounge. What's your energy?",
+            "option_a": "You don't adjust — the room can catch up",
+            "option_b": "You know you'll get attention",
+            "option_c": "You read the room before moving",
+            "option_d": "You start advertising yourself because the attention moved"
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "He shows interest early.",
+            "option_a": "You decide if he even gets access",
+            "option_b": "You entertain it, lightly",
+            "option_c": "You match his energy too fast",
+            "option_d": "You get pulled in and start calling it chemistry"
+          }
+        },
+        "question_9": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "Your friend gets a little too friendly with the guy you're interested in.",
+            "option_a": "You step back — if he shifts, he's done",
+            "option_b": "You watch quietly and save the receipt",
+            "option_c": "You pull him back without making it obvious",
+            "option_d": "You compete for him and make it obvious"
+          }
+        },
+        "question_10": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "Someone gets close. What do they notice?",
+            "option_a": "Everything is handled — scent, skin, details",
+            "option_b": "You smell good and you know it",
+            "option_c": "Depends how much effort you gave it",
+            "option_d": "You didn't think about it, which is brave"
+          }
+        },
+        "question_11": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "You walk into a high-end place.",
+            "option_a": "You don't shrink — standards recognize standards",
+            "option_b": "You settle in smoothly",
+            "option_c": "You read the room first",
+            "option_d": "You feel out of place and start checking yourself"
+          }
+        },
+        "question_12": {
+          "type": "question",
+          "settings": {
+            "gender": "female",
+            "text": "He becomes inconsistent.",
+            "option_a": "You lose interest — inconsistency kills it",
+            "option_b": "You pull back",
+            "option_c": "You try to balance it",
+            "option_d": "You give more and call it patience"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6",
+        "question_7",
+        "question_8",
+        "question_9",
+        "question_10",
+        "question_11",
+        "question_12"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "quiz-popup"
+  ]
+}

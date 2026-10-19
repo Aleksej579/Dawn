@@ -675,6 +675,12 @@
                 {% render 'pdp-tabs', block: block %}
               {%- when 'pdp_faq' -%}
                 {% render 'pdp-faq', block: block %}
+              {%- when 'pdp_payment_icons' -%}
+                {% render 'pdp-payment-icons', block: block %}
+              {%- when 'pdp_marquee' -%}
+                {% render 'pdp-marquee', block: block %}
+              {%- when 'pdp_badges' -%}
+                {% render 'pdp-badges', block: block %}
               {%- when 'pdp_subscription' -%}
                 {% render 'pdp-subscription', block: block, product_form_id: product_form_id %}
             {%- endcase -%}
@@ -797,6 +803,126 @@
           "id": "title",
           "label": "Title",
           "default": "FAQ"
+        }
+      ]
+    },
+    {
+      "type": "pdp_payment_icons",
+      "name": "PDP Payment Icons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "use_static_icons",
+          "label": "Use custom icons",
+          "info": "Off: icons from the store payment settings. On: images below.",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "icon_height",
+          "label": "Icon height",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "icon_gap",
+          "label": "Gap between icons",
+          "min": 4,
+          "max": 24,
+          "step": 2,
+          "default": 8,
+          "unit": "px"
+        },
+        {
+          "type": "header",
+          "content": "Custom icons"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3",
+          "label": "Icon 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_4",
+          "label": "Icon 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_5",
+          "label": "Icon 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_6",
+          "label": "Icon 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_7",
+          "label": "Icon 7"
+        }
+      ]
+    },
+    {
+      "type": "pdp_marquee",
+      "name": "PDP Marquee",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "marquee_text",
+          "label": "Marquee text",
+          "info": "Separate several phrases with |",
+          "default": "Free shipping | Easy returns | Secure checkout"
+        },
+        {
+          "type": "range",
+          "id": "marquee_speed",
+          "label": "Speed",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 2
+        }
+      ]
+    },
+    {
+      "type": "pdp_badges",
+      "name": "PDP Badges",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text_1",
+          "label": "Badge 1",
+          "default": "Free shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_text_2",
+          "label": "Badge 2",
+          "default": "Easy returns"
+        },
+        {
+          "type": "text",
+          "id": "badge_text_3",
+          "label": "Badge 3"
         }
       ]
     },
