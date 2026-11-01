@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -154,7 +163,8 @@
         "load_image": "Загрузить изображение {{ index }} в средство просмотра галереи",
         "load_model": "Загрузить трехмерную модель {{ index }} в средство просмотра галереи",
         "load_video": "Загрузить видео {{ index }} в средство просмотра галереи",
-        "image_available": "Изображение {{ index }} доступно в средстве просмотра галереи"
+        "image_available": "Изображение {{ index }} доступно в средстве просмотра галереи",
+        "pause_video": "Приостановить видео"
       },
       "view_full_details": "Просмотреть всю информацию",
       "shipping_policy_html": "<a href=\"{{ link }}\">Стоимость доставки</a> рассчитывается при оформлении заказа.",
@@ -179,7 +189,15 @@
       "product_variants": "Варианты товара",
       "taxes_included": "Налоги включены.",
       "duties_included": "Пошлины включены.",
-      "duties_and_taxes_included": "Пошлины и налоги включены."
+      "duties_and_taxes_included": "Пошлины и налоги включены.",
+      "pdp_payment_icons": {
+        "alt": "Способ оплаты"
+      },
+      "pdp_subscription": {
+        "label": "Варианты покупки",
+        "one_time": "Однократный",
+        "subscribe": "Подписаться"
+      }
     },
     "modal": {
       "label": "Галерея мультимедиа"
@@ -328,7 +346,10 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Пошлины включены. Налоги, скидки и <a href=\"{{ link }}\">стоимость доставки</a> рассчитываются при оформлении заказа.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Пошлины включены. Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Налоги, скидки и <a href=\"{{ link }}\">стоимость доставки</a> рассчитываются при оформлении заказа.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "free_shipping_reached": "Вы получили бесплатную доставку!",
+      "free_shipping_remaining_html": "Добавьте ещё <strong>{{ amount }}</strong>, чтобы получить бесплатную доставку",
+      "recommendations_heading": "Часто покупают вместе с"
     },
     "footer": {
       "payment": "Способы оплаты"
@@ -400,6 +421,26 @@
       "min_error": "Минимальное количество этого товара — {{ min }}",
       "max_error": "Максимальное количество этого товара — {{ max }}",
       "step_error": "Вы можете добавить этот товар только в количестве, кратном {{ step }}"
+    },
+    "quiz_popup": {
+      "close": "Закрыть",
+      "city_label": "Город",
+      "city_placeholder": "Выберите город",
+      "city_other": "Другой (укажите ваш город)",
+      "city_custom_placeholder": "Введите ваш город",
+      "continue": "Продолжить →",
+      "male": "Мужской",
+      "female": "Женский",
+      "back": "← Назад",
+      "next": "Далее →",
+      "show_result": "Показать результат →",
+      "shop_now": "Купить сейчас →",
+      "email_label": "Электронная почта",
+      "email_placeholder": "Ваш адрес электронной почты",
+      "subscribe": "Подписаться →",
+      "subscribed": "Спасибо за подписку!",
+      "subscribe_error": "Что-то пошло не так. Пожалуйста, попробуйте еще раз.",
+      "restart": "Пройти тест еще раз"
     }
   },
   "localization": {
@@ -552,6 +593,15 @@
       "send_on_label": "Дата отправки (необязательно)",
       "expanded": "Форма с данными получателя подарочной карты развернута",
       "collapsed": "Форма с данными получателя подарочной карты свернута"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "local_pickup": {
+        "stock_details": {
+          "in_stock": "В наличии"
+        }
+      }
     }
   }
 }
